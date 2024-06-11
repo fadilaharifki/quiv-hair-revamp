@@ -6,11 +6,15 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { formatCurrency } from "@/utils/format";
 import { useEffect, useRef, useState } from "react";
 import NextIcon from "@/assets/icon/next-icon";
 import PrevIcon from "@/assets/icon/prev-icon";
+
+type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
+type CarouselOptions = UseCarouselParameters[0];
 
 interface DataInterface {
   name: string;
@@ -20,9 +24,20 @@ interface DataInterface {
 
 interface CarouselInterface {
   data: DataInterface[];
+  opts?: CarouselOptions;
+  buttonNextPrev?: boolean;
+  classNameCarouselItem?: string;
 }
 
-export function CarouselProductComponent({ data = [] }: CarouselInterface) {
+export function CarouselProductComponent({
+  data = [],
+  opts = {
+    align: "start",
+    loop: true,
+  },
+  buttonNextPrev = true,
+  classNameCarouselItem = "md:basis-1/2 lg:basis-1/3 flex justify-center flex-col",
+}: CarouselInterface) {
   const [api, setApi] = useState<CarouselApi>();
   const nextIconRef = useRef<HTMLDivElement>(null);
   const prevIconRef = useRef<HTMLDivElement>(null);
@@ -77,17 +92,11 @@ export function CarouselProductComponent({ data = [] }: CarouselInterface) {
       <Carousel
         setApi={setApi}
         className="w-9/12 justify-center items-center align-middle"
-        opts={{
-          align: "start",
-          loop: true,
-        }}
+        opts={opts}
       >
         <CarouselContent>
           {data.map((item, index) => (
-            <CarouselItem
-              key={index}
-              className="md:basis-1/2 lg:basis-1/3 flex justify-end flex-col"
-            >
+            <CarouselItem key={index} className={classNameCarouselItem}>
               <Image
                 width={300}
                 height={300}
@@ -104,26 +113,28 @@ export function CarouselProductComponent({ data = [] }: CarouselInterface) {
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="my-10 text-center text-sm text-muted-foreground flex gap-10">
-        <div
-          ref={prevIconRef}
-          className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
-        >
-          <PrevIcon
-            color={isHoveredPrev ? "#ffffff" : "#383838"}
-            onClick={goToPrevious}
-          />
+      {buttonNextPrev && (
+        <div className="my-10 text-center text-sm text-muted-foreground flex gap-10">
+          <div
+            ref={prevIconRef}
+            className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
+          >
+            <PrevIcon
+              color={isHoveredPrev ? "#ffffff" : "#383838"}
+              onClick={goToPrevious}
+            />
+          </div>
+          <div
+            ref={nextIconRef}
+            className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
+          >
+            <NextIcon
+              color={isHoveredNext ? "#ffffff" : "#383838"}
+              onClick={goToNext}
+            />
+          </div>
         </div>
-        <div
-          ref={nextIconRef}
-          className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
-        >
-          <NextIcon
-            color={isHoveredNext ? "#ffffff" : "#383838"}
-            onClick={goToNext}
-          />
-        </div>
-      </div>
+      )}
     </>
   );
 }

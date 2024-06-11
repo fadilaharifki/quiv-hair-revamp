@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CarouselProductComponent } from "@/components/carousel-product";
+import { CarouselBannerComponent } from "@/components/carousel-banner";
 
 const HomePageModules = () => {
   const dataImage = [
@@ -28,6 +29,54 @@ const HomePageModules = () => {
       name: "QUIV Hair Wax",
       price: "140000",
       url: "/image/home/hairwax3.png",
+    },
+  ];
+
+  const dataImage2 = [
+    {
+      span: 2,
+      child: [
+        {
+          name: "People 1",
+          span: 1,
+          url: "/image/home/people1.png",
+        },
+        {
+          name: "People 2",
+          span: 1,
+          url: "/image/home/people2.png",
+        },
+      ],
+    },
+    {
+      span: 3,
+      child: [
+        {
+          name: "People 2",
+          span: 1,
+          url: "/image/home/people2.png",
+        },
+        {
+          name: "People 2",
+          span: 2,
+          url: "/image/home/people3.png",
+        },
+      ],
+    },
+    {
+      span: 3,
+      child: [
+        {
+          name: "People 3",
+          span: 1,
+          url: "/image/home/people3.png",
+        },
+        {
+          name: "People 1",
+          span: 2,
+          url: "/image/home/people1.png",
+        },
+      ],
     },
   ];
 
@@ -69,7 +118,7 @@ const HomePageModules = () => {
           <div>
             <Button
               variant="outline"
-              className=" bg-transparent text-white hover:text-black text-lg w-52 "
+              className="bg-transparent text-white hover:text-black text-lg w-52 "
             >
               See more
             </Button>
@@ -77,6 +126,29 @@ const HomePageModules = () => {
         </div>
         <div className="col-span-3 flex justify-center items-center flex-col">
           <CarouselProductComponent data={dataImage} />
+        </div>
+      </div>
+      <div className="h-screen flex justify-center items-center flex-col">
+        <CarouselBannerComponent dotButton data={dataImage2} autoPlay />
+      </div>
+      <div className="h-screen flex justify-evenly items-center flex-col bg-light-brown-one">
+        <div className="flex font-bell-mt text-[50px] font-bold">
+          New collections
+        </div>
+        <div className="flex justify-center items-center flex-col">
+          <CarouselProductComponent
+            buttonNextPrev={false}
+            classNameCarouselItem="md:basis-1/2 lg:basis-1/4 flex justify-end flex-col"
+            data={dataImage}
+          />
+        </div>
+        <div className="flex">
+          <Button
+            variant="outline"
+            className="bg-transparent text-black text-lg w-52 border-black hover:border-none"
+          >
+            See more
+          </Button>
         </div>
       </div>
     </div>
