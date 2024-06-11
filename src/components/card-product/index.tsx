@@ -17,26 +17,35 @@ interface ProductInterface {
 
 interface CardProductInterface {
   classNameCard?: string;
+  classNameImage?: string;
+  classNameTitle?: string;
   product: ProductInterface;
   footer?: React.ReactNode;
 }
 
 const CardProduct = ({
   classNameCard,
+  classNameImage,
+  classNameTitle,
   product,
   footer,
 }: CardProductInterface) => {
   return (
-    <Card className={twMerge("bg-navy-blue py-10 rounded-2xl")}>
+    <Card className={twMerge("bg-navy-blue py-10 rounded-2xl", classNameCard)}>
       <CardContent className="flex px-10 justify-center items-center flex-col gap-10">
         <Image
-          className="flex rounded-lg"
+          className={twMerge("flex rounded-lg h-50 w-50", classNameImage)}
           width={286}
           height={286}
           alt={product.title as string}
           src={product.url as string}
         />
-        <div className="font-bell-mt font-bold text-3xl text-white text-center">
+        <div
+          className={twMerge(
+            "font-bell-mt font-bold text-3xl text-white text-center",
+            classNameTitle
+          )}
+        >
           {product.title}
         </div>
         <div className="font-inter font-thin text-lg text-white text-center">
