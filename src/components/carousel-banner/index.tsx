@@ -182,7 +182,7 @@ export function CarouselBannerComponent({
             <div className="text-white text-xl font-inter font-thin text-center text-shadow shadow-gray-500">
               Shop the best natural men’s hairstyling products, shampoo,
               conditioner, shaving, and skincare.
-            </div>{" "}
+            </div>
             <div className="flex">
               <Button
                 variant="outline"

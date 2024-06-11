@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CarouselProductComponent } from "@/components/carousel-product";
 import { CarouselBannerComponent } from "@/components/carousel-banner";
+import CardProduct from "@/components/card-product";
 
 const HomePageModules = () => {
   const dataImage = [
@@ -80,6 +81,27 @@ const HomePageModules = () => {
     },
   ];
 
+  const dataImage3 = [
+    {
+      url: "/image/home/cuttinghair1.png",
+      title: "I’m putting what in my hair?",
+      description:
+        "Shop the best natural men’s hairstyling products, shampoo, conditioner, shaving, and skincare. Hanz de Fuko’s clean ",
+    },
+    {
+      url: "/image/home/cuttinghair2.png",
+      title: "I’m putting what in my hair?",
+      description:
+        "Shop the best natural men’s hairstyling products, shampoo, conditioner, shaving, and skincare. Hanz de Fuko’s clean ",
+    },
+    {
+      url: "/image/home/cuttinghair3.png",
+      title: "I’m putting what in my hair?",
+      description:
+        "Shop the best natural men’s hairstyling products, shampoo, conditioner, shaving, and skincare. Hanz de Fuko’s clean ",
+    },
+  ];
+
   return (
     <div>
       <div className="h-screen">
@@ -149,6 +171,45 @@ const HomePageModules = () => {
           >
             See more
           </Button>
+        </div>
+      </div>
+
+      <div className="h-screen flex items-center flex-col gap-10 py-20">
+        <div className="flex font-bell-mt text-center text-[50px] font-bold leading-tight">
+          Our blogs
+        </div>
+        <div className="w-4/12 flex text-center font-inter text-xl font-light leading-tight">
+          Shop the best natural men’s hairstyling products, shampoo,
+          conditioner, shaving, and skincare.
+        </div>
+        <div className="flex">
+          <Button
+            variant="outline"
+            className="bg-transparent text-black text-lg w-52 border-black hover:border-none"
+          >
+            See more
+          </Button>
+        </div>
+        <div className="flex gap-10 px-32">
+          {dataImage3.map((product, idx) => {
+            return (
+              <div key={idx}>
+                <CardProduct
+                  product={product}
+                  footer={
+                    <div className="flex justify-center">
+                      <Button
+                        variant="outline"
+                        className="bg-transparent text-white hover:text-navy-blue text-lg w-52 border-white hover:border-none"
+                      >
+                        See more
+                      </Button>
+                    </div>
+                  }
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
