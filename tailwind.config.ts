@@ -58,6 +58,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        brown: "#383838",
         "light-brown-navbar": "#D8D1C1",
         "light-brown": "#795548",
         "light-brown-one": "#EAE5DB",
@@ -86,7 +87,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        "font-bell-mt": ["Bell MT", "serif"],
+        "bell-mt": ["Bell MT", "serif"],
         inter: ["Inter", "sans-serif"],
       },
     },

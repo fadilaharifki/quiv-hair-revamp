@@ -124,7 +124,7 @@ const Footer = () => {
       </div>
       <div>
         <div className="border-b border-navy-blue w-screen border-2 my-10"></div>
-        <div className="flex flex-col font-inter font-thin text-sm gap-4 text-center my-10">
+        <div className="flex flex-col font-inter font-base text-lg text-center mt-20">
           © All Rights Reserved 2024 - QUIV
         </div>
       </div>
