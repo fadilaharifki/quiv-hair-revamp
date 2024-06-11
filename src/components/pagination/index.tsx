@@ -1,20 +1,10 @@
 "use client";
 
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
-import { formatCurrency } from "@/utils/format";
-import { useEffect, useRef, useState } from "react";
 import NextIcon from "@/assets/icon/next-icon";
 import PrevIcon from "@/assets/icon/prev-icon";
-
-type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
-type CarouselOptions = UseCarouselParameters[0];
+import { formatCurrency } from "@/utils/format";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 interface DataInterface {
   name: string;
@@ -22,35 +12,19 @@ interface DataInterface {
   price: string;
 }
 
-interface CarouselInterface {
+interface PaginationComponentInterface {
   data: DataInterface[];
-  opts?: CarouselOptions;
-  buttonNextPrev?: boolean;
-  classNameCarouselItem?: string;
 }
 
-export function CarouselProductComponent({
-  data = [],
-  opts = {
-    align: "start",
-    loop: true,
-  },
-  buttonNextPrev = true,
-  classNameCarouselItem = "md:basis-1/2 lg:basis-1/3 flex justify-center item-center flex-col",
-}: CarouselInterface) {
-  const [api, setApi] = useState<CarouselApi>();
+const PaginationComponent = ({ data }: PaginationComponentInterface) => {
   const nextIconRef = useRef<HTMLDivElement>(null);
   const prevIconRef = useRef<HTMLDivElement>(null);
   const [isHoveredNext, setIsHoveredNext] = useState(false);
   const [isHoveredPrev, setIsHoveredPrev] = useState(false);
 
-  const goToPrevious = () => {
-    api?.scrollPrev();
-  };
+  const goToPrevious = () => {};
 
-  const goToNext = () => {
-    api?.scrollNext();
-  };
+  const goToNext = () => {};
 
   useEffect(() => {
     const handleMouseEnter = () => setIsHoveredNext(true);
@@ -86,17 +60,12 @@ export function CarouselProductComponent({
       }
     };
   }, []);
-
   return (
-    <>
-      <Carousel
-        setApi={setApi}
-        className="w-9/12 justify-center items-center align-middle"
-        opts={opts}
-      >
-        <CarouselContent>
-          {data.map((item, index) => (
-            <CarouselItem key={index} className={classNameCarouselItem}>
+    <div className="w-screen flex flex-col justify-center items-center">
+      <div className="grid grid-cols-4 gap-20">
+        {data.map((item, i) => {
+          return (
+            <div key={i}>
               <div className="flex justify-center align-middle items-center ">
                 <Image
                   className="w-[198px] h-[231px] flex justify-center items-center"
@@ -112,32 +81,33 @@ export function CarouselProductComponent({
               <div className="font-inter text-xl text-center font-thin text-light-blue">
                 {formatCurrency(Number(item.price ?? 0))}
               </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-      {buttonNextPrev && (
-        <div className="my-10 text-center text-sm text-muted-foreground flex gap-10">
-          <div
-            ref={prevIconRef}
-            className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
-          >
-            <PrevIcon
-              color={isHoveredPrev ? "#ffffff" : "#383838"}
-              onClick={goToPrevious}
-            />
-          </div>
-          <div
-            ref={nextIconRef}
-            className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
-          >
-            <NextIcon
-              color={isHoveredNext ? "#ffffff" : "#383838"}
-              onClick={goToNext}
-            />
-          </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-32 text-center text-sm text-muted-foreground flex gap-10">
+        <div
+          ref={prevIconRef}
+          className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
+        >
+          <PrevIcon
+            color={isHoveredPrev ? "#ffffff" : "#383838"}
+            onClick={goToPrevious}
+          />
         </div>
-      )}
-    </>
+        <div
+          ref={nextIconRef}
+          className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
+        >
+          <NextIcon
+            color={isHoveredNext ? "#ffffff" : "#383838"}
+            onClick={goToNext}
+          />
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default PaginationComponent;
