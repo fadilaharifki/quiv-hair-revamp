@@ -86,7 +86,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        "bell-mt": ["Bell MT", "serif"],
+        "font-bell-mt": ["Bell MT", "serif"],
         inter: ["Inter", "sans-serif"],
       },
     },

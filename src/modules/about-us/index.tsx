@@ -76,8 +76,8 @@ const AboutUsPageModules = () => {
           })}
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-screen gap-10 my-20 border-black py-10 border-y-2">
-        <div className="flex font-bell-mt text-center text-[50px] font-bold">
+      <div className="flex flex-col items-center justify-center w-screen gap-10 border-black py-10 border-y-2">
+        <div className="flex bell-mt text-center text-[50px] font-bold">
           Our story
         </div>
         <div className="flex w-10/12 ">

@@ -99,7 +99,7 @@ const ProductsPageModules = () => {
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-[60px] font-bold text-center bell-mt text-shadow shadow-gray-700">
+            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-700">
               Products
             </div>
             <div className="text-white text-lg font-inter text-center text-shadow shadow-gray-700">
@@ -111,7 +111,7 @@ const ProductsPageModules = () => {
       </div>
       <div
         id="our-collection"
-        className="flex bg-navy-blue my-10 flex-col justify-center py-20 items-center gap-10"
+        className="flex bg-navy-blue my-10 flex-col justify-center tems-center gap-10"
       >
         <div className="flex font-bell-mt text-center text-[50px] font-bold text-white">
           Our collection

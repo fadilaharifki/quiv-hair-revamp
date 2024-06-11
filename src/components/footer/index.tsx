@@ -74,7 +74,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="flex flex-col w-screen">
+    <div className="flex flex-col w-screen py-20">
       <div className=" bg-light-brown-two w-screen grid grid-cols-5 p-10 gap-10 px-32">
         {menusFooter.map((item, idx) => {
           if (item.typeTitle === "icon") {

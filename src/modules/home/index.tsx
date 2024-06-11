@@ -113,7 +113,7 @@ const HomePageModules = () => {
         ></Image>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center h-72 justify-between">
-            <div className="text-white text-[60px] leading-none font-bold text-center bell-mt text-shadow shadow-black">
+            <div className="text-white text-[60px] leading-none font-bold text-center font-bell-mt text-shadow shadow-black">
               Botanically rich formulations protect, repair, and promote healthy
               hair
             </div>
@@ -130,7 +130,7 @@ const HomePageModules = () => {
       </div>
       <div className="grid grid-cols-4 h-screen py-10">
         <div className="col-span-1 bg-navy-blue flex-col flex justify-center px-10 gap-11">
-          <div className="text-white text-[50px] bell-mt font-semibold">
+          <div className="text-white text-[50px] font-bell-mt font-semibold">
             Bestsellers
           </div>
           <div className="text-white text-2xl font-inter font-light">

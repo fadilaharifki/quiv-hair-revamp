@@ -1,6 +1,92 @@
+"use client";
+
+import ArrowDown from "@/components/arrow-down";
+import CardProduct from "@/components/card-product";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const BlogPageModules = () => {
+  const dataImage1 = [
+    {
+      url: "/image/blog/image2.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+    {
+      url: "/image/blog/image3.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+    {
+      url: "/image/blog/image4.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+  ];
+
+  const dataImage2 = [
+    {
+      url: "/image/blog/image5.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+    {
+      url: "/image/blog/image6.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+    {
+      url: "/image/blog/image7.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+  ];
+
+  const dataImage3 = [
+    {
+      url: "/image/blog/image8.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+    {
+      url: "/image/blog/image9.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+    {
+      url: "/image/blog/image10.png",
+      title: "Three tips for getting perfect vacation hair",
+      description:
+        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
+      date: "30 JUNE 2025",
+    },
+  ];
+
+  const handleScroll = () => {
+    const element = document.getElementById("section-2");
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div>
       <div className="h-screen">
@@ -10,10 +96,10 @@ const BlogPageModules = () => {
           src={"/image/blog/banner.png"}
           alt="blog image"
         ></Image>
-        <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg shadow-black rounded-md"></div>
+        <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-[60px] font-bold text-center bell-mt text-shadow shadow-gray-500">
+            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Blog
             </div>
             <div className="text-white text-lg font-inter text-center text-shadow shadow-gray-500">
@@ -21,6 +107,126 @@ const BlogPageModules = () => {
             </div>
           </div>
         </div>
+        <ArrowDown onClick={handleScroll} />
+      </div>
+      <div id="section-2" className="flex flex-row h-screen p-20 gap-x-20">
+        <div className="basis-3/5">
+          <div>
+            <Image
+              className="flex rounded-lg object-contain w-full"
+              width={286}
+              height={286}
+              objectFit="cover"
+              src={"/image/blog/image1.png"}
+              alt={"story about us"}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col basis-2/5 gap-5">
+          <div className="text-light-blue text-xl font-inter font-thin">
+            30 JUNE 2025
+          </div>
+          <div className="text-navy-blue text-[50px] font-bell-mt font-semibold leading-tight">
+            Three tips for getting perfect vacation hair
+          </div>
+          <div className="text-navy-blue text-2xl font-inter font-light leading-tight">
+            No matter where you’re travelling this summer, you need to keep your
+            hair looking better than ever. Imagine all the vacation selfies
+            forever imprinted into your phone
+          </div>
+          <div>
+            <Button
+              variant="outline"
+              className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue text-lg w-52 "
+            >
+              Read now
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-row min-h-screen bg-navy-blue p-20 gap-5">
+        {dataImage1.map((product, idx) => {
+          return (
+            <div key={idx}>
+              <CardProduct
+                classNameCard="border-none p-0"
+                classNameImage="w-full rounded-none"
+                classNameCardContent="gap-3 justify-start items-start"
+                classNameTitle="text-start px-5"
+                classNameDesc="text-start px-5"
+                classNameFooter="justify-start px-5"
+                classNameDate="px-5"
+                product={product}
+                footer={
+                  <div className="flex px-5">
+                    <Button
+                      variant="outline"
+                      className="bg-transparent text-white hover:text-navy-blue text-lg w-52 border-white hover:border-none"
+                    >
+                      See more
+                    </Button>
+                  </div>
+                }
+              />
+            </div>
+          );
+        })}
+      </div>
+      <div className="flex flex-row min-h-screen bg-white p-20 gap-5">
+        {dataImage2.map((product, idx) => {
+          return (
+            <div key={idx}>
+              <CardProduct
+                classNameCard="border-none p-0 bg-transparant"
+                classNameImage="w-full rounded-none"
+                classNameCardContent="gap-3 justify-start items-start"
+                classNameTitle="text-start px-5 text-navy-blue"
+                classNameDesc="text-start px-5 text-navy-blue"
+                classNameFooter="justify-start px-5 text-navy-blue"
+                classNameDate="px-5 text-navy-blue"
+                product={product}
+                footer={
+                  <div className="flex px-5">
+                    <Button
+                      variant="outline"
+                      className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-lg w-52 border-navy-blue hover:border-none"
+                    >
+                      See more
+                    </Button>
+                  </div>
+                }
+              />
+            </div>
+          );
+        })}
+      </div>
+      <div className="flex flex-row min-h-screen bg-light-brown bg-opacity-10 p-20 gap-5">
+        {dataImage3.map((product, idx) => {
+          return (
+            <div key={idx}>
+              <CardProduct
+                classNameCard="border-none p-0 bg-transparant"
+                classNameImage="w-full rounded-none"
+                classNameCardContent="gap-3 justify-start items-start"
+                classNameTitle="text-start px-5 text-navy-blue"
+                classNameDesc="text-start px-5 text-navy-blue"
+                classNameFooter="justify-start px-5 text-navy-blue"
+                classNameDate="px-5 text-navy-blue"
+                product={product}
+                footer={
+                  <div className="flex px-5">
+                    <Button
+                      variant="outline"
+                      className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-lg w-52 border-navy-blue hover:border-none"
+                    >
+                      See more
+                    </Button>
+                  </div>
+                }
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

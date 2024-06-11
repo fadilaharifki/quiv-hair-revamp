@@ -83,7 +83,7 @@ const LookBookPageModules = () => {
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-[60px] font-bold text-center bell-mt text-shadow shadow-gray-500">
+            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               LookBook
             </div>
             <div className="text-white text-lg font-inter text-center text-shadow shadow-gray-500">
@@ -111,7 +111,7 @@ const LookBookPageModules = () => {
             >
               {e.position === "left" ? (
                 <div className="flex gap-5 flex-col">
-                  <div className="text-[50px] bell-mt font-semibold">
+                  <div className="text-[50px] font-bell-mt font-semibold">
                     {e.title}
                   </div>
                   <div className="text-2xl font-inter font-light">
@@ -148,7 +148,7 @@ const LookBookPageModules = () => {
                 />
               ) : (
                 <div className="flex flex-col gap-5">
-                  <div className="text-[50px] bell-mt font-semibold">
+                  <div className="text-[50px] font-bell-mt font-semibold">
                     {e.title}
                   </div>
                   <div className="text-2xl font-inter font-light">
@@ -161,7 +161,7 @@ const LookBookPageModules = () => {
           </div>
         );
       })}
-      <div className="relative h-screen mb-20">
+      <div className="relative h-screen">
         <Image
           className={twMerge("flex h-full w-full")}
           width={286}
@@ -171,7 +171,7 @@ const LookBookPageModules = () => {
         ></Image>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] h-[50%] flex flex-col items-center justify-evenly">
-            <div className="text-white text-[60px] font-bold text-center bell-mt text-shadow shadow-gray-500">
+            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Simple Style
             </div>
             <div className="w-8/12 text-white text-2xl font-inter text-center text-shadow shadow-gray-500">

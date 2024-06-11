@@ -55,9 +55,9 @@ const NavBar = () => {
               key={idx}
               href={menu.value}
               className={twMerge(
-                "font-inter font-semibold text-white transition duration-300 ease-in-out hover:border-b-[1px] hover:border-white",
+                "font-inter font-semibold pb-2 text-white transition duration-300 ease-in-out hover:border-b-[1px] hover:border-white",
                 pathname === menu.value
-                  ? "border-b-[1px] border-white"
+                  ? "border-b-[1px] pb-2 border-white"
                   : "border-b-[1px] border-transparent"
               )}
             >
