@@ -3,7 +3,7 @@ import Image from "next/image";
 const ContactPageModules = () => {
   return (
     <div>
-      <div>
+      <div className="h-screen">
         <Image
           className="h-screen w-screen object-cover grayscale"
           fill

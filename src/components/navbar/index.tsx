@@ -1,41 +1,46 @@
+"use client";
+
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Logo from "../../assets/svg/logo.svg";
 import Search from "../../assets/svg/search.svg";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const menus = [
   {
-    value: "about-us",
+    value: "/about-us",
     name: "About Us",
   },
   {
-    value: "products",
+    value: "/products",
     name: "Products",
   },
   {
-    value: "look-book",
+    value: "/look-book",
     name: "Lookbook",
   },
   {
-    value: "blog",
+    value: "/blog",
     name: "Blog",
   },
   {
-    value: "faq",
+    value: "/faq",
     name: "FAQs",
   },
   {
-    value: "contact",
+    value: "/contact",
     name: "Contact",
   },
 ];
 
 const NavBar = () => {
+  const pathname = usePathname();
+
   return (
     <div
       className={twMerge(
-        "grid grid-cols-5 w-screen h-20 bg-transparent justify-center items-center absolute bg-opacity-30 z-50"
+        "grid grid-cols-5 w-screen h-20 bg-transparent bg-light-brown-navbar justify-center items-center fixed bg-opacity-50 z-50"
       )}
     >
       <div className="flex justify-center items-center">
@@ -43,13 +48,18 @@ const NavBar = () => {
           <Image width={100} height={100} src={Logo} alt="Logo"></Image>
         </Link>
       </div>
-      <div className="flex justify-around items-center col-span-3">
+      <div className="flex justify-evenly items-center col-span-3">
         {menus.map((menu, idx) => {
           return (
             <Link
               key={idx}
               href={menu.value}
-              className="font-inter font-semibold text-white"
+              className={twMerge(
+                "font-inter font-semibold text-white transition duration-300 ease-in-out hover:border-b-[1px] hover:border-white",
+                pathname === menu.value
+                  ? "border-b-[1px] border-white"
+                  : "border-b-[1px] border-transparent"
+              )}
             >
               {menu.name}
             </Link>

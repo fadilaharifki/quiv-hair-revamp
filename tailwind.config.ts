@@ -58,11 +58,12 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        grayNavbar: "#D8D1C1",
+        "light-brown-navbar": "#D8D1C1",
         "light-brown": "#795548",
         "light-brown-one": "#EAE5DB",
         "light-brown-two": "#F8F8F6",
         "light-blue": "#8AA1B2",
+        "light-gray": "#F1EFF0",
         "navy-blue": "#1A2B38",
       },
       borderRadius: {

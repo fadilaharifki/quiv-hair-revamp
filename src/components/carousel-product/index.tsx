@@ -12,6 +12,7 @@ import { formatCurrency } from "@/utils/format";
 import { useEffect, useRef, useState } from "react";
 import NextIcon from "@/assets/icon/next-icon";
 import PrevIcon from "@/assets/icon/prev-icon";
+import { twMerge } from "tailwind-merge";
 
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
@@ -27,6 +28,8 @@ interface CarouselInterface {
   opts?: CarouselOptions;
   buttonNextPrev?: boolean;
   classNameCarouselItem?: string;
+  classNameCarousel?: string;
+  classNameCarouselContent?: string;
 }
 
 export function CarouselProductComponent({
@@ -36,7 +39,9 @@ export function CarouselProductComponent({
     loop: true,
   },
   buttonNextPrev = true,
-  classNameCarouselItem = "md:basis-1/2 lg:basis-1/3 flex justify-center item-center flex-col",
+  classNameCarouselItem,
+  classNameCarouselContent,
+  classNameCarousel,
 }: CarouselInterface) {
   const [api, setApi] = useState<CarouselApi>();
   const nextIconRef = useRef<HTMLDivElement>(null);
@@ -91,12 +96,23 @@ export function CarouselProductComponent({
     <>
       <Carousel
         setApi={setApi}
-        className="w-9/12 justify-center items-center align-middle"
+        className={twMerge(
+          "w-11/12 justify-center items-center align-middle",
+          classNameCarousel
+        )}
         opts={opts}
       >
-        <CarouselContent>
+        <CarouselContent
+          className={twMerge("flex gap-10", classNameCarouselContent)}
+        >
           {data.map((item, index) => (
-            <CarouselItem key={index} className={classNameCarouselItem}>
+            <CarouselItem
+              key={index}
+              className={twMerge(
+                "md:basis-1/2 lg:basis-1/3 flex justify-center item-center flex-col",
+                classNameCarouselItem
+              )}
+            >
               <div className="flex justify-center align-middle items-center ">
                 <Image
                   className="w-[198px] h-[231px] flex justify-center items-center"
