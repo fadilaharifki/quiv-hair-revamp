@@ -35,7 +35,7 @@ const NavBar = () => {
   return (
     <div
       className={twMerge(
-        "grid grid-cols-5 w-screen h-20 bg-transparent justify-center items-center fixed bg-opacity-30 z-50"
+        "grid grid-cols-5 w-screen h-20 bg-transparent justify-center items-center absolute bg-opacity-30 z-50"
       )}
     >
       <div className="flex justify-center items-center">

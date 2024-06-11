@@ -60,6 +60,7 @@ const config = {
         },
         grayNavbar: "#D8D1C1",
         "light-brown": "#795548",
+        "light-blue": "#8AA1B2",
         "navy-blue": "#1A2B38",
       },
       borderRadius: {
@@ -82,8 +83,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        bell: ['"Bell MT"', "serif"],
-        inter: ['"Inter"', "sans-serif"],
+        // "bell-mt": "var(--bell-mt)",
+        // inter: ["Inter", "sans-serif"],
       },
     },
     variants: {
