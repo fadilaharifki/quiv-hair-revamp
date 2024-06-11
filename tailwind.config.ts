@@ -61,6 +61,7 @@ const config = {
         grayNavbar: "#D8D1C1",
         "light-brown": "#795548",
         "light-brown-one": "#EAE5DB",
+        "light-brown-two": "#F8F8F6",
         "light-blue": "#8AA1B2",
         "navy-blue": "#1A2B38",
       },

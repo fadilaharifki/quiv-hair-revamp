@@ -174,7 +174,7 @@ const HomePageModules = () => {
         </div>
       </div>
 
-      <div className="h-screen flex items-center flex-col gap-10 py-20">
+      <div className="flex items-center flex-col gap-10 py-20">
         <div className="flex font-bell-mt text-center text-[50px] font-bold leading-tight">
           Our blogs
         </div>
