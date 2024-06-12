@@ -14,15 +14,15 @@ const config = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",
         DEFAULT: "0 2px 4px var(--tw-shadow-color)",
         lg: "0 8px 16px var(--tw-shadow-color)",
+      },
+      boxShadow: {
+        brown: "5px_5px_0px_0px_rgba(109,40,217)",
       },
       colors: {
         border: "hsl(var(--border))",

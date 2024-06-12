@@ -53,7 +53,7 @@ const AboutUsPageModules = () => {
       </div>
       <div id="about-quiv" className="grid grid-cols-4 h-screen py-10">
         <div className="col-span-1 bg-light-brown-one  flex-col flex justify-center px-10 gap-11">
-          <div className="text-navy-blue text-[50px] bell-mt font-semibold">
+          <div className="text-navy-blue text-[50px] font-bell-mt font-semibold">
             About QUIV
           </div>
           <div className="text-navy-blue text-2xl font-inter font-light leading-tight">
@@ -67,7 +67,7 @@ const AboutUsPageModules = () => {
               <div key={idx}>
                 <CardProduct
                   classNameImage="w-20 h-20"
-                  classNameCard="w-[260px] h-[325px]"
+                  classNameCard="w-[260px] h-[325px] flex justify-center align-center flex-col"
                   classNameTitle="text-xl font-light"
                   product={product}
                 />
