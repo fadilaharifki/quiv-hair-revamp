@@ -88,7 +88,7 @@ const ContactPageModules = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = (e) => {
-    console.log(e, "as");
+    console.log(e, "SubmitHandler");
   };
 
   return (
@@ -106,7 +106,7 @@ const ContactPageModules = () => {
             <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Contact
             </div>
-            <div className="text-white text-lg font-inter text-center text-shadow shadow-gray-500">
+            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
           </div>
@@ -133,7 +133,7 @@ const ContactPageModules = () => {
       </div>
       <div className="flex min-h-screen justify-center md:px-32">
         <div className="flex flex-col w-screen gap-20">
-          <div className="text-black text-[50px] font-bell-mt font-semibold text-center">
+          <div className="text-black text-[40px] sm:text-[50px] font-bell-mt font-semibold text-center">
             Get in touch with us
           </div>
           <div className="flex flex-col gap-10">
@@ -162,7 +162,7 @@ const ContactPageModules = () => {
               <Button
                 onClick={handleSubmit(onSubmit)}
                 variant="outline"
-                className="bg-transparent text-navy-blue text-lg w-52 border-navy-blue hover:bg-navy-blue hover:text-white hover:border-none"
+                className="bg-transparent text-navy-blue text-sm sm:text-lg w-52 border-navy-blue hover:bg-navy-blue hover:text-white hover:border-none"
               >
                 Send message
               </Button>

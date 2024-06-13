@@ -91,7 +91,7 @@ const CardProduct = ({
         {product.description && (
           <div
             className={twMerge(
-              "font-inter font-thin text-lg text-white text-center",
+              "font-inter font-thin text-sm sm:text-lg text-white text-center",
               classNameDesc
             )}
           >

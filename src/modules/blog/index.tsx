@@ -102,7 +102,7 @@ const BlogPageModules = () => {
             <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Blog
             </div>
-            <div className="text-white text-lg font-inter text-center text-shadow shadow-gray-500">
+            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
           </div>
@@ -126,7 +126,7 @@ const BlogPageModules = () => {
           <div className="text-light-blue text-xl font-inter font-thin">
             30 JUNE 2025
           </div>
-          <div className="text-navy-blue text-[50px] font-bell-mt font-semibold leading-tight">
+          <div className="text-navy-blue text-[40px] sm:text-[50px] font-bell-mt font-semibold leading-tight">
             Three tips for getting perfect vacation hair
           </div>
           <div className="text-navy-blue text-2xl font-inter font-light leading-tight">
@@ -137,7 +137,7 @@ const BlogPageModules = () => {
           <div>
             <Button
               variant="outline"
-              className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue text-lg w-52 "
+              className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue text-sm sm:text-lg w-52 "
             >
               Read now
             </Button>
@@ -161,7 +161,7 @@ const BlogPageModules = () => {
                   <div className="flex px-5">
                     <Button
                       variant="outline"
-                      className="bg-transparent text-white hover:text-navy-blue text-lg w-52 border-white hover:border-none"
+                      className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-52 border-white hover:border-none"
                     >
                       See more
                     </Button>
@@ -189,7 +189,7 @@ const BlogPageModules = () => {
                   <div className="flex px-5">
                     <Button
                       variant="outline"
-                      className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-lg w-52 border-navy-blue hover:border-none"
+                      className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
                     >
                       See more
                     </Button>
@@ -217,7 +217,7 @@ const BlogPageModules = () => {
                   <div className="flex px-5">
                     <Button
                       variant="outline"
-                      className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-lg w-52 border-navy-blue hover:border-none"
+                      className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
                     >
                       See more
                     </Button>

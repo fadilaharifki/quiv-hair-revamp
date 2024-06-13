@@ -26,6 +26,7 @@ interface DataInterface {
 interface CarouselInterface {
   data: DataInterface[];
   opts?: CarouselOptions;
+  orientation?: "vertical" | "horizontal";
   buttonNextPrev?: boolean;
   classNameCarouselItem?: string;
   classNameCarousel?: string;
@@ -42,6 +43,7 @@ export function CarouselProductComponent({
   classNameCarouselItem,
   classNameCarouselContent,
   classNameCarousel,
+  orientation,
 }: CarouselInterface) {
   const [api, setApi] = useState<CarouselApi>();
   const nextIconRef = useRef<HTMLDivElement>(null);
@@ -95,15 +97,19 @@ export function CarouselProductComponent({
   return (
     <>
       <Carousel
+        orientation={orientation}
         setApi={setApi}
         className={twMerge(
-          "w-11/12 justify-center items-center align-middle",
+          "w-64 h-[450px] sm:h-auto sm:w-11/12 justify-center items-center align-middle",
           classNameCarousel
         )}
         opts={opts}
       >
         <CarouselContent
-          className={twMerge("flex gap-10", classNameCarouselContent)}
+          className={twMerge(
+            "sm:flex gap-0 sm:gap-4",
+            classNameCarouselContent
+          )}
         >
           {data.map((item, index) => (
             <CarouselItem
@@ -115,17 +121,17 @@ export function CarouselProductComponent({
             >
               <div className="flex justify-center align-middle items-center ">
                 <Image
-                  className="w-[198px] h-[231px] flex justify-center items-center"
+                  className="w-[100px] h-[170] sm:w-[198px] sm:h-[231px] flex justify-center items-center"
                   width={300}
                   height={300}
                   alt={item.name}
                   src={item.url}
                 ></Image>
               </div>
-              <div className="font-test text-2xl text-center text-navy-blue">
+              <div className="font-test text-lg  sm:text-2xl text-center text-navy-blue">
                 {item.name}
               </div>
-              <div className="font-inter text-xl text-center font-thin text-light-blue">
+              <div className="font-inter text-sm sm:text-xl text-center font-thin text-light-blue">
                 {formatCurrency(Number(item.price ?? 0))}
               </div>
             </CarouselItem>

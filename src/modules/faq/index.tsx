@@ -70,7 +70,7 @@ const FaqPageModules = () => {
             <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Frequently asked questions
             </div>
-            <div className="text-white text-lg font-inter text-center text-shadow shadow-gray-500">
+            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
           </div>

@@ -102,7 +102,7 @@ const ProductsPageModules = () => {
             <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-700">
               Products
             </div>
-            <div className="text-white text-lg font-inter text-center text-shadow shadow-gray-700">
+            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-700">
               Natural ingredients, proven to perform the best
             </div>
           </div>
@@ -113,7 +113,7 @@ const ProductsPageModules = () => {
         id="our-collection"
         className="flex bg-navy-blue my-10 flex-col justify-center tems-center gap-10"
       >
-        <div className="flex font-bell-mt text-center text-[50px] font-bold text-white">
+        <div className="flex font-bell-mt text-center text-[40px] sm:text-[50px] font-bold text-white">
           Our collection
         </div>
         <div className="flex w-8/12 text-center font-inter text-2xl font-light text-white">
@@ -141,7 +141,7 @@ const ProductsPageModules = () => {
         </div>
       </div>
       <div className="flex my-10 flex-col justify-center py-20 items-center gap-10">
-        <div className="flex font-bell-mt text-center text-[50px] font-bold text-navy-blue">
+        <div className="flex font-bell-mt text-center text-[40px] sm:text-[50px] font-bold text-navy-blue">
           All products
         </div>
         <PaginationComponent data={dataImageProduct} />

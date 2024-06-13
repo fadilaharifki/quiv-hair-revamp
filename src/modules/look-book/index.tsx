@@ -29,7 +29,7 @@ const LookBookPageModules = () => {
       button: (
         <Button
           variant="outline"
-          className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue border-navy-blue text-lg w-52 "
+          className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue border-navy-blue text-sm sm:text-lg w-52 "
         >
           Shop Now
         </Button>
@@ -46,7 +46,7 @@ const LookBookPageModules = () => {
       button: (
         <Button
           variant="outline"
-          className="bg-transparent text-white hover:text-black text-lg w-52 "
+          className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-52 "
         >
           Shop Now
         </Button>
@@ -63,7 +63,7 @@ const LookBookPageModules = () => {
       button: (
         <Button
           variant="outline"
-          className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue border-navy-blue text-lg w-52 "
+          className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue border-navy-blue text-sm sm:text-lg w-52 "
         >
           Shop Now
         </Button>
@@ -86,7 +86,7 @@ const LookBookPageModules = () => {
             <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               LookBook
             </div>
-            <div className="text-white text-lg font-inter text-center text-shadow shadow-gray-500">
+            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
           </div>
@@ -111,7 +111,7 @@ const LookBookPageModules = () => {
             >
               {e.position === "left" ? (
                 <div className="flex gap-5 flex-col">
-                  <div className="text-[50px] font-bell-mt font-semibold">
+                  <div className="text-[40px] sm:text-[50px] font-bell-mt font-semibold">
                     {e.title}
                   </div>
                   <div className="text-2xl font-inter font-light">
@@ -148,7 +148,7 @@ const LookBookPageModules = () => {
                 />
               ) : (
                 <div className="flex flex-col gap-5">
-                  <div className="text-[50px] font-bell-mt font-semibold">
+                  <div className="text-[40px] sm:text-[50px] font-bell-mt font-semibold">
                     {e.title}
                   </div>
                   <div className="text-2xl font-inter font-light">
@@ -182,7 +182,7 @@ const LookBookPageModules = () => {
             <div>
               <Button
                 variant="outline"
-                className="bg-transparent text-white hover:text-black text-lg w-52 "
+                className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-52 "
               >
                 Shop Now
               </Button>
