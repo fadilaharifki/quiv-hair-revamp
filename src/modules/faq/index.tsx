@@ -66,8 +66,8 @@ const FaqPageModules = () => {
         ></Image>
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+          <div className="w-[80%] flex flex-col items-center justify-between gap-2">
+            <div className="text-white text-4xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Frequently asked questions
             </div>
             <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
@@ -78,16 +78,16 @@ const FaqPageModules = () => {
         <ArrowDown onClick={handleScroll} />
       </div>
       <div id="what-quiv" className="min-h-screen">
-        <div className="p-20">
+        <div className="p-5 sm:p-20">
           <Accordion
             type="single"
             collapsible
-            className="w-full flex flex-col gap-10"
+            className="w-full flex flex-col gap-5 sm:gap-10"
           >
             {dataFaq.map((faq, idx) => {
               return (
                 <AccordionItem
-                  onClick={(e) => {
+                  onClick={() => {
                     setActiveFaq(idx);
                   }}
                   key={idx}
@@ -99,10 +99,10 @@ const FaqPageModules = () => {
                   )}
                   value={`item-${idx}`}
                 >
-                  <AccordionTrigger className="font-bell-mt text-4xl font-bold">
+                  <AccordionTrigger className="font-bell-mt text-2xl sm:text-4xl font-bold">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className=" font-inter text-2xl font-normal">
+                  <AccordionContent className=" font-inter text-lg sm:text-2xl font-normal">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

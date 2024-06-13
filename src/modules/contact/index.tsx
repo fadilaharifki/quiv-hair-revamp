@@ -102,8 +102,8 @@ const ContactPageModules = () => {
         ></Image>
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg  rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+          <div className="w-[80%] flex flex-col items-center justify-between gap-2">
+            <div className="text-white text-5xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Contact
             </div>
             <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
@@ -114,15 +114,15 @@ const ContactPageModules = () => {
         <ArrowDown onClick={handleScroll} />
       </div>
       <div className="flex min-h-screen justify-center">
-        <div className="flex flex-row items-center justify-evenly gap-10">
+        <div className="flex flex-col sm:flex-row items-center justify-evenly gap-5 sm:gap-10 py-10 sm:py-0">
           {dataImage.map((product, idx) => {
             return (
               <div key={idx}>
                 <CardProduct
-                  classNameCard="w-[364px] h-[371px] p-5 flex justify-center items-center"
-                  classNameTitle="text-xl font-light text-4xl"
+                  classNameCard="w-[364px] h-[271px] sm:w-[364px] sm:h-[371px] p-5 flex justify-center items-center"
+                  classNameTitle="text-lg sm:text-xl font-light text-4xl"
                   classNameDesc="text-xl"
-                  classNameIcon="p-10"
+                  classNameIcon="p-2 sm:p-10"
                   classNameCardContent="gap-5"
                   product={product}
                 />
@@ -132,12 +132,12 @@ const ContactPageModules = () => {
         </div>
       </div>
       <div className="flex min-h-screen justify-center md:px-32">
-        <div className="flex flex-col w-screen gap-20">
+        <div className="flex flex-col w-screen gap-10 sm:gap-20">
           <div className="text-black text-4xl sm:text-[50px] font-bell-mt font-semibold text-center">
             Get in touch with us
           </div>
-          <div className="flex flex-col gap-10">
-            <div className="grid grid-cols-2 gap-10">
+          <div className="flex flex-col gap-10 px-10 sm:px-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-10">
               {fieldInput.map((field, idx) => {
                 return (
                   <InputComponent

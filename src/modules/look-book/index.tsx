@@ -83,7 +83,7 @@ const LookBookPageModules = () => {
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <div className="text-white text-5xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               LookBook
             </div>
             <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
@@ -98,7 +98,7 @@ const LookBookPageModules = () => {
           <div
             id={`day-to-day-style-${idx}`}
             key={idx}
-            className="h-screen flex flex-row"
+            className="min-h-screen flex flex-col sm:flex-row"
           >
             <div
               className={twMerge(
@@ -110,7 +110,7 @@ const LookBookPageModules = () => {
               )}
             >
               {e.position === "left" ? (
-                <div className="flex gap-5 flex-col">
+                <div className="flex gap-5 flex-col py-10 sm:p-0">
                   <div className="text-4xl sm:text-[50px] font-bell-mt font-semibold">
                     {e.title}
                   </div>
@@ -147,7 +147,7 @@ const LookBookPageModules = () => {
                   src={e.url}
                 />
               ) : (
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 py-10 sm:p-0">
                   <div className="text-4xl sm:text-[50px] font-bell-mt font-semibold">
                     {e.title}
                   </div>
@@ -161,9 +161,9 @@ const LookBookPageModules = () => {
           </div>
         );
       })}
-      <div className="relative h-screen">
+      <div className="relative h-[500px] sm:h-screen">
         <Image
-          className={twMerge("flex h-full w-full")}
+          className={twMerge("flex h-full w-full object-obtain")}
           width={286}
           height={286}
           src={"/image/look-book/image6.png"}
@@ -171,10 +171,10 @@ const LookBookPageModules = () => {
         ></Image>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] h-[50%] flex flex-col items-center justify-evenly">
-            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <div className="text-white text-4xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Simple Style
             </div>
-            <div className="w-8/12 text-white text-2xl font-inter text-center text-shadow shadow-gray-500">
+            <div className="w-8/12 text-white text-lg sm:text-2xl font-inter text-center text-shadow shadow-gray-500">
               When it came to men’s grooming products, there weren’t many
               high-quality, harmful chemical-free options available at prices
               that were in proportion with what they offered.
