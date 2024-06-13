@@ -133,7 +133,7 @@ const ContactPageModules = () => {
       </div>
       <div className="flex min-h-screen justify-center md:px-32">
         <div className="flex flex-col w-screen gap-20">
-          <div className="text-black text-[40px] sm:text-[50px] font-bell-mt font-semibold text-center">
+          <div className="text-black text-4xl sm:text-[50px] font-bell-mt font-semibold text-center">
             Get in touch with us
           </div>
           <div className="flex flex-col gap-10">

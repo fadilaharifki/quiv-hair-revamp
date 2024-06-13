@@ -111,7 +111,7 @@ const LookBookPageModules = () => {
             >
               {e.position === "left" ? (
                 <div className="flex gap-5 flex-col">
-                  <div className="text-[40px] sm:text-[50px] font-bell-mt font-semibold">
+                  <div className="text-4xl sm:text-[50px] font-bell-mt font-semibold">
                     {e.title}
                   </div>
                   <div className="text-2xl font-inter font-light">
@@ -148,7 +148,7 @@ const LookBookPageModules = () => {
                 />
               ) : (
                 <div className="flex flex-col gap-5">
-                  <div className="text-[40px] sm:text-[50px] font-bell-mt font-semibold">
+                  <div className="text-4xl sm:text-[50px] font-bell-mt font-semibold">
                     {e.title}
                   </div>
                   <div className="text-2xl font-inter font-light">

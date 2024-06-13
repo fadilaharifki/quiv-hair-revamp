@@ -176,7 +176,7 @@ export function CarouselBannerComponent({
         <div className="absolute inset-0 bg-black bg-opacity-25"></div>
         <div className="absolute inset-0 flex items-center flex-col justify-center ">
           <div className="w-[80%] sm:w-[50%] flex flex-col items-center justify-between gap-8 sm:gap-16">
-            <div className="text-white text-[40px] sm:text-[50px] font-bold text-center font-bell-mt text-shadow leading-none shadow-gray-500">
+            <div className="text-white text-4xl sm:text-[50px] font-bold text-center font-bell-mt text-shadow leading-none shadow-gray-500">
               The act of styling one’s hair should be a ceremonious one
             </div>
             <div className="text-white text-lg sm:text-xl font-inter font-thin text-center text-shadow shadow-gray-500">

@@ -61,8 +61,8 @@ const PaginationComponent = ({ data }: PaginationComponentInterface) => {
     };
   }, []);
   return (
-    <div className="w-screen flex flex-col justify-center items-center">
-      <div className="grid grid-cols-4 gap-20">
+    <div className="w-screen flex flex-col justify-center items-center px-10">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-20">
         {data.map((item, i) => {
           return (
             <div key={i}>
@@ -75,10 +75,10 @@ const PaginationComponent = ({ data }: PaginationComponentInterface) => {
                   src={item.url}
                 ></Image>
               </div>
-              <div className="font-test text-2xl text-center text-navy-blue">
+              <div className="font-test text-xl sm:text-2xl text-center text-navy-blue">
                 {item.name}
               </div>
-              <div className="font-inter text-xl text-center font-thin text-light-blue">
+              <div className="font-inter text-lg sm:text-xl text-center font-thin text-light-blue">
                 {formatCurrency(Number(item.price ?? 0))}
               </div>
             </div>

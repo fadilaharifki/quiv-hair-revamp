@@ -136,7 +136,7 @@ const HomePageModules = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-4 min-h-screen py-10">
         <div className="sm:col-span-1 py-10 sm:py-0 bg-navy-blue flex-col flex justify-center px-10 gap-4 sm:gap-11">
-          <div className="text-white text-[40px] sm:text-[50px] font-bell-mt font-semibold">
+          <div className="text-white text-4xl sm:text-[50px] font-bell-mt font-semibold">
             Bestsellers
           </div>
           <div className="text-white text-xl sm:text-2xl font-inter font-light">
@@ -152,7 +152,7 @@ const HomePageModules = () => {
             </Button>
           </div>
         </div>
-        <div className="col-span-3 flex justify-center items-center flex-col">
+        <div className="col-span-3 mt-20 sm:mt-0 flex justify-center items-center flex-col">
           <CarouselProductComponent
             orientation={"horizontal"}
             buttonNextPrev={true}
@@ -166,7 +166,7 @@ const HomePageModules = () => {
         <CarouselBannerComponent dotButton data={dataImage2} autoPlay />
       </div>
       <div className="gap-5 sm:gap-0 py-20 sm:h-screen flex justify-evenly items-center flex-col bg-light-brown-one">
-        <div className="flex font-bell-mt text-[40px] sm:text-[50px] font-bold">
+        <div className="flex font-bell-mt text-4xl sm:text-[50px] font-bold">
           New collections
         </div>
         <div className="flex justify-center items-center flex-col px-10">
@@ -189,7 +189,7 @@ const HomePageModules = () => {
       </div>
 
       <div className="flex items-center flex-col gap-10 py-20">
-        <div className="flex font-bell-mt text-center text-[40px] sm:text-[50px] font-bold leading-tight">
+        <div className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold leading-tight">
           Our blogs
         </div>
         <div className="w-4/12 flex text-center font-inter text-xl font-light leading-tight">

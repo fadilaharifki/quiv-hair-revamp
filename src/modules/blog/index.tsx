@@ -126,7 +126,7 @@ const BlogPageModules = () => {
           <div className="text-light-blue text-xl font-inter font-thin">
             30 JUNE 2025
           </div>
-          <div className="text-navy-blue text-[40px] sm:text-[50px] font-bell-mt font-semibold leading-tight">
+          <div className="text-navy-blue text-4xl sm:text-[50px] font-bell-mt font-semibold leading-tight">
             Three tips for getting perfect vacation hair
           </div>
           <div className="text-navy-blue text-2xl font-inter font-light leading-tight">

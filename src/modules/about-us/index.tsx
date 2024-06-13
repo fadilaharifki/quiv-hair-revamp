@@ -51,9 +51,12 @@ const AboutUsPageModules = () => {
         </div>
         <ArrowDown onClick={handleScroll} />
       </div>
-      <div id="about-quiv" className="grid grid-cols-4 h-screen py-10">
-        <div className="col-span-1 bg-light-brown-one  flex-col flex justify-center px-10 gap-11">
-          <div className="text-navy-blue text-[40px] sm:text-[50px] font-bell-mt font-semibold">
+      <div
+        id="about-quiv"
+        className="grid grid-cols-1 sm:grid-cols-4 min-h-screen py-10"
+      >
+        <div className="col-span-1 bg-light-brown-one py-10 sm:py-0 flex-col flex justify-center px-10 gap-11">
+          <div className="text-navy-blue text-4xl sm:text-[50px] font-bell-mt font-semibold">
             About QUIV
           </div>
           <div className="text-navy-blue text-2xl font-inter font-light leading-tight">
@@ -61,14 +64,15 @@ const AboutUsPageModules = () => {
             conditioner, shaving, and skincare.
           </div>
         </div>
-        <div className="col-span-3 flex justify-center flex-row items-center bg-navy-blue gap-10">
+        <div className="col-span-3 flex sm:flex-row flex-col justify-center items-center bg-navy-blue gap-10 py-10 sm:py-0">
           {dataImage.map((product, idx) => {
             return (
               <div key={idx}>
                 <CardProduct
                   classNameImage="w-20 h-20"
-                  classNameCard="w-[260px] h-[325px] flex justify-center align-center flex-col"
+                  classNameCard="w-[260px] h-[105px] sm:h-[325px] flex justify-center align-center flex-col"
                   classNameTitle="text-xl font-light"
+                  classNameCardContent="flex flex-row sm:flex-col item-center p-0 sm:p-6"
                   product={product}
                 />
               </div>
@@ -76,11 +80,11 @@ const AboutUsPageModules = () => {
           })}
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-screen gap-10 border-black py-10 border-y-2">
-        <div className="flex bell-mt text-center text-[40px] sm:text-[50px] font-bold">
+      <div className="flex flex-col items-center justify-center w-screen gap-5 sm:gap-10 border-black py-5 sm:py-10 border-y-2">
+        <div className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold">
           Our story
         </div>
-        <div className="flex w-10/12 ">
+        <div className="flex w-11/12 sm:w-10/12 ">
           <Image
             className="flex rounded-lg object-contain w-full"
             width={286}
@@ -91,7 +95,7 @@ const AboutUsPageModules = () => {
           />
         </div>
         <div className="flex flex-col w-10/12 gap-10">
-          <div className="flex text-center font-inter text-2xl font-light">
+          <div className="flex sm:text-center font-inter text-lg sm:text-2xl font-light">
             When it came to men’s grooming products, there weren’t many
             high-quality, harmful chemical-free options available at prices that
             were in proportion with what they offered. That’s the reason why
@@ -99,7 +103,7 @@ const AboutUsPageModules = () => {
             lifestyle. We explore every option when it comes to developing our
             products.
           </div>
-          <div className="flex text-center font-inter text-2xl font-light leading-tight">
+          <div className="flex sm:text-center font-inter text-lg sm:text-2xl font-light leading-tight">
             Every ingredient in our products is carefully chosen to deliver
             exceptional results while being kind to your hair and skin. We pay
             close attention to every detail to make sure that using our products
