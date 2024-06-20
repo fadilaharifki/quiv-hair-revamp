@@ -89,6 +89,7 @@ const config = {
       fontFamily: {
         "bell-mt": ["Bell MT", "serif"],
         inter: ["Inter", "sans-serif"],
+        montserrat: ["Montserrat Alternates", "sans-serif"],
       },
     },
     variants: {

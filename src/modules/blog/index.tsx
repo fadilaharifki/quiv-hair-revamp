@@ -3,9 +3,12 @@
 import ArrowDown from "@/components/arrow-down";
 import CardProduct from "@/components/card-product";
 import { Button } from "@/components/ui/button";
+import { formatUrl } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const BlogPageModules = () => {
+  const router = useRouter();
   const dataImage1 = [
     {
       url: "/image/blog/image2.png",
@@ -139,6 +142,13 @@ const BlogPageModules = () => {
           </div>
           <div>
             <Button
+              onClick={() => {
+                router.push(
+                  `/blog/${formatUrl(
+                    "Three tips for getting perfect vacation hair"
+                  )}`
+                );
+              }}
               variant="outline"
               className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue text-sm sm:text-lg w-52 "
             >

@@ -15,12 +15,12 @@ const Footer = () => {
       title: "All Products",
       menu: [
         {
-          title: "Men’s Hair Spray",
-          url: "",
+          title: "FLEX - Liquified Hair Powder",
+          url: "/products/flex",
         },
         {
-          title: "Men’s Hair Oil",
-          url: "",
+          title: "FINE - Liquified Hair Powder",
+          url: "/products/fine",
         },
       ],
     },
@@ -87,7 +87,7 @@ const Footer = () => {
                   src={LogoBlack}
                   alt="Logo"
                 ></Image>
-                <div className="flex flex-col font-inter font-thin text-sm sm:text-lg gap-4">
+                <div className="flex flex-col font-inter font-medium hover:font-semibold text-sm sm:text-lg gap-4">
                   {item.address}
                 </div>
               </div>
@@ -98,11 +98,16 @@ const Footer = () => {
               <div className="flex flex-col font-bell-mt font-thin text-sm sm:text-lg mb-5 sm:mb-10">
                 {item.title}
               </div>
-              <div className="flex flex-col font-inter font-thin text-sm sm:text-lg gap-2 sm:gap-4">
+              <div className="flex flex-col font-inter font-thin  text-sm sm:text-lg gap-2 sm:gap-4">
                 {item.menu?.map((menu, index) => {
                   if (!menu.url) {
                     return (
-                      <span className={"cursor-not-allowed"} key={index}>
+                      <span
+                        className={
+                          "cursor-not-allowed font-medium hover:font-semibold"
+                        }
+                        key={index}
+                      >
                         {menu.title}
                       </span>
                     );
@@ -110,7 +115,7 @@ const Footer = () => {
                   return (
                     <Link
                       href={menu.url}
-                      className="hover:font-medium"
+                      className="font-medium hover:font-semibold"
                       key={index}
                     >
                       {menu.title}
