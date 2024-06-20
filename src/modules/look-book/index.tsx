@@ -46,7 +46,7 @@ const LookBookPageModules = () => {
       button: (
         <Button
           variant="outline"
-          className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-52 "
+          className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-40 sm:w-52 "
         >
           Shop Now
         </Button>
@@ -182,7 +182,7 @@ const LookBookPageModules = () => {
             <div>
               <Button
                 variant="outline"
-                className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-52 "
+                className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-40 sm:w-52 "
               >
                 Shop Now
               </Button>

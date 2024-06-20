@@ -7,35 +7,39 @@ import { CarouselBannerComponent } from "@/components/carousel-banner";
 import CardProduct from "@/components/card-product";
 import useScreenSize from "@/hooks/useScreenSize";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { twMerge } from "tailwind-merge";
 
 const HomePageModules = () => {
-  const { width, height, breakpoint } = useScreenSize();
+  const { width, breakpoint } = useScreenSize();
+
+  const router = useRouter();
 
   const dataImage = [
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax1.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax2.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
   ];
 
@@ -108,6 +112,8 @@ const HomePageModules = () => {
     },
   ];
 
+  const dynamicWidth = dataImage3.length * width;
+
   return (
     <div>
       <div className="h-screen">
@@ -118,15 +124,18 @@ const HomePageModules = () => {
           alt="home image"
         ></Image>
         <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center h-72 justify-between">
-            <div className="text-white text-4xl sm:text-[60px] leading-none font-bold text-center font-bell-mt text-shadow shadow-black">
+          <div className="w-[80%] flex flex-col items-center h-52 sm:h-72 justify-between">
+            <div className="text-white text-3xl sm:text-[60px] leading-none font-bold text-center font-bell-mt text-shadow shadow-black">
               Botanically rich formulations protect, repair, and promote healthy
               hair
             </div>
             <div>
               <Button
                 variant="outline"
-                className=" bg-transparent text-white hover:text-black text-sm sm:text-lg w-52"
+                className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-40 sm:w-52"
+                onClick={() => {
+                  router.push("/about-us");
+                }}
               >
                 See more
               </Button>
@@ -136,17 +145,17 @@ const HomePageModules = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-4 min-h-screen py-10">
         <div className="sm:col-span-1 py-10 sm:py-0 bg-navy-blue flex-col flex justify-center px-10 gap-4 sm:gap-11">
-          <div className="text-white text-4xl sm:text-[50px] font-bell-mt font-semibold">
+          <div className="text-white text-4xl text-center sm:text-left sm:text-[50px] font-bell-mt font-semibold">
             Bestsellers
           </div>
-          <div className="text-white text-xl sm:text-2xl font-inter font-light">
+          <div className="text-white text-center sm:text-left text-xl sm:text-2xl font-inter font-light">
             Shop the best natural men’s hairstyling products, shampoo,
             conditioner, shaving, and skincare.{" "}
           </div>
-          <div>
+          <div className="text-center sm:text-left">
             <Button
               variant="outline"
-              className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-52 "
+              className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-40 sm:w-52"
             >
               See more
             </Button>
@@ -157,7 +166,7 @@ const HomePageModules = () => {
             orientation={"horizontal"}
             buttonNextPrev={true}
             classNameCarousel="h-auto"
-            classNameCarouselItem="basis-1/1 lg:basis-1/4 flex justify-end flex-col"
+            classNameCarouselItem="lg:basis-1/4 flex justify-end flex-col"
             data={dataImage}
           />
         </div>
@@ -181,7 +190,7 @@ const HomePageModules = () => {
         <div className="flex">
           <Button
             variant="outline"
-            className="bg-transparent text-black text-sm sm:text-lg w-52 border-black hover:border-none"
+            className="bg-transparent text-black text-sm sm:text-lg w-40 sm:w-52 border-black hover:border-none"
           >
             See more
           </Button>
@@ -192,38 +201,48 @@ const HomePageModules = () => {
         <div className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold leading-tight">
           Our blogs
         </div>
-        <div className="w-4/12 flex text-center font-inter text-xl font-light leading-tight">
+        <div className="w-9/12 sm:w-4/12 flex text-center font-inter text-xl font-light leading-tight">
           Shop the best natural men’s hairstyling products, shampoo,
           conditioner, shaving, and skincare.
         </div>
         <div className="flex">
           <Button
             variant="outline"
-            className="bg-transparent text-black text-sm sm:text-lg w-52 border-black hover:border-none"
+            className="bg-transparent text-black text-sm sm:text-lg w-40 sm:w-52 border-black hover:border-none"
           >
             See more
           </Button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 px-5 sm:px-32">
-          {dataImage3.map((product, idx) => {
-            return (
-              <div key={idx}>
-                <CardProduct
-                  product={product}
-                  footer={
-                    <div className="flex justify-center">
-                      <Button
-                        variant="outline"
-                        className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-52 border-white hover:border-none"
-                      >
-                        See more
-                      </Button>
-                    </div>
-                  }
-                />
-              </div>
-            );
-          })}
+        <div className="w-screen overflow-x-auto sm:overflow-hidden">
+          <div
+            className={twMerge(
+              "grid grid-cols-3 grid-flow-row gap-2 sm:gap-10 px-2 sm:px-32 "
+            )}
+            style={
+              breakpoint === "sm" ? { width: `${dynamicWidth}px` } : undefined
+            }
+          >
+            {dataImage3.map((product, idx) => {
+              return (
+                <div key={idx}>
+                  <CardProduct
+                    position={breakpoint === "sm" ? "horizontal" : "vertical"}
+                    product={product}
+                    footer={
+                      <div className="flex justify-center">
+                        <Button
+                          variant="outline"
+                          className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-40 sm:w-52 border-white hover:border-none"
+                        >
+                          See more
+                        </Button>
+                      </div>
+                    }
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

@@ -3,11 +3,14 @@
 import ArrowDown from "@/components/arrow-down";
 import CardProduct from "@/components/card-product";
 import { Button } from "@/components/ui/button";
+import useScreenSize from "@/hooks/useScreenSize";
 import { formatUrl } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { twMerge } from "tailwind-merge";
 
 const BlogPageModules = () => {
+  const { width, breakpoint } = useScreenSize();
   const router = useRouter();
   const dataImage1 = [
     {
@@ -90,6 +93,8 @@ const BlogPageModules = () => {
     }
   };
 
+  const dynamicWidth = dataImage3.length * width;
+
   return (
     <div>
       <div className="h-screen">
@@ -157,35 +162,119 @@ const BlogPageModules = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row min-h-screen bg-navy-blue p-5 sm:p-20 gap-5">
-        {dataImage1.map((product, idx) => {
-          return (
-            <div key={idx}>
-              <CardProduct
-                classNameCard="border-none p-0"
-                classNameImage="w-full rounded-none"
-                classNameCardContent="gap-3 justify-start items-start"
-                classNameTitle="text-start px-5"
-                classNameDesc="text-start px-5"
-                classNameFooter="justify-start px-5"
-                classNameDate="px-5"
-                product={product}
-                footer={
-                  <div className="flex px-5">
-                    <Button
-                      variant="outline"
-                      className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-52 border-white hover:border-none"
-                    >
-                      See more
-                    </Button>
-                  </div>
-                }
-              />
-            </div>
-          );
-        })}
+      <div className="w-screen overflow-x-auto sm:overflow-hidden">
+        <div
+          className={twMerge(
+            "flex flex-row min-h-screen bg-navy-blue p-5 sm:p-20 gap-5"
+          )}
+          style={
+            breakpoint === "sm" ? { width: `${dynamicWidth}px` } : undefined
+          }
+        >
+          {dataImage1.map((product, idx) => {
+            return (
+              <div key={idx}>
+                <CardProduct
+                  classNameCard="border-none p-0"
+                  classNameImage="w-full rounded-none"
+                  classNameCardContent="gap-3 justify-start items-start"
+                  classNameTitle="text-start "
+                  classNameDesc="text-start "
+                  classNameFooter="justify-start "
+                  classNameDate=""
+                  product={product}
+                  footer={
+                    <div className="flex">
+                      <Button
+                        variant="outline"
+                        className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-52 border-white hover:border-none"
+                      >
+                        See more
+                      </Button>
+                    </div>
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <div className="flex flex-col sm:flex-row min-h-screen bg-white p-5 sm:p-20 gap-5">
+      <div className="w-screen overflow-x-auto sm:overflow-hidden">
+        <div
+          className={twMerge(
+            "flex flex-row min-h-screen bg-white p-5 sm:p-20 gap-5"
+          )}
+          style={
+            breakpoint === "sm" ? { width: `${dynamicWidth}px` } : undefined
+          }
+        >
+          {dataImage2.map((product, idx) => {
+            return (
+              <div key={idx}>
+                <CardProduct
+                  classNameCard="border-none p-0 bg-transparant"
+                  classNameImage="w-full rounded-none"
+                  classNameCardContent="gap-3 justify-start items-start"
+                  classNameTitle="text-start text-navy-blue"
+                  classNameDesc="text-start text-navy-blue"
+                  classNameFooter="justify-start text-navy-blue"
+                  classNameDate=" text-navy-blue"
+                  product={product}
+                  footer={
+                    <div className="flex">
+                      <Button
+                        variant="outline"
+                        className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
+                      >
+                        See more
+                      </Button>
+                    </div>
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="w-screen overflow-x-auto sm:overflow-hidden">
+        <div
+          className={twMerge(
+            "flex flex-row min-h-screen bg-light-brown p-5 sm:p-20 gap-5"
+          )}
+          style={
+            breakpoint === "sm" ? { width: `${dynamicWidth}px` } : undefined
+          }
+        >
+          {dataImage3.map((product, idx) => {
+            return (
+              <div key={idx}>
+                <CardProduct
+                  classNameCard="border-none p-0 bg-transparant"
+                  classNameImage="w-full rounded-none"
+                  classNameCardContent="gap-3 justify-start items-start"
+                  classNameTitle="text-start text-white"
+                  classNameDesc="text-start text-white"
+                  classNameFooter="justify-start text-white"
+                  classNameDate=" text-white"
+                  product={product}
+                  footer={
+                    <div className="flex">
+                      <Button
+                        variant="outline"
+                        className="bg-transparent text-white hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-white hover:border-none"
+                      >
+                        See more
+                      </Button>
+                    </div>
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* <div className="flex flex-col sm:flex-row min-h-screen bg-white p-5 sm:p-20 gap-5">
         {dataImage2.map((product, idx) => {
           return (
             <div key={idx}>
@@ -193,13 +282,13 @@ const BlogPageModules = () => {
                 classNameCard="border-none p-0 bg-transparant"
                 classNameImage="w-full rounded-none"
                 classNameCardContent="gap-3 justify-start items-start"
-                classNameTitle="text-start px-5 text-navy-blue"
-                classNameDesc="text-start px-5 text-navy-blue"
-                classNameFooter="justify-start px-5 text-navy-blue"
-                classNameDate="px-5 text-navy-blue"
+                classNameTitle="text-start  text-navy-blue"
+                classNameDesc="text-start  text-navy-blue"
+                classNameFooter="justify-start  text-navy-blue"
+                classNameDate=" text-navy-blue"
                 product={product}
                 footer={
-                  <div className="flex px-5">
+                  <div className="flex">
                     <Button
                       variant="outline"
                       className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
@@ -221,13 +310,13 @@ const BlogPageModules = () => {
                 classNameCard="border-none p-0 bg-transparant"
                 classNameImage="w-full rounded-none"
                 classNameCardContent="gap-3 justify-start items-start"
-                classNameTitle="text-start px-5 text-navy-blue"
-                classNameDesc="text-start px-5 text-navy-blue"
-                classNameFooter="justify-start px-5 text-navy-blue"
-                classNameDate="px-5 text-navy-blue"
+                classNameTitle="text-start  text-navy-blue"
+                classNameDesc="text-start  text-navy-blue"
+                classNameFooter="justify-start  text-navy-blue"
+                classNameDate=" text-navy-blue"
                 product={product}
                 footer={
-                  <div className="flex px-5">
+                  <div className="flex">
                     <Button
                       variant="outline"
                       className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
@@ -240,7 +329,7 @@ const BlogPageModules = () => {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 };

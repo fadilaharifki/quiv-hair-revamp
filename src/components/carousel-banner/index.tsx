@@ -186,7 +186,7 @@ export function CarouselBannerComponent({
             <div className="flex">
               <Button
                 variant="outline"
-                className="bg-transparent text-white text-sm sm:text-lg w-52 "
+                className="bg-transparent text-white text-sm sm:text-lg w-40 sm:w-52 "
               >
                 See more
               </Button>

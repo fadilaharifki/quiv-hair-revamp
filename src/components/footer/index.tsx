@@ -1,10 +1,12 @@
-import { title } from "process";
+"use client";
+
 import LogoBlack from "../../assets/svg/logo-black.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { twMerge } from "tailwind-merge";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  const router = useRouter();
   const menusFooter = [
     {
       title: LogoBlack,
@@ -81,7 +83,10 @@ const Footer = () => {
             return (
               <div key={idx}>
                 <Image
-                  className="mb-5 sm:mb-10"
+                  onClick={() => {
+                    router.push("/");
+                  }}
+                  className="mb-5 sm:mb-10 cursor-pointer scale-110"
                   width={100}
                   height={100}
                   src={LogoBlack}
@@ -95,16 +100,16 @@ const Footer = () => {
           }
           return (
             <div key={idx}>
-              <div className="flex flex-col font-bell-mt font-thin text-sm sm:text-lg mb-5 sm:mb-10">
+              <div className="flex flex-col font-inter font-light text-sm sm:text-lg mb-5 sm:mb-10">
                 {item.title}
               </div>
-              <div className="flex flex-col font-inter font-thin  text-sm sm:text-lg gap-2 sm:gap-4">
+              <div className="flex flex-col font-inter text-sm sm:text-lg gap-2 sm:gap-4">
                 {item.menu?.map((menu, index) => {
                   if (!menu.url) {
                     return (
                       <span
                         className={
-                          "cursor-not-allowed font-medium hover:font-semibold"
+                          "cursor-not-allowed font-normal hover:font-medium"
                         }
                         key={index}
                       >
@@ -115,7 +120,7 @@ const Footer = () => {
                   return (
                     <Link
                       href={menu.url}
-                      className="font-medium hover:font-semibold"
+                      className="font-normal hover:font-medium"
                       key={index}
                     >
                       {menu.title}

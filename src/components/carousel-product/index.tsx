@@ -122,7 +122,7 @@ export function CarouselProductComponent({
             >
               <div className="flex justify-center align-middle items-center ">
                 <Image
-                  className="w-[100px] h-[170px] sm:w-[198px] sm:h-[231px] flex justify-center items-center"
+                  className="w-[130px] h-[170px] sm:w-[198px] sm:h-[231px] flex justify-center items-center"
                   width={300}
                   height={300}
                   alt={item.name}

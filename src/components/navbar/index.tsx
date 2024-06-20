@@ -99,21 +99,10 @@ const NavBar = () => {
       <div
         ref={refNav}
         className={twMerge(
-          "grid grid-cols-2 sm:grid-cols-5 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-brown-navbar justify-center items-center fixed bg-opacity-50 z-50"
+          "grid grid-cols-3 sm:grid-cols-5 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-brown-navbar justify-center items-center fixed bg-opacity-50 z-50"
         )}
       >
-        <div className="flex sm:justify-center items-center">
-          <Link href={"/"}>
-            <Image width={100} height={100} src={Logo} alt="Logo"></Image>
-          </Link>
-        </div>
-        <div className="hidden sm:flex justify-evenly items-center col-span-3">
-          {renderMenu()}
-        </div>
-        <div className="hidden sm:flex justify-center items-center">
-          <Image width={25} height={25} src={Search} alt="Search"></Image>
-        </div>
-        <div className="sm:hidden flex justify-end items-center">
+        <div className="sm:hidden flex justify-start items-center">
           <div
             className={`transform transition-transform duration-500 ${
               openMenu ? "rotate-180" : ""
@@ -126,6 +115,17 @@ const NavBar = () => {
               <X size={30} color="#ffffff" strokeWidth={2.25} />
             )}
           </div>
+        </div>
+        <div className="flex sm:justify-center items-center">
+          <Link href={"/"}>
+            <Image width={100} height={100} src={Logo} alt="Logo"></Image>
+          </Link>
+        </div>
+        <div className="hidden sm:flex justify-evenly items-center col-span-3">
+          {renderMenu()}
+        </div>
+        <div className="flex sm:flex justify-end sm:justify-center items-center">
+          <Image width={25} height={25} src={Search} alt="Search"></Image>
         </div>
       </div>
       <div

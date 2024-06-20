@@ -9,6 +9,8 @@ import {
 } from "../ui/card";
 import { twMerge } from "tailwind-merge";
 
+type Position = "horizontal" | "vertical";
+
 interface ProductInterface {
   url?: string;
   icon?: React.ReactNode;
@@ -28,6 +30,7 @@ interface CardProductInterface {
   classNameIcon?: string;
   product: ProductInterface;
   footer?: React.ReactNode;
+  position?: Position;
 }
 
 const CardProduct = ({
@@ -41,74 +44,87 @@ const CardProduct = ({
   classNameIcon,
   product,
   footer,
+  position = "vertical",
 }: CardProductInterface) => {
   return (
     <Card
       className={twMerge(
-        "bg-navy-blue p-10 rounded-2xl items-center",
+        "bg-navy-blue p-10 rounded-2xl items-center ",
+        position === "horizontal" && "p-1",
         classNameCard
       )}
     >
       <CardContent
         className={twMerge(
-          "flex justify-center items-center flex-col gap-10",
+          "flex justify-center items-center  flex-col gap-10",
+          position === "horizontal" && "flex-row gap-4 p-2",
           classNameCardContent
         )}
       >
         {product.url && (
           <Image
-            className={twMerge("flex rounded-lg h-50 w-50", classNameImage)}
+            className={twMerge(
+              "flex rounded-lg h-50 w-50",
+              position === "horizontal" && "w-50",
+              classNameImage
+            )}
             width={286}
             height={286}
             alt={product.title as string}
             src={product.url as string}
           />
         )}
-        {product?.icon && (
-          <div className={twMerge("bg-white p-5 rounded-full", classNameIcon)}>
-            {product?.icon}
-          </div>
-        )}
-        {product?.date && (
-          <div
-            className={twMerge(
-              "font-bell-inter font-thin text-sm text-white text-start",
-              classNameDate
-            )}
-          >
-            {product.date}
-          </div>
-        )}
+        <div className="flex flex-col gap-2">
+          {product?.icon && (
+            <div
+              className={twMerge("bg-white p-5 rounded-full", classNameIcon)}
+            >
+              {product?.icon}
+            </div>
+          )}
+          {product?.date && (
+            <div
+              className={twMerge(
+                "font-bell-mt font-thin text-[12px] text-white text-start",
+                classNameDate
+              )}
+            >
+              {product.date}
+            </div>
+          )}
 
-        <div
-          className={twMerge(
-            "font-bell-mt font-bold text-3xl text-white text-center",
-            classNameTitle
-          )}
-        >
-          {product.title}
-        </div>
-        {product.description && (
           <div
             className={twMerge(
-              "font-inter font-thin text-sm sm:text-lg text-white text-center",
-              classNameDesc
+              "font-bell-mt font-bold text-3xl text-white text-center",
+              position === "horizontal" && "text-[14px] text-left",
+              classNameTitle
             )}
           >
-            {product.description}
+            {product.title}
           </div>
-        )}
-      </CardContent>
-      {footer && (
-        <CardFooter
-          className={twMerge(
-            "flex justify-center items-center",
-            classNameFooter
+          {product.description && (
+            <div
+              className={twMerge(
+                "font-inter font-thin text-[12px] sm:text-[14px] text-white text-center",
+                position === "horizontal" && "text-[12px] text-left",
+                classNameDesc
+              )}
+            >
+              {product.description}
+            </div>
           )}
-        >
-          {footer}
-        </CardFooter>
-      )}
+          {footer && (
+            <div
+              className={twMerge(
+                "flex justify-center items-center",
+                classNameFooter
+              )}
+            >
+              {footer}
+            </div>
+          )}
+        </div>
+      </CardContent>
     </Card>
   );
 };

@@ -212,11 +212,10 @@ const CategoryProductsPageModules = ({
                   key={idx}
                   className="flex flex-col justify-center items-center"
                 >
-                  <div className="flex font-inter font-bold">
-                    <div>{idx + 1}.</div>
-                    <div>{e.title}</div>
+                  <div className="flex font-inter font-bold text-sm sm:text-base">
+                    {idx + 1}. {e.title}
                   </div>
-                  <div>
+                  <div className="text-sm sm:text-base">
                     <div>{e.description}</div>
                   </div>
                 </div>
@@ -230,8 +229,8 @@ const CategoryProductsPageModules = ({
 
   return (
     <div>
-      <div className="grid grid-cols-6 min-h-screen pt-28 bg-light-gray">
-        <div className="flex flex-col col-span-1 justify-center items-center gap-4">
+      <div className="grid sm:grid-cols-6 gap-y-10 min-h-screen pt-28 sm:px-10 bg-light-gray">
+        <div className="hidden sm:flex flex-col col-span-1 justify-center items-center gap-4">
           {imageProduct?.[props?.params.category].map(
             (item: any, idx: number) => {
               if (item.id !== imageProductActive.id) {
@@ -252,18 +251,41 @@ const CategoryProductsPageModules = ({
             }
           )}
         </div>
-        <div className="col-span-3">
+        <div className="sm:col-span-3 flex justify-center items-center">
           <Image
-            className="h-[595px] w-[595px] sm:h-[595px] sm:w-[595px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110"
+            className="h-[350px] w-[300px] sm:h-[595px] sm:w-[595px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110"
             width={286}
             height={286}
             src={imageProductActive.url}
             alt={imageProductActive.title}
           ></Image>
         </div>
-        <div className="flex flex-col gap-5 font-inter col-span-2 text-navy-blue justify-center">
+        <div className="sm:hidden flex flex-row sm:col-span-1 justify-center items-center gap-4">
+          {imageProduct?.[props?.params.category].map(
+            (item: any, idx: number) => {
+              if (item.id !== imageProductActive.id) {
+                return (
+                  <Image
+                    onClick={() => {
+                      setImageProductActive(item);
+                    }}
+                    key={idx}
+                    className="h-[90px] w-[90px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110 bg-white"
+                    width={190}
+                    height={190}
+                    src={item.url}
+                    alt={item.title}
+                  ></Image>
+                );
+              }
+            }
+          )}
+        </div>
+        <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 font-inter sm:col-span-2 text-navy-blue justify-center">
           <div>
-            <div className="text-xl font-light">{imageProductActive.type}</div>
+            <div className=" text-sm sm:text-xl font-light">
+              {imageProductActive.type}
+            </div>
             <div className="font-montserrat font-bold text-[40px]">
               {props?.params.category.toUpperCase()}
             </div>
@@ -271,10 +293,10 @@ const CategoryProductsPageModules = ({
               {imageProductActive.ability}
             </div>
           </div>
-          <div className="text-2xl font-normal">
+          <div className="tex-lg sm:text-2xl font-normal">
             {imageProductActive.description}
           </div>
-          <div className="font-bold text-xl">
+          <div className="font-bold text-2xl">
             {formatCurrency(Number(imageProductActive.price ?? 0))}
           </div>
         </div>
@@ -305,7 +327,7 @@ const CategoryProductsPageModules = ({
         </div>
       </div>
       <div className="flex flex-col justify-center items-center font-inter">
-        <div className="text-navy-blue text-[60px] font-bold text-center font-bell-mt">
+        <div className="text-navy-blue text-3xl sm:text-[60px] font-bold text-center font-bell-mt">
           Recommended products
         </div>
         <div className="py-10">

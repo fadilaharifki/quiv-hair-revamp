@@ -66,14 +66,14 @@ const PaginationComponent = ({
     };
   }, []);
   return (
-    <div className="w-screen flex flex-col justify-center items-center px-10">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-20">
+    <div className="w-screen flex flex-col justify-center items-center px-10 font-bell-mt">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 sm:gap-20">
         {data.map((item, i) => {
           return (
             <div key={i}>
               <div className="flex justify-center align-middle items-center ">
                 <Image
-                  className="w-[198px] h-[231px] flex justify-center items-center"
+                  className="w-[90px] h-[100px] sm:w-[198px] sm:h-[231px] flex justify-center items-center"
                   width={300}
                   height={300}
                   alt={item.name}

@@ -20,62 +20,62 @@ const ProductsPageModules = () => {
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax1.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax2.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax1.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax2.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
     {
       name: "QUIV Hair Wax",
       price: "140000",
-      url: "/image/home/hairwax3.png",
+      url: "/image/general/image1.png",
     },
   ];
 
