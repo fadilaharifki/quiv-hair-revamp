@@ -8,11 +8,12 @@ import {
 } from "@/components/ui/carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import { formatCurrency } from "@/utils/format";
+
 import { useEffect, useRef, useState } from "react";
 import NextIcon from "@/assets/icon/next-icon";
 import PrevIcon from "@/assets/icon/prev-icon";
 import { twMerge } from "tailwind-merge";
+import { formatCurrency } from "@/lib/utils";
 
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];

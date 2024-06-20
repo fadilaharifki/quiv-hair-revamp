@@ -1,10 +1,117 @@
 "use client";
 
 import { CategoryProductsPageInterface } from "@/app/products/[category]/page";
-import { useMemo, useState } from "react";
+import CardProduct from "@/components/card-product";
+import PaginationComponent from "@/components/pagination";
+import { formatCurrency } from "@/lib/utils";
+import Image from "next/image";
+import { Key, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 type ActiveTabsType = "description" | "howToUse";
+
+const imageProduct: any = {
+  flex: [
+    {
+      id: 1,
+      url: "/image/general/image1.png",
+      title: "image 1",
+      type: "Liquified Hair Powder 1",
+      category: "flex",
+      ability: "Smooth Glossy Finish",
+      name: "Flex - Liquified Hair Powder 1",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+      price: "8000000",
+    },
+    {
+      id: 2,
+      url: "/image/general/image2.png",
+      title: "image 2",
+      type: "Liquified Hair Powder 2",
+      category: "flex",
+      name: "Flex - Liquified Hair Powder 1",
+      ability: "Smooth Glossy Finish",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+      price: "8000000",
+    },
+    {
+      id: 3,
+      url: "/image/general/image3.png",
+      title: "image 3",
+      type: "Liquified Hair Powder 3",
+      category: "flex",
+      name: "Flex - Liquified Hair Powder 1",
+      ability: "Smooth Glossy Finish",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+      price: "8000000",
+    },
+    {
+      id: 4,
+      url: "/image/general/image4.png",
+      title: "image 4",
+      type: "Liquified Hair Powder 4",
+      category: "flex",
+      name: "Flex - Liquified Hair Powder 1",
+      ability: "Smooth Glossy Finish",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+      price: "8000000",
+    },
+  ],
+  fine: [
+    {
+      id: 1,
+      url: "/image/general/image1.png",
+      title: "image 1",
+      type: "Liquified Hair Powder 1",
+      category: "FINE",
+      name: "FINE - Liquified Hair Powder 1",
+      ability: "Smooth Glossy Finish",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+      price: "8000000",
+    },
+    {
+      id: 2,
+      url: "/image/general/image2.png",
+      title: "image 2",
+      type: "Liquified Hair Powder 2",
+      category: "FINE",
+      name: "FINE - Liquified Hair Powder 1",
+      ability: "Smooth Glossy Finish",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+      price: "8000000",
+    },
+    {
+      id: 3,
+      url: "/image/general/image3.png",
+      title: "image 3",
+      type: "Liquified Hair Powder 3",
+      category: "FINE",
+      name: "FINE - Liquified Hair Powder 1",
+      ability: "Smooth Glossy Finish",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+      price: "8000000",
+    },
+    {
+      id: 4,
+      url: "/image/general/image4.png",
+      title: "image 4",
+      type: "Liquified Hair Powder 4",
+      category: "FINE",
+      name: "FINE - Liquified Hair Powder 1",
+      ability: "Smooth Glossy Finish",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+      price: "8000000",
+    },
+  ],
+};
 
 const CategoryProductsPageModules = ({
   props,
@@ -12,6 +119,10 @@ const CategoryProductsPageModules = ({
   props: CategoryProductsPageInterface;
 }) => {
   const [activeTab, setActiveTab] = useState<ActiveTabsType>("description");
+
+  const [imageProductActive, setImageProductActive] = useState(
+    imageProduct?.[props?.params.category][0]
+  );
 
   const categoryProduct: any = useMemo(() => {
     return {
@@ -119,8 +230,56 @@ const CategoryProductsPageModules = ({
 
   return (
     <div>
-      <div className="min-h-screen">{props?.params.category}</div>
-      <div className="min-h-screen">
+      <div className="grid grid-cols-6 min-h-screen pt-28 bg-light-gray">
+        <div className="flex flex-col col-span-1 justify-center items-center gap-4">
+          {imageProduct?.[props?.params.category].map(
+            (item: any, idx: number) => {
+              if (item.id !== imageProductActive.id) {
+                return (
+                  <Image
+                    onClick={() => {
+                      setImageProductActive(item);
+                    }}
+                    key={idx}
+                    className="h-[190px] w-[190px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110 bg-white"
+                    width={190}
+                    height={190}
+                    src={item.url}
+                    alt={item.title}
+                  ></Image>
+                );
+              }
+            }
+          )}
+        </div>
+        <div className="col-span-3">
+          <Image
+            className="h-[595px] w-[595px] sm:h-[595px] sm:w-[595px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110"
+            width={286}
+            height={286}
+            src={imageProductActive.url}
+            alt={imageProductActive.title}
+          ></Image>
+        </div>
+        <div className="flex flex-col gap-5 font-inter col-span-2 text-navy-blue justify-center">
+          <div>
+            <div className="text-xl font-light">{imageProductActive.type}</div>
+            <div className="font-montserrat font-bold text-[40px]">
+              {props?.params.category.toUpperCase()}
+            </div>
+            <div className="text-sm font-light">
+              {imageProductActive.ability}
+            </div>
+          </div>
+          <div className="text-2xl font-normal">
+            {imageProductActive.description}
+          </div>
+          <div className="font-bold text-xl">
+            {formatCurrency(Number(imageProductActive.price ?? 0))}
+          </div>
+        </div>
+      </div>
+      <div className="py-20">
         <div className="flex justify-evenly">
           {tabs.map((tab, idx) => {
             return (
@@ -145,7 +304,17 @@ const CategoryProductsPageModules = ({
           {renderActiveTab(activeTab)}
         </div>
       </div>
-      <div className="min-h-screen">{props?.params.category}</div>
+      <div className="flex flex-col justify-center items-center font-inter">
+        <div className="text-navy-blue text-[60px] font-bold text-center font-bell-mt">
+          Recommended products
+        </div>
+        <div className="py-10">
+          <PaginationComponent
+            isPagination={false}
+            data={imageProduct?.[props?.params.category]}
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,8 @@
 
 import NextIcon from "@/assets/icon/next-icon";
 import PrevIcon from "@/assets/icon/prev-icon";
-import { formatCurrency } from "@/utils/format";
+import { formatCurrency } from "@/lib/utils";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,9 +15,13 @@ interface DataInterface {
 
 interface PaginationComponentInterface {
   data: DataInterface[];
+  isPagination?: boolean;
 }
 
-const PaginationComponent = ({ data }: PaginationComponentInterface) => {
+const PaginationComponent = ({
+  data,
+  isPagination = true,
+}: PaginationComponentInterface) => {
   const nextIconRef = useRef<HTMLDivElement>(null);
   const prevIconRef = useRef<HTMLDivElement>(null);
   const [isHoveredNext, setIsHoveredNext] = useState(false);
@@ -86,26 +91,28 @@ const PaginationComponent = ({ data }: PaginationComponentInterface) => {
         })}
       </div>
 
-      <div className="mt-32 text-center text-sm text-muted-foreground flex gap-10">
-        <div
-          ref={prevIconRef}
-          className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
-        >
-          <PrevIcon
-            color={isHoveredPrev ? "#ffffff" : "#383838"}
-            onClick={goToPrevious}
-          />
+      {isPagination && (
+        <div className="mt-32 text-center text-sm text-muted-foreground flex gap-10">
+          <div
+            ref={prevIconRef}
+            className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
+          >
+            <PrevIcon
+              color={isHoveredPrev ? "#ffffff" : "#383838"}
+              onClick={goToPrevious}
+            />
+          </div>
+          <div
+            ref={nextIconRef}
+            className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
+          >
+            <NextIcon
+              color={isHoveredNext ? "#ffffff" : "#383838"}
+              onClick={goToNext}
+            />
+          </div>
         </div>
-        <div
-          ref={nextIconRef}
-          className="hover:bg-navy-blue cursor-pointer p-1 rounded-full"
-        >
-          <NextIcon
-            color={isHoveredNext ? "#ffffff" : "#383838"}
-            onClick={goToNext}
-          />
-        </div>
-      </div>
+      )}
     </div>
   );
 };
