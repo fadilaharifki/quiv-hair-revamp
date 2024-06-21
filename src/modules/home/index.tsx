@@ -17,28 +17,28 @@ const HomePageModules = () => {
 
   const dataImage = [
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FLEX - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/flex",
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FINE - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/fine",
+
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FLEX - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/flex",
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
-      url: "/image/general/image1.png",
-    },
-    {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FINE - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/fine",
       url: "/image/general/image1.png",
     },
   ];
@@ -124,8 +124,8 @@ const HomePageModules = () => {
           alt="home image"
         ></Image>
         <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center h-52 sm:h-72 justify-between">
-            <div className="text-white text-3xl sm:text-[60px] leading-none font-bold text-center font-bell-mt text-shadow shadow-black">
+          <div className="w-[80%] flex flex-col items-center h-52 sm:h-82 justify-between">
+            <div className="text-white text-3xl sm:text-[48px] uppercase leading-none font-black text-center font-inter text-shadow shadow-black">
               Botanically rich formulations protect, repair, and promote healthy
               hair
             </div>
@@ -166,8 +166,9 @@ const HomePageModules = () => {
             orientation={"horizontal"}
             buttonNextPrev={true}
             classNameCarousel="h-auto"
-            classNameCarouselItem="lg:basis-1/4 flex justify-end flex-col"
+            classNameCarouselItem="lg:basis-1/2 flex justify-end flex-col"
             data={dataImage}
+            isOnClick
           />
         </div>
       </div>
@@ -183,8 +184,9 @@ const HomePageModules = () => {
             orientation={breakpoint === "sm" ? "vertical" : "horizontal"}
             buttonNextPrev={false}
             classNameCarouselContent={breakpoint === "sm" ? "h-[450px]" : ""}
-            classNameCarouselItem="basis-1/1 lg:basis-1/4 flex justify-end flex-col"
+            classNameCarouselItem="basis-1/1 lg:basis-1/3 flex justify-end flex-col"
             data={dataImage}
+            isOnClick
           />
         </div>
         <div className="flex">

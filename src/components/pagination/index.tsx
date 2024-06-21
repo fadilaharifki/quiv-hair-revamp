@@ -5,23 +5,30 @@ import PrevIcon from "@/assets/icon/prev-icon";
 import { formatCurrency } from "@/lib/utils";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface DataInterface {
   name: string;
   url: string;
   price: string;
+  path?: string;
 }
 
 interface PaginationComponentInterface {
   data: DataInterface[];
   isPagination?: boolean;
+  isOnClick?: boolean;
 }
 
 const PaginationComponent = ({
   data,
   isPagination = true,
+  isOnClick,
 }: PaginationComponentInterface) => {
+  const router = useRouter();
+
   const nextIconRef = useRef<HTMLDivElement>(null);
   const prevIconRef = useRef<HTMLDivElement>(null);
   const [isHoveredNext, setIsHoveredNext] = useState(false);
@@ -67,10 +74,20 @@ const PaginationComponent = ({
   }, []);
   return (
     <div className="w-screen flex flex-col justify-center items-center px-10 font-bell-mt">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 sm:gap-20">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 sm:gap-20">
         {data.map((item, i) => {
           return (
-            <div key={i}>
+            <div
+              key={i}
+              className={twMerge(
+                isOnClick
+                  ? "cursor-pointer hover:scale-125 duration-500"
+                  : undefined
+              )}
+              onClick={() => {
+                if (isOnClick && item.path) router.push(item.path);
+              }}
+            >
               <div className="flex justify-center align-middle items-center ">
                 <Image
                   className="w-[90px] h-[100px] sm:w-[198px] sm:h-[231px] flex justify-center items-center"

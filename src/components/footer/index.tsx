@@ -4,6 +4,7 @@ import LogoBlack from "../../assets/svg/logo-black.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { twMerge } from "tailwind-merge";
 
 const Footer = () => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const Footer = () => {
     },
     {
       title: "All Products",
+      url: "/products",
       menu: [
         {
           title: "FLEX - Liquified Hair Powder",
@@ -100,7 +102,15 @@ const Footer = () => {
           }
           return (
             <div key={idx}>
-              <div className="flex flex-col font-inter font-light text-sm sm:text-lg mb-5 sm:mb-10">
+              <div
+                className={twMerge(
+                  "flex flex-col font-inter font-light text-sm sm:text-lg mb-5 sm:mb-10",
+                  item?.url ? "cursor-pointer hover:font-bold" : undefined
+                )}
+                onClick={() => {
+                  if (item.url) router.push(item.url);
+                }}
+              >
                 {item.title}
               </div>
               <div className="flex flex-col font-inter text-sm sm:text-lg gap-2 sm:gap-4">

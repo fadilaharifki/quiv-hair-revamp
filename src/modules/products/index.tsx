@@ -18,63 +18,59 @@ const ProductsPageModules = () => {
 
   const dataImageProduct = [
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FLEX - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/flex",
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FINE - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/fine",
+
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FLEX - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/flex",
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FINE - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/fine",
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FLEX - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/flex",
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FINE - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/fine",
+
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FLEX - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/flex",
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FINE - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/fine",
       url: "/image/general/image1.png",
     },
     {
-      name: "QUIV Hair Wax",
-      price: "140000",
-      url: "/image/general/image1.png",
-    },
-    {
-      name: "QUIV Hair Wax",
-      price: "140000",
-      url: "/image/general/image1.png",
-    },
-    {
-      name: "QUIV Hair Wax",
-      price: "140000",
-      url: "/image/general/image1.png",
-    },
-    {
-      name: "QUIV Hair Wax",
-      price: "140000",
+      name: "FLEX - Liquified Hair Powder",
+      price: "000000",
+      path: "/products/flex",
       url: "/image/general/image1.png",
     },
   ];
@@ -144,7 +140,7 @@ const ProductsPageModules = () => {
         <div className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold text-navy-blue">
           All products
         </div>
-        <PaginationComponent data={dataImageProduct} />
+        <PaginationComponent isOnClick data={dataImageProduct} />
       </div>
     </div>
   );

@@ -113,6 +113,28 @@ const imageProduct: any = {
   ],
 };
 
+const dataImage = [
+  {
+    name: "FLEX - Liquified Hair Powder",
+    price: "000000",
+    path: "/products/flex",
+    url: "/image/general/image1.png",
+  },
+  {
+    name: "FINE - Liquified Hair Powder",
+    price: "000000",
+    path: "/products/fine",
+
+    url: "/image/general/image1.png",
+  },
+  {
+    name: "FLEX - Liquified Hair Powder",
+    price: "000000",
+    path: "/products/flex",
+    url: "/image/general/image1.png",
+  },
+];
+
 const CategoryProductsPageModules = ({
   props,
 }: {
@@ -326,14 +348,15 @@ const CategoryProductsPageModules = ({
           {renderActiveTab(activeTab)}
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center font-inter">
+      <div className="min-h-screen flex flex-col justify-evenly items-center font-inter">
         <div className="text-navy-blue text-3xl sm:text-[60px] font-bold text-center font-bell-mt">
           Recommended products
         </div>
         <div className="py-10">
           <PaginationComponent
             isPagination={false}
-            data={imageProduct?.[props?.params.category]}
+            data={dataImage}
+            isOnClick
           />
         </div>
       </div>

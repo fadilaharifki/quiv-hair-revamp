@@ -14,6 +14,7 @@ import NextIcon from "@/assets/icon/next-icon";
 import PrevIcon from "@/assets/icon/prev-icon";
 import { twMerge } from "tailwind-merge";
 import { formatCurrency } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
@@ -22,6 +23,7 @@ interface DataInterface {
   name: string;
   url: string;
   price: string;
+  path?: string;
 }
 
 interface CarouselInterface {
@@ -32,6 +34,7 @@ interface CarouselInterface {
   classNameCarouselItem?: string;
   classNameCarousel?: string;
   classNameCarouselContent?: string;
+  isOnClick?: boolean;
 }
 
 export function CarouselProductComponent({
@@ -45,7 +48,9 @@ export function CarouselProductComponent({
   classNameCarouselContent,
   classNameCarousel,
   orientation,
+  isOnClick,
 }: CarouselInterface) {
+  const router = useRouter();
   const [api, setApi] = useState<CarouselApi>();
   const nextIconRef = useRef<HTMLDivElement>(null);
   const prevIconRef = useRef<HTMLDivElement>(null);
@@ -101,7 +106,7 @@ export function CarouselProductComponent({
         orientation={orientation}
         setApi={setApi}
         className={twMerge(
-          "w-64 h-[450px] sm:h-auto sm:w-11/12 justify-center items-center align-middle",
+          "w-64 h-[450px] sm:h-auto sm:w-11/12 justify-center items-center align-middle font-bell-mt",
           classNameCarousel
         )}
         opts={opts}
@@ -114,26 +119,45 @@ export function CarouselProductComponent({
         >
           {data.map((item, index) => (
             <CarouselItem
+              onClick={() => {
+                if (isOnClick && item.path) router.push(item.path);
+              }}
               key={index}
               className={twMerge(
                 "md:basis-1/2 lg:basis-1/3 flex justify-center item-center flex-col",
                 classNameCarouselItem
               )}
             >
-              <div className="flex justify-center align-middle items-center ">
-                <Image
-                  className="w-[130px] h-[170px] sm:w-[198px] sm:h-[231px] flex justify-center items-center"
-                  width={300}
-                  height={300}
-                  alt={item.name}
-                  src={item.url}
-                ></Image>
-              </div>
-              <div className="font-test text-lg  sm:text-2xl text-center text-navy-blue">
-                {item.name}
-              </div>
-              <div className="font-inter text-sm sm:text-xl text-center font-thin text-light-blue">
-                {formatCurrency(Number(item.price ?? 0))}
+              <div
+                className={twMerge(
+                  isOnClick
+                    ? "cursor-pointer hover:scale-105 duration-500"
+                    : undefined
+                )}
+              >
+                <div
+                  className={twMerge(
+                    "flex justify-center align-middle items-center"
+                  )}
+                >
+                  <Image
+                    className="w-[130px] h-[170px] sm:w-[198px] sm:h-[231px] flex justify-center items-center"
+                    width={300}
+                    height={300}
+                    alt={item.name}
+                    src={item.url}
+                  ></Image>
+                </div>
+                <div
+                  className={twMerge(
+                    "font-test text-lg  sm:text-2xl text-center text-navy-blue"
+                  )}
+                >
+                  {item.name}
+                </div>
+                <div className="font-inter text-sm sm:text-xl text-center font-thin text-light-blue">
+                  {formatCurrency(Number(item.price ?? 0))}
+                </div>
               </div>
             </CarouselItem>
           ))}
