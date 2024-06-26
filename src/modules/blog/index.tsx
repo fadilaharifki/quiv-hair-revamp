@@ -107,9 +107,9 @@ const BlogPageModules = () => {
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-5xl text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <h1 className="text-white text-5xl text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Blog
-            </div>
+            </h1>
             <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
@@ -273,63 +273,6 @@ const BlogPageModules = () => {
           })}
         </div>
       </div>
-
-      {/* <div className="flex flex-col sm:flex-row min-h-screen bg-white p-5 sm:p-20 gap-5">
-        {dataImage2.map((product, idx) => {
-          return (
-            <div key={idx}>
-              <CardProduct
-                classNameCard="border-none p-0 bg-transparant"
-                classNameImage="w-full rounded-none"
-                classNameCardContent="gap-3 justify-start items-start"
-                classNameTitle="text-start  text-navy-blue"
-                classNameDesc="text-start  text-navy-blue"
-                classNameFooter="justify-start  text-navy-blue"
-                classNameDate=" text-navy-blue"
-                product={product}
-                footer={
-                  <div className="flex">
-                    <Button
-                      variant="outline"
-                      className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
-                    >
-                      See more
-                    </Button>
-                  </div>
-                }
-              />
-            </div>
-          );
-        })}
-      </div>
-      <div className="flex flex-col sm:flex-row min-h-screen bg-light-brown bg-opacity-10 p-5 sm:p-20 gap-5">
-        {dataImage3.map((product, idx) => {
-          return (
-            <div key={idx}>
-              <CardProduct
-                classNameCard="border-none p-0 bg-transparant"
-                classNameImage="w-full rounded-none"
-                classNameCardContent="gap-3 justify-start items-start"
-                classNameTitle="text-start  text-navy-blue"
-                classNameDesc="text-start  text-navy-blue"
-                classNameFooter="justify-start  text-navy-blue"
-                classNameDate=" text-navy-blue"
-                product={product}
-                footer={
-                  <div className="flex">
-                    <Button
-                      variant="outline"
-                      className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
-                    >
-                      See more
-                    </Button>
-                  </div>
-                }
-              />
-            </div>
-          );
-        })}
-      </div> */}
     </div>
   );
 };

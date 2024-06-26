@@ -125,10 +125,10 @@ const HomePageModules = () => {
         ></Image>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center h-52 sm:h-82 justify-between">
-            <div className="text-white text-3xl sm:text-[48px] uppercase leading-none font-black text-center font-inter text-shadow shadow-black">
+            <h1 className="text-white text-3xl sm:text-[48px] uppercase leading-none font-black text-center font-inter text-shadow shadow-black">
               Botanically rich formulations protect, repair, and promote healthy
               hair
-            </div>
+            </h1>
             <div>
               <Button
                 variant="outline"
@@ -145,9 +145,9 @@ const HomePageModules = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-4 min-h-screen py-10">
         <div className="sm:col-span-1 py-10 sm:py-0 bg-navy-blue flex-col flex justify-center px-10 gap-4 sm:gap-11">
-          <div className="text-white text-4xl text-center sm:text-left sm:text-[50px] font-bell-mt font-semibold">
+          <h1 className="text-white text-4xl text-center sm:text-left sm:text-[50px] font-bell-mt font-semibold">
             Bestsellers
-          </div>
+          </h1>
           <div className="text-white text-center sm:text-left text-xl sm:text-2xl font-inter font-light">
             Shop the best natural men’s hairstyling products, shampoo,
             conditioner, shaving, and skincare.{" "}
@@ -176,9 +176,9 @@ const HomePageModules = () => {
         <CarouselBannerComponent dotButton data={dataImage2} autoPlay />
       </div>
       <div className="gap-5 sm:gap-0 py-20 sm:h-screen flex justify-evenly items-center flex-col bg-light-brown-one">
-        <div className="flex font-bell-mt text-4xl sm:text-[50px] font-bold">
+        <h1 className="flex font-bell-mt text-4xl sm:text-[50px] font-bold">
           New collections
-        </div>
+        </h1>
         <div className="flex justify-center items-center flex-col px-10">
           <CarouselProductComponent
             orientation={breakpoint === "sm" ? "vertical" : "horizontal"}
@@ -200,9 +200,9 @@ const HomePageModules = () => {
       </div>
 
       <div className="flex items-center flex-col gap-10 py-20">
-        <div className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold leading-tight">
+        <h1 className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold leading-tight">
           Our blogs
-        </div>
+        </h1>
         <div className="w-9/12 sm:w-4/12 flex text-center font-inter text-xl font-light leading-tight">
           Shop the best natural men’s hairstyling products, shampoo,
           conditioner, shaving, and skincare.

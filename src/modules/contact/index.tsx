@@ -103,9 +103,9 @@ const ContactPageModules = () => {
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg  rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between gap-2">
-            <div className="text-white text-5xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <h1 className="text-white text-5xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Contact
-            </div>
+            </h1>
             <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
@@ -133,9 +133,9 @@ const ContactPageModules = () => {
       </div>
       <div className="flex min-h-screen justify-center md:px-32">
         <div className="flex flex-col w-screen gap-10 sm:gap-20">
-          <div className="text-black text-4xl sm:text-[50px] font-bell-mt font-semibold text-center">
+          <h1 className="text-black text-4xl sm:text-[50px] font-bell-mt font-semibold text-center">
             Get in touch with us
-          </div>
+          </h1>
           <div className="flex flex-col gap-10 px-10 sm:px-0">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-10">
               {fieldInput.map((field, idx) => {

@@ -41,12 +41,12 @@ const AboutUsPageModules = () => {
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg  rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <h1 className="text-white text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               About Us
-            </div>
-            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
+            </h1>
+            <h2 className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
-            </div>
+            </h2>
           </div>
         </div>
         <ArrowDown onClick={handleScroll} />
@@ -56,9 +56,9 @@ const AboutUsPageModules = () => {
         className="grid grid-cols-1 sm:grid-cols-4 min-h-screen py-10"
       >
         <div className="col-span-1 bg-light-brown-one py-10 sm:py-0 flex-col flex justify-center px-10 gap-11">
-          <div className="text-navy-blue text-4xl sm:text-[50px] font-bell-mt font-semibold">
+          <h1 className="text-navy-blue text-4xl sm:text-[50px] font-bell-mt font-semibold">
             About QUIV
-          </div>
+          </h1>
           <div className="text-navy-blue text-2xl font-inter font-light leading-tight">
             Shop the best natural men’s hairstyling products, shampoo,
             conditioner, shaving, and skincare.
@@ -81,9 +81,9 @@ const AboutUsPageModules = () => {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center w-screen gap-5 sm:gap-10 border-black py-5 sm:py-10 border-y-2">
-        <div className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold">
+        <h1 className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold">
           Our story
-        </div>
+        </h1>
         <div className="flex w-11/12 sm:w-10/12 ">
           <Image
             className="flex rounded-lg object-contain w-full"

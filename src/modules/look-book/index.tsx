@@ -83,9 +83,9 @@ const LookBookPageModules = () => {
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between">
-            <div className="text-white text-5xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <h1 className="text-white text-5xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               LookBook
-            </div>
+            </h1>
             <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
@@ -171,9 +171,9 @@ const LookBookPageModules = () => {
         ></Image>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] h-[50%] flex flex-col items-center justify-evenly">
-            <div className="text-white text-4xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <h1 className="text-white text-4xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Simple Style
-            </div>
+            </h1>
             <div className="w-8/12 text-white text-lg sm:text-2xl font-inter text-center text-shadow shadow-gray-500">
               When it came to men’s grooming products, there weren’t many
               high-quality, harmful chemical-free options available at prices

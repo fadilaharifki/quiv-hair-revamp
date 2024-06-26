@@ -32,9 +32,9 @@ const BlogDetailPageModules = () => {
         <div className="font-inter italic text-sm sm:text-xl font-light text-gray-400">
           {data.date}
         </div>
-        <div className="font-montserrat text-xl sm:text-[40px] font-bold">
+        <h1 className="font-montserrat text-xl sm:text-[40px] font-bold">
           {data.title}
-        </div>
+        </h1>
         <div className="font-inter text-base sm:text-2xl font-light">
           {data.createdBy}
         </div>

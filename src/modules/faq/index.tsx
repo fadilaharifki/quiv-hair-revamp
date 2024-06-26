@@ -67,9 +67,9 @@ const FaqPageModules = () => {
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between gap-2">
-            <div className="text-white text-4xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <h1 className="text-white text-4xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
               Frequently asked questions
-            </div>
+            </h1>
             <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>

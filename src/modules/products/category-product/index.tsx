@@ -308,9 +308,9 @@ const CategoryProductsPageModules = ({
             <div className=" text-sm sm:text-xl font-light">
               {imageProductActive.type}
             </div>
-            <div className="font-montserrat font-bold text-[40px]">
+            <h1 className="font-montserrat font-bold text-[40px]">
               {props?.params.category.toUpperCase()}
-            </div>
+            </h1>
             <div className="text-sm font-light">
               {imageProductActive.ability}
             </div>
