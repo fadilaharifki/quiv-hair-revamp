@@ -6,8 +6,10 @@ import Logo from "../../assets/svg/logo.svg";
 import Search from "../../assets/svg/search.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MenuIcon, X } from "lucide-react";
+import { CircleX, MenuIcon, SearchIcon, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Input } from "../ui/input";
+import useScreenSize from "@/hooks/useScreenSize";
 
 const menus = [
   {
@@ -43,9 +45,11 @@ const menus = [
 const NavBar = () => {
   const pathname = usePathname();
   const refNav = useRef<HTMLDivElement>(null);
+  const { width, breakpoint } = useScreenSize();
   const [openMenu, setOpenMenu] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [openSearch, setOpenSearch] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,29 +124,75 @@ const NavBar = () => {
             )}
           </div>
         </div>
-        <div className="flex sm:justify-center items-center">
-          <Link href={"/"}>
-            <Image width={100} height={100} src={Logo} alt="Logo"></Image>
-          </Link>
-        </div>
-        <div className="hidden sm:flex justify-evenly items-center col-span-3">
-          {renderMenu()}
-        </div>
-        <div className="flex sm:flex justify-end sm:justify-center items-center">
-          <Image width={25} height={25} src={Search} alt="Search"></Image>
-        </div>
-      </div>
-      <div
-        className={twMerge(
-          "transition-all duration-500 ease-in-out w-screen",
-          openMenu
-            ? `grid grid-cols-2 sm:grid-cols-5 px-10 sm:px-0 bg-transparent bg-light-brown-navbar justify-center absolute items-center bg-opacity-50 z-50`
-            : "hidden"
+        {openSearch && breakpoint !== "sm" ? (
+          <div className="flex w-screen px-5">
+            <Input
+              placeholder="Search . . . "
+              suffix={
+                <div className="flex flex-row gap-5">
+                  <SearchIcon className=" cursor-pointer hover:scale-125 duration-300" />
+                  <CircleX
+                    className=" cursor-pointer hover:scale-125 duration-300"
+                    onClick={() => {
+                      setOpenSearch(!openSearch);
+                    }}
+                  />
+                </div>
+              }
+            />
+          </div>
+        ) : (
+          <>
+            <div className="flex sm:justify-center items-center">
+              <Link href={"/"}>
+                <Image width={100} height={100} src={Logo} alt="Logo"></Image>
+              </Link>
+            </div>
+            <div className="hidden sm:flex justify-evenly items-center col-span-3">
+              {renderMenu()}
+            </div>
+            <div
+              className="flex sm:flex justify-end sm:justify-center items-center"
+              onClick={() => {
+                setOpenSearch(!openSearch);
+              }}
+            >
+              <SearchIcon
+                color="#ffffff"
+                className=" cursor-pointer hover:scale-125 duration-300"
+              />
+            </div>
+          </>
         )}
-        style={{ top: `${refNav?.current?.offsetHeight}px` }}
-      >
-        <div className="flex flex-col gap-4">{renderMenu()}</div>
       </div>
+      {openMenu && (
+        <div
+          className={twMerge(
+            "transition-all duration-500 ease-in-out w-screen",
+            openMenu
+              ? `grid grid-cols-2 sm:grid-cols-5 px-10 sm:px-0 bg-transparent bg-light-brown-navbar justify-center absolute items-center bg-opacity-50 z-50`
+              : "hidden"
+          )}
+          style={{ top: `${refNav?.current?.offsetHeight}px` }}
+        >
+          <div className="flex flex-col gap-4">{renderMenu()}</div>
+        </div>
+      )}
+      {openSearch && breakpoint === "sm" && (
+        <div
+          className={twMerge(
+            "transition-all duration-500 ease-in-out w-screen",
+            openSearch
+              ? `grid grid-cols-2 sm:grid-cols-5 pb-10 bg-transparent bg-light-brown-navbar justify-center absolute items-center bg-opacity-50 z-50`
+              : "hidden"
+          )}
+          style={{ top: `${refNav?.current?.offsetHeight}px` }}
+        >
+          <div className="flex w-screen px-5">
+            <Input placeholder="Search . . . " suffix={<SearchIcon />} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
