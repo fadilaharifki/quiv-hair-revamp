@@ -1,12 +1,5 @@
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import { twMerge } from "tailwind-merge";
 
 type Position = "horizontal" | "vertical";
@@ -85,7 +78,7 @@ const CardProduct = ({
           {product?.date && (
             <div
               className={twMerge(
-                "font-bell-mt font-thin text-[12px] text-white text-start",
+                " font-thin text-[12px] text-white text-start",
                 classNameDate
               )}
             >
@@ -95,8 +88,9 @@ const CardProduct = ({
 
           <div
             className={twMerge(
-              "font-bell-mt font-bold text-3xl text-white text-center",
+              " font-bold text-3xl text-white text-center",
               position === "horizontal" && "text-[14px] text-left",
+              "line-clamp-3",
               classNameTitle
             )}
           >
@@ -105,7 +99,7 @@ const CardProduct = ({
           {product.description && (
             <div
               className={twMerge(
-                "font-inter font-thin text-[12px] sm:text-[14px] text-white text-center",
+                "  font-thin text-[12px] sm:text-[14px] text-white text-center",
                 position === "horizontal" && "text-[12px] text-left",
                 classNameDesc
               )}

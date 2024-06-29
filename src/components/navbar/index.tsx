@@ -72,7 +72,7 @@ const NavBar = () => {
               key={idx}
               href={menu.value}
               className={twMerge(
-                "font-inter pb-2 text-white transition duration-300 ease-in-out",
+                "  pb-2 text-white transition duration-300 ease-in-out",
                 !openMenu
                   ? pathname === menu.value
                     ? "border-b-[1px] pb-2 border-white font-semibold hover:border-b-[1px] hover:border-white"

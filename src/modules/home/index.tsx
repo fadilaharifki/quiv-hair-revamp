@@ -9,6 +9,9 @@ import useScreenSize from "@/hooks/useScreenSize";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
+import { benefitIcon } from "@/constants/data";
+import { formatUrl } from "@/lib/utils";
+import { TitleComponent } from "@/components/title";
 
 const HomePageModules = () => {
   const { width, breakpoint } = useScreenSize();
@@ -18,28 +21,23 @@ const HomePageModules = () => {
   const dataImage = [
     {
       name: "FLEX - Liquified Hair Powder",
-      price: "000000",
       path: "/products/flex",
-      url: "/image/general/image1.png",
+      url: "/image/general/image1_flex.png",
     },
     {
       name: "FINE - Liquified Hair Powder",
-      price: "000000",
       path: "/products/fine",
-
-      url: "/image/general/image1.png",
+      url: "/image/general/image1_fine.png",
     },
     {
       name: "FLEX - Liquified Hair Powder",
-      price: "000000",
       path: "/products/flex",
-      url: "/image/general/image1.png",
+      url: "/image/general/image1_flex.png",
     },
     {
       name: "FINE - Liquified Hair Powder",
-      price: "000000",
       path: "/products/fine",
-      url: "/image/general/image1.png",
+      url: "/image/general/image1_fine.png",
     },
   ];
 
@@ -100,7 +98,7 @@ const HomePageModules = () => {
     },
     {
       url: "/image/home/cuttinghair2.png",
-      title: "I’m putting what in my hair?",
+      title: "Three tips for getting perfect vacation hair",
       description:
         "Shop the best natural men’s hairstyling products, shampoo, conditioner, shaving, and skincare. Hanz de Fuko’s clean ",
     },
@@ -116,16 +114,17 @@ const HomePageModules = () => {
 
   return (
     <div>
-      <div className="h-screen">
+      <div className="min-h-screen">
         <Image
           className=" h-screen w-screen object-cover"
           fill
-          src={"/image/home/banner.png"}
+          src={"/image/home/image.png"}
           alt="home image"
         ></Image>
+        <div className="absolute inset-0 bg-light-brown-three bg-opacity-40 shadow-lg  rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center h-52 sm:h-82 justify-between">
-            <h1 className="text-white text-3xl sm:text-[48px] uppercase leading-none font-black text-center font-inter text-shadow shadow-black">
+            <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light  text-shadow shadow-black tracking-wide">
               Botanically rich formulations protect, repair, and promote healthy
               hair
             </h1>
@@ -143,74 +142,69 @@ const HomePageModules = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-4 min-h-screen py-10">
-        <div className="sm:col-span-1 py-10 sm:py-0 bg-navy-blue flex-col flex justify-center px-10 gap-4 sm:gap-11">
-          <h1 className="text-white text-4xl text-center sm:text-left sm:text-[50px] font-bell-mt font-semibold">
-            Bestsellers
-          </h1>
-          <div className="text-white text-center sm:text-left text-xl sm:text-2xl font-inter font-light">
-            Shop the best natural men’s hairstyling products, shampoo,
-            conditioner, shaving, and skincare.{" "}
-          </div>
-          <div className="text-center sm:text-left">
-            <Button
-              variant="outline"
-              className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-40 sm:w-52"
-            >
-              See more
-            </Button>
-          </div>
-        </div>
-        <div className="col-span-3 mt-20 sm:mt-0 flex justify-center items-center flex-col">
-          <CarouselProductComponent
-            orientation={"horizontal"}
-            buttonNextPrev={true}
-            classNameCarousel="h-auto"
-            classNameCarouselItem="lg:basis-1/2 flex justify-end flex-col"
-            data={dataImage}
-            isOnClick
-          />
+      <div className="min-h-screen">
+        <div className="flex justify-evenly my-10 bg-soft-gray gap-10 py-20 flex-wrap">
+          {benefitIcon.map((product, idx) => {
+            return (
+              <div key={idx}>
+                <CardProduct
+                  classNameImage="w-20 h-20"
+                  classNameCard="w-[260px] h-[105px] sm:h-[263px] sm:w-[263px] flex justify-center align-center flex-col"
+                  classNameTitle="text-xl font-light"
+                  classNameCardContent="flex flex-row sm:flex-col item-center p-0 sm:p-6"
+                  product={product}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="min-h-screen flex justify-center items-center flex-col">
         <CarouselBannerComponent dotButton data={dataImage2} autoPlay />
       </div>
-      <div className="gap-5 sm:gap-0 py-20 sm:h-screen flex justify-evenly items-center flex-col bg-light-brown-one">
-        <h1 className="flex font-bell-mt text-4xl sm:text-[50px] font-bold">
-          New collections
-        </h1>
+      <div className="text-center px-5 gap-5 sm:gap-0 py-20 sm:h-screen flex justify-evenly items-center flex-col bg-light-brown-one">
+        <TitleComponent firstTitle="OUR" lastTitle="PRODUCTS" />
+        <h3 className="text-2xl w-[80%] leading-7 sm:leading-10 text-center sm:text-[40px] font-extralight text-navy-blue">
+          Choose the QUIV products that fits you!
+        </h3>
+        <div className="flex">
+          <Button
+            onClick={() => {
+              router.push("/products");
+            }}
+            variant="outline"
+            className="bg-transparent text-navy-blue text-sm sm:text-lg w-40 sm:w-52 border-black hover:border-none"
+          >
+            All products
+          </Button>
+        </div>
         <div className="flex justify-center items-center flex-col px-10">
           <CarouselProductComponent
-            orientation={breakpoint === "sm" ? "vertical" : "horizontal"}
-            buttonNextPrev={false}
-            classNameCarouselContent={breakpoint === "sm" ? "h-[450px]" : ""}
-            classNameCarouselItem="basis-1/1 lg:basis-1/3 flex justify-end flex-col"
+            classNameCarousel="h-auto"
+            classNameCarouselContent={"flex item-center sm:h-[450px]"}
+            classNameCarouselItem="basis-full lg:basis-full flex justify-end flex-col"
+            classNameImage="w-[200px] h-[200px] sm:w-[300px] sm:h-[350px]"
             data={dataImage}
+            originButtonNextPrev
+            buttonNextPrev={false}
             isOnClick
           />
         </div>
-        <div className="flex">
-          <Button
-            variant="outline"
-            className="bg-transparent text-black text-sm sm:text-lg w-40 sm:w-52 border-black hover:border-none"
-          >
-            See more
-          </Button>
-        </div>
       </div>
 
-      <div className="flex items-center flex-col gap-10 py-20">
-        <h1 className="flex font-bell-mt text-center text-4xl sm:text-[50px] font-bold leading-tight">
-          Our blogs
-        </h1>
-        <div className="w-9/12 sm:w-4/12 flex text-center font-inter text-xl font-light leading-tight">
-          Shop the best natural men’s hairstyling products, shampoo,
-          conditioner, shaving, and skincare.
-        </div>
+      <div className="flex items-center flex-col gap-10 py-20 text-navy-blue">
+        <TitleComponent firstTitle="OUR" lastTitle="BLOGS" />
+        <h3 className="text-2xl w-[80%] leading-7 sm:leading-10 text-center sm:text-[40px] font-extralight">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+          aliquet ante sed egestas laoreet.
+        </h3>
         <div className="flex">
           <Button
+            onClick={() => {
+              router.push("/blog");
+            }}
             variant="outline"
-            className="bg-transparent text-black text-sm sm:text-lg w-40 sm:w-52 border-black hover:border-none"
+            className="bg-transparent text-sm sm:text-lg w-40 sm:w-52 border-black hover:border-none"
           >
             See more
           </Button>
@@ -233,6 +227,9 @@ const HomePageModules = () => {
                     footer={
                       <div className="flex justify-center">
                         <Button
+                          onClick={() => {
+                            router.push(`/blog/${formatUrl(product.title)}`);
+                          }}
                           variant="outline"
                           className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-40 sm:w-52 border-white hover:border-none"
                         >

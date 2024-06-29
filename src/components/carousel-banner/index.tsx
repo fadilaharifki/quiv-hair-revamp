@@ -155,10 +155,14 @@ export function CarouselBannerComponent({
           {data.map((items, index) => (
             <CarouselItem key={index} className={twMerge(`flex flex-row`)}>
               {items.child.map((itemImage, idx) => {
+                const flexBasisValue = (+itemImage?.span / +items?.span) * 100;
                 return (
                   <div
+                    className="h-screen"
                     key={idx}
-                    className={twMerge(`basis-${itemImage.span}/${items.span}`)}
+                    style={{
+                      flexBasis: `${flexBasisValue}%`,
+                    }}
                   >
                     <Image
                       className="flex min-h-screen w-screen object-cover grayscale"
@@ -175,11 +179,11 @@ export function CarouselBannerComponent({
         </CarouselContent>
         <div className="absolute inset-0 bg-black bg-opacity-25"></div>
         <div className="absolute inset-0 flex items-center flex-col justify-center ">
-          <div className="w-[80%] sm:w-[50%] flex flex-col items-center justify-between gap-8 sm:gap-16">
-            <div className="text-white text-4xl sm:text-[50px] font-bold text-center font-bell-mt text-shadow leading-none shadow-gray-500">
+          <div className="flex flex-col items-center justify-between gap-8 sm:gap-16">
+            <div className="w-[80%] sm:w-[60%] text-white text-2xl sm:text-[50px] font-bold text-center uppercase  text-shadow leading-none shadow-gray-500">
               The act of styling one’s hair should be a ceremonious one
             </div>
-            <div className="text-white text-lg sm:text-xl font-inter font-thin text-center text-shadow shadow-gray-500">
+            <div className="w-[80%] sm:w-[40%] text-white text-base sm:text-xl  font-thin text-center text-shadow shadow-gray-500">
               Shop the best natural men’s hairstyling products, shampoo,
               conditioner, shaving, and skincare.
             </div>

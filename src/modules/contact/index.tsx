@@ -3,6 +3,7 @@
 import CardProduct from "@/components/card-product";
 import InputComponent from "@/components/input";
 import TextareaComponent from "@/components/textarea";
+import { TitleComponent } from "@/components/title";
 import { Button } from "@/components/ui/button";
 import {
   ArrowDown,
@@ -102,11 +103,11 @@ const ContactPageModules = () => {
         ></Image>
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg  rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between gap-2">
-            <h1 className="text-white text-5xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+          <div className="w-[80%] flex flex-col items-center justify-between gap-5">
+            <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
               Contact
             </h1>
-            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
+            <div className="text-white text-sm sm:text-lg   text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
           </div>
@@ -133,9 +134,11 @@ const ContactPageModules = () => {
       </div>
       <div className="flex min-h-screen justify-center md:px-32">
         <div className="flex flex-col w-screen gap-10 sm:gap-20">
-          <h1 className="text-black text-4xl sm:text-[50px] font-bell-mt font-semibold text-center">
-            Get in touch with us
-          </h1>
+          <TitleComponent
+            firstTitle="Get in touch"
+            lastTitle="with us"
+            classNameContainer="uppercase flex justify-center"
+          />
           <div className="flex flex-col gap-10 px-10 sm:px-0">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-10">
               {fieldInput.map((field, idx) => {

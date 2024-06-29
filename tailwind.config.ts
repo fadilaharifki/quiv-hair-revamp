@@ -62,9 +62,10 @@ const config = {
         "light-brown-navbar": "#D8D1C1",
         "light-brown": "#795548",
         "light-brown-one": "#EAE5DB",
-        "light-brown-two": "#F8F8F6",
+        "light-brown-three": "#CBC2B9",
         "light-blue": "#8AA1B2",
         "light-gray": "#F1EFF0",
+        "soft-gray": "#F8F8F6",
         "navy-blue": "#1A2B38",
       },
       borderRadius: {
@@ -89,7 +90,7 @@ const config = {
       fontFamily: {
         "bell-mt": ["Bell MT", "serif"],
         inter: ["Inter", "sans-serif"],
-        montserrat: ["Montserrat Alternates", "sans-serif"],
+        montserrat: ["Monserrat", "sans-serif"],
       },
     },
     variants: {

@@ -5,6 +5,8 @@ import {
   CarouselApi,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
@@ -22,8 +24,9 @@ type CarouselOptions = UseCarouselParameters[0];
 interface DataInterface {
   name: string;
   url: string;
-  price: string;
+  price?: string;
   path?: string;
+  classNameImage?: string;
 }
 
 interface CarouselInterface {
@@ -35,6 +38,8 @@ interface CarouselInterface {
   classNameCarousel?: string;
   classNameCarouselContent?: string;
   isOnClick?: boolean;
+  originButtonNextPrev?: boolean;
+  classNameImage?: string;
 }
 
 export function CarouselProductComponent({
@@ -43,10 +48,12 @@ export function CarouselProductComponent({
     align: "start",
     loop: true,
   },
+  originButtonNextPrev = false,
   buttonNextPrev = true,
   classNameCarouselItem,
   classNameCarouselContent,
   classNameCarousel,
+  classNameImage,
   orientation,
   isOnClick,
 }: CarouselInterface) {
@@ -106,7 +113,7 @@ export function CarouselProductComponent({
         orientation={orientation}
         setApi={setApi}
         className={twMerge(
-          "w-64 h-[450px] sm:h-auto sm:w-11/12 justify-center items-center align-middle font-bell-mt",
+          "w-64 h-[450px] sm:h-auto sm:w-11/12 justify-center items-center align-middle ",
           classNameCarousel
         )}
         opts={opts}
@@ -141,7 +148,11 @@ export function CarouselProductComponent({
                   )}
                 >
                   <Image
-                    className="w-[130px] h-[170px] sm:w-[198px] sm:h-[231px] flex justify-center items-center"
+                    className={twMerge(
+                      "w-[130px] h-[170px] sm:w-[198px] sm:h-[231px] object-cover flex justify-center items-center",
+                      classNameImage,
+                      item.classNameImage
+                    )}
                     width={300}
                     height={300}
                     alt={item.name}
@@ -150,18 +161,26 @@ export function CarouselProductComponent({
                 </div>
                 <div
                   className={twMerge(
-                    "font-test text-lg  sm:text-2xl text-center text-navy-blue"
+                    "font-test text-lg font-bold sm:text-2xl text-center text-navy-blue"
                   )}
                 >
                   {item.name}
                 </div>
-                <div className="font-inter text-sm sm:text-xl text-center font-thin text-light-blue">
-                  {formatCurrency(Number(item.price ?? 0))}
-                </div>
+                {item.price && (
+                  <div className="  text-sm sm:text-xl text-center font-thin text-light-blue">
+                    {formatCurrency(Number(item.price ?? 0))}
+                  </div>
+                )}
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
+        {originButtonNextPrev && (
+          <>
+            <CarouselPrevious />
+            <CarouselNext />
+          </>
+        )}
       </Carousel>
       {buttonNextPrev && (
         <div className="my-10 text-center text-sm text-muted-foreground flex gap-10">

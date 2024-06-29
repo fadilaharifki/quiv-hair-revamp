@@ -12,7 +12,7 @@ import { twMerge } from "tailwind-merge";
 interface DataInterface {
   name: string;
   url: string;
-  price: string;
+  price?: string;
   path?: string;
 }
 
@@ -73,8 +73,13 @@ const PaginationComponent = ({
     };
   }, []);
   return (
-    <div className="w-screen flex flex-col justify-center items-center px-10 font-bell-mt">
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 sm:gap-20">
+    <div className="w-screen flex flex-col justify-center items-center px-10">
+      <div
+        className={twMerge(
+          "grid grid-cols-2 sm:grid-cols-3 gap-10 sm:gap-20",
+          `grid-cols-${data.length > 2 ? 2 : 1} sm:grid-cols-${data.length}`
+        )}
+      >
         {data.map((item, i) => {
           return (
             <div
@@ -100,9 +105,11 @@ const PaginationComponent = ({
               <div className="font-test text-xl sm:text-2xl text-center text-navy-blue">
                 {item.name}
               </div>
-              <div className="font-inter text-lg sm:text-xl text-center font-thin text-light-blue">
-                {formatCurrency(Number(item.price ?? 0))}
-              </div>
+              {item.price && (
+                <div className="text-lg sm:text-xl text-center font-thin text-light-blue">
+                  {formatCurrency(Number(item.price ?? 0))}
+                </div>
+              )}
             </div>
           );
         })}

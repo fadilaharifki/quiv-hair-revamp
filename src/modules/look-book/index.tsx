@@ -6,6 +6,7 @@ import ArrowDown from "@/components/arrow-down";
 import { describe } from "node:test";
 import { twMerge } from "tailwind-merge";
 import { Button } from "@/components/ui/button";
+import { TitleComponent } from "@/components/title";
 
 const LookBookPageModules = () => {
   const handleScroll = () => {
@@ -22,10 +23,12 @@ const LookBookPageModules = () => {
       url: "/image/look-book/image1.png",
       name: "Image 1",
       position: "right",
-      className: "bg-light-gray text-navy-blue",
+      className: "bg-light-gray text-navy-blue text-lg sm:text-5xl flex-col",
       description:
         "When it came to men’s grooming products, there weren’t many high-quality, harmful chemical-free options available at prices that were in proportion with what they offered. ",
-      title: "Day-to-Day Style",
+      title: "Style",
+      firstTitle: "Day-to-Day",
+      lastTitle: "Style",
       button: (
         <Button
           variant="outline"
@@ -39,10 +42,12 @@ const LookBookPageModules = () => {
       url: "/image/look-book/image2.png",
       name: "Image 2",
       position: "left",
-      className: "bg-navy-blue  text-white",
+      className: "bg-navy-blue text-white text-lg sm:text-5xl flex-col",
       description:
         "When it came to men’s grooming products, there weren’t many high-quality, harmful chemical-free options available at prices that were in proportion with what they offered. ",
       title: "Classy Style",
+      firstTitle: "Classy",
+      lastTitle: "Style",
       button: (
         <Button
           variant="outline"
@@ -56,10 +61,13 @@ const LookBookPageModules = () => {
       url: "/image/look-book/image3.png",
       name: "Image 3",
       position: "right",
-      className: "bg-light-brown bg-opacity-50 text-navy-blue",
+      className:
+        "bg-light-brown bg-opacity-50 text-navy-blue text-lg sm:text-5xl flex-col",
       description:
         "When it came to men’s grooming products, there weren’t many high-quality, harmful chemical-free options available at prices that were in proportion with what they offered. ",
       title: "Clean Style",
+      firstTitle: "Clean",
+      lastTitle: "Style",
       button: (
         <Button
           variant="outline"
@@ -82,11 +90,11 @@ const LookBookPageModules = () => {
         ></Image>
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between">
-            <h1 className="text-white text-5xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+          <div className="w-[80%] flex flex-col items-center justify-between gap-5">
+            <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
               LookBook
             </h1>
-            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
+            <div className="text-white text-sm sm:text-lg   text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
           </div>
@@ -111,12 +119,12 @@ const LookBookPageModules = () => {
             >
               {e.position === "left" ? (
                 <div className="flex gap-5 flex-col py-10 sm:p-0">
-                  <div className="text-4xl sm:text-[50px] font-bell-mt font-semibold">
-                    {e.title}
-                  </div>
-                  <div className="text-2xl font-inter font-light">
-                    {e.description}
-                  </div>
+                  <TitleComponent
+                    firstTitle={e.firstTitle}
+                    lastTitle={e.lastTitle}
+                    classNameContainer={e.className}
+                  />
+                  <div className="text-2xl font-light">{e.description}</div>
                   <div>{e.button}</div>
                 </div>
               ) : (
@@ -147,13 +155,13 @@ const LookBookPageModules = () => {
                   src={e.url}
                 />
               ) : (
-                <div className="flex flex-col gap-5 py-10 sm:p-0">
-                  <div className="text-4xl sm:text-[50px] font-bell-mt font-semibold">
-                    {e.title}
-                  </div>
-                  <div className="text-2xl font-inter font-light">
-                    {e.description}
-                  </div>
+                <div className="flex flex-col gap-5 sm:gap-10 py-10 sm:p-0">
+                  <TitleComponent
+                    firstTitle={e.firstTitle}
+                    lastTitle={e.lastTitle}
+                    classNameContainer={e.className}
+                  />
+                  <div className="text-2xl font-light">{e.description}</div>
                   <div>{e.button}</div>
                 </div>
               )}
@@ -171,10 +179,10 @@ const LookBookPageModules = () => {
         ></Image>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] h-[50%] flex flex-col items-center justify-evenly">
-            <h1 className="text-white text-4xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+            <h1 className="text-white text-4xl sm:text-[60px] font-bold text-center  text-shadow shadow-gray-500">
               Simple Style
             </h1>
-            <div className="w-8/12 text-white text-lg sm:text-2xl font-inter text-center text-shadow shadow-gray-500">
+            <div className="w-8/12 text-white text-lg sm:text-2xl   text-center text-shadow shadow-gray-500">
               When it came to men’s grooming products, there weren’t many
               high-quality, harmful chemical-free options available at prices
               that were in proportion with what they offered.

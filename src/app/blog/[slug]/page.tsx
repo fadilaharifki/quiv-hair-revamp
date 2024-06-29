@@ -11,8 +11,12 @@ export async function generateMetadata(
   };
 }
 
-const BlogDetailProductsPage = () => {
-  return <BlogDetailPageModules />;
+export interface BlogDetailProductsPageProps {
+  params: { slug: string };
+}
+
+const BlogDetailProductsPage = ({ params }: BlogDetailProductsPageProps) => {
+  return <BlogDetailPageModules params={params} />;
 };
 
 export default BlogDetailProductsPage;

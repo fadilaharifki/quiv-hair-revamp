@@ -66,11 +66,11 @@ const FaqPageModules = () => {
         ></Image>
         <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between gap-2">
-            <h1 className="text-white text-4xl sm:text-[60px] font-bold text-center font-bell-mt text-shadow shadow-gray-500">
+          <div className="w-[80%] flex flex-col items-center justify-between gap-5">
+            <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
               Frequently asked questions
             </h1>
-            <div className="text-white text-sm sm:text-lg font-inter text-center text-shadow shadow-gray-500">
+            <div className="text-white text-sm sm:text-lg   text-center text-shadow shadow-gray-500">
               Natural ingredients, proven to perform the best
             </div>
           </div>
@@ -99,10 +99,10 @@ const FaqPageModules = () => {
                   )}
                   value={`item-${idx}`}
                 >
-                  <AccordionTrigger className="font-bell-mt text-2xl sm:text-4xl font-bold">
+                  <AccordionTrigger className=" text-2xl sm:text-4xl font-bold">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className=" font-inter text-lg sm:text-2xl font-normal">
+                  <AccordionContent className="   text-lg sm:text-2xl font-normal">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
