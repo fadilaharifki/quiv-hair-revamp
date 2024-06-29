@@ -50,37 +50,7 @@ const ProductsPageModules = () => {
         </div>
         <ArrowDown onClick={handleScroll} />
       </div>
-      {/* <div
-        id="our-collection"
-        className="flex bg-navy-blue my-10 flex-col justify-center items-center py-10 tems-center gap-10"
-      >
-        <h1 className="flex  text-center text-3xl sm:text-[50px] font-bold text-white">
-          Our collection
-        </h1>
-        <div className="flex w-10/12 sm:w-8/12 sm:text-center   text-lg sm:text-2xl font-light text-white">
-          When it came to men’s grooming products, there weren’t many
-          high-quality, harmful chemical-free options available at prices that
-          were in proportion with what they offered.
-        </div>
-        <div className="flex sm:flex-row flex-col gap-4 p-5">
-          {dataImage.map((e, i) => {
-            return (
-              <div key={i} className="relative">
-                <Image
-                  className="h-[500px] sm:h-[724px] w-[589px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110"
-                  width={286}
-                  height={286}
-                  src={e.url}
-                  alt={e.title}
-                ></Image>
-                <div className="text-white text-2xl text-center sm:text-4xl absolute top-10 left-1/2 transform -translate-x-1/2 text-shadow shadow-black">
-                  {e.title}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div> */}
+
       <div
         id="all-product"
         className="flex mt-10 flex-col justify-center py-5 sm:py-20 items-center gap-10"

@@ -67,7 +67,7 @@ const AboutUsPageModules = () => {
           })}
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-screen gap-5 sm:gap-10 border-black py-5 sm:py-10 border-y-2">
+      <div className="flex flex-col items-center justify-center w-screen gap-5 sm:gap-10 border-navy-blue py-5 sm:py-10 border-y-2">
         <TitleComponent firstTitle="OUR" lastTitle="STORY" />
         <div className="flex w-11/12 sm:w-10/12 ">
           <Image

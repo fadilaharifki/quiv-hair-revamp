@@ -19,6 +19,10 @@ const menus = [
     name: "Products",
   },
   {
+    value: "/quiz",
+    name: "Quiz",
+  },
+  {
     value: "/look-book",
     name: "Lookbook",
   },

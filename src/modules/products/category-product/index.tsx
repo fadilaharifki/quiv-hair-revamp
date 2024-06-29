@@ -275,7 +275,7 @@ const CategoryProductsPageModules = ({
             }
           )}
         </div>
-        <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0   sm:col-span-2 text-navy-blue justify-center">
+        <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 sm:col-span-2 text-navy-blue justify-center">
           <div>
             <div className=" text-sm sm:text-xl font-light">
               {imageProductActive.type}

@@ -159,6 +159,103 @@ const HomePageModules = () => {
           })}
         </div>
       </div>
+      <div className="min-h-screen">
+        <div className="flex flex-col px-5 sm:px-10">
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:basis-4/6 flex sm:justify-end">
+              <Image
+                className="flex w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover grayscale"
+                width={1000}
+                height={1000}
+                alt="flex"
+                src="/image/home/productFlex.png"
+              />
+            </div>
+            <div className="basis-2/6 z-50">
+              <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 sm:col-span-2 text-navy-blue justify-center">
+                <div>
+                  <h1 className="font-bold text-4xl">FLEX</h1>
+                  <div className="text-lg font-light">
+                    Liquified Hair Powder
+                  </div>
+                </div>
+                <div className="text-sm sm:text-2xl font-light">
+                  Dry Matte Finish
+                </div>
+                <div className="tex-sm sm:text-lg font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla
+                  non neque finibus, eget aliquet mi eleifend. Proin suscipit
+                  malesuada molestie. In semper euismod odio, suscipit cursus
+                  lacus rhoncus.
+                </div>
+                <Button
+                  variant="outline"
+                  className="hover:bg-navy-blue mt-10 hover:text-white text-navy-blue border-navy-blue text-sm sm:text-lg w-40 sm:w-52"
+                  onClick={() => {
+                    router.push("/products/flex");
+                  }}
+                >
+                  See product
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row mt-20 mb-44 sm:-mt-44">
+            {breakpoint === "sm" && (
+              <div className="sm:basis-4/6 flex justify-start">
+                <Image
+                  className="flex  w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover grayscale"
+                  width={1000}
+                  height={1000}
+                  alt="flex"
+                  src="/image/home/productFine.png"
+                />
+              </div>
+            )}
+            <div className="basis-2/6 z-50">
+              <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 sm:col-span-2 text-navy-blue justify-center">
+                <div>
+                  <h1 className="font-bold text-4xl">FINE</h1>
+                  <div className="text-lg font-light">
+                    Liquified Hair Powder
+                  </div>
+                </div>
+                <div className="text-sm sm:text-2xl font-light">
+                  smooth glossy Finish
+                </div>
+                <div className="tex-sm sm:text-lg font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla
+                  non neque finibus, eget aliquet mi eleifend. Proin suscipit
+                  malesuada molestie. In semper euismod odio, suscipit cursus
+                  lacus rhoncus.
+                </div>
+                <Button
+                  variant="outline"
+                  className="hover:bg-navy-blue mt-10 hover:text-white text-navy-blue border-navy-blue text-sm sm:text-lg w-40 sm:w-52"
+                  onClick={() => {
+                    router.push("/products/fine");
+                  }}
+                >
+                  See product
+                </Button>
+              </div>
+            </div>
+            {breakpoint !== "sm" && (
+              <div className="sm:basis-4/6 flex justify-start">
+                <Image
+                  className="flex  w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover grayscale"
+                  width={1000}
+                  height={1000}
+                  alt="flex"
+                  src="/image/home/productFine.png"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
       <div className="min-h-screen flex justify-center items-center flex-col">
         <CarouselBannerComponent dotButton data={dataImage2} autoPlay />
       </div>
@@ -182,7 +279,7 @@ const HomePageModules = () => {
           <CarouselProductComponent
             classNameCarousel="h-auto"
             classNameCarouselContent={"flex item-center sm:h-[450px]"}
-            classNameCarouselItem="basis-full lg:basis-full flex justify-end flex-col"
+            classNameCarouselItem="basis-full lg:basis-full"
             classNameImage="w-[200px] h-[200px] sm:w-[300px] sm:h-[350px]"
             data={dataImage}
             originButtonNextPrev
