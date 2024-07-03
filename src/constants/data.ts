@@ -16,7 +16,8 @@ export const benefitIcon = [
 export const dataImageFlex = [
   {
     name: "FLEX - Liquified Hair Powder",
-    path: "/products/flex",
+    date: "30 June 2025",
+    path: "products/flex",
     url: "/image/general/image1_flex.png",
   },
 ];
@@ -24,7 +25,8 @@ export const dataImageFlex = [
 export const dataImageFine = [
   {
     name: "Fine - Liquified Hair Powder",
-    path: "/products/fine",
+    date: "30 June 2025",
+    path: "products/fine",
     url: "/image/general/image1_fine.png",
   },
 ];
