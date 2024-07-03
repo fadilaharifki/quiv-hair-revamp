@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://quiv-web.vercel.app/
+
+# Sitemaps
+Sitemap: https://quiv-web.vercel.app/sitemap.xml
