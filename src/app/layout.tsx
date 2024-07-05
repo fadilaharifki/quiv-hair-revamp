@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { twMerge } from "tailwind-merge";
+import BottomBar from "@/components/bottomBar";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
@@ -55,6 +56,7 @@ export default function RootLayout({
         <NavBar></NavBar>
         {children}
         <Footer></Footer>
+        <BottomBar></BottomBar>
       </body>
     </html>
   );
