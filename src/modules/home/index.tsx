@@ -171,7 +171,7 @@ const HomePageModules = () => {
                 src="/image/home/productFlex.png"
               />
             </div>
-            <div className="basis-2/6 z-50">
+            <div className="basis-2/6 z-10">
               <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 sm:col-span-2 text-navy-blue justify-center">
                 <div>
                   <h1 className="font-bold text-4xl">FLEX</h1>
@@ -213,7 +213,7 @@ const HomePageModules = () => {
                 />
               </div>
             )}
-            <div className="basis-2/6 z-50">
+            <div className="basis-2/6 z-10">
               <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 sm:col-span-2 text-navy-blue justify-center">
                 <div>
                   <h1 className="font-bold text-4xl">FINE</h1>

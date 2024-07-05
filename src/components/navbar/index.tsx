@@ -55,6 +55,7 @@ const NavBar = () => {
     const handleScroll = () => {
       if (window.scrollY !== lastScrollY) {
         setIsScrolling(true);
+        setOpenMenu(false);
         setLastScrollY(window.scrollY);
       }
     };
@@ -99,15 +100,11 @@ const NavBar = () => {
   };
 
   return (
-    <div
-      className={`sticky top-0 z-50 ${
-        isScrolling ? "opacity-0" : "opacity-100"
-      } transition-opacity duration-500`}
-    >
+    <nav className="sticky top-0 z-50">
       <div
         ref={refNav}
         className={twMerge(
-          "grid grid-cols-3 sm:grid-cols-5 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-brown-navbar justify-center items-center fixed bg-opacity-50 z-50"
+          "grid grid-cols-3 sm:grid-cols-5 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-brown-navbar justify-center items-center"
         )}
       >
         <div className="sm:hidden flex justify-start items-center">
@@ -115,7 +112,10 @@ const NavBar = () => {
             className={`transform transition-transform duration-500 ${
               openMenu ? "rotate-180" : ""
             }`}
-            onClick={() => setOpenMenu(!openMenu)}
+            onClick={() => {
+              setOpenSearch(false);
+              setOpenMenu(!openMenu);
+            }}
           >
             {!openMenu ? (
               <MenuIcon size={30} color="#ffffff" strokeWidth={2.25} />
@@ -155,6 +155,7 @@ const NavBar = () => {
               className="flex sm:flex justify-end sm:justify-center items-center"
               onClick={() => {
                 setOpenSearch(!openSearch);
+                setOpenMenu(false);
               }}
             >
               <SearchIcon
@@ -168,9 +169,9 @@ const NavBar = () => {
       {openMenu && (
         <div
           className={twMerge(
-            "transition-all duration-500 ease-in-out w-screen",
+            "transition-all duration-500 ease-in-out w-screen py-5",
             openMenu
-              ? `grid grid-cols-2 sm:grid-cols-5 px-10 sm:px-0 bg-transparent bg-light-brown-navbar justify-center absolute items-center bg-opacity-50 z-50`
+              ? `grid grid-cols-2 sm:grid-cols-5 px-10 sm:px-0 bg-transparent bg-light-brown-navbar justify-center absolute items-center z-50`
               : "hidden"
           )}
           style={{ top: `${refNav?.current?.offsetHeight}px` }}
@@ -181,9 +182,9 @@ const NavBar = () => {
       {openSearch && breakpoint === "sm" && (
         <div
           className={twMerge(
-            "transition-all duration-500 ease-in-out w-screen",
+            "transition-all duration-500 ease-in-out w-screen py-5",
             openSearch
-              ? `grid grid-cols-2 sm:grid-cols-5 pb-10 bg-transparent bg-light-brown-navbar justify-center absolute items-center bg-opacity-50 z-50`
+              ? `grid grid-cols-2 sm:grid-cols-5 pb-10 bg-transparent bg-light-brown-navbar justify-center absolute items-center z-50`
               : "hidden"
           )}
           style={{ top: `${refNav?.current?.offsetHeight}px` }}
@@ -193,7 +194,7 @@ const NavBar = () => {
           </div>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 
