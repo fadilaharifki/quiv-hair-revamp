@@ -45,7 +45,11 @@ const BottomBar = () => {
   return (
     <>
       {breakpoint === "sm" && (
-        <nav className="sticky bottom-0 h-20 bg-white flex justify-around items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+        <nav
+          className={twMerge(
+            "sticky bottom-0 h-20 bg-white grid justify-around items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-50 grid-cols-5"
+          )}
+        >
           {menus.map((menu, idx) => {
             return (
               <Link

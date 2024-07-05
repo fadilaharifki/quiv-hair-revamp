@@ -67,10 +67,31 @@ const QuizPageModules = () => {
 
   return (
     <div className="flex flex-col">
+      <div className="flex mx-5 flex-row h-[70vh] items-center justify-start sm:items-start sm:mt-[250px] sm:ml-[300px] gap-5">
+        <div className="flex flex-row gap-5">
+          <div className="flex flex-col gap-5">
+            <div className="flex flex-row gap-2 font-bold text-2xl">
+              <div>Take the Hair Quiz to find your suitable product!</div>
+            </div>
+            <div>
+              <Button
+                onClick={() => {
+                  handleScroll(0);
+                }}
+                className={twMerge(
+                  "bg-navy-blue text-white hover:bg-white hover:border-navy-blue hover:text-navy-blue text-sm sm:text-lg border-2"
+                )}
+              >
+                Next
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
       {quiz.map((item, idx) => {
         return (
           <div id={idx.toString()} key={idx}>
-            <div className="flex mx-5 flex-row h-screen justify-center items-center sm:justify-start sm:items-start sm:mt-[250px] sm:ml-[300px] gap-5">
+            <div className="flex mx-5 flex-row h-[90vh] items-center justify-start sm:items-start sm:mt-[250px] sm:ml-[300px] gap-5">
               <div className="flex flex-row gap-5">
                 <div className="flex">
                   <div className="flex flex-row gap-2 font-bold text-2xl">
@@ -124,7 +145,7 @@ const QuizPageModules = () => {
               alt={resultProduct.title}
             ></Image>
           </div>
-          <div className="flex justify-center text-lg text-center sm:text-2xl">
+          <div className="flex justify-center text-lg text-center sm:text-2xl px-10">
             Our Recommendation Product for you is:
           </div>
           <div className="flex justify-center text-2xl sm:text-[40px] font-bold">
