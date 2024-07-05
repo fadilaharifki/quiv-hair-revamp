@@ -99,10 +99,15 @@ const FaqPageModules = () => {
                   )}
                   value={`item-${idx}`}
                 >
-                  <AccordionTrigger className=" text-2xl sm:text-4xl font-bold">
+                  <AccordionTrigger
+                    className={twMerge(
+                      "text-start text-2xl sm:text-4xl font-medium hover:font-bold",
+                      activeFaq === idx ? "font-bold" : ""
+                    )}
+                  >
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="   text-lg sm:text-2xl font-normal">
+                  <AccordionContent className="text-lg sm:text-2xl font-normal">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
