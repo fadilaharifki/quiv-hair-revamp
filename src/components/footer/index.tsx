@@ -78,7 +78,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="flex flex-col w-screen py-5 sm:py-20">
+    <div className="flex flex-col w-screen bg-[#E8E3DC]">
       <div className=" bg-soft-gray w-screen grid grid-cols-2 sm:grid-cols-5 p-10 gap-5 sm:gap-10 sm:px-32">
         {menusFooter.map((item, idx) => {
           if (item.typeTitle === "icon") {
@@ -142,12 +142,12 @@ const Footer = () => {
           );
         })}
       </div>
-      <div>
+      {/* <div>
         <div className="border-b border-navy-blue w-screen border-2 sm:my-10"></div>
         <div className="flex flex-col   font-base text-sm sm:text-lg text-center mt-5 sm:mt-20">
           © All Rights Reserved 2024 - QUIV
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
