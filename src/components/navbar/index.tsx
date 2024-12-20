@@ -13,6 +13,10 @@ import useScreenSize from "@/hooks/useScreenSize";
 
 const menus = [
   {
+    value: "/home",
+    name: "Home",
+  },
+  {
     value: "/about-us",
     name: "About Us",
   },
