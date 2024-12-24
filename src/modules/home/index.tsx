@@ -6,17 +6,27 @@ import { CarouselProductComponent } from "@/components/carousel-product";
 import { CarouselBannerComponent } from "@/components/carousel-banner";
 import CardProduct from "@/components/card-product";
 import useScreenSize from "@/hooks/useScreenSize";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { benefitIcon } from "@/constants/data";
 import { formatUrl } from "@/lib/utils";
 import { TitleComponent } from "@/components/title";
+import FullScreenDrawer from "@/components/drawer";
+import AppPageModuls from "../link";
 
 const HomePageModules = () => {
   const { width, breakpoint } = useScreenSize();
 
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState<boolean>(true); // Default state diatur ke `true`
+
+  useEffect(() => {
+    const storedValue = localStorage.getItem("isOpen");
+    if (storedValue) {
+      setIsOpen(JSON.parse(storedValue));
+    }
+  }, []);
 
   const dataImage = [
     {
@@ -114,6 +124,14 @@ const HomePageModules = () => {
 
   return (
     <div>
+      <FullScreenDrawer isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+        <AppPageModuls
+          onClose={() => {
+            setIsOpen(!isOpen);
+            localStorage.setItem("isOpen", "false");
+          }}
+        />
+      </FullScreenDrawer>
       <div className="min-h-screen">
         <Image
           className=" h-screen w-screen object-cover"

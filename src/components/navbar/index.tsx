@@ -13,10 +13,6 @@ import useScreenSize from "@/hooks/useScreenSize";
 
 const menus = [
   {
-    value: "/home",
-    name: "Home",
-  },
-  {
     value: "/about-us",
     name: "About Us",
   },
@@ -148,7 +144,12 @@ const NavBar = () => {
         ) : (
           <>
             <div className="flex sm:justify-center items-center">
-              <Link href={"/"}>
+              <Link
+                href={"/"}
+                onClick={() => {
+                  localStorage.setItem("isOpen", "true");
+                }}
+              >
                 <Image width={100} height={100} src={Logo} alt="Logo"></Image>
               </Link>
             </div>

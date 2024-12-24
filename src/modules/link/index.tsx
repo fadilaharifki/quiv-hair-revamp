@@ -9,15 +9,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ExternalLink, ShoppingBag, Globe, Instagram } from "lucide-react";
+import { ShoppingBag, Globe, Instagram } from "lucide-react";
+import { useEffect, useState } from "react";
 
-export default function AppPageModuls() {
+export default function AppPageModuls({ onClose }: { onClose: () => void }) {
+  const [domain, setDomain] = useState<string>("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setDomain(window.location.host);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-[#E8E3DC]">
       {/* Banner */}
       <div className="w-full h-[50vh] relative">
         <Image
-          src={"/image/home/image.png"}
+          src={"/image/home/banner_link.png"}
           alt="QUIV Banner"
           layout="fill"
           objectFit="cover"
@@ -46,29 +55,53 @@ export default function AppPageModuls() {
             <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md">
               <DropdownMenuItem asChild>
                 <Link
-                  href="https://marketplace1.com"
+                  href="https://shopee.co.id/quiv.hair"
                   className="flex items-center cursor-pointer"
+                  target="_blank"
                 >
-                  Marketplace 1
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <Image
+                    src={"/icon/shopee.png"}
+                    alt="QUIV Banner"
+                    priority
+                    width={20}
+                    height={20}
+                    className="mr-1"
+                  />
+                  Shopee
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link
-                  href="https://marketplace2.com"
+                  href="https://www.tokopedia.com/quivhair"
                   className="flex items-center cursor-pointer"
+                  target="_blank"
                 >
-                  Marketplace 2
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <Image
+                    src={"/icon/tokped1.png"}
+                    alt="QUIV Banner"
+                    priority
+                    width={20}
+                    height={20}
+                    className="mr-1"
+                  />
+                  Tokopedia
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link
-                  href="https://marketplace3.com"
+                  href="https://www.tiktok.com/@quivhair"
                   className="flex items-center cursor-pointer"
+                  target="_blank"
                 >
-                  Marketplace 3
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <Image
+                    src={"/icon/tiktok.png"}
+                    alt="QUIV Banner"
+                    priority
+                    width={20}
+                    height={20}
+                    className="mr-1"
+                  />
+                  TikTok
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -80,23 +113,59 @@ export default function AppPageModuls() {
             variant="outline"
             className="w-full h-14 text-lg bg-white/80 hover:bg-white/90 border-2 border-[#4A4A4A] text-[#4A4A4A]"
           >
-            <Link href="https://quiv-web.vercel.app">
+            <Link
+              href={domain as string}
+              onClick={() => {
+                console.log("masuk");
+                onClose();
+              }}
+            >
               <Globe className="mr-2 h-5 w-5" />
               Visit Our Website
             </Link>
           </Button>
 
           {/* Social Media Button */}
-          <Button
-            asChild
-            variant="outline"
-            className="w-full h-14 text-lg bg-white/80 hover:bg-white/90 border-2 border-[#4A4A4A] text-[#4A4A4A]"
-          >
-            <Link href="https://instagram.com/your-handle">
-              <Instagram className="mr-2 h-5 w-5" />
-              Follow Us on Instagram
-            </Link>
-          </Button>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-full h-14 text-lg bg-white/80 hover:bg-white/90 border-2 border-[#4A4A4A] text-[#4A4A4A]"
+              >
+                Follow Us on Social Media
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md">
+              <DropdownMenuItem asChild>
+                <Link
+                  href="https://www.instagram.com/quiv.hair"
+                  target="_blank"
+                  className="flex items-center cursor-pointer"
+                >
+                  <Instagram className="mr-2 h-5 w-5" />
+                  Instagram
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="https://www.tiktok.com/@quivhair"
+                  className="flex items-center cursor-pointer"
+                  target="_blank"
+                >
+                  <Image
+                    src={"/icon/tiktok.png"}
+                    alt="QUIV Banner"
+                    priority
+                    width={20}
+                    height={20}
+                    className="mr-1"
+                  />
+                  TikTok
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </div>

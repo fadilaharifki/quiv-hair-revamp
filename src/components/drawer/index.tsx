@@ -37,7 +37,7 @@ const FullScreenDrawer = ({
         >
           <CircleX color={colorCloseIcon} />
         </div>
-        <div>{children}</div>
+        <div className="overflow-auto">{children}</div>
       </div>
     </>
   );
