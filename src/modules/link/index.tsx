@@ -13,14 +13,6 @@ import { ShoppingBag, Globe, Instagram } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function AppPageModuls({ onClose }: { onClose: () => void }) {
-  const [domain, setDomain] = useState<string>("");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setDomain(window.location.host);
-    }
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col bg-[#E8E3DC]">
       {/* Banner */}
@@ -114,9 +106,8 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
             className="w-full h-14 text-lg bg-white/80 hover:bg-white/90 border-2 border-[#4A4A4A] text-[#4A4A4A]"
           >
             <Link
-              href={domain as string}
+              href={"#"}
               onClick={() => {
-                console.log("masuk");
                 onClose();
               }}
             >
