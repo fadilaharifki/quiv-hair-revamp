@@ -147,7 +147,7 @@ const NavBar = () => {
               <Link
                 href={"/"}
                 onClick={() => {
-                  localStorage.setItem("isOpen", "true");
+                  window.location.reload();
                 }}
               >
                 <Image width={100} height={100} src={Logo} alt="Logo"></Image>

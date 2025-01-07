@@ -6,7 +6,7 @@ import { CarouselProductComponent } from "@/components/carousel-product";
 import { CarouselBannerComponent } from "@/components/carousel-banner";
 import CardProduct from "@/components/card-product";
 import useScreenSize from "@/hooks/useScreenSize";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { benefitIcon } from "@/constants/data";
@@ -19,14 +19,7 @@ const HomePageModules = () => {
   const { width, breakpoint } = useScreenSize();
 
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState<boolean>(true); // Default state diatur ke `true`
-
-  useEffect(() => {
-    const storedValue = localStorage.getItem("isOpen");
-    if (storedValue) {
-      setIsOpen(JSON.parse(storedValue));
-    }
-  }, []);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const dataImage = [
     {
