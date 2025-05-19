@@ -1,3 +1,4 @@
+import ContactPageModules from "@/modules/contact";
 import FaqPageModules from "@/modules/faq";
 import { Metadata } from "next";
 
@@ -6,7 +7,12 @@ export const metadata: Metadata = {
 };
 
 const FaqPage = () => {
-  return <FaqPageModules />;
+  return (
+    <>
+      <FaqPageModules />
+      <ContactPageModules />
+    </>
+  );
 };
 
 export default FaqPage;

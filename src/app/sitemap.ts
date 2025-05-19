@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const changeFrequency = "daily" as changeFrequency;
 
   const blogDetail = dataBlog.map(({ slug, date }) => ({
-    url: `${WEBSITE_HOST_URL}/blog/${slug}`,
+    url: `${WEBSITE_HOST_URL}/feeds/${slug}`,
     lastModified: date,
     changeFrequency,
   }));
@@ -31,12 +31,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const routes = [
     "",
-    "/blog",
-    "/contact",
-    "/faq",
+    "/feed",
+    "/the-brand",
+    "/got-questions",
     "/look-book",
-    "/quiz",
-    "/products",
+    "/why-quiv",
     "/sitemap.ts",
     "/robots.ts",
   ].map((route) => ({

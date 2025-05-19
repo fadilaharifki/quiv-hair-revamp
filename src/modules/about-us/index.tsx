@@ -42,11 +42,11 @@ const AboutUsPageModules = () => {
         id="about-quiv"
         className="grid grid-cols-1 sm:grid-cols-4 min-h-screen py-10"
       >
-        <div className="col-span-1 bg-light-brown-one py-10 sm:py-0 flex-col flex justify-center px-10 gap-11">
-          <h1 className="flex text-lg sm:text-4xl gap-x-2 sm:gap-x-3 text-navy-blue">
+        <div className="col-span-1 bg-light-brown-one py-10 sm:py-0 flex-col flex justify-center px-10 gap-11 text-white">
+          <h1 className="flex text-lg sm:text-4xl gap-x-2 sm:gap-x-3">
             <span>ABOUT</span> <span className="font-bold">QUIV</span>
           </h1>
-          <div className="text-navy-blue text-2xl   font-light leading-tight">
+          <div className="text-2xl font-light leading-tight">
             Shop the best natural men’s hairstyling products, shampoo,
             conditioner, shaving, and skincare.
           </div>

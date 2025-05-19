@@ -6,39 +6,58 @@ import Logo from "../../assets/svg/logo.svg";
 import Search from "../../assets/svg/search.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CircleX, MenuIcon, SearchIcon, X } from "lucide-react";
+import {
+  BookIcon,
+  CircleX,
+  HomeIcon,
+  InfoIcon,
+  MenuIcon,
+  NewspaperIcon,
+  PhoneIcon,
+  SearchIcon,
+  ShoppingBagIcon,
+  X,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Input } from "../ui/input";
 import useScreenSize from "@/hooks/useScreenSize";
 
-const menus = [
+export const menus = [
   {
-    value: "/about-us",
-    name: "About Us",
+    icon: (className: string) => <HomeIcon className={className} />,
+    value: "/the-brand",
+    name: "The Brand",
+    isBottomBar: true,
   },
   {
-    value: "/products",
-    name: "Products",
+    icon: (className: string) => <ShoppingBagIcon className={className} />,
+    value: "/why-quiv",
+    name: "WhyQuiv",
+    isBottomBar: true,
   },
+  // {
+  //   icon: (className: string) => <DiamondIcon className={className} />,
+  //   value: "/quiz",
+  //   name: "Quiz",
+  // isBottomBar:true,
+  // },
   {
-    value: "/quiz",
-    name: "Quiz",
-  },
-  {
+    icon: (className: string) => <BookIcon className={className} />,
     value: "/look-book",
     name: "Lookbook",
+    isBottomBar: true,
   },
   {
-    value: "/blog",
-    name: "Blog",
+    icon: (className: string) => <NewspaperIcon className={className} />,
+    value: "/feeds",
+    name: "Feeds",
+    isBottomBar: true,
   },
   {
-    value: "/faq",
-    name: "FAQs",
-  },
-  {
-    value: "/contact",
-    name: "Contact",
+    icon: (className: string) => <InfoIcon className={className} />,
+    value: "/got-questions",
+    name: "Got Questions",
+    isBottomBar: true,
   },
 ];
 
@@ -157,7 +176,7 @@ const NavBar = () => {
               {renderMenu()}
             </div>
             <div
-              className="flex sm:flex justify-end sm:justify-center items-center"
+              className="hidden justify-end sm:justify-center items-center"
               onClick={() => {
                 setOpenSearch(!openSearch);
                 setOpenMenu(false);

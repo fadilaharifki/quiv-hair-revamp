@@ -144,7 +144,7 @@ const HomePageModules = () => {
                 variant="outline"
                 className="bg-transparent text-white hover:text-black text-sm sm:text-lg w-40 sm:w-52"
                 onClick={() => {
-                  router.push("/about-us");
+                  router.push("/the-brand");
                 }}
               >
                 See more

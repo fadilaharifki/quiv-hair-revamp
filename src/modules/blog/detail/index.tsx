@@ -1,6 +1,6 @@
 "use client";
 
-import { BlogDetailProductsPageProps } from "@/app/blog/[slug]/page";
+import { BlogDetailProductsPageProps } from "@/app/feeds/[slug]/page";
 import NextIcon from "@/assets/icon/next-icon";
 import { BlogPost, dataBlog } from "@/constants/dataBlog";
 import { formatUrl } from "@/lib/utils";

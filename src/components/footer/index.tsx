@@ -32,20 +32,20 @@ const Footer = () => {
       title: "Main Menu",
       menu: [
         {
-          title: "About Us",
-          url: "/about-us",
+          value: "/the-brand",
+          name: "The Brand",
         },
         {
-          title: "Product",
-          url: "/products",
+          value: "/why-quiv",
+          name: "WhyQuiv",
         },
         {
           title: "Lookbook",
           url: "/look-book",
         },
         {
-          title: "Blog",
-          url: "/blog",
+          title: "Feeds",
+          url: "/feeds",
         },
         {
           title: "Contact",

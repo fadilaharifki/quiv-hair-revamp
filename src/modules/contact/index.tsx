@@ -94,26 +94,6 @@ const ContactPageModules = () => {
 
   return (
     <div>
-      <div className="h-screen">
-        <Image
-          className="h-screen w-screen object-cover grayscale"
-          fill
-          src={"/image/contact/banner.png"}
-          alt="contact image"
-        ></Image>
-        <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg  rounded-md"></div>
-        <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between gap-5">
-            <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
-              Contact
-            </h1>
-            <div className="text-white text-sm sm:text-lg   text-center text-shadow shadow-gray-500">
-              Natural ingredients, proven to perform the best
-            </div>
-          </div>
-        </div>
-        <ArrowDown onClick={handleScroll} />
-      </div>
       <div className="flex min-h-screen justify-center">
         <div className="flex flex-col sm:flex-row items-center justify-evenly gap-5 sm:gap-10 py-10 sm:py-0">
           {dataImage.map((product, idx) => {

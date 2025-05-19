@@ -1,76 +1,60 @@
 "use client";
 
 import useScreenSize from "@/hooks/useScreenSize";
-import {
-  DiamondIcon,
-  HomeIcon,
-  NewspaperIcon,
-  PhoneIcon,
-  ShoppingBagIcon,
-} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
+import { menus } from "../navbar";
 
 const BottomBar = () => {
   const { breakpoint } = useScreenSize();
   const pathname = usePathname();
-  const menus = [
-    {
-      icon: (className: string) => <HomeIcon className={className} />,
-      path: "/",
-      name: "Home",
-    },
-    {
-      icon: (className: string) => <ShoppingBagIcon className={className} />,
-      path: "/products",
-      name: "Products",
-    },
-    {
-      icon: (className: string) => <DiamondIcon className={className} />,
-      path: "/quiz",
-      name: "Quiz",
-    },
-    {
-      icon: (className: string) => <NewspaperIcon className={className} />,
-      path: "/blog",
-      name: "Blog",
-    },
-    {
-      icon: (className: string) => <PhoneIcon className={className} />,
-      path: "/contact",
-      name: "Contact",
-    },
-  ];
+
+  const bottomMenus = menus.filter((item) => item.isBottomBar);
+  const bottomBarCount = bottomMenus.length;
+
   return (
     <>
       {breakpoint === "sm" && (
         <nav
           className={twMerge(
-            "sticky bottom-0 h-20 bg-white grid justify-around items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-30 grid-cols-5 md:hidden"
+            "sticky bottom-0 h-20 px-2 bg-white grid justify-around items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-30 md:hidden"
           )}
+          style={{
+            gridTemplateColumns: `repeat(${bottomBarCount}, minmax(0, 1fr))`,
+          }}
         >
-          {menus.map((menu, idx) => {
+          {bottomMenus.map((menu, idx) => {
+            const isActive = pathname === menu.value;
+
             return (
               <Link
-                className={twMerge(
-                  "flex flex-col justify-center items-center gap-2"
-                )}
-                href={menu.path}
+                href={menu.value}
                 key={idx}
-              >
-                {menu.icon(
-                  `${
-                    pathname === menu.path
-                      ? "text-navy-blue"
-                      : "text-light-brown-navbar"
-                  }`
+                className={twMerge(
+                  "flex flex-col items-center justify-start gap-1 relative transition-all duration-300 ease-in-out"
                 )}
+              >
+                {menu.icon && (
+                  <div
+                    className={twMerge(
+                      "transition-all duration-300 ease-in-out p-2",
+                      isActive ? "bg-navy-blue rounded-full" : "bg-transparent"
+                    )}
+                  >
+                    {menu.icon(
+                      isActive
+                        ? "text-white transition-colors duration-300 ease-in-out"
+                        : "text-light-brown-navbar transition-colors duration-300 ease-in-out"
+                    )}
+                  </div>
+                )}
+
                 <div
                   className={twMerge(
-                    "text-xs",
-                    pathname === menu.path
-                      ? "text-navy-blue"
+                    "text-xs transition-colors duration-300 ease-in-out text-center leading-tight max-w-[60px] truncate",
+                    isActive
+                      ? "text-navy-blue font-semibold"
                       : "text-light-brown-navbar"
                   )}
                 >
