@@ -81,27 +81,17 @@ const LookBookPageModules = () => {
 
   return (
     <div>
-      <div className="h-screen">
+      <section className="md:h-screen">
         <Image
-          className="h-screen w-screen object-cover grayscale"
-          fill
-          src={"/image/look-book/banner.png"}
-          alt="look book image"
+          className="md:h-screen w-screen object-contain md:object-cover"
+          height={1000}
+          width={1000}
+          src={"/image/look-book/lookbook-banner.webp"}
+          alt="got-question banner image"
         ></Image>
-        <div className="absolute inset-0 bg-light-primary bg-opacity-25 shadow-lg rounded-md"></div>
-        <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between gap-5">
-            <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
-              LookBook
-            </h1>
-            <div className="text-white text-sm sm:text-lg   text-center text-shadow shadow-gray-500">
-              Natural ingredients, proven to perform the best
-            </div>
-          </div>
-        </div>
-        <ArrowDown onClick={handleScroll} />
-      </div>
-      {dataImage.map((e, idx) => {
+      </section>
+
+      {/* {dataImage.map((e, idx) => {
         return (
           <div
             id={`day-to-day-style-${idx}`}
@@ -197,7 +187,7 @@ const LookBookPageModules = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

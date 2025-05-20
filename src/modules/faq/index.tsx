@@ -57,9 +57,9 @@ const FaqPageModules = () => {
   };
   return (
     <div>
-      <div className="h-screen">
+      <div className="md:h-screen">
         <Image
-          className="h-screen w-screen object-cover"
+          className="md:h-screen w-screen object-contain md:object-cover"
           height={1000}
           width={1000}
           src={"/image/got-question/banner.webp"}

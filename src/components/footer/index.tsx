@@ -5,73 +5,57 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
+import { menus } from "../navbar";
+import React from "react";
+
+interface MenuItem {
+  name?: string;
+  url?: string;
+  value?: string;
+  target?: string;
+  icon?: (className: string) => React.ReactNode;
+}
+
+interface MenuGroup {
+  value?: string;
+  name: string;
+  typeTitle?: string;
+  address?: string;
+  menu?: MenuItem[];
+}
 
 const Footer = () => {
   const router = useRouter();
-  const menusFooter = [
+  const menusFooter: MenuGroup[] = [
     {
-      title: LogoBlack,
+      name: LogoBlack,
       typeTitle: "icon",
-      address: "Natural ingredients, proven to perform the best",
+      address: "",
     },
     {
-      title: "All Products",
-      url: "/products",
-      menu: [
-        {
-          title: "FLEX - Liquified Hair Powder",
-          url: "/products/flex",
-        },
-        {
-          title: "FINE - Liquified Hair Powder",
-          url: "/products/fine",
-        },
-      ],
+      name: "Main Menu",
+      menu: [...menus],
     },
     {
-      title: "Main Menu",
-      menu: [
-        {
-          value: "/the-brand",
-          name: "The Brand",
-        },
-        {
-          value: "/why-quiv",
-          name: "WhyQuiv",
-        },
-        {
-          title: "Lookbook",
-          url: "/look-book",
-        },
-        {
-          title: "Feeds",
-          url: "/feeds",
-        },
-        {
-          title: "Contact",
-          url: "/contact",
-        },
-      ],
+      name: "",
+      menu: [],
     },
     {
-      title: "Support",
-      menu: [
-        {
-          title: "FAQs",
-          url: "/faq",
-        },
-      ],
+      name: "",
+      menu: [],
     },
     {
-      title: "Contact",
+      name: "Contact",
       menu: [
         {
-          title: "+628 000 0000",
-          url: "",
+          name: "+62 851-3786-4870",
+          url: "https://wa.me/6285137864870",
+          target: "_blank",
         },
         {
-          title: "info@quiv.com",
-          url: "",
+          name: "admin@quivhair.com",
+          url: "mailto:admin@quivhair.com",
+          target: "_blank",
         },
       ],
     },
@@ -79,7 +63,7 @@ const Footer = () => {
 
   return (
     <div className="flex flex-col w-screen bg-[#E8E3DC]">
-      <div className=" bg-soft-gray w-screen grid grid-cols-2 sm:grid-cols-5 p-10 gap-5 sm:gap-10 sm:px-32">
+      <div className=" bg-soft-gray w-screen grid grid-cols-1 sm:grid-cols-5 p-10 gap-5 sm:gap-10 sm:px-32">
         {menusFooter.map((item, idx) => {
           if (item.typeTitle === "icon") {
             return (
@@ -104,18 +88,14 @@ const Footer = () => {
             <div key={idx}>
               <div
                 className={twMerge(
-                  "flex flex-col   font-light text-sm sm:text-lg mb-5 sm:mb-10",
-                  item?.url ? "cursor-pointer hover:font-bold" : undefined
+                  "flex flex-col font-light text-sm sm:text-lg mb-5 sm:mb-10"
                 )}
-                onClick={() => {
-                  if (item.url) router.push(item.url);
-                }}
               >
-                {item.title}
+                {item.name}
               </div>
               <div className="flex flex-col   text-sm sm:text-lg gap-2 sm:gap-4">
                 {item.menu?.map((menu, index) => {
-                  if (!menu.url) {
+                  if (!menu.value) {
                     return (
                       <span
                         className={
@@ -123,17 +103,18 @@ const Footer = () => {
                         }
                         key={index}
                       >
-                        {menu.title}
+                        {menu.name}
                       </span>
                     );
                   }
                   return (
                     <Link
-                      href={menu.url}
+                      href={menu.value}
                       className="font-normal hover:font-medium"
                       key={index}
+                      target={menu?.target}
                     >
-                      {menu.title}
+                      {menu.name}
                     </Link>
                   );
                 })}
