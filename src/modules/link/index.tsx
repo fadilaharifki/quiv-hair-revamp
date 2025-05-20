@@ -151,7 +151,7 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
                 Follow Us on Social Media
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md">
+            <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md z-[70]">
               <DropdownMenuItem asChild>
                 <Link
                   href={instagram}

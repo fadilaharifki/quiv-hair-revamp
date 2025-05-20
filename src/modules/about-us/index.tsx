@@ -14,72 +14,38 @@ import useScreenSize from "@/hooks/useScreenSize";
 import { useRouter } from "next/navigation";
 import FullScreenDrawer from "@/components/drawer";
 import AppPageModuls from "../link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useToggleStore } from "@/stores/useToggleStore";
+import LoadingLine from "@/components/LoadingLine";
 
 const AboutUsPageModules = () => {
   const dataImageAllProduct = [...dataImageFlex, ...dataImageFine];
   const { width, breakpoint } = useScreenSize();
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const { isOpen, setIsOpen, hasHydrated } = useToggleStore();
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
-  const dataImageCarousel = [
-    {
-      id: "1",
-      span: 2,
-      child: [
-        {
-          name: "People 1",
-          span: 1,
-          url: "/image/home/people1.png",
-        },
-        {
-          name: "People 2",
-          span: 1,
-          url: "/image/home/people2.png",
-        },
-      ],
-    },
-    {
-      id: "2",
-      span: 3,
-      child: [
-        {
-          name: "People 2",
-          span: 1,
-          url: "/image/home/people2.png",
-        },
-        {
-          name: "People 2",
-          span: 2,
-          url: "/image/home/people3.png",
-        },
-      ],
-    },
-    {
-      id: "3",
-      span: 3,
-      child: [
-        {
-          name: "People 3",
-          span: 1,
-          url: "/image/home/people3.png",
-        },
-        {
-          name: "People 1",
-          span: 2,
-          url: "/image/home/people1.png",
-        },
-      ],
-    },
-  ];
+  if (!hasHydrated) {
+    return (
+      <div className="h-screen">
+        <LoadingLine />
+      </div>
+    );
+  }
 
   return (
     <div className="-mt-12">
+      {loading && <LoadingLine />}
       <FullScreenDrawer isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
         <AppPageModuls
           onClose={() => {
-            setIsOpen(!isOpen);
+            setLoading(true);
+
+            setTimeout(() => {
+              setIsOpen(!isOpen);
+              setLoading(false);
+            }, 1000);
           }}
         />
       </FullScreenDrawer>

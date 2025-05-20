@@ -21,6 +21,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { Input } from "../ui/input";
 import useScreenSize from "@/hooks/useScreenSize";
+import { useToggleStore } from "@/stores/useToggleStore";
 
 export const menus = [
   {
@@ -69,6 +70,7 @@ const NavBar = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [openSearch, setOpenSearch] = useState(false);
+  const { setIsOpen } = useToggleStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -166,7 +168,10 @@ const NavBar = () => {
               <Link
                 href={"/"}
                 onClick={() => {
-                  window.location.reload();
+                  if (pathname === "/") {
+                    // window.location.reload();
+                    setIsOpen(true);
+                  }
                 }}
               >
                 <Image width={100} height={100} src={Logo} alt="Logo"></Image>

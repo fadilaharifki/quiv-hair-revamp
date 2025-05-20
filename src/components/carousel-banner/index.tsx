@@ -15,6 +15,7 @@ import { twMerge } from "tailwind-merge";
 import { Button } from "../ui/button";
 import { EmblaCarouselType } from "embla-carousel";
 import { useRouter } from "next/navigation";
+import useScreenSize from "@/hooks/useScreenSize";
 
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
@@ -68,6 +69,7 @@ export function CarouselBannerComponent({
   const [isHoveredPrev, setIsHoveredPrev] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const { breakpoint } = useScreenSize();
   const router = useRouter();
 
   const goToPrevious = () => api?.scrollPrev();
@@ -134,7 +136,10 @@ export function CarouselBannerComponent({
   return (
     <Carousel
       setApi={setApi}
-      className="w-screen justify-center items-center md:min-h-screen"
+      className={twMerge(
+        "w-screen justify-center items-center md:min-h-screen",
+        breakpoint === "sm" ? "min-h-screen" : ""
+      )}
       opts={opts}
     >
       <CarouselContent>
@@ -151,7 +156,8 @@ export function CarouselBannerComponent({
                   <Image
                     className={twMerge(
                       "flex md:min-h-screen w-screen object-cover grayscale",
-                      classNameImage
+                      classNameImage,
+                      breakpoint === "sm" ? "min-h-screen" : ""
                     )}
                     width={1000}
                     height={1000}
