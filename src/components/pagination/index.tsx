@@ -14,6 +14,7 @@ interface DataInterface {
   url: string;
   price?: string;
   path?: string;
+  disable?: boolean;
 }
 
 interface PaginationComponentInterface {
@@ -87,10 +88,12 @@ const PaginationComponent = ({
               className={twMerge(
                 isOnClick
                   ? "cursor-pointer hover:scale-125 duration-500"
-                  : undefined
+                  : undefined,
+                !item.disable ? "" : "opacity-70"
               )}
               onClick={() => {
-                if (isOnClick && item.path) router.push(item.path);
+                if (isOnClick && item.path && !item.disable)
+                  router.push(item.path);
               }}
             >
               <div className="flex justify-center align-middle items-center ">

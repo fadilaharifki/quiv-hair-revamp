@@ -4,23 +4,14 @@
 import ArrowDown from "@/components/arrow-down";
 import CardProduct from "@/components/card-product";
 import { TitleComponent } from "@/components/title";
-import { benefitIcon, dataImageFlex } from "@/constants/data";
+import { benefitIcon, dataImageFlex, dataImageFine } from "@/constants/data";
 import Logo from "../../assets/svg/logo.svg";
 import Image from "next/image";
 import PaginationComponent from "@/components/pagination";
 import { CarouselBannerComponent } from "@/components/carousel-banner";
 
 const AboutUsPageModules = () => {
-  const handleScroll = () => {
-    const element = document.getElementById("about-quiv");
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const dataImageAllProduct = [...dataImageFlex];
+  const dataImageAllProduct = [...dataImageFlex, ...dataImageFine];
 
   const dataImageCarousel = [
     {
@@ -75,7 +66,7 @@ const AboutUsPageModules = () => {
 
   return (
     <div className="-top-12">
-      <div className="relative w-full h-screen overflow-hidden">
+      <section className="relative w-full h-screen overflow-hidden">
         <video
           className="w-full h-full object-cover"
           autoPlay
@@ -95,8 +86,8 @@ const AboutUsPageModules = () => {
             <span className="font-semibold">#QuivTheGame</span>
           </p>
         </div>
-      </div>
-      <div
+      </section>
+      <section
         id="about-quiv"
         className="grid grid-cols-1 md:grid-cols-3 min-h-screen"
       >
@@ -124,8 +115,8 @@ const AboutUsPageModules = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="min-h-screen flex justify-center items-center flex-col">
+      </section>
+      <section className="min-h-screen flex justify-center items-center flex-col">
         <CarouselBannerComponent
           title="The act of styling one’s hair should be a ceremonious one"
           description="Shop the best natural men’s hairstyling products, shampoo,
@@ -134,8 +125,8 @@ const AboutUsPageModules = () => {
           data={dataImageCarousel}
           autoPlay
         />
-      </div>
-      <div
+      </section>
+      <section
         id="all-product"
         className="flex mt-10 flex-col justify-center py-5 sm:py-20 items-center gap-10"
       >
@@ -143,8 +134,8 @@ const AboutUsPageModules = () => {
         <div className="mt-20">
           <PaginationComponent isOnClick data={dataImageAllProduct} />
         </div>
-      </div>
-      <div
+      </section>
+      <section
         id="about-quiv"
         className="grid grid-cols-1 sm:grid-cols-3 min-h-screen"
       >
@@ -163,8 +154,8 @@ const AboutUsPageModules = () => {
             );
           })}
         </div>
-      </div>
-      {/* <div className="flex flex-col items-center justify-center w-screen gap-5 sm:gap-10 border-navy-blue py-5 sm:py-10 border-y-2">
+      </section>
+      {/* <section className="flex flex-col items-center justify-center w-screen gap-5 sm:gap-10 border-navy-blue py-5 sm:py-10 border-y-2">
         <TitleComponent firstTitle="OUR" lastTitle="STORY" />
         <div className="flex w-11/12 sm:w-10/12 ">
           <Image
@@ -192,7 +183,7 @@ const AboutUsPageModules = () => {
             will be something special for you.
           </div>
         </div>
-      </div> */}
+      </section> */}
     </div>
   );
 };

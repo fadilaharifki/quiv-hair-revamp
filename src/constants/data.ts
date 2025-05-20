@@ -18,7 +18,8 @@ export const dataImageFlex = [
     name: "FLEX - Liquified Hair Powder",
     date: "30 June 2025",
     path: "products/flex",
-    url: "/image/general/finebox.webp",
+    url: "/image/general/flexcom.webp",
+    disable: false,
   },
 ];
 
@@ -27,6 +28,7 @@ export const dataImageFine = [
     name: "Fine - Liquified Hair Powder",
     date: "30 June 2025",
     path: "products/fine",
-    url: "/image/general/image1_fine.png",
+    url: "/image/general/finebox.webp",
+    disable: true,
   },
 ];

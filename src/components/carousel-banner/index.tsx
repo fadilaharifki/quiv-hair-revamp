@@ -40,7 +40,10 @@ interface CarouselInterface {
   delay?: number;
   title?: string;
   description?: string;
+  classNameImage?: string;
+  classNameImageContainer?: string;
   onClick?: (val: string) => void;
+  isBgOpacity?: boolean;
 }
 
 export function CarouselBannerComponent({
@@ -52,6 +55,9 @@ export function CarouselBannerComponent({
   delay = 4000,
   title,
   description,
+  classNameImage,
+  classNameImageContainer,
+  isBgOpacity = true,
   onClick,
 }: CarouselInterface) {
   const intervalRef = useRef<number | any>(null);
@@ -128,7 +134,7 @@ export function CarouselBannerComponent({
   return (
     <Carousel
       setApi={setApi}
-      className="w-screen justify-center items-center min-h-screen"
+      className="w-screen justify-center items-center md:min-h-screen"
       opts={opts}
     >
       <CarouselContent>
@@ -138,14 +144,17 @@ export function CarouselBannerComponent({
               const flexBasisValue = (+itemImage?.span / +items?.span) * 100;
               return (
                 <div
-                  className="h-screen"
+                  className={twMerge("md:h-screen", classNameImageContainer)}
                   key={idx}
                   style={{ flexBasis: `${flexBasisValue}%` }}
                 >
                   <Image
-                    className="flex min-h-screen w-screen object-cover grayscale"
-                    width={100}
-                    height={100}
+                    className={twMerge(
+                      "flex md:min-h-screen w-screen object-cover grayscale",
+                      classNameImage
+                    )}
+                    width={1000}
+                    height={1000}
                     alt={itemImage.name}
                     src={itemImage.url}
                   />
@@ -155,7 +164,9 @@ export function CarouselBannerComponent({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="absolute inset-0 bg-black bg-opacity-25"></div>
+      {isBgOpacity && (
+        <div className="absolute inset-0 bg-black bg-opacity-25"></div>
+      )}
       <div className="absolute inset-0 flex items-center flex-col justify-center ">
         <div className="flex flex-col items-center justify-between gap-8 sm:gap-16">
           <div className="w-[80%] sm:w-[60%] text-white text-2xl sm:text-[50px] font-bold text-center uppercase  text-shadow leading-none shadow-gray-500">
@@ -164,20 +175,22 @@ export function CarouselBannerComponent({
           <div className="w-[80%] sm:w-[40%] text-white text-base sm:text-xl  font-thin text-center text-shadow shadow-gray-500">
             {description}
           </div>
-          <div className="flex">
-            <Button
-              variant="outline"
-              className="bg-transparent text-white text-sm sm:text-lg w-40 sm:w-52"
-              onClick={() => {
-                const currentId = data[selectedIndex]?.id;
-                if (typeof onClick === "function") {
-                  onClick(currentId);
-                }
-              }}
-            >
-              See more
-            </Button>
-          </div>
+          {typeof onClick === "function" && (
+            <div className="flex">
+              <Button
+                variant="outline"
+                className="bg-transparent text-white text-sm sm:text-lg w-40 sm:w-52"
+                onClick={() => {
+                  const currentId = data[selectedIndex]?.id;
+                  if (typeof onClick === "function") {
+                    onClick(currentId);
+                  }
+                }}
+              >
+                See more
+              </Button>
+            </div>
+          )}
         </div>
         {buttonNextPrev && (
           <div className="my-10 text-center text-sm text-muted-foreground flex gap-10">
