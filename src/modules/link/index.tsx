@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ShoppingBag, Globe, Instagram } from "lucide-react";
 import { useEffect, useState } from "react";
+import { instagram } from "@/constants/data";
 
 export default function AppPageModuls({ onClose }: { onClose: () => void }) {
   return (
@@ -130,7 +131,7 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
             <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md">
               <DropdownMenuItem asChild>
                 <Link
-                  href="https://www.instagram.com/quiv.hair"
+                  href={instagram}
                   target="_blank"
                   className="flex items-center cursor-pointer"
                 >

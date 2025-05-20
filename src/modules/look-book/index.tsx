@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import InstagramReelEmbed from "./InstagramEmberd";
+import { instagram } from "@/constants/data";
 
 const LookBookPageModules = () => {
   const handleScroll = () => {
@@ -123,9 +124,7 @@ const LookBookPageModules = () => {
         </div>
         <div className="flex justify-center gap-4">
           <button
-            onClick={() =>
-              window.open("https://www.instagram.com/quiv.hair", "_blank")
-            }
+            onClick={() => window.open(instagram, "_blank")}
             className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
           >
             Upload Photo on Instagram

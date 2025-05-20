@@ -6,6 +6,13 @@ import TextareaComponent from "@/components/textarea";
 import { TitleComponent } from "@/components/title";
 import { Button } from "@/components/ui/button";
 import {
+  instagram,
+  phoneNumber,
+  phoneNumberDash,
+  shopee,
+  tokped,
+} from "@/constants/data";
+import {
   ArrowDown,
   BaggageClaim,
   Instagram,
@@ -36,11 +43,7 @@ const ContactPageModules = () => {
       title: "Media Social",
       description: "@quiv.hair",
       icon: (
-        <div
-          onClick={() =>
-            window.open("https://www.instagram.com/quiv.hair", "_blank")
-          }
-        >
+        <div onClick={() => window.open(instagram, "_blank")}>
           <Image
             alt="instagram"
             className={iconStyle}
@@ -68,10 +71,10 @@ const ContactPageModules = () => {
     },
     {
       title: "Whatsapp",
-      description: "+62 851-3786-4870",
+      description: phoneNumberDash,
       icon: (
         <div
-          onClick={() => window.open("https://wa.me/6285137864870", "_blank")}
+          onClick={() => window.open(`https://wa.me/${phoneNumber}`, "_blank")}
         >
           <Image
             alt="whatsapp"
@@ -86,7 +89,7 @@ const ContactPageModules = () => {
     {
       title: "Shopee",
       icon: (
-        <div onClick={() => window.open("https://id.shp.ee/zoYsjDQ", "_blank")}>
+        <div onClick={() => window.open(shopee, "_blank")}>
           <Image
             alt="shopee"
             className={iconStyle}
@@ -100,11 +103,7 @@ const ContactPageModules = () => {
     {
       title: "TokoPedia",
       icon: (
-        <div
-          onClick={() =>
-            window.open("https://tk.tokopedia.com/ZShQ44c7j/", "_blank")
-          }
-        >
+        <div onClick={() => window.open(tokped, "_blank")}>
           <Image
             alt="tokopedia"
             className={twMerge(iconStyle, "object-contain")}
@@ -169,7 +168,7 @@ const ContactPageModules = () => {
           })}
         </div>
       </div>
-      <div className="flex min-h-screen justify-center md:px-32">
+      <div className="flex min-h-screen justify-center md:px-32 mt-10 md:mt-0">
         <div className="flex flex-col w-screen gap-10 sm:gap-20">
           <TitleComponent
             firstTitle="Get in touch"

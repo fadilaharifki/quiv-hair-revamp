@@ -5,6 +5,7 @@ import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { twMerge } from "tailwind-merge";
 import BottomBar from "@/components/bottomBar";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
@@ -57,6 +58,7 @@ export default function RootLayout({
         {children}
         <Footer></Footer>
         <BottomBar></BottomBar>
+        <WhatsAppIcon />
       </body>
     </html>
   );

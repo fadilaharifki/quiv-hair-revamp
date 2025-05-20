@@ -32,3 +32,9 @@ export const dataImageFine = [
     disable: true,
   },
 ];
+
+export const phoneNumber = "6285137864870";
+export const phoneNumberDash = "+62 851-3786-4870";
+export const shopee = "https://id.shp.ee/zoYsjDQ";
+export const tokped = "https://tk.tokopedia.com/ZShQ44c7j/";
+export const instagram = "https://www.instagram.com/quiv.hair";

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { menus } from "../navbar";
 import React from "react";
+import { phoneNumber, phoneNumberDash } from "@/constants/data";
 
 interface MenuItem {
   name?: string;
@@ -48,8 +49,8 @@ const Footer = () => {
       name: "Contact",
       menu: [
         {
-          name: "+62 851-3786-4870",
-          url: "https://wa.me/6285137864870",
+          name: phoneNumberDash,
+          url: `https://wa.me/${phoneNumber}`,
           target: "_blank",
         },
         {
