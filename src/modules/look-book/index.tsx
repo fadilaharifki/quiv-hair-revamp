@@ -1,12 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import LookBookImage from "../../assets/image/look-book-image.svg";
-import ArrowDown from "@/components/arrow-down";
-import { describe } from "node:test";
-import { twMerge } from "tailwind-merge";
 import { Button } from "@/components/ui/button";
-import { TitleComponent } from "@/components/title";
+import InstagramReelEmbed from "./InstagramEmberd";
 
 const LookBookPageModules = () => {
   const handleScroll = () => {
@@ -79,6 +75,12 @@ const LookBookPageModules = () => {
     },
   ];
 
+  const reelsUrls = [
+    "https://www.instagram.com/reel/DJwPKdZvxrq/?utm_source=ig_embed&utm_campaign=loading",
+    "https://www.instagram.com/reel/DJdy9VSvKLV/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DIlqqHXPi5b/?utm_source=ig_embed&amp;utm_campaign=loading",
+  ];
+
   return (
     <div>
       <section className="md:h-screen">
@@ -89,6 +91,55 @@ const LookBookPageModules = () => {
           src={"/image/look-book/lookbook-banner.webp"}
           alt="got-question banner image"
         ></Image>
+      </section>
+      <section className="max-w-5xl mx-auto mt-8 pb-10">
+        <h2 className="text-4xl font-semibold mb-6 text-center">Galeri</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-4 mx-2">
+          {[1, 2, 3, 4, 5, 6].map((num) => (
+            <div
+              key={num}
+              className="bg-gray-300 rounded-lg flex items-center justify-center text-xl text-gray-600 select-none h-48"
+            >
+              {num}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          {reelsUrls.map((url) => (
+            <div key={url} style={{ marginBottom: 24 }}>
+              <InstagramReelEmbed url={url} />
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="max-w-xl mx-2 md:mx-auto p-6 bg-gray-50 rounded-lg shadow-md text-center space-y-6 my-10">
+        <div className="text-gray-700">
+          Styled with Quiv? Tag{" "}
+          <span className="font-semibold">@quiv.hair</span> or submit your photo
+          to be featured.
+        </div>
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={() =>
+              window.open("https://www.instagram.com/quiv.hair", "_blank")
+            }
+            className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+          >
+            Upload Photo on Instagram
+          </button>
+          <button
+            onClick={() =>
+              (window.location.href =
+                "mailto:admin@quivhair.com?subject=Submit Photo - Your Name")
+            }
+            className="px-5 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+          >
+            Submit via Email
+          </button>
+        </div>
       </section>
 
       {/* {dataImage.map((e, idx) => {
