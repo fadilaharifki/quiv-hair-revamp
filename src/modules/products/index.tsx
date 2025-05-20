@@ -77,6 +77,11 @@ const ProductsPageModules = () => {
         </div>
       </section>
       <section>
+        <div className="text-center my-4 md:my-8 bg-white">
+          <p className=" text-xl md:text-4xl font-bold text-light-primary-navbar">
+            Quiv Flex
+          </p>
+        </div>
         <Image
           className="md:h-screen w-screen object-cover"
           height={1000}
@@ -86,6 +91,11 @@ const ProductsPageModules = () => {
         ></Image>
       </section>
       <section>
+        <div className="text-center my-4 md:mt-8 bg-white">
+          <p className="text-xl md:text-4xl font-bold text-light-primary-navbar">
+            For Active Men
+          </p>
+        </div>
         <div className="md:min-h-screen flex justify-center items-center flex-col">
           <CarouselBannerComponent
             data={dataCarousel}

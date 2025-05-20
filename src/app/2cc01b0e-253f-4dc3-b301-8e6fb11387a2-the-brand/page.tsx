@@ -2,10 +2,10 @@ import AboutUsPageModules from "@/modules/about-us";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "The Brand",
 };
-const AboutUsPage = () => {
+const TheBrandPage = () => {
   return <AboutUsPageModules />;
 };
 
-export default AboutUsPage;
+export default TheBrandPage;

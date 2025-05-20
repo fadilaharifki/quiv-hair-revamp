@@ -25,7 +25,7 @@ import useScreenSize from "@/hooks/useScreenSize";
 export const menus = [
   {
     icon: (className: string) => <HomeIcon className={className} />,
-    value: "/the-brand",
+    value: "/",
     name: "The Brand",
     isBottomBar: true,
   },
@@ -123,7 +123,7 @@ const NavBar = () => {
       <div
         ref={refNav}
         className={twMerge(
-          "grid grid-cols-3 sm:grid-cols-5 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-primary-navbar justify-center items-center"
+          "grid grid-cols-3 sm:grid-cols-7 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-primary-navbar justify-center items-center"
         )}
       >
         <div className="sm:hidden flex justify-start items-center">
@@ -162,7 +162,7 @@ const NavBar = () => {
           </div>
         ) : (
           <>
-            <div className="flex sm:justify-center items-center">
+            <div className="flex sm:justify-center items-center col-span-1">
               <Link
                 href={"/"}
                 onClick={() => {
@@ -172,7 +172,8 @@ const NavBar = () => {
                 <Image width={100} height={100} src={Logo} alt="Logo"></Image>
               </Link>
             </div>
-            <div className="hidden sm:flex justify-evenly items-center col-span-3">
+            <div className="col-span-1"></div>
+            <div className="hidden sm:flex justify-around items-center col-span-4">
               {renderMenu()}
             </div>
             <div

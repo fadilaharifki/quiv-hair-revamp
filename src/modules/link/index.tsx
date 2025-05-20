@@ -12,19 +12,42 @@ import {
 import { ShoppingBag, Globe, Instagram } from "lucide-react";
 import { useEffect, useState } from "react";
 import { instagram } from "@/constants/data";
+import { CarouselProductComponent } from "@/components/carousel-product";
+import { CarouselBannerComponent } from "@/components/carousel-banner";
 
 export default function AppPageModuls({ onClose }: { onClose: () => void }) {
+  const dataImage2 = [
+    {
+      id: "1",
+      span: 1,
+      child: [
+        {
+          name: "link 1",
+          span: 1,
+          url: "/image/home/banner-linktree-1.webp",
+        },
+      ],
+    },
+    {
+      id: "2",
+      span: 1,
+      child: [
+        {
+          name: "link 2",
+          span: 1,
+          url: "/image/home/banner-linktree-2.webp",
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-[#E8E3DC]">
       {/* Banner */}
       <div className="w-full h-[50vh] relative">
-        <Image
-          src={"/image/home/banner_link.png"}
-          alt="QUIV Banner"
-          layout="fill"
-          objectFit="cover"
-          priority
-        />
+        <div className="flex justify-center h-20 items-center flex-col px-10">
+          <CarouselBannerComponent data={dataImage2} autoPlay />
+        </div>
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-5xl md:text-7xl font-bold text-white drop-shadow-lg">
             QUIV

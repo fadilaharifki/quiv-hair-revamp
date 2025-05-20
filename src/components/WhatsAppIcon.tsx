@@ -1,3 +1,5 @@
+"use client";
+
 import { PhoneCall } from "lucide-react";
 
 export default function WhatsAppIcon() {

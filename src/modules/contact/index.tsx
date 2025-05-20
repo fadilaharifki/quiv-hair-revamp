@@ -16,6 +16,7 @@ import {
   ArrowDown,
   BaggageClaim,
   Instagram,
+  InstagramIcon,
   MailIcon,
   MapPinIcon,
   PhoneIcon,
@@ -44,13 +45,14 @@ const ContactPageModules = () => {
       description: "@quiv.hair",
       icon: (
         <div onClick={() => window.open(instagram, "_blank")}>
-          <Image
+          {/* <Image
             alt="instagram"
             className={iconStyle}
             width={500}
             height={500}
             src={"/image/general/instagram.webp"}
-          />
+          /> */}
+          <InstagramIcon size={25} />
         </div>
       ),
     },
@@ -59,13 +61,7 @@ const ContactPageModules = () => {
       description: "admin@quivhair.com",
       icon: (
         <div onClick={() => window.open("mailto:admin@quivhair.com", "_blank")}>
-          <Image
-            alt="email"
-            className={iconStyle}
-            width={500}
-            height={500}
-            src={"/image/general/email.webp"}
-          />
+          <MailIcon size={25} />
         </div>
       ),
     },

@@ -1,5 +1,5 @@
-import HomePageModules from "@/modules/home";
+import AboutUsPageModules from "@/modules/about-us";
 
 export default function AppPage() {
-  return <HomePageModules />;
+  return <AboutUsPageModules />;
 }

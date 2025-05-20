@@ -9,9 +9,19 @@ import Logo from "../../assets/svg/logo.svg";
 import Image from "next/image";
 import PaginationComponent from "@/components/pagination";
 import { CarouselBannerComponent } from "@/components/carousel-banner";
+import { Button } from "@/components/ui/button";
+import useScreenSize from "@/hooks/useScreenSize";
+import { useRouter } from "next/navigation";
+import FullScreenDrawer from "@/components/drawer";
+import AppPageModuls from "../link";
+import { useState } from "react";
 
 const AboutUsPageModules = () => {
   const dataImageAllProduct = [...dataImageFlex, ...dataImageFine];
+  const { width, breakpoint } = useScreenSize();
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+
+  const router = useRouter();
 
   const dataImageCarousel = [
     {
@@ -65,7 +75,14 @@ const AboutUsPageModules = () => {
   ];
 
   return (
-    <div className="-top-12">
+    <div className="-mt-12">
+      <FullScreenDrawer isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
+        <AppPageModuls
+          onClose={() => {
+            setIsOpen(!isOpen);
+          }}
+        />
+      </FullScreenDrawer>
       <section className="relative w-full h-screen overflow-hidden">
         <video
           className="w-full h-full object-cover"
@@ -89,7 +106,7 @@ const AboutUsPageModules = () => {
       </section>
       <section
         id="about-quiv"
-        className="grid grid-cols-1 md:grid-cols-3 min-h-screen"
+        className="grid grid-cols-1 md:grid-cols-3 min-h-screen "
       >
         <div className="col-span-1">
           <Image
@@ -117,22 +134,116 @@ const AboutUsPageModules = () => {
         </div>
       </section>
       <section className="min-h-screen flex justify-center items-center flex-col">
-        <CarouselBannerComponent
-          title="The act of styling one’s hair should be a ceremonious one"
-          description="Shop the best natural men’s hairstyling products, shampoo,
-              conditioner, shaving, and skincare."
-          dotButton
-          data={dataImageCarousel}
-          autoPlay
-        />
+        <Image
+          className="md:h-screen w-screen object-contain md:object-cover"
+          height={1000}
+          width={1000}
+          src={"/image/the-brand/banner-thebrand-2.webp"}
+          alt="got-question banner image"
+        ></Image>
+        <Image
+          className="md:h-screen w-screen object-contain md:object-cover"
+          height={1000}
+          width={1000}
+          src={"/image/the-brand/banner-thebrand-3.webp"}
+          alt="got-question banner image"
+        ></Image>
       </section>
-      <section
-        id="all-product"
-        className="flex mt-10 flex-col justify-center py-5 sm:py-20 items-center gap-10"
-      >
-        <TitleComponent firstTitle="ALL" lastTitle="PRODUCT" />
-        <div className="mt-20">
-          <PaginationComponent isOnClick data={dataImageAllProduct} />
+      <section className="pt-20 min-h-screen">
+        <div className="flex flex-col px-5 sm:px-10">
+          <div className="flex flex-col sm:flex-row">
+            <div className="sm:basis-4/6 flex sm:justify-end">
+              <Image
+                className="flex w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover grayscale"
+                width={1000}
+                height={1000}
+                alt="flex"
+                src="/image/the-brand/flexproduct.webp"
+              />
+            </div>
+            <div className="basis-2/6 z-10">
+              <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 sm:col-span-2 text-navy-blue justify-center">
+                <div>
+                  <h1 className="font-bold text-4xl">FLEX</h1>
+                  <div className="text-lg font-light">
+                    Liquified Hair Powder
+                  </div>
+                </div>
+                <div className="text-sm sm:text-2xl font-light">
+                  Dry Matte Finish
+                </div>
+                <div className="tex-sm sm:text-lg font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla
+                  non neque finibus, eget aliquet mi eleifend. Proin suscipit
+                  malesuada molestie. In semper euismod odio, suscipit cursus
+                  lacus rhoncus.
+                </div>
+                <Button
+                  variant="outline"
+                  className="hover:bg-navy-blue mt-10 hover:text-white text-navy-blue border-navy-blue text-sm sm:text-lg w-40 sm:w-52"
+                  onClick={() => {
+                    router.push("/products/flex");
+                  }}
+                >
+                  See product
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row mt-20 mb-44 sm:-mt-44">
+            {breakpoint === "sm" && (
+              <div className="sm:basis-4/6 flex justify-start">
+                <Image
+                  className="flex  w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover grayscale"
+                  width={1000}
+                  height={1000}
+                  alt="flex"
+                  src="/image/the-brand/finesp.webp"
+                />
+              </div>
+            )}
+            <div className="basis-2/6 z-10">
+              <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 sm:col-span-2 text-navy-blue justify-center">
+                <div>
+                  <h1 className="font-bold text-4xl">FINE</h1>
+                  <div className="text-lg font-light">
+                    Liquified Hair Powder
+                  </div>
+                </div>
+                <div className="text-sm sm:text-2xl font-light">
+                  smooth glossy Finish
+                </div>
+                <div className="tex-sm sm:text-lg font-normal">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla
+                  non neque finibus, eget aliquet mi eleifend. Proin suscipit
+                  malesuada molestie. In semper euismod odio, suscipit cursus
+                  lacus rhoncus.
+                </div>
+                <Button
+                  variant="outline"
+                  className="hover:bg-navy-blue mt-10 hover:text-white text-navy-blue border-navy-blue text-sm sm:text-lg w-40 sm:w-52"
+                  onClick={() => {
+                    router.push("/products/fine");
+                  }}
+                >
+                  See product
+                </Button>
+              </div>
+            </div>
+            {breakpoint !== "sm" && (
+              <div className="sm:basis-4/6 flex justify-start">
+                <Image
+                  className="flex  w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover grayscale"
+                  width={1000}
+                  height={1000}
+                  alt="flex"
+                  src="/image/the-brand/finesp.webp"
+                />
+              </div>
+            )}
+          </div>
         </div>
       </section>
       <section

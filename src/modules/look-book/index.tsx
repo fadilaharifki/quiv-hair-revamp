@@ -77,8 +77,8 @@ const LookBookPageModules = () => {
   ];
 
   const reelsUrls = [
-    "https://www.instagram.com/reel/DJwPKdZvxrq/?utm_source=ig_embed&utm_campaign=loading",
-    "https://www.instagram.com/reel/DJdy9VSvKLV/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DJGnxuuPsiB/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DJoGF4aPH2Y/?utm_source=ig_embed&amp;utm_campaign=loading",
     "https://www.instagram.com/reel/DIlqqHXPi5b/?utm_source=ig_embed&amp;utm_campaign=loading",
   ];
 
@@ -93,13 +93,13 @@ const LookBookPageModules = () => {
           alt="got-question banner image"
         ></Image>
       </section>
-      <section className="max-w-5xl mx-auto mt-8 pb-10">
-        <h2 className="text-4xl font-semibold mb-6 text-center">Galeri</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-4 mx-2">
+      <section className="mx-auto mt-8 pb-10">
+        <h2 className="text-4xl font-semibold mb-6 text-center">Gallery</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-1 mx-2">
           {[1, 2, 3, 4, 5, 6].map((num) => (
             <div
               key={num}
-              className="bg-gray-300 rounded-lg flex items-center justify-center text-xl text-gray-600 select-none h-48"
+              className="bg-gray-300 rounded-lg flex items-center justify-center text-xl text-gray-600 select-none h-96"
             >
               {num}
             </div>
@@ -123,21 +123,12 @@ const LookBookPageModules = () => {
           to be featured.
         </div>
         <div className="flex justify-center gap-4">
-          <button
+          <Button
             onClick={() => window.open(instagram, "_blank")}
-            className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+            className="px-5 py-2 bg-light-primary-navbar text-white rounded-md hover:bg-light-primary transition"
           >
             Upload Photo on Instagram
-          </button>
-          <button
-            onClick={() =>
-              (window.location.href =
-                "mailto:admin@quivhair.com?subject=Submit Photo - Your Name")
-            }
-            className="px-5 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
-          >
-            Submit via Email
-          </button>
+          </Button>
         </div>
       </section>
 
