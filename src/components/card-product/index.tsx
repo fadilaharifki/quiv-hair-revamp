@@ -67,14 +67,17 @@ const CardProduct = ({
             src={product.url as string}
           />
         )}
-        <div className="flex flex-col gap-2">
-          {product?.icon && (
+        {product?.icon && (
+          <div>
             <div
               className={twMerge("bg-white p-5 rounded-full", classNameIcon)}
+              onClick={() => window.open(product.url, "_blank")}
             >
               {product?.icon}
             </div>
-          )}
+          </div>
+        )}
+        <div className="flex flex-col gap-2">
           {product?.date && (
             <div
               className={twMerge(
@@ -85,17 +88,18 @@ const CardProduct = ({
               {product.date}
             </div>
           )}
-
-          <div
-            className={twMerge(
-              " font-bold text-3xl text-white text-center",
-              position === "horizontal" && "text-[14px] text-left",
-              "line-clamp-3",
-              classNameTitle
-            )}
-          >
-            {product.title}
-          </div>
+          {product.title && (
+            <div
+              className={twMerge(
+                " font-bold text-3xl text-white text-center",
+                position === "horizontal" && "text-[14px] text-left",
+                "line-clamp-3",
+                classNameTitle
+              )}
+            >
+              {product.title}
+            </div>
+          )}
           {product.description && (
             <div
               className={twMerge(

@@ -7,50 +7,111 @@ import { TitleComponent } from "@/components/title";
 import { Button } from "@/components/ui/button";
 import {
   ArrowDown,
+  BaggageClaim,
+  Instagram,
   MailIcon,
   MapPinIcon,
   PhoneIcon,
   PinIcon,
+  ShoppingBag,
 } from "lucide-react";
 import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
 
 interface FormValues {
-  first_name?: string;
-  last_name?: string;
+  name?: string;
   phone_number?: string;
-  email?: string;
   message?: string;
 }
 
 const ContactPageModules = () => {
   const { handleSubmit, control } = useForm();
 
+  const iconStyle =
+    "w-14 h-14 object-cover cursor-pointer transition-transform duration-300 hover:scale-110 hover:drop-shadow-lg";
+
   const dataImage = [
     {
-      title: "Headquarters",
-      description: "Bandung, Indonesia",
+      title: "Media Social",
+      description: "@quiv.hair",
       icon: (
-        <div>
-          <MapPinIcon size={50} />
+        <div
+          onClick={() =>
+            window.open("https://www.instagram.com/quiv.hair", "_blank")
+          }
+        >
+          <Image
+            alt="instagram"
+            className={iconStyle}
+            width={500}
+            height={500}
+            src={"/image/general/instagram.webp"}
+          />
         </div>
       ),
     },
     {
       title: "Email",
-      description: "info@quiv.com",
+      description: "admin@quivhair.com",
       icon: (
-        <div>
-          <MailIcon size={50} />
+        <div onClick={() => window.open("mailto:admin@quivhair.com", "_blank")}>
+          <Image
+            alt="email"
+            className={iconStyle}
+            width={500}
+            height={500}
+            src={"/image/general/email.webp"}
+          />
         </div>
       ),
     },
     {
-      title: "Phone",
-      description: "+628 000 0000",
+      title: "Whatsapp",
+      description: "+62 851-3786-4870",
       icon: (
-        <div>
-          <PhoneIcon size={50} />
+        <div
+          onClick={() => window.open("https://wa.me/6285137864870", "_blank")}
+        >
+          <Image
+            alt="whatsapp"
+            className={iconStyle}
+            width={500}
+            height={500}
+            src={"/image/general/WA.webp"}
+          />
+        </div>
+      ),
+    },
+    {
+      title: "Shopee",
+      icon: (
+        <div onClick={() => window.open("https://id.shp.ee/zoYsjDQ", "_blank")}>
+          <Image
+            alt="shopee"
+            className={iconStyle}
+            width={500}
+            height={500}
+            src={"/image/general/shopee.webp"}
+          />
+        </div>
+      ),
+    },
+    {
+      title: "TokoPedia",
+      icon: (
+        <div
+          onClick={() =>
+            window.open("https://tk.tokopedia.com/ZShQ44c7j/", "_blank")
+          }
+        >
+          <Image
+            alt="tokopedia"
+            className={twMerge(iconStyle, "object-contain")}
+            width={500}
+            height={500}
+            src={"/image/general/tokopedia.webp"}
+          />
         </div>
       ),
     },
@@ -59,23 +120,13 @@ const ContactPageModules = () => {
   const fieldInput = [
     {
       type: "text",
-      name: "first_name",
-      placholder: "First Name",
-    },
-    {
-      type: "text",
-      name: "last_name",
-      placholder: "Last Name",
+      name: "name",
+      placholder: "Full Name",
     },
     {
       type: "text",
       name: "phone_number",
       placholder: "Phone",
-    },
-    {
-      type: "text",
-      name: "email",
-      placholder: "Email Address",
     },
   ];
 
@@ -89,21 +140,27 @@ const ContactPageModules = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = (e) => {
-    console.log(e, "SubmitHandler");
+    const subject = encodeURIComponent(`${e.name} - ${e.phone_number}`);
+    const body = encodeURIComponent(e.message as string);
+
+    window.open(
+      `mailto:admin@quivhair.com?subject=${subject}&body=${body}`,
+      "_blank"
+    );
   };
 
   return (
     <div>
       <div className="flex min-h-screen justify-center">
-        <div className="flex flex-col sm:flex-row items-center justify-evenly gap-5 sm:gap-10 py-10 sm:py-0">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-5 px-10 items-center w-screen flex-wrap">
           {dataImage.map((product, idx) => {
             return (
               <div key={idx}>
                 <CardProduct
-                  classNameCard="w-[364px] h-[271px] sm:w-[364px] sm:h-[371px] p-5 flex justify-center items-center"
+                  classNameCard="p-5 flex justify-center cursor-pointer h-72"
                   classNameTitle="text-lg sm:text-xl font-light text-4xl"
                   classNameDesc="text-xl"
-                  classNameIcon="p-2 sm:p-10"
+                  classNameIcon=""
                   classNameCardContent="gap-5"
                   product={product}
                 />

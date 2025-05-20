@@ -16,34 +16,34 @@ const FaqPageModules = () => {
 
   const dataFaq = [
     {
-      question: "What is QUIV?",
+      question: "How to order?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus congue. Integer ac lorem in nulla consectetur porta rutrum placerat felis.",
+        "Reach quiv on our Whatsapp, Social Media and directly buy at your favourite marketplace for a faster shop.",
     },
     {
-      question: "How can I order?",
+      question: "How much you get in 1 bottle?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus congue. Integer ac lorem in nulla consectetur porta rutrum placerat felis.",
+        "Inside Quiv is 80g of innovative formula for your daily hair grooming.",
     },
     {
-      question: "How do I become a distributor?",
+      question: "What’s the difference between both products?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus congue. Integer ac lorem in nulla consectetur porta rutrum placerat felis.",
+        "Flex is for a dry matte texture on your hair (mostly like hair powder products), and Fine is for a smoother texture and glossy looks (mostly like using clay/pomade)",
     },
     {
-      question: "What QUIV products would work best for me?",
+      question: "How to apply Quiv?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus congue. Integer ac lorem in nulla consectetur porta rutrum placerat felis.",
+        "One or two pump to your hand, no need to excessively spreading into your palm, just enough spread then apply to your hair and style! For best result use after a shower following a hair dryer.",
     },
     {
-      question: "Does your company test on animals?",
+      question: "Does Quiv support daily use?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus congue. Integer ac lorem in nulla consectetur porta rutrum placerat felis.",
+        "Quiv is made for an active men. Complete a daily men routine with Quiv, from sport to work to hangouts, you can bring Quiv compact bottle easily on your mobility.",
     },
     {
-      question: "Does QUIV products save for any kind of hair?",
+      question: "Does Quiv safe for my hair?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus congue. Integer ac lorem in nulla consectetur porta rutrum placerat felis.",
+        "With BPOM certified, trusted by most active men, nutritions added for your healthier hair, easy-to-wash after use, Quiv is definitely safe.",
     },
   ];
 
@@ -59,12 +59,13 @@ const FaqPageModules = () => {
     <div>
       <div className="h-screen">
         <Image
-          className="h-screen w-screen object-cover grayscale"
-          fill
-          src={"/image/faq/banner.png"}
-          alt="faq image"
+          className="h-screen w-screen object-cover"
+          height={1000}
+          width={1000}
+          src={"/image/got-question/banner.webp"}
+          alt="got-question banner image"
         ></Image>
-        <div className="absolute inset-0 bg-light-primary bg-opacity-25 shadow-lg rounded-md"></div>
+        {/* <div className="absolute inset-0 bg-light-primary bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between gap-5">
             <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
@@ -75,7 +76,7 @@ const FaqPageModules = () => {
             </div>
           </div>
         </div>
-        <ArrowDown onClick={handleScroll} />
+        <ArrowDown onClick={handleScroll} /> */}
       </div>
       <div id="what-quiv" className="min-h-screen">
         <div className="p-5 sm:p-20">
