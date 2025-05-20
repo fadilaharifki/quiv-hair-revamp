@@ -123,7 +123,7 @@ const NavBar = () => {
       <div
         ref={refNav}
         className={twMerge(
-          "grid grid-cols-3 sm:grid-cols-5 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-brown-navbar justify-center items-center"
+          "grid grid-cols-3 sm:grid-cols-5 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-primary-navbar justify-center items-center"
         )}
       >
         <div className="sm:hidden flex justify-start items-center">
@@ -195,7 +195,7 @@ const NavBar = () => {
           className={twMerge(
             "transition-all duration-500 ease-in-out w-screen py-5",
             openMenu
-              ? `grid grid-cols-2 sm:grid-cols-5 px-10 sm:px-0 bg-transparent bg-light-brown-navbar justify-center absolute items-center z-50`
+              ? `grid grid-cols-2 sm:grid-cols-5 px-10 sm:px-0 bg-transparent bg-light-primary-navbar justify-center absolute items-center z-50`
               : "hidden"
           )}
           style={{ top: `${refNav?.current?.offsetHeight}px` }}
@@ -208,7 +208,7 @@ const NavBar = () => {
           className={twMerge(
             "transition-all duration-500 ease-in-out w-screen py-5",
             openSearch
-              ? `grid grid-cols-2 sm:grid-cols-5 pb-10 bg-transparent bg-light-brown-navbar justify-center absolute items-center z-50`
+              ? `grid grid-cols-2 sm:grid-cols-5 pb-10 bg-transparent bg-light-primary-navbar justify-center absolute items-center z-50`
               : "hidden"
           )}
           style={{ top: `${refNav?.current?.offsetHeight}px` }}

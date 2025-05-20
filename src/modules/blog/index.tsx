@@ -104,7 +104,7 @@ const BlogPageModules = () => {
           src={"/image/blog/banner.png"}
           alt="blog image"
         ></Image>
-        <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
+        <div className="absolute inset-0 bg-light-primary bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between gap-5">
             <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
@@ -245,7 +245,7 @@ const BlogPageModules = () => {
       <div className="w-screen overflow-x-auto sm:overflow-hidden">
         <div
           className={twMerge(
-            "flex flex-row min-h-screen bg-light-brown p-5 sm:p-20 gap-5"
+            "flex flex-row min-h-screen bg-light-primary p-5 sm:p-20 gap-5"
           )}
           style={
             breakpoint === "sm" ? { width: `${dynamicWidth}px` } : undefined

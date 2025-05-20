@@ -62,7 +62,7 @@ const LookBookPageModules = () => {
       name: "Image 3",
       position: "right",
       className:
-        "bg-light-brown bg-opacity-50 text-navy-blue text-lg sm:text-5xl flex-col",
+        "bg-light-primary bg-opacity-50 text-navy-blue text-lg sm:text-5xl flex-col",
       description:
         "When it came to men’s grooming products, there weren’t many high-quality, harmful chemical-free options available at prices that were in proportion with what they offered. ",
       title: "Clean Style",
@@ -88,7 +88,7 @@ const LookBookPageModules = () => {
           src={"/image/look-book/banner.png"}
           alt="look book image"
         ></Image>
-        <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
+        <div className="absolute inset-0 bg-light-primary bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between gap-5">
             <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">

@@ -45,7 +45,7 @@ const BottomBar = () => {
                     {menu.icon(
                       isActive
                         ? "text-white transition-colors duration-300 ease-in-out"
-                        : "text-light-brown-navbar transition-colors duration-300 ease-in-out"
+                        : "text-light-primary-navbar transition-colors duration-300 ease-in-out"
                     )}
                   </div>
                 )}
@@ -55,7 +55,7 @@ const BottomBar = () => {
                     "text-xs transition-colors duration-300 ease-in-out text-center leading-tight max-w-[60px] truncate",
                     isActive
                       ? "text-navy-blue font-semibold"
-                      : "text-light-brown-navbar"
+                      : "text-light-primary-navbar"
                   )}
                 >
                   {menu.name}

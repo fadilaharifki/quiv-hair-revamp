@@ -46,6 +46,7 @@ const HomePageModules = () => {
 
   const dataImage2 = [
     {
+      id: "1",
       span: 2,
       child: [
         {
@@ -61,6 +62,7 @@ const HomePageModules = () => {
       ],
     },
     {
+      id: "2",
       span: 3,
       child: [
         {
@@ -76,6 +78,7 @@ const HomePageModules = () => {
       ],
     },
     {
+      id: "3",
       span: 3,
       child: [
         {
@@ -132,7 +135,7 @@ const HomePageModules = () => {
           src={"/image/home/image.png"}
           alt="home image"
         ></Image>
-        <div className="absolute inset-0 bg-light-brown-three bg-opacity-40 shadow-lg  rounded-md"></div>
+        <div className="absolute inset-0 bg-light-primary-three bg-opacity-40 shadow-lg  rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center h-52 sm:h-82 justify-between">
             <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light  text-shadow shadow-black tracking-wide">
@@ -270,7 +273,7 @@ const HomePageModules = () => {
       <div className="min-h-screen flex justify-center items-center flex-col">
         <CarouselBannerComponent dotButton data={dataImage2} autoPlay />
       </div>
-      <div className="text-center px-5 gap-5 sm:gap-0 py-20 sm:h-screen flex justify-evenly items-center flex-col bg-light-brown-one">
+      <div className="text-center px-5 gap-5 sm:gap-0 py-20 sm:h-screen flex justify-evenly items-center flex-col bg-light-primary-one">
         <TitleComponent firstTitle="OUR" lastTitle="PRODUCTS" />
         <h3 className="text-2xl w-[80%] leading-7 sm:leading-10 text-center sm:text-[40px] font-extralight text-navy-blue">
           Choose the QUIV products that fits you!

@@ -7,17 +7,6 @@ import { dataImageFine, dataImageFlex } from "@/constants/data";
 import Image from "next/image";
 
 const ProductsPageModules = () => {
-  const dataImage = [
-    {
-      url: "/image/product/product1.png",
-      title: "Bestseller",
-    },
-    {
-      url: "/image/product/product2.png",
-      title: "New collections",
-    },
-  ];
-
   const dataImageAllProduct = [...dataImageFlex, ...dataImageFine];
 
   const handleScroll = () => {
@@ -37,7 +26,7 @@ const ProductsPageModules = () => {
           src={"/image/product/banner.png"}
           alt="home image"
         ></Image>
-        <div className="absolute inset-0 bg-light-brown bg-opacity-25 shadow-lg rounded-md"></div>
+        <div className="absolute inset-0 bg-light-primary bg-opacity-25 shadow-lg rounded-md"></div>
         <div className="absolute inset-0 flex items-center justify-center ">
           <div className="w-[80%] flex flex-col items-center justify-between gap-5">
             <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
