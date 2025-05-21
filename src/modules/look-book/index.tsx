@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import InstagramReelEmbed from "./InstagramEmberd";
+import InstagramReelEmbed from "../../components/InstagramEmberd";
 import { instagram } from "@/constants/data";
+import { ReelsCarousel } from "@/components/ReelsCarousel";
 
 const LookBookPageModules = () => {
   const handleScroll = () => {
@@ -80,6 +81,12 @@ const LookBookPageModules = () => {
     "https://www.instagram.com/reel/DJGnxuuPsiB/?utm_source=ig_embed&amp;utm_campaign=loading",
     "https://www.instagram.com/reel/DJoGF4aPH2Y/?utm_source=ig_embed&amp;utm_campaign=loading",
     "https://www.instagram.com/reel/DIlqqHXPi5b/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DJGnxuuPsiB/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DJoGF4aPH2Y/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DIlqqHXPi5b/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DJGnxuuPsiB/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DJoGF4aPH2Y/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DIlqqHXPi5b/?utm_source=ig_embed&amp;utm_campaign=loading",
   ];
 
   return (
@@ -108,12 +115,9 @@ const LookBookPageModules = () => {
       </section>
 
       <section>
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          {reelsUrls.map((url) => (
-            <div key={url} style={{ marginBottom: 24 }}>
-              <InstagramReelEmbed url={url} />
-            </div>
-          ))}
+        <div className="grid grid-cols-1">
+          <h2 className="text-2xl font-bold m-4 text-center">Reels</h2>
+          <ReelsCarousel reelsUrls={reelsUrls} />
         </div>
       </section>
       <section className="max-w-xl mx-2 md:mx-auto p-6 bg-gray-50 rounded-lg shadow-md text-center space-y-6 my-10">
