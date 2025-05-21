@@ -139,11 +139,11 @@ const AboutUsPageModules = () => {
                   Dry Matte Finish
                 </div>
                 <div className="tex-sm sm:text-lg font-normal">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla
-                  non neque finibus, eget aliquet mi eleifend. Proin suscipit
-                  malesuada molestie. In semper euismod odio, suscipit cursus
-                  lacus rhoncus.
+                  Strong hold, no messy powder. Flex is your go-to for textured,
+                  effortless styles with a dry matte finish. Whether you’re at
+                  the gym, office, or on the go, Flex keeps your hair looking
+                  clean, styled, and natural — without flakes or stickiness.
+                  Easy-to-wash and sweat friendly
                 </div>
                 <Button
                   variant="outline"
@@ -181,11 +181,12 @@ const AboutUsPageModules = () => {
                   smooth glossy Finish
                 </div>
                 <div className="tex-sm sm:text-lg font-normal">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla
-                  non neque finibus, eget aliquet mi eleifend. Proin suscipit
-                  malesuada molestie. In semper euismod odio, suscipit cursus
-                  lacus rhoncus.
+                  The perfect combo of shine and control. Fine is designed for
+                  those who want a clean, polished look without the greasiness
+                  of gel or pomade. The creamy texture spreads easily and locks
+                  your hair in place with a natural gloss finish with
+                  lightweight feel. Great for neat styles, formal-looks, or that
+                  all-day “fresh from the mirror” guys.
                 </div>
                 <Button
                   variant="outline"

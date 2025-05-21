@@ -339,7 +339,7 @@ const HomePageModules = () => {
                       <div className="flex justify-center">
                         <Button
                           onClick={() => {
-                            router.push(`/blog/${formatUrl(product.title)}`);
+                            router.push(`/feeds/${formatUrl(product.title)}`);
                           }}
                           variant="outline"
                           className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-40 sm:w-52 border-white hover:border-none"

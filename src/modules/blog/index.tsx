@@ -149,7 +149,7 @@ const BlogPageModules = () => {
             <Button
               onClick={() => {
                 router.push(
-                  `/blog/${formatUrl(
+                  `/feeds/${formatUrl(
                     "Three tips for getting perfect vacation hair"
                   )}`
                 );
@@ -187,7 +187,7 @@ const BlogPageModules = () => {
                     <div className="flex">
                       <Button
                         onClick={() => {
-                          router.push(`/blog/${formatUrl(product.title)}`);
+                          router.push(`/feeds/${formatUrl(product.title)}`);
                         }}
                         variant="outline"
                         className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-52 border-white hover:border-none"
@@ -227,7 +227,7 @@ const BlogPageModules = () => {
                     <div className="flex">
                       <Button
                         onClick={() => {
-                          router.push(`/blog/${formatUrl(product.title)}`);
+                          router.push(`/feeds/${formatUrl(product.title)}`);
                         }}
                         variant="outline"
                         className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
@@ -267,7 +267,7 @@ const BlogPageModules = () => {
                     <div className="flex">
                       <Button
                         onClick={() => {
-                          router.push(`/blog/${formatUrl(product.title)}`);
+                          router.push(`/feeds/${formatUrl(product.title)}`);
                         }}
                         variant="outline"
                         className="bg-transparent text-white hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-white hover:border-none"
