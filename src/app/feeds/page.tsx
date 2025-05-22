@@ -2,7 +2,7 @@ import BlogPageModules from "@/modules/blog";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Feeds",
 };
 
 const BlogPage = () => {

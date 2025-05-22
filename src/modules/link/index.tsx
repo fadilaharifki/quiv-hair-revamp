@@ -68,7 +68,7 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
                 Shop Our Products
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md">
+            <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md z-[70]">
               <DropdownMenuItem asChild>
                 <Link
                   href="https://shopee.co.id/quiv.hair"

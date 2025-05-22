@@ -1,6 +1,6 @@
 "use client";
 
-import { CategoryProductsPageInterface } from "@/app/why-quiv/[category]/page";
+import { CategoryProductsPageInterface } from "@/app/why-quiv/bbc5fbc6-5930-4e68-b304-d72d3bc1d461-[category]/page";
 import CardProduct from "@/components/card-product";
 import PaginationComponent from "@/components/pagination";
 import { TitleComponent } from "@/components/title";

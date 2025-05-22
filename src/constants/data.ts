@@ -17,7 +17,7 @@ export const dataImageFlex = [
   {
     name: "FLEX - Liquified Hair Powder",
     date: "30 June 2025",
-    path: "products/flex",
+    path: "/why-quiv/flex",
     url: "/image/general/flexcom.webp",
     disable: false,
   },
@@ -27,7 +27,7 @@ export const dataImageFine = [
   {
     name: "Fine - Liquified Hair Powder",
     date: "30 June 2025",
-    path: "products/fine",
+    path: "why-quiv/fine",
     url: "/image/general/finebox.webp",
     disable: true,
   },

@@ -24,22 +24,22 @@ const HomePageModules = () => {
   const dataImage = [
     {
       name: "FLEX - Liquified Hair Powder",
-      path: "/products/flex",
+      path: "/why-quiv/flex",
       url: "/image/general/image1_flex.png",
     },
     {
       name: "FINE - Liquified Hair Powder",
-      path: "/products/fine",
+      path: "/why-quiv/fine",
       url: "/image/general/image1_fine.png",
     },
     {
       name: "FLEX - Liquified Hair Powder",
-      path: "/products/flex",
+      path: "/why-quiv/flex",
       url: "/image/general/image1_flex.png",
     },
     {
       name: "FINE - Liquified Hair Powder",
-      path: "/products/fine",
+      path: "/why-quiv/fine",
       url: "/image/general/image1_fine.png",
     },
   ];
@@ -207,7 +207,7 @@ const HomePageModules = () => {
                   variant="outline"
                   className="hover:bg-navy-blue mt-10 hover:text-white text-navy-blue border-navy-blue text-sm sm:text-lg w-40 sm:w-52"
                   onClick={() => {
-                    router.push("/products/flex");
+                    router.push("/why-quiv/flex");
                   }}
                 >
                   See product
@@ -249,7 +249,7 @@ const HomePageModules = () => {
                   variant="outline"
                   className="hover:bg-navy-blue mt-10 hover:text-white text-navy-blue border-navy-blue text-sm sm:text-lg w-40 sm:w-52"
                   onClick={() => {
-                    router.push("/products/fine");
+                    router.push("/why-quiv/fine");
                   }}
                 >
                   See product
@@ -281,7 +281,7 @@ const HomePageModules = () => {
         <div className="flex">
           <Button
             onClick={() => {
-              router.push("/products");
+              router.push("/why-quiv");
             }}
             variant="outline"
             className="bg-transparent text-navy-blue text-sm sm:text-lg w-40 sm:w-52 border-black hover:border-none"
@@ -298,7 +298,6 @@ const HomePageModules = () => {
             data={dataImage}
             originButtonNextPrev
             buttonNextPrev={false}
-            isOnClick
           />
         </div>
       </div>

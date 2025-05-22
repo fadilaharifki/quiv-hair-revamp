@@ -15,11 +15,11 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "Quiv The website the best in the world",
+    default: "Quiv Refining Hair Perfection to Impress, Elevate, and Dominate",
     template: "%s - Quiv",
   },
   description:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "Quiv was born to solve real men problems—the future for hair styling. Forget messy hair powders, greasy waxes, and outdated gels. We've created products: innovative, easy, and futuristic. Styling your hair should be as effortless as your confidence.",
   openGraph: {
     images: [
       {
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@yourTwitterHandle",
-    title: `product Quiv category as asas as is the best`,
-    description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard `,
+    site: "@",
+    title: `Quiv Refining Hair Perfection to Impress, Elevate, and Dominate`,
+    description: `Quiv was born to solve real men problems—the future for hair styling. Forget messy hair powders, greasy waxes, and outdated gels. We've created products: innovative, easy, and futuristic. Styling your hair should be as effortless as your confidence.`,
     images: [
       {
         url: "/Logo.png",

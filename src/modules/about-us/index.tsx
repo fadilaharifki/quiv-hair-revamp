@@ -145,15 +145,15 @@ const AboutUsPageModules = () => {
                   clean, styled, and natural — without flakes or stickiness.
                   Easy-to-wash and sweat friendly
                 </div>
-                <Button
+                {/* <Button
                   variant="outline"
                   className="hover:bg-navy-blue mt-10 hover:text-white text-navy-blue border-navy-blue text-sm sm:text-lg w-40 sm:w-52"
                   onClick={() => {
-                    router.push("/products/flex");
+                    router.push("/why-quiv/flex");
                   }}
                 >
                   See product
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
@@ -188,15 +188,15 @@ const AboutUsPageModules = () => {
                   lightweight feel. Great for neat styles, formal-looks, or that
                   all-day “fresh from the mirror” guys.
                 </div>
-                <Button
+                {/* <Button
                   variant="outline"
                   className="hover:bg-navy-blue mt-10 hover:text-white text-navy-blue border-navy-blue text-sm sm:text-lg w-40 sm:w-52"
                   onClick={() => {
-                    router.push("/products/fine");
+                    router.push("/why-quiv/fine");
                   }}
                 >
                   See product
-                </Button>
+                </Button> */}
               </div>
             </div>
             {breakpoint !== "sm" && (

@@ -2,7 +2,7 @@ import ProductsPageModules from "@/modules/products";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Why Quive",
 };
 
 const ProductsPage = () => {
