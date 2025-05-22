@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Card, CardContent } from "../ui/card";
 import { twMerge } from "tailwind-merge";
+import { BlogData } from "@/constants/dataBlog";
 
 type Position = "horizontal" | "vertical";
 
@@ -21,7 +22,7 @@ interface CardProductInterface {
   classNameFooter?: string;
   classNameDesc?: string;
   classNameIcon?: string;
-  product: ProductInterface;
+  product: BlogData;
   footer?: React.ReactNode;
   position?: Position;
 }
@@ -54,20 +55,20 @@ const CardProduct = ({
           classNameCardContent
         )}
       >
-        {product.url && (
+        {product.thumbnail && (
           <Image
             className={twMerge(
-              "flex rounded-lg h-50 w-50",
+              "flex rounded-lg h-52 w-52",
               position === "horizontal" && "w-50",
               classNameImage
             )}
-            width={286}
-            height={286}
+            width={1000}
+            height={1000}
             alt={product.title as string}
-            src={product.url as string}
+            src={product.thumbnail as string}
           />
         )}
-        {product?.icon && (
+        {/* {product?.icon && (
           <div>
             <div
               className={twMerge("bg-white p-5 rounded-full", classNameIcon)}
@@ -76,18 +77,8 @@ const CardProduct = ({
               {product?.icon}
             </div>
           </div>
-        )}
+        )} */}
         <div className="flex flex-col gap-2">
-          {product?.date && (
-            <div
-              className={twMerge(
-                " font-thin text-[12px] text-white text-start",
-                classNameDate
-              )}
-            >
-              {product.date}
-            </div>
-          )}
           {product.title && (
             <div
               className={twMerge(
@@ -100,7 +91,7 @@ const CardProduct = ({
               {product.title}
             </div>
           )}
-          {product.description && (
+          {product.introduction && (
             <div
               className={twMerge(
                 "  font-thin text-[12px] sm:text-[14px] text-white text-center",
@@ -108,7 +99,7 @@ const CardProduct = ({
                 classNameDesc
               )}
             >
-              {product.description}
+              {product.introduction}
             </div>
           )}
           {footer && (

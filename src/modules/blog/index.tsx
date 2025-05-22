@@ -1,10 +1,9 @@
 "use client";
 
-import ArrowDown from "@/components/arrow-down";
 import CardProduct from "@/components/card-product";
 import { Button } from "@/components/ui/button";
+import { dataBlog } from "@/constants/dataBlog";
 import useScreenSize from "@/hooks/useScreenSize";
-import { formatUrl } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
@@ -12,77 +11,6 @@ import { twMerge } from "tailwind-merge";
 const BlogPageModules = () => {
   const { width, breakpoint } = useScreenSize();
   const router = useRouter();
-  const dataImage1 = [
-    {
-      url: "/image/blog/image2.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-    {
-      url: "/image/blog/image3.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-    {
-      url: "/image/blog/image4.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-  ];
-
-  const dataImage2 = [
-    {
-      url: "/image/blog/image5.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-    {
-      url: "/image/blog/image6.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-    {
-      url: "/image/blog/image7.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-  ];
-
-  const dataImage3 = [
-    {
-      url: "/image/blog/image8.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-    {
-      url: "/image/blog/image9.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-    {
-      url: "/image/blog/image10.png",
-      title: "Three tips for getting perfect vacation hair",
-      description:
-        "No matter where you’re travelling this summer, you need to keep your hair looking better than ever. Imagine all the vacation selfies forever imprinted into your phone ",
-      date: "30 JUNE 2025",
-    },
-  ];
 
   const handleScroll = () => {
     const element = document.getElementById("section-2");
@@ -93,29 +21,21 @@ const BlogPageModules = () => {
     }
   };
 
-  const dynamicWidth = dataImage3.length * width;
+  const section1 = dataBlog[0];
+  const section2 = dataBlog.slice(1, 4);
+  const section3 = dataBlog.slice(4, 7);
+  const section4 = [...dataBlog.slice(7, 10), dataBlog[0]];
 
   return (
     <div>
-      <div className="h-screen">
+      <div className="md:h-screen -mt-16">
         <Image
-          className="h-screen w-screen object-cover grayscale"
-          fill
-          src={"/image/blog/banner.png"}
-          alt="blog image"
+          className="md:h-screen w-screen object-contain md:object-cover"
+          height={1000}
+          width={1000}
+          src={"/image/blog/the-feeds-banner.webp"}
+          alt="got-question banner image"
         ></Image>
-        <div className="absolute inset-0 bg-light-primary bg-opacity-25 shadow-lg rounded-md"></div>
-        <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between gap-5">
-            <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
-              Blog
-            </h1>
-            <div className="text-white text-sm sm:text-lg   text-center text-shadow shadow-gray-500">
-              Natural ingredients, proven to perform the best
-            </div>
-          </div>
-        </div>
-        <ArrowDown onClick={handleScroll} />
       </div>
       <div
         id="section-2"
@@ -128,31 +48,22 @@ const BlogPageModules = () => {
               width={286}
               height={286}
               objectFit="cover"
-              src={"/image/blog/image1.png"}
+              src={section1.thumbnail}
               alt={"story about us"}
             />
           </div>
         </div>
         <div className="flex flex-col basis-2/5 gap-5">
-          <div className="text-light-blue text-sm sm:text-xl   font-thin">
-            30 JUNE 2025
-          </div>
           <div className="text-navy-blue text-3xl sm:text-4xl sm:text-[50px]  font-semibold leading-tight">
-            Three tips for getting perfect vacation hair
+            {section1.title}
           </div>
           <div className="text-navy-blue text-base sm:text-2xl   font-light leading-tight">
-            No matter where you’re travelling this summer, you need to keep your
-            hair looking better than ever. Imagine all the vacation selfies
-            forever imprinted into your phone
+            {section1.introduction}
           </div>
           <div>
             <Button
               onClick={() => {
-                router.push(
-                  `/feeds/${formatUrl(
-                    "Three tips for getting perfect vacation hair"
-                  )}`
-                );
+                router.push(`/feeds/${section1.slug}`);
               }}
               variant="outline"
               className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue text-sm sm:text-lg w-52 "
@@ -165,13 +76,10 @@ const BlogPageModules = () => {
       <div className="w-screen overflow-x-auto sm:overflow-hidden">
         <div
           className={twMerge(
-            "flex flex-row min-h-screen bg-navy-blue p-5 sm:p-20 gap-5"
+            "grid grid-cols-1 md:grid-cols-3 min-h-screen bg-navy-blue p-5 sm:p-20 gap-5"
           )}
-          style={
-            breakpoint === "sm" ? { width: `${dynamicWidth}px` } : undefined
-          }
         >
-          {dataImage1.map((product, idx) => {
+          {section2.map((blog, idx) => {
             return (
               <div key={idx}>
                 <CardProduct
@@ -182,12 +90,12 @@ const BlogPageModules = () => {
                   classNameDesc="text-start "
                   classNameFooter="justify-start "
                   classNameDate=""
-                  product={product}
+                  product={blog}
                   footer={
                     <div className="flex">
                       <Button
                         onClick={() => {
-                          router.push(`/feeds/${formatUrl(product.title)}`);
+                          router.push(`/feeds/${blog.slug}`);
                         }}
                         variant="outline"
                         className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-52 border-white hover:border-none"
@@ -205,13 +113,10 @@ const BlogPageModules = () => {
       <div className="w-screen overflow-x-auto sm:overflow-hidden">
         <div
           className={twMerge(
-            "flex flex-row min-h-screen bg-white p-5 sm:p-20 gap-5"
+            "grid grid-cols-1 md:grid-cols-3 min-h-screen bg-white p-5 sm:p-20 gap-5"
           )}
-          style={
-            breakpoint === "sm" ? { width: `${dynamicWidth}px` } : undefined
-          }
         >
-          {dataImage2.map((product, idx) => {
+          {section3.map((product, idx) => {
             return (
               <div key={idx}>
                 <CardProduct
@@ -227,7 +132,7 @@ const BlogPageModules = () => {
                     <div className="flex">
                       <Button
                         onClick={() => {
-                          router.push(`/feeds/${formatUrl(product.title)}`);
+                          router.push(`/feeds/${product.slug}`);
                         }}
                         variant="outline"
                         className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-navy-blue hover:border-none"
@@ -245,13 +150,10 @@ const BlogPageModules = () => {
       <div className="w-screen overflow-x-auto sm:overflow-hidden">
         <div
           className={twMerge(
-            "flex flex-row min-h-screen bg-light-primary p-5 sm:p-20 gap-5"
+            `grid grid-cols-1 md:grid-cols-3 min-h-screen bg-light-primary p-5 sm:p-20 gap-5`
           )}
-          style={
-            breakpoint === "sm" ? { width: `${dynamicWidth}px` } : undefined
-          }
         >
-          {dataImage3.map((product, idx) => {
+          {section4.map((product, idx) => {
             return (
               <div key={idx}>
                 <CardProduct
@@ -267,7 +169,7 @@ const BlogPageModules = () => {
                     <div className="flex">
                       <Button
                         onClick={() => {
-                          router.push(`/feeds/${formatUrl(product.title)}`);
+                          router.push(`/feeds/${product.slug}`);
                         }}
                         variant="outline"
                         className="bg-transparent text-white hover:bg-navy-blue hover:text-white text-sm sm:text-lg w-52 border-white hover:border-none"

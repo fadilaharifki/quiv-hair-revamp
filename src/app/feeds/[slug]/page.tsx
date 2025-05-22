@@ -1,3 +1,4 @@
+import { BlogData, dataBlog } from "@/constants/dataBlog";
 import BlogDetailPageModules from "@/modules/blog/detail";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -16,7 +17,9 @@ export interface BlogDetailProductsPageProps {
 }
 
 const BlogDetailProductsPage = ({ params }: BlogDetailProductsPageProps) => {
-  return <BlogDetailPageModules params={params} />;
+  const data = dataBlog.find((e) => e.slug === params.slug);
+
+  return <BlogDetailPageModules data={data as BlogData} params={params} />;
 };
 
 export default BlogDetailProductsPage;
