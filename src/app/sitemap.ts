@@ -15,9 +15,9 @@ type changeFrequency =
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const changeFrequency = "daily" as changeFrequency;
 
-  const blogDetail = dataBlog.map(({ slug, date }) => ({
+  const blogDetail = dataBlog.map(({ slug }) => ({
     url: `${WEBSITE_HOST_URL}/feeds/${slug}`,
-    lastModified: date,
+    lastModified: new Date(),
     changeFrequency,
   }));
 
