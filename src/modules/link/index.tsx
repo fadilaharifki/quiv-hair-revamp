@@ -42,7 +42,7 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#E8E3DC]">
+    <div className="h-safe-screen flex flex-col bg-[#E8E3DC]">
       {/* Banner */}
       <div className="w-full h-[50vh] relative">
         <div className="flex justify-center h-20 items-center flex-col px-10">

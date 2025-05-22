@@ -5,14 +5,6 @@ import { BlogData } from "@/constants/dataBlog";
 
 type Position = "horizontal" | "vertical";
 
-interface ProductInterface {
-  url?: string;
-  icon?: React.ReactNode;
-  title: string;
-  description?: string;
-  date?: string;
-}
-
 interface CardProductInterface {
   classNameCard?: string;
   classNameImage?: string;
@@ -22,7 +14,7 @@ interface CardProductInterface {
   classNameFooter?: string;
   classNameDesc?: string;
   classNameIcon?: string;
-  product: BlogData;
+  product: any;
   footer?: React.ReactNode;
   position?: Position;
 }
@@ -55,7 +47,7 @@ const CardProduct = ({
           classNameCardContent
         )}
       >
-        {product.thumbnail && (
+        {(product.thumbnail || product.url) && (
           <Image
             className={twMerge(
               "flex rounded-lg h-52 w-52",
@@ -64,8 +56,8 @@ const CardProduct = ({
             )}
             width={1000}
             height={1000}
-            alt={product.title as string}
-            src={product.thumbnail as string}
+            alt={product.title ?? (product.name as string)}
+            src={product.thumbnail ?? (product.url as string)}
           />
         )}
         {/* {product?.icon && (

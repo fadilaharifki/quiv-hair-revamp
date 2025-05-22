@@ -1,14 +1,14 @@
 export const benefitIcon = [
   {
-    url: "/image/about-us/image1.png",
+    url: "/image/the-brand/image1.png",
     title: "Natural Ingredients",
   },
   {
-    url: "/image/about-us/image2.png",
+    url: "/image/the-brand/image2.png",
     title: "No Harmful Chemical",
   },
   {
-    url: "/image/about-us/image3.png",
+    url: "/image/the-brand/image3.png",
     title: "Cruelty Free",
   },
 ];
