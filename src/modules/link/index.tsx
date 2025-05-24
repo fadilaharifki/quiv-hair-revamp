@@ -10,44 +10,56 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ShoppingBag, Globe, Instagram } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { instagram } from "@/constants/data";
 import { CarouselProductComponent } from "@/components/carousel-product";
 import { CarouselBannerComponent } from "@/components/carousel-banner";
+import useScreenSize from "@/hooks/useScreenSize";
 
 export default function AppPageModuls({ onClose }: { onClose: () => void }) {
-  const dataImage2 = [
-    {
-      id: "1",
-      span: 1,
-      child: [
-        {
-          name: "link 1",
-          span: 1,
-          url: "/image/home/banner-linktree-1.webp",
-        },
-      ],
-    },
-    {
-      id: "2",
-      span: 1,
-      child: [
-        {
-          name: "link 2",
-          span: 1,
-          url: "/image/home/banner-linktree-2.webp",
-        },
-      ],
-    },
-  ];
+  const { breakpoint } = useScreenSize();
+  const dataImage2 = useMemo(() => {
+    const isMobile = breakpoint === "sm";
+
+    return [
+      {
+        id: "1",
+        span: 1,
+        child: [
+          {
+            name: "link 1",
+            span: 1,
+            url: isMobile
+              ? "/image/home/banner-linktree-1-mobile.webp"
+              : "/image/home/banner-linktree-1.webp",
+          },
+        ],
+      },
+      {
+        id: "2",
+        span: 1,
+        child: [
+          {
+            name: "link 2",
+            span: 1,
+            url: isMobile
+              ? "/image/home/banner-linktree-2-mobile.webp"
+              : "/image/home/banner-linktree-2.webp",
+          },
+        ],
+      },
+    ];
+  }, [breakpoint]);
 
   return (
-    <div className="h-safe-screen flex flex-col bg-[#E8E3DC]">
+    <div className="h-screen grid grid-rows-2 bg-[#E8E3DC]">
       {/* Banner */}
-      <div className="w-full h-[50vh] relative">
-        <div className="flex justify-center h-20 items-center flex-col px-10">
-          <CarouselBannerComponent data={dataImage2} autoPlay />
-        </div>
+      <div>
+        <CarouselBannerComponent
+          data={dataImage2}
+          autoPlay
+          isMinHeighScreen={false}
+        />
       </div>
       {/* Main Content */}
       <div className="flex-grow flex items-center justify-center p-4">

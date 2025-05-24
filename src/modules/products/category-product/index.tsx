@@ -106,8 +106,8 @@ const CategoryProductsPageModules = ({
     setIsLoading(true);
     setTimeout(() => {
       const category = props?.params?.category;
-      if (category && imageProduct[category][0]) {
-        setImageProductActive(imageProduct[category][0]);
+      if (category && imageProduct[category]?.[0]) {
+        setImageProductActive(imageProduct[category]?.[0]);
       } else {
         setIsNotFound(true);
         setImageProductActive(false);
@@ -250,8 +250,8 @@ const CategoryProductsPageModules = ({
                   }}
                   key={idx}
                   className="h-[190px] w-[190px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110 bg-white"
-                  width={190}
-                  height={190}
+                  width={1000}
+                  height={1000}
                   src={item.url}
                   alt={item.title}
                 ></Image>
@@ -262,8 +262,8 @@ const CategoryProductsPageModules = ({
         <div className="sm:col-span-3 flex justify-center items-center">
           <Image
             className="h-[350px] w-[300px] sm:h-[595px] sm:w-[595px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110"
-            width={286}
-            height={286}
+            width={1000}
+            height={1000}
             src={imageProductActive.url}
             alt={imageProductActive.title}
           ></Image>
@@ -279,8 +279,8 @@ const CategoryProductsPageModules = ({
                     }}
                     key={idx}
                     className="h-[90px] w-[90px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110 bg-white"
-                    width={190}
-                    height={190}
+                    width={1000}
+                    height={1000}
                     src={item.url}
                     alt={item.title}
                   ></Image>

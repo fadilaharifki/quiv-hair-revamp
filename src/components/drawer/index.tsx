@@ -1,5 +1,5 @@
 import { CircleX } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
 interface DrawerProps {
   isOpen: boolean;
@@ -17,6 +17,18 @@ const FullScreenDrawer = ({
   const toggleDrawer = () => {
     onClose();
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <>

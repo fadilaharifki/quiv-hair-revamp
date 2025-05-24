@@ -1,20 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import ArrowDown from "@/components/arrow-down";
 import CardProduct from "@/components/card-product";
 import { TitleComponent } from "@/components/title";
 import { benefitIcon, dataImageFlex, dataImageFine } from "@/constants/data";
 import Logo from "../../assets/svg/logo.svg";
 import Image from "next/image";
-import PaginationComponent from "@/components/pagination";
-import { CarouselBannerComponent } from "@/components/carousel-banner";
 import { Button } from "@/components/ui/button";
 import useScreenSize from "@/hooks/useScreenSize";
 import { useRouter } from "next/navigation";
 import FullScreenDrawer from "@/components/drawer";
 import AppPageModuls from "../link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useToggleStore } from "@/stores/useToggleStore";
 import LoadingLine from "@/components/LoadingLine";
 

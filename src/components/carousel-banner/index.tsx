@@ -45,6 +45,7 @@ interface CarouselInterface {
   classNameImageContainer?: string;
   onClick?: (val: string) => void;
   isBgOpacity?: boolean;
+  isMinHeighScreen?: boolean;
 }
 
 export function CarouselBannerComponent({
@@ -60,6 +61,7 @@ export function CarouselBannerComponent({
   classNameImageContainer,
   isBgOpacity = true,
   onClick,
+  isMinHeighScreen = true,
 }: CarouselInterface) {
   const intervalRef = useRef<number | any>(null);
   const [api, setApi] = useState<CarouselApi>();
@@ -137,8 +139,9 @@ export function CarouselBannerComponent({
     <Carousel
       setApi={setApi}
       className={twMerge(
-        "w-screen justify-center items-center md:min-h-screen",
-        breakpoint === "sm" ? "min-h-screen" : ""
+        "w-screen justify-center items-center",
+        isMinHeighScreen && "md:min-h-screen",
+        isMinHeighScreen && breakpoint === "sm" ? "min-h-screen" : ""
       )}
       opts={opts}
     >
@@ -149,15 +152,21 @@ export function CarouselBannerComponent({
               const flexBasisValue = (+itemImage?.span / +items?.span) * 100;
               return (
                 <div
-                  className={twMerge("md:h-screen", classNameImageContainer)}
+                  className={twMerge(
+                    isMinHeighScreen && "md:min-h-screen",
+                    classNameImageContainer
+                  )}
                   key={idx}
                   style={{ flexBasis: `${flexBasisValue}%` }}
                 >
                   <Image
                     className={twMerge(
-                      "flex md:min-h-screen w-screen object-cover grayscale",
-                      classNameImage,
-                      breakpoint === "sm" ? "min-h-screen" : ""
+                      "flex w-screen object-cover grayscale",
+                      isMinHeighScreen && "md:min-h-screen",
+                      isMinHeighScreen && breakpoint === "sm"
+                        ? "min-h-screen"
+                        : "",
+                      classNameImage
                     )}
                     width={1000}
                     height={1000}
