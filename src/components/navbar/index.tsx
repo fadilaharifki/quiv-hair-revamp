@@ -130,7 +130,7 @@ const NavBar = () => {
       >
         <div className="sm:hidden flex justify-start items-center">
           <div
-            className={`transform transition-transform duration-500 ${
+            className={`hidden transform transition-transform duration-500 ${
               openMenu ? "rotate-180" : ""
             }`}
             onClick={() => {
@@ -163,7 +163,7 @@ const NavBar = () => {
             />
           </div>
         ) : (
-          <>
+          <div className="flex justify-center items-start">
             <div className="flex sm:justify-center items-center col-span-1">
               <Link
                 href={"/"}
@@ -177,7 +177,6 @@ const NavBar = () => {
                 <Image width={100} height={100} src={Logo} alt="Logo"></Image>
               </Link>
             </div>
-            <div className="col-span-1"></div>
             <div className="hidden sm:flex justify-around items-center col-span-4">
               {renderMenu()}
             </div>
@@ -193,7 +192,7 @@ const NavBar = () => {
                 className=" cursor-pointer hover:scale-125 duration-300"
               />
             </div>
-          </>
+          </div>
         )}
       </div>
       {openMenu && (
