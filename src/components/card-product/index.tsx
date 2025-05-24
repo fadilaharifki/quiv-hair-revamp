@@ -17,6 +17,7 @@ interface CardProductInterface {
   product: any;
   footer?: React.ReactNode;
   position?: Position;
+  isContainerImagev2?: boolean;
 }
 
 const CardProduct = ({
@@ -30,6 +31,7 @@ const CardProduct = ({
   classNameIcon,
   product,
   footer,
+  isContainerImagev2,
   position = "vertical",
 }: CardProductInterface) => {
   return (
@@ -48,19 +50,38 @@ const CardProduct = ({
         )}
       >
         {(product.thumbnail || product.url) && (
-          <Image
-            className={twMerge(
-              "flex rounded-lg h-52 w-52",
-              position === "horizontal" && "w-50",
-              classNameImage
+          <>
+            {isContainerImagev2 ? (
+              <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+                <Image
+                  className={twMerge(
+                    "object-cover w-full h-full",
+                    position === "horizontal" && "w-50",
+                    classNameImage
+                  )}
+                  alt={product.title ?? (product.name as string)}
+                  src={product.thumbnail ?? (product.url as string)}
+                  fill
+                  sizes="100vw"
+                />
+              </div>
+            ) : (
+              <Image
+                className={twMerge(
+                  "flex rounded-lg h-52 w-52",
+                  position === "horizontal" && "w-50",
+                  classNameImage
+                )}
+                width={1000}
+                height={1000}
+                alt={product.title ?? (product.name as string)}
+                src={product.thumbnail ?? (product.url as string)}
+              />
             )}
-            width={1000}
-            height={1000}
-            alt={product.title ?? (product.name as string)}
-            src={product.thumbnail ?? (product.url as string)}
-          />
+          </>
         )}
-        {/* {product?.icon && (
+
+        {product?.icon && (
           <div>
             <div
               className={twMerge("bg-white p-5 rounded-full", classNameIcon)}
@@ -69,12 +90,12 @@ const CardProduct = ({
               {product?.icon}
             </div>
           </div>
-        )} */}
+        )}
         <div className="flex flex-col gap-2">
           {product.title && (
             <div
               className={twMerge(
-                " font-bold text-3xl text-white text-center",
+                "font-bold text-3xl text-white text-center",
                 position === "horizontal" && "text-[14px] text-left",
                 "line-clamp-3",
                 classNameTitle

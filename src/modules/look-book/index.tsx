@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import InstagramReelEmbed from "../../components/InstagramEmberd";
 import { instagram } from "@/constants/data";
 import { ReelsCarousel } from "@/components/ReelsCarousel";
+import { TitleComponent } from "@/components/title";
 
 const LookBookPageModules = () => {
   const handleScroll = () => {
@@ -16,65 +17,13 @@ const LookBookPageModules = () => {
     }
   };
 
-  const dataImage = [
-    {
-      url: "/image/look-book/image1.png",
-      name: "Image 1",
-      position: "right",
-      className: "bg-light-gray text-navy-blue text-lg sm:text-5xl flex-col",
-      description:
-        "When it came to men’s grooming products, there weren’t many high-quality, harmful chemical-free options available at prices that were in proportion with what they offered. ",
-      title: "Style",
-      firstTitle: "Day-to-Day",
-      lastTitle: "Style",
-      button: (
-        <Button
-          variant="outline"
-          className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue border-navy-blue text-sm sm:text-lg w-52 "
-        >
-          Shop Now
-        </Button>
-      ),
-    },
-    {
-      url: "/image/look-book/image2.png",
-      name: "Image 2",
-      position: "left",
-      className: "bg-navy-blue text-white text-lg sm:text-5xl flex-col",
-      description:
-        "When it came to men’s grooming products, there weren’t many high-quality, harmful chemical-free options available at prices that were in proportion with what they offered. ",
-      title: "Classy Style",
-      firstTitle: "Classy",
-      lastTitle: "Style",
-      button: (
-        <Button
-          variant="outline"
-          className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-40 sm:w-52 "
-        >
-          Shop Now
-        </Button>
-      ),
-    },
-    {
-      url: "/image/look-book/image3.png",
-      name: "Image 3",
-      position: "right",
-      className:
-        "bg-light-primary bg-opacity-50 text-navy-blue text-lg sm:text-5xl flex-col",
-      description:
-        "When it came to men’s grooming products, there weren’t many high-quality, harmful chemical-free options available at prices that were in proportion with what they offered. ",
-      title: "Clean Style",
-      firstTitle: "Clean",
-      lastTitle: "Style",
-      button: (
-        <Button
-          variant="outline"
-          className="bg-transparent text-navy-blue hover:text-white hover:bg-navy-blue border-navy-blue text-sm sm:text-lg w-52 "
-        >
-          Shop Now
-        </Button>
-      ),
-    },
+  const galery = [
+    "/image/look-book/galery-1.webp",
+    "/image/look-book/galery-2.webp",
+    "/image/look-book/galery-3.webp",
+    "/image/look-book/galery-4.webp",
+    "/image/look-book/galery-5.webp",
+    "/image/look-book/galery-6.webp",
   ];
 
   const reelsUrls = [
@@ -101,14 +50,25 @@ const LookBookPageModules = () => {
         ></Image>
       </section>
       <section className="mx-auto mt-8 pb-10">
-        <h2 className="text-4xl font-semibold mb-6 text-center">Gallery</h2>
+        <div className="py-10">
+          <TitleComponent
+            lastTitle="Gallery"
+            classNameContainer="uppercase flex justify-center"
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-1 mx-2">
-          {[1, 2, 3, 4, 5, 6].map((num) => (
+          {galery.map((url, idx) => (
             <div
-              key={num}
+              key={url}
               className="bg-gray-300 rounded-lg flex items-center justify-center text-xl text-gray-600 select-none h-96"
             >
-              {num}
+              <Image
+                width={1000}
+                height={1000}
+                className="w-full h-full object-cover object-[center_5%] rounded-lg"
+                src={url}
+                alt={`image gallery ${idx}`}
+              />
             </div>
           ))}
         </div>
@@ -116,7 +76,14 @@ const LookBookPageModules = () => {
 
       <section>
         <div className="grid grid-cols-1">
-          <h2 className="text-2xl font-bold m-4 text-center">Reels</h2>
+          <div className="py-10">
+            <TitleComponent
+              firstTitle="What"
+              lastTitle="They Said"
+              classNameContainer="uppercase flex justify-center"
+            />
+          </div>
+
           <ReelsCarousel reelsUrls={reelsUrls} />
         </div>
       </section>

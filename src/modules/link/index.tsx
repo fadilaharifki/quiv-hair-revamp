@@ -48,11 +48,6 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
         <div className="flex justify-center h-20 items-center flex-col px-10">
           <CarouselBannerComponent data={dataImage2} autoPlay />
         </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white drop-shadow-lg">
-            QUIV
-          </h1>
-        </div>
       </div>
       {/* Main Content */}
       <div className="flex-grow flex items-center justify-center p-4">
@@ -103,7 +98,7 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
                   Tokopedia
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
+              {/* <DropdownMenuItem asChild>
                 <Link
                   href="https://www.tiktok.com/@quivhair"
                   className="flex items-center cursor-pointer"
@@ -119,7 +114,7 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
                   />
                   TikTok
                 </Link>
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -164,7 +159,7 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link
-                  href="https://www.tiktok.com/@quivhair"
+                  href="https://www.tiktok.com/@quiv_hair?_t=ZS-8walSCn8fVB&_r=1"
                   className="flex items-center cursor-pointer"
                   target="_blank"
                 >

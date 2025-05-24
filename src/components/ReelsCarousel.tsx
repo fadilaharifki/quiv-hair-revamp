@@ -21,17 +21,26 @@ export function ReelsCarousel({ reelsUrls }: { reelsUrls: string[] }) {
   return (
     <div className="relative">
       <button
-        onClick={() => api?.scrollPrev()}
-        className="absolute left-5 top-[40%] z-10"
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          api?.scrollPrev();
+        }}
+        className="absolute left-5 top-[45%] md:top-[40%] z-20 bg-black/40 rounded-full p-1"
       >
         <ChevronLeftCircle color="white" size={30} />
       </button>
       <button
-        onClick={() => api?.scrollNext()}
-        className="absolute right-5 top-[40%] z-10"
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          api?.scrollNext();
+        }}
+        className="absolute right-5 top-[45%] md:top-[40%] z-[1002] bg-black/40 rounded-full p-1"
       >
         <ChevronRightCircle color="white" size={30} />
       </button>
+      <div className="absolute z-10 top-[35%] md:top-[30%] h-[5%] w-screen"></div>
 
       <Carousel
         setApi={setApi}

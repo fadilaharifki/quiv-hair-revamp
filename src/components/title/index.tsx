@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
 interface TitleInterface {
-  firstTitle: string;
+  firstTitle?: string;
   lastTitle: string;
   classNameContainer?: string;
 }

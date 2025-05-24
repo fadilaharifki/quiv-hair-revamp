@@ -99,23 +99,14 @@ const AboutUsPageModules = () => {
           </div>
         </div>
       </section>
-      <section className="min-h-screen flex justify-center items-center flex-col">
-        <Image
-          className="md:h-screen w-screen object-contain md:object-cover"
-          height={1000}
-          width={1000}
-          src={"/image/the-brand/banner-thebrand-2.webp"}
-          alt="got-question banner image"
-        ></Image>
-        <Image
-          className="md:h-screen w-screen object-contain md:object-cover"
-          height={1000}
-          width={1000}
-          src={"/image/the-brand/banner-thebrand-3.webp"}
-          alt="got-question banner image"
-        ></Image>
-      </section>
       <section className="pt-20 min-h-screen">
+        <div className="pb-20">
+          <TitleComponent
+            firstTitle="Our"
+            lastTitle="Product"
+            classNameContainer="uppercase flex justify-center"
+          />
+        </div>
         <div className="flex flex-col px-5 sm:px-10">
           <div className="flex flex-col sm:flex-row">
             <div className="sm:basis-4/6 flex sm:justify-end">
@@ -213,6 +204,23 @@ const AboutUsPageModules = () => {
           </div>
         </div>
       </section>
+      <section className="min-h-screen flex justify-center items-center flex-col">
+        <Image
+          className="md:h-screen w-screen object-contain md:object-cover"
+          height={1000}
+          width={1000}
+          src={"/image/the-brand/banner-thebrand-3.webp"}
+          alt="got-question banner image"
+        ></Image>
+        <Image
+          className="md:h-screen w-screen object-contain md:object-cover"
+          height={1000}
+          width={1000}
+          src={"/image/the-brand/banner-thebrand-2.webp"}
+          alt="got-question banner image"
+        ></Image>
+      </section>
+
       <section
         id="about-quiv"
         className="grid grid-cols-1 sm:grid-cols-3 min-h-screen"

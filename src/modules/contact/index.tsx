@@ -12,17 +12,7 @@ import {
   shopee,
   tokped,
 } from "@/constants/data";
-import {
-  ArrowDown,
-  BaggageClaim,
-  Instagram,
-  InstagramIcon,
-  MailIcon,
-  MapPinIcon,
-  PhoneIcon,
-  PinIcon,
-  ShoppingBag,
-} from "lucide-react";
+import { InstagramIcon, MailIcon, PhoneIcon, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
@@ -39,19 +29,12 @@ const ContactPageModules = () => {
   const iconStyle =
     "w-14 h-14 object-cover cursor-pointer transition-transform duration-300 hover:scale-110 hover:drop-shadow-lg";
 
-  const dataImage = [
+  const dataIcon = [
     {
       title: "Media Social",
       description: "@quiv.hair",
       icon: (
         <div onClick={() => window.open(instagram, "_blank")}>
-          {/* <Image
-            alt="instagram"
-            className={iconStyle}
-            width={500}
-            height={500}
-            src={"/image/general/instagram.webp"}
-          /> */}
           <InstagramIcon size={25} />
         </div>
       ),
@@ -72,41 +55,20 @@ const ContactPageModules = () => {
         <div
           onClick={() => window.open(`https://wa.me/${phoneNumber}`, "_blank")}
         >
-          <Image
-            alt="whatsapp"
-            className={iconStyle}
-            width={500}
-            height={500}
-            src={"/image/general/WA.webp"}
-          />
+          <PhoneIcon size={25} />
         </div>
       ),
     },
     {
-      title: "Shopee",
       icon: (
-        <div onClick={() => window.open(shopee, "_blank")}>
-          <Image
-            alt="shopee"
-            className={iconStyle}
-            width={500}
-            height={500}
-            src={"/image/general/shopee.webp"}
-          />
+        <div className="flex flex-col">
+          <ShoppingBag size={25} />
         </div>
       ),
-    },
-    {
-      title: "TokoPedia",
-      icon: (
-        <div onClick={() => window.open(tokped, "_blank")}>
-          <Image
-            alt="tokopedia"
-            className={twMerge(iconStyle, "object-contain")}
-            width={500}
-            height={500}
-            src={"/image/general/tokopedia.webp"}
-          />
+      footer: (
+        <div className="flex flex-col justify-center text-center text-white">
+          <div onClick={() => window.open(shopee, "_blank")}>Shopee</div>
+          <div onClick={() => window.open(tokped, "_blank")}>TokoPedia</div>
         </div>
       ),
     },
@@ -147,8 +109,8 @@ const ContactPageModules = () => {
   return (
     <div>
       <div className="flex min-h-screen justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-5 px-10 items-center w-screen flex-wrap">
-          {dataImage.map((product, idx) => {
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 px-10 items-center w-screen flex-wrap">
+          {dataIcon.map((product, idx) => {
             return (
               <div key={idx}>
                 <CardProduct
@@ -158,6 +120,7 @@ const ContactPageModules = () => {
                   classNameIcon=""
                   classNameCardContent="gap-5"
                   product={product}
+                  footer={product.footer}
                 />
               </div>
             );

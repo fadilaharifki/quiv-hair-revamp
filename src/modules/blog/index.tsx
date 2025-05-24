@@ -42,9 +42,9 @@ const BlogPageModules = () => {
         className="flex sm:flex-row flex-col p-10 sm:p-20 gap-x-20 gap-y-5"
       >
         <div className="sm:basis-3/5">
-          <div>
+          <div className="w-full h-full">
             <Image
-              className="flex rounded-lg object-contain w-full"
+              className="flex rounded-lg object-cover w-full"
               width={286}
               height={286}
               objectFit="cover"
@@ -83,6 +83,7 @@ const BlogPageModules = () => {
             return (
               <div key={idx}>
                 <CardProduct
+                  isContainerImagev2
                   classNameCard="border-none p-0"
                   classNameImage="w-full rounded-none"
                   classNameCardContent="gap-3 justify-start items-start"
@@ -120,6 +121,7 @@ const BlogPageModules = () => {
             return (
               <div key={idx}>
                 <CardProduct
+                  isContainerImagev2
                   classNameCard="border-none p-0 bg-transparant"
                   classNameImage="w-full rounded-none"
                   classNameCardContent="gap-3 justify-start items-start"
@@ -157,6 +159,7 @@ const BlogPageModules = () => {
             return (
               <div key={idx}>
                 <CardProduct
+                  isContainerImagev2
                   classNameCard="border-none p-0 bg-transparant"
                   classNameImage="w-full rounded-none"
                   classNameCardContent="gap-3 justify-start items-start"

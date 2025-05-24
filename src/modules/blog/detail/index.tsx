@@ -7,6 +7,9 @@ import Image from "next/image";
 import { parseBoldText } from "@/lib/parse-bold-text";
 import { useEffect } from "react";
 import LoadingLine from "@/components/LoadingLine";
+import { TitleComponent } from "@/components/title";
+import CardProduct from "@/components/card-product";
+import { Button } from "@/components/ui/button";
 
 type BlogProps = {
   data: BlogData;
@@ -66,10 +69,15 @@ function renderSectionContent(
   return <p>{content}</p>;
 }
 
+function getRandomItems<T>(array: T[], count: number): T[] {
+  const shuffled = [...array].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
 const BlogDetailPageModules = ({ data, params }: BlogProps) => {
   const router = useRouter();
 
-  const dataRelatedPost: BlogData[] = dataBlog
+  const otherdata: BlogData[] = dataBlog
     .map((e) => {
       if (e.slug !== params.slug) {
         return e;
@@ -77,6 +85,8 @@ const BlogDetailPageModules = ({ data, params }: BlogProps) => {
       return null;
     })
     .filter((e): e is BlogData => e !== null);
+
+  const dataRelatedPost = getRandomItems(otherdata, 3);
 
   useEffect(() => {
     if (!data) {
@@ -164,6 +174,45 @@ const BlogDetailPageModules = ({ data, params }: BlogProps) => {
           </CardContent>
         </Card>
       ))}
+
+      <div>
+        <TitleComponent
+          firstTitle="See"
+          lastTitle="More"
+          classNameContainer="text-base sm:text-xl gap-x-1 sm:gap-x-2"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-5">
+          {dataRelatedPost.map((product, idx) => {
+            return (
+              <div key={idx} className="flex flex-col gap-2">
+                <div className="w-full aspect-video">
+                  <Image
+                    width={300}
+                    height={300}
+                    className="w-full h-full object-cover rounded-lg"
+                    src={product.thumbnail}
+                    alt={product.title}
+                  />
+                </div>
+                <div className="font-semibold line-clamp-2">
+                  {product.title}
+                </div>
+                <div className="flex">
+                  <Button
+                    onClick={() => {
+                      router.push(`/feeds/${product.slug}`);
+                    }}
+                    variant="outline"
+                    className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm w-full md:w-52 border-navy-blue hover:border-none"
+                  >
+                    See more
+                  </Button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
