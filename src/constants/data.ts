@@ -19,7 +19,6 @@ export const dataImageFlex = [
     date: "30 June 2025",
     path: "/why-quiv/flex",
     url: "/image/general/flexcom.webp",
-    disable: false,
   },
 ];
 

@@ -177,8 +177,8 @@ const BlogDetailPageModules = ({ data, params }: BlogProps) => {
 
       <div>
         <TitleComponent
-          firstTitle="See"
-          lastTitle="More"
+          firstTitle="More tips"
+          lastTitle="you should know"
           classNameContainer="text-base sm:text-xl gap-x-1 sm:gap-x-2"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-5">

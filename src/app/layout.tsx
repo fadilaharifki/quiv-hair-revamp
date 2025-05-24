@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://quiv-web.vercel.app/Logo.png",
+        url: "https://www.quivhair.com//Logo.png",
         width: 800,
         height: 600,
         alt: `image`,

@@ -92,8 +92,8 @@ const PaginationComponent = ({
                 !item.disable ? "" : "opacity-70"
               )}
               onClick={() => {
-                // if (isOnClick && item.path && !item.disable)
-                //   router.push(item.path);
+                if (isOnClick && item.path && !item.disable)
+                  router.push(item.path);
               }}
             >
               <div className="flex justify-center align-middle items-center ">

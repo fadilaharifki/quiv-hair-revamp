@@ -2,7 +2,7 @@ import { dataImageFine, dataImageFlex } from "@/constants/data";
 import { dataBlog } from "@/constants/dataBlog";
 import { MetadataRoute } from "next";
 
-const WEBSITE_HOST_URL = "https://quiv-web.vercel.app";
+const WEBSITE_HOST_URL = "https://www.quivhair.com/";
 
 type changeFrequency =
   | "always"

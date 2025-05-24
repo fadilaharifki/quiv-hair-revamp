@@ -1,13 +1,17 @@
 "use client";
 
-import { CategoryProductsPageInterface } from "@/app/why-quiv/bbc5fbc6-5930-4e68-b304-d72d3bc1d461-[category]/page";
+import { CategoryProductsPageInterface } from "@/app/why-quiv/[category]/page";
 import CardProduct from "@/components/card-product";
+import LoadingLine from "@/components/LoadingLine";
 import PaginationComponent from "@/components/pagination";
 import { TitleComponent } from "@/components/title";
+import { Button } from "@/components/ui/button";
 import { dataImageFine, dataImageFlex } from "@/constants/data";
 import { formatCurrency } from "@/lib/utils";
+import { Link } from "lucide-react";
 import Image from "next/image";
-import { Key, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Key, useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 type ActiveTabsType = "description" | "howToUse";
@@ -16,95 +20,73 @@ const imageProduct: any = {
   flex: [
     {
       id: 1,
-      url: "/image/general/image1_flex.png",
+      url: "/image/the-brand/flexcap.webp",
       title: "image 1",
       type: "Liquified Hair Powder",
       category: "flex",
       ability: "Dry Matte Finish",
       name: "Flex - Liquified Hair Powder",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+        "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Whether you’re at the gym, office, or on the go, Flex keeps your hair looking clean, styled, and natural — without flakes or stickiness. Easy-to-wash and sweat friendly",
     },
     {
       id: 2,
-      url: "/image/general/image2_flex.png",
+      url: "/image/the-brand/flexcom.webp",
       title: "image 2",
       type: "Liquified Hair Powder",
       category: "flex",
       name: "Flex - Liquified Hair Powder",
       ability: "Dry Matte Finish",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+        "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Whether you’re at the gym, office, or on the go, Flex keeps your hair looking clean, styled, and natural — without flakes or stickiness. Easy-to-wash and sweat friendly",
     },
     {
       id: 3,
-      url: "/image/general/image3_flex.png",
+      url: "/image/the-brand/flexproduct.webp",
       title: "image 3",
       type: "Liquified Hair Powder",
       category: "flex",
       name: "Flex - Liquified Hair Powder",
       ability: "Dry Matte Finish",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
-    },
-    {
-      id: 4,
-      url: "/image/general/image4_flex.png",
-      title: "image 4",
-      type: "Liquified Hair Powder",
-      category: "flex",
-      name: "Flex - Liquified Hair Powder",
-      ability: "Dry Matte Finish",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
+        "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Whether you’re at the gym, office, or on the go, Flex keeps your hair looking clean, styled, and natural — without flakes or stickiness. Easy-to-wash and sweat friendly",
     },
   ],
-  fine: [
-    {
-      id: 1,
-      url: "/image/general/image1_fine.png",
-      title: "image 1",
-      type: "Liquified Hair Powder",
-      category: "FINE",
-      name: "FINE - Liquified Hair Powder",
-      ability: "Smooth Glossy Finish",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
-    },
-    {
-      id: 2,
-      url: "/image/general/image2_fine.png",
-      title: "image 2",
-      type: "Liquified Hair Powder",
-      category: "FINE",
-      name: "FINE - Liquified Hair Powder",
-      ability: "Smooth Glossy Finish",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
-    },
-    {
-      id: 3,
-      url: "/image/general/image3_fine.png",
-      title: "image 3",
-      type: "Liquified Hair Powder",
-      category: "FINE",
-      name: "FINE - Liquified Hair Powder",
-      ability: "Smooth Glossy Finish",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
-    },
-    {
-      id: 4,
-      url: "/image/general/image4_fine.png",
-      title: "image 4",
-      type: "Liquified Hair Powder",
-      category: "FINE",
-      name: "FINE - Liquified Hair Powder",
-      ability: "Smooth Glossy Finish",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet ante sed egestas laoreet. Nam pretium nulla non neque finibus, eget aliquet mi eleifend. Proin suscipit malesuada molestie. In semper euismod odio, suscipit cursus lacus rhoncus.",
-    },
-  ],
+  // fine: [
+  //   {
+  //     id: 1,
+  //     url: "/image/the-brand/finecap.webp",
+  //     title: "image 1",
+  //     type: "Liquified Hair Powder",
+  //     category: "FINE",
+  //     name: "FINE - Liquified Hair Powder",
+  //     ability: "Smooth Glossy Finish",
+  //     description:
+  //       "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness of gel or pomade. The creamy texture spreads easily and locks your hair in place with a natural gloss finish with lightweight feel. Great for neat styles, formal-looks, or that all-day “fresh from the mirror” guys.",
+  //   },
+  //   {
+  //     id: 2,
+  //     url: "/image/the-brand/finecap.webp",
+  //     title: "image 2",
+  //     type: "Liquified Hair Powder",
+  //     category: "FINE",
+  //     name: "FINE - Liquified Hair Powder",
+  //     ability: "Smooth Glossy Finish",
+  //     description:
+  //       "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness of gel or pomade. The creamy texture spreads easily and locks your hair in place with a natural gloss finish with lightweight feel. Great for neat styles, formal-looks, or that all-day “fresh from the mirror” guys.",
+  //   },
+  //   {
+  //     id: 3,
+  //     url: "/image/the-brand/finesp.webp",
+  //     title: "image 3",
+  //     type: "Liquified Hair Powder",
+  //     category: "FINE",
+  //     name: "FINE - Liquified Hair Powder",
+  //     ability: "Smooth Glossy Finish",
+  //     description:
+  //       "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness of gel or pomade. The creamy texture spreads easily and locks your hair in place with a natural gloss finish with lightweight feel. Great for neat styles, formal-looks, or that all-day “fresh from the mirror” guys.",
+  //   },
+  // ],
 };
 
 const CategoryProductsPageModules = ({
@@ -112,11 +94,27 @@ const CategoryProductsPageModules = ({
 }: {
   props: CategoryProductsPageInterface;
 }) => {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<ActiveTabsType>("description");
 
-  const [imageProductActive, setImageProductActive] = useState(
-    imageProduct?.[props?.params.category][0]
-  );
+  const [imageProductActive, setImageProductActive] = useState<any>("");
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [isNotFound, setIsNotFound] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const category = props?.params?.category;
+      if (category && imageProduct[category][0]) {
+        setImageProductActive(imageProduct[category][0]);
+      } else {
+        setIsNotFound(true);
+        setImageProductActive(false);
+      }
+      setIsLoading(false);
+    }, 500);
+  }, [props?.params?.category]);
 
   const categoryProduct: any = useMemo(() => {
     return {
@@ -221,27 +219,43 @@ const CategoryProductsPageModules = ({
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="w-screen h-screen">
+        <LoadingLine />
+      </div>
+    );
+  }
+
+  if (!isLoading && isNotFound) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white text-center px-4">
+        <h1 className="text-5xl font-bold text-gray-800 mb-4">404</h1>
+        <p className="text-xl text-gray-600 mb-6">Not Found</p>
+        <Button onClick={() => router.replace("/feeds")}>Back to Feed</Button>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="grid sm:grid-cols-6 gap-y-10 min-h-screen pt-28 sm:px-10 bg-light-gray">
         <div className="hidden sm:flex flex-col col-span-1 justify-center items-center gap-4">
-          {imageProduct?.[props?.params.category].map(
+          {imageProduct?.[props?.params.category]?.map(
             (item: any, idx: number) => {
-              if (item.id !== imageProductActive.id) {
-                return (
-                  <Image
-                    onClick={() => {
-                      setImageProductActive(item);
-                    }}
-                    key={idx}
-                    className="h-[190px] w-[190px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110 bg-white"
-                    width={190}
-                    height={190}
-                    src={item.url}
-                    alt={item.title}
-                  ></Image>
-                );
-              }
+              return (
+                <Image
+                  onClick={() => {
+                    setImageProductActive(item);
+                  }}
+                  key={idx}
+                  className="h-[190px] w-[190px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110 bg-white"
+                  width={190}
+                  height={190}
+                  src={item.url}
+                  alt={item.title}
+                ></Image>
+              );
             }
           )}
         </div>
@@ -255,7 +269,7 @@ const CategoryProductsPageModules = ({
           ></Image>
         </div>
         <div className="sm:hidden flex flex-row sm:col-span-1 justify-center items-center gap-4">
-          {imageProduct?.[props?.params.category].map(
+          {imageProduct?.[props?.params.category]?.map(
             (item: any, idx: number) => {
               if (item.id !== imageProductActive.id) {
                 return (
@@ -297,7 +311,7 @@ const CategoryProductsPageModules = ({
           )}
         </div>
       </div>
-      <div className="py-20">
+      {/* <div className="py-20">
         <div className="flex justify-evenly">
           {tabs.map((tab, idx) => {
             return (
@@ -321,7 +335,7 @@ const CategoryProductsPageModules = ({
         <div className="p-5 sm:p-10 text-center bg-navy-blue text-white my-2   text-lg">
           {renderActiveTab(activeTab)}
         </div>
-      </div>
+      </div> */}
       <div className="min-h-screen flex flex-col justify-evenly items-center  ">
         <TitleComponent
           firstTitle="Recommended"
