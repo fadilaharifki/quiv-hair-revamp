@@ -249,7 +249,7 @@ const CategoryProductsPageModules = ({
                     setImageProductActive(item);
                   }}
                   key={idx}
-                  className="h-[190px] w-[190px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110 bg-white"
+                  className="h-[190px] w-[190px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110"
                   width={1000}
                   height={1000}
                   src={item.url}
@@ -271,21 +271,19 @@ const CategoryProductsPageModules = ({
         <div className="sm:hidden flex flex-row sm:col-span-1 justify-center items-center gap-4">
           {imageProduct?.[props?.params.category]?.map(
             (item: any, idx: number) => {
-              if (item.id !== imageProductActive.id) {
-                return (
-                  <Image
-                    onClick={() => {
-                      setImageProductActive(item);
-                    }}
-                    key={idx}
-                    className="h-[90px] w-[90px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110 bg-white"
-                    width={1000}
-                    height={1000}
-                    src={item.url}
-                    alt={item.title}
-                  ></Image>
-                );
-              }
+              return (
+                <Image
+                  onClick={() => {
+                    setImageProductActive(item);
+                  }}
+                  key={idx}
+                  className="h-[90px] w-[90px] sm:h-[190px] sm:w-[190px] object-obtain rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110"
+                  width={1000}
+                  height={1000}
+                  src={item.url}
+                  alt={item.title}
+                ></Image>
+              );
             }
           )}
         </div>
@@ -336,7 +334,7 @@ const CategoryProductsPageModules = ({
           {renderActiveTab(activeTab)}
         </div>
       </div> */}
-      <div className="min-h-screen flex flex-col justify-evenly items-center  ">
+      <div className="md:min-h-screen py-10 flex flex-col justify-evenly items-center  ">
         <TitleComponent
           firstTitle="Recommended"
           lastTitle="products"

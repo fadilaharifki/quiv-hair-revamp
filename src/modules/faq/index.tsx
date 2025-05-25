@@ -78,7 +78,7 @@ const FaqPageModules = () => {
         </div>
         <ArrowDown onClick={handleScroll} /> */}
       </div>
-      <div id="what-quiv" className="min-h-screen">
+      <div id="what-quiv" className="">
         <div className="p-5 sm:p-20">
           <Accordion
             type="single"
@@ -102,13 +102,13 @@ const FaqPageModules = () => {
                 >
                   <AccordionTrigger
                     className={twMerge(
-                      "text-start text-2xl sm:text-4xl font-medium hover:font-bold",
+                      "text-start text-lg md:text-2xl font-medium hover:font-bold",
                       activeFaq === idx ? "font-bold" : ""
                     )}
                   >
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-lg sm:text-2xl font-normal">
+                  <AccordionContent className="text-sm md:text-base font-normal">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

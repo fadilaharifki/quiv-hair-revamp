@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import useScreenSize from "@/hooks/useScreenSize";
@@ -5,10 +6,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { menus } from "../navbar";
+import { useEffect, useState } from "react";
+import { useToggleStore } from "@/stores/useToggleStore";
 
 const BottomBar = () => {
+  const [activeMenu, setActiveMenu] = useState("");
   const { breakpoint } = useScreenSize();
+  const { setIsOpen } = useToggleStore();
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (breakpoint === "sm" && pathname === "/" && activeMenu !== "The Brand") {
+      setTimeout(() => {
+        setIsOpen(true);
+      }, 100);
+    } else {
+      setIsOpen(false);
+    }
+  }, [activeMenu, pathname]);
 
   const bottomMenus = menus.filter((item) => item.isBottomBar);
   const bottomBarCount = bottomMenus.length;
@@ -31,6 +46,9 @@ const BottomBar = () => {
               <Link
                 href={menu.value}
                 key={idx}
+                onClick={() => {
+                  setActiveMenu(menu.name);
+                }}
                 className={twMerge(
                   "flex flex-col items-center justify-start gap-1 relative transition-all duration-300 ease-in-out"
                 )}

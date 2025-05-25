@@ -21,12 +21,14 @@ interface PaginationComponentInterface {
   data: DataInterface[];
   isPagination?: boolean;
   isOnClick?: boolean;
+  onClick?: (e: any) => void;
 }
 
 const PaginationComponent = ({
   data,
   isPagination = true,
   isOnClick,
+  onClick = () => {},
 }: PaginationComponentInterface) => {
   const router = useRouter();
 
@@ -92,6 +94,7 @@ const PaginationComponent = ({
                 !item.disable ? "" : "opacity-70"
               )}
               onClick={() => {
+                onClick(item);
                 if (isOnClick && item.path && !item.disable)
                   router.push(item.path);
               }}

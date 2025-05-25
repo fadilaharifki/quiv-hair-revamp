@@ -141,7 +141,7 @@ export function CarouselBannerComponent({
       className={twMerge(
         "w-screen justify-center items-center",
         isMinHeighScreen && "md:min-h-screen",
-        isMinHeighScreen && breakpoint === "sm" ? "min-h-screen" : ""
+        isMinHeighScreen && breakpoint === "md" ? "min-h-screen" : ""
       )}
       opts={opts}
     >
@@ -163,7 +163,7 @@ export function CarouselBannerComponent({
                     className={twMerge(
                       "flex w-screen object-cover grayscale",
                       isMinHeighScreen && "md:min-h-screen",
-                      isMinHeighScreen && breakpoint === "sm"
+                      isMinHeighScreen && breakpoint === "md"
                         ? "min-h-screen"
                         : "",
                       classNameImage

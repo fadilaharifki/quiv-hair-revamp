@@ -108,16 +108,17 @@ const ContactPageModules = () => {
 
   return (
     <div>
-      <div className="flex min-h-screen justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 px-10 items-center w-screen flex-wrap">
+      <div className="flex pb-10 justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 px-5 md:px-10 items-center w-screen flex-wrap">
           {dataIcon.map((product, idx) => {
             return (
               <div key={idx}>
                 <CardProduct
-                  classNameCard="p-5 flex justify-center cursor-pointer h-72"
-                  classNameTitle="text-lg sm:text-xl font-light text-4xl"
+                  classNameCard="p-5 flex justify-center cursor-pointer h-72 "
+                  classNameTitle="text-xl md:text-2xl font-light"
                   classNameDesc="text-xl"
                   classNameIcon=""
+                  classNameFooter="text-xl md:text-2xl"
                   classNameCardContent="gap-5"
                   product={product}
                   footer={product.footer}
@@ -127,7 +128,7 @@ const ContactPageModules = () => {
           })}
         </div>
       </div>
-      <div className="flex min-h-screen justify-center md:px-32 mt-10 md:mt-0">
+      <div className="flex min-h-screen justify-center md:px-32">
         <div className="flex flex-col w-screen gap-10 sm:gap-20">
           <TitleComponent
             firstTitle="Get in touch"

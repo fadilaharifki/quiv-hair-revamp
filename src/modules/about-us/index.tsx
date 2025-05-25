@@ -184,7 +184,7 @@ const AboutUsPageModules = () => {
                   //   router.push("/why-quiv/fine");
                   // }}
                 >
-                  See product
+                  Cooming Soon
                 </Button>
               </div>
             </div>
@@ -202,7 +202,7 @@ const AboutUsPageModules = () => {
           </div>
         </div>
       </section>
-      <section className="min-h-screen flex justify-center items-center flex-col">
+      <section className="md:min-h-screen flex justify-center items-center flex-col">
         <Image
           className="md:h-screen w-screen object-contain md:object-cover"
           height={1000}
@@ -210,18 +210,11 @@ const AboutUsPageModules = () => {
           src={"/image/the-brand/banner-thebrand-3.webp"}
           alt="got-question banner image"
         ></Image>
-        <Image
-          className="md:h-screen w-screen object-contain md:object-cover"
-          height={1000}
-          width={1000}
-          src={"/image/the-brand/banner-thebrand-2.webp"}
-          alt="got-question banner image"
-        ></Image>
       </section>
 
       <section
         id="about-quiv"
-        className="grid grid-cols-1 sm:grid-cols-3 min-h-screen"
+        className="grid grid-cols-1 sm:grid-cols-3 md:min-h-screen"
       >
         <div className="col-span-3 flex sm:flex-row flex-col justify-center items-center bg-navy-blue gap-10 py-10 sm:py-0">
           {benefitIcon.map((product, idx) => {
@@ -239,35 +232,15 @@ const AboutUsPageModules = () => {
           })}
         </div>
       </section>
-      {/* <section className="flex flex-col items-center justify-center w-screen gap-5 sm:gap-10 border-navy-blue py-5 sm:py-10 border-y-2">
-        <TitleComponent firstTitle="OUR" lastTitle="STORY" />
-        <div className="flex w-11/12 sm:w-10/12 ">
-          <Image
-            className="flex rounded-lg object-contain w-full"
-            width={286}
-            height={286}
-            objectFit="cover"
-            src={"/image/about-us/story.png"}
-            alt={"story about us"}
-          />
-        </div>
-        <div className="flex flex-col w-10/12 gap-10">
-          <div className="flex sm:text-center   text-lg sm:text-2xl font-light">
-            When it came to men’s grooming products, there weren’t many
-            high-quality, harmful chemical-free options available at prices that
-            were in proportion with what they offered. That’s the reason why
-            Vanity Men was founded. Vanity Men is more than just a brand; it’s a
-            lifestyle. We explore every option when it comes to developing our
-            products.
-          </div>
-          <div className="flex sm:text-center   text-lg sm:text-2xl font-light leading-tight">
-            Every ingredient in our products is carefully chosen to deliver
-            exceptional results while being kind to your hair and skin. We pay
-            close attention to every detail to make sure that using our products
-            will be something special for you.
-          </div>
-        </div>
-      </section> */}
+      <section className="md:min-h-screen flex justify-center items-center flex-col">
+        <Image
+          className="md:h-screen w-screen object-contain md:object-cover"
+          height={1000}
+          width={1000}
+          src={"/image/the-brand/banner-thebrand-2.webp"}
+          alt="got-question banner image"
+        ></Image>
+      </section>
     </div>
   );
 };

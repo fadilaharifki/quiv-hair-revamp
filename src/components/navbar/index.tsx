@@ -70,6 +70,7 @@ const NavBar = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [openSearch, setOpenSearch] = useState(false);
+  const [activeMenu, setActiveMenu] = useState("");
   const { setIsOpen } = useToggleStore();
 
   useEffect(() => {
@@ -93,6 +94,17 @@ const NavBar = () => {
     };
   }, [lastScrollY]);
 
+  useEffect(() => {
+    if (breakpoint === "md" && pathname === "/" && activeMenu !== "The Brand") {
+      setTimeout(() => {
+        setIsOpen(true);
+      }, 100);
+    } else {
+      setIsOpen(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, activeMenu]);
+
   const renderMenu = () => {
     return (
       <div className="flex flex-col sm:flex-row justify-evenly w-full gap-3 sm:gap-0">
@@ -100,6 +112,9 @@ const NavBar = () => {
           return (
             <Link
               key={idx}
+              onClick={() => {
+                setActiveMenu(menu.name);
+              }}
               href={menu.value}
               className={twMerge(
                 "  pb-2 text-white transition duration-300 ease-in-out",
@@ -168,10 +183,7 @@ const NavBar = () => {
               <Link
                 href={"/"}
                 onClick={() => {
-                  if (pathname === "/") {
-                    // window.location.reload();
-                    setIsOpen(true);
-                  }
+                  setIsOpen(true);
                 }}
               >
                 <Image width={100} height={100} src={Logo} alt="Logo"></Image>

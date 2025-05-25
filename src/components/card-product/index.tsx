@@ -95,7 +95,7 @@ const CardProduct = ({
           {product.title && (
             <div
               className={twMerge(
-                "font-bold text-3xl text-white text-center",
+                "font-bold text-base md:text-3xl text-white text-center",
                 position === "horizontal" && "text-[14px] text-left",
                 "line-clamp-3",
                 classNameTitle

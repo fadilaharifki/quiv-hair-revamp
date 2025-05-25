@@ -5,6 +5,7 @@ import { CarouselBannerComponent } from "@/components/carousel-banner";
 import PaginationComponent from "@/components/pagination";
 import { TitleComponent } from "@/components/title";
 import { dataImageFine, dataImageFlex } from "@/constants/data";
+import { toast } from "@/hooks/use-toast";
 import Image from "next/image";
 
 const ProductsPageModules = () => {
@@ -73,11 +74,25 @@ const ProductsPageModules = () => {
       >
         <TitleComponent firstTitle="ALL" lastTitle="PRODUCT" />
         <div className="mt-20">
-          <PaginationComponent isOnClick data={dataImageAllProduct} />
+          <PaginationComponent
+            onClick={(e) => {
+              if (e.disable) {
+                toast({
+                  variant: "default",
+                  title: "🚀 Coming Soon",
+                  duration: 1000,
+                  description:
+                    "This product will be available soon. Stay tuned!",
+                });
+              }
+            }}
+            isOnClick
+            data={dataImageAllProduct}
+          />
         </div>
       </section>
       <section>
-        <div className="flex justify-center py-10">
+        <div className="flex justify-center pt-2 md:pt-10 pb-2 md:pb-10">
           <TitleComponent firstTitle="Quiv" lastTitle="Flex" />
         </div>
         <Image
@@ -89,7 +104,7 @@ const ProductsPageModules = () => {
         ></Image>
       </section>
       <section>
-        <div className="flex justify-center pt-10">
+        <div className="flex justify-center pt-2 md:pt-10 pb-2 md:pb-10">
           <TitleComponent firstTitle="For" lastTitle="Active Men" />
         </div>
         <div className="md:min-h-screen flex justify-center items-center flex-col">
