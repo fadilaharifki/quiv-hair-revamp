@@ -163,8 +163,8 @@ const NavBar = () => {
             />
           </div>
         ) : (
-          <div className="flex justify-center items-start">
-            <div className="flex sm:justify-center items-center col-span-1">
+          <div className="grid grid-cols-3 sm:grid-cols-7 sm:col-span-7 col-span-3 justify-center items-start">
+            <div className="flex justify-center items-center col-span-3 sm:col-span-1">
               <Link
                 href={"/"}
                 onClick={() => {
@@ -177,7 +177,7 @@ const NavBar = () => {
                 <Image width={100} height={100} src={Logo} alt="Logo"></Image>
               </Link>
             </div>
-            <div className="hidden sm:flex justify-around items-center col-span-4">
+            <div className="hidden sm:flex justify-around items-center sm:col-span-5">
               {renderMenu()}
             </div>
             <div
