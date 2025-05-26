@@ -17,7 +17,7 @@ export const dataImageFlex = [
   {
     name: "FLEX - Liquified Hair Powder",
     date: "30 June 2025",
-    path: "/why-quiv/flex",
+    path: "why-quiv/flex",
     url: "/image/general/flexcom.webp",
   },
 ];

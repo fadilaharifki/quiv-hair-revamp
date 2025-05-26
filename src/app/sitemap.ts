@@ -2,7 +2,7 @@ import { dataImageFine, dataImageFlex } from "@/constants/data";
 import { dataBlog } from "@/constants/dataBlog";
 import { MetadataRoute } from "next";
 
-const WEBSITE_HOST_URL = "https://www.quivhair.com/";
+const WEBSITE_HOST_URL = "https://www.quivhair.com";
 
 type changeFrequency =
   | "always"
@@ -22,9 +22,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const productDetail = [...dataImageFlex, ...dataImageFine].map(
-    ({ path, date }) => ({
+    ({ path }) => ({
       url: `${WEBSITE_HOST_URL}/${path}`,
-      lastModified: date,
+      lastModified: new Date(),
       changeFrequency,
     })
   );
