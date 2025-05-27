@@ -24,7 +24,7 @@ export const dataImageFlex = [
 
 export const dataImageFine = [
   {
-    name: "Fine - Liquified Hair Powder",
+    name: "Fine - Clay Creme",
     date: "30 June 2025",
     path: "why-quiv/fine",
     url: "/image/general/finebox.webp",

@@ -28,15 +28,15 @@ const BlogPageModules = () => {
 
   return (
     <div>
-      <div className="md:h-screen -mt-16">
+      <section className="md:h-screen md:-mt-16">
         <Image
           className="md:h-screen w-screen object-contain md:object-cover"
           height={1000}
           width={1000}
           src={"/image/blog/the-feeds-banner.webp"}
-          alt="got-question banner image"
+          alt="feed banner image"
         ></Image>
-      </div>
+      </section>
       <div
         id="section-2"
         className="flex sm:flex-row flex-col p-10 sm:p-20 gap-x-20 gap-y-5"

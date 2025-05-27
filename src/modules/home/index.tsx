@@ -28,7 +28,7 @@ const HomePageModules = () => {
       url: "/image/general/image1_flex.png",
     },
     {
-      name: "FINE - Liquified Hair Powder",
+      name: "FINE - Clay Creme",
       path: "/why-quiv/fine",
       url: "/image/general/image1_fine.png",
     },
@@ -38,7 +38,7 @@ const HomePageModules = () => {
       url: "/image/general/image1_flex.png",
     },
     {
-      name: "FINE - Liquified Hair Powder",
+      name: "FINE - Clay Creme",
       path: "/why-quiv/fine",
       url: "/image/general/image1_fine.png",
     },
@@ -231,9 +231,7 @@ const HomePageModules = () => {
               <div className="flex flex-col gap-5 px-5 pb-5 sm:p-0 sm:col-span-2 text-navy-blue justify-center">
                 <div>
                   <h1 className="font-bold text-4xl">FINE</h1>
-                  <div className="text-lg font-light">
-                    Liquified Hair Powder
-                  </div>
+                  <div className="text-lg font-light">Clay Creme</div>
                 </div>
                 <div className="text-sm sm:text-2xl font-light">
                   smooth glossy Finish
