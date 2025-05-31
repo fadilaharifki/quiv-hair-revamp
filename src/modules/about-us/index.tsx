@@ -108,7 +108,7 @@ const AboutUsPageModules = () => {
           <div className="flex flex-col sm:flex-row">
             <div className="sm:basis-4/6 flex sm:justify-end">
               <Image
-                className="flex w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover grayscale"
+                className="flex w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover"
                 width={1000}
                 height={1000}
                 alt="flex"
@@ -149,7 +149,7 @@ const AboutUsPageModules = () => {
             {breakpoint === "sm" && (
               <div className="sm:basis-4/6 flex justify-start">
                 <Image
-                  className="flex  w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover grayscale"
+                  className="flex  w-screen h-auto sm:w-[400px] sm:h-[400px] object-cover"
                   width={1000}
                   height={1000}
                   alt="flex"
