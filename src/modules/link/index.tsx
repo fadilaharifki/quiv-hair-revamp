@@ -148,7 +148,6 @@ export default function AppPageModuls({ onClose }: { onClose: () => void }) {
           </Button>
 
           {/* Social Media Button */}
-
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button

@@ -1,12 +1,13 @@
 "use client";
 
+import { phoneNumber } from "@/constants/data";
 import { PhoneCall } from "lucide-react";
 
 export default function WhatsAppIcon() {
   return (
     <div className="fixed bottom-24 md:bottom-6 right-6 z-50 p-1 rounded-full bg-primary hover:bg-light-primary-navbar">
       <a
-        href="https://wa.me/6281234567890"
+        href={`https://wa.me/${phoneNumber}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat via WhatsApp"

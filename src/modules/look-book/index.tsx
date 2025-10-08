@@ -23,19 +23,13 @@ const LookBookPageModules = () => {
     "/image/look-book/galery-3.webp",
     "/image/look-book/galery-4.webp",
     "/image/look-book/galery-5.webp",
-    "/image/look-book/galery-6.webp",
   ];
 
   const reelsUrls = [
-    "https://www.instagram.com/reel/DJGnxuuPsiB/?utm_source=ig_embed&amp;utm_campaign=loading",
-    "https://www.instagram.com/reel/DJoGF4aPH2Y/?utm_source=ig_embed&amp;utm_campaign=loading",
-    "https://www.instagram.com/reel/DIlqqHXPi5b/?utm_source=ig_embed&amp;utm_campaign=loading",
-    "https://www.instagram.com/reel/DJGnxuuPsiB/?utm_source=ig_embed&amp;utm_campaign=loading",
-    "https://www.instagram.com/reel/DJoGF4aPH2Y/?utm_source=ig_embed&amp;utm_campaign=loading",
-    "https://www.instagram.com/reel/DIlqqHXPi5b/?utm_source=ig_embed&amp;utm_campaign=loading",
-    "https://www.instagram.com/reel/DJGnxuuPsiB/?utm_source=ig_embed&amp;utm_campaign=loading",
-    "https://www.instagram.com/reel/DJoGF4aPH2Y/?utm_source=ig_embed&amp;utm_campaign=loading",
-    "https://www.instagram.com/reel/DIlqqHXPi5b/?utm_source=ig_embed&amp;utm_campaign=loading",
+    "https://www.instagram.com/reel/DM61a8cv-Zc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "https://www.instagram.com/reel/DLCpZNlvRdk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "https://www.instagram.com/reel/DMLCiH8PWCO/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "https://www.instagram.com/reel/DKN7PIjSLDn/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
   ];
 
   return (

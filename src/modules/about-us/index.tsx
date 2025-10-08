@@ -3,23 +3,29 @@
 
 import CardProduct from "@/components/card-product";
 import { TitleComponent } from "@/components/title";
-import { benefitIcon, dataImageFlex, dataImageFine } from "@/constants/data";
+import { benefitIcon, getPromotion, instagram } from "@/constants/data";
 import Logo from "../../assets/svg/logo.svg";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import useScreenSize from "@/hooks/useScreenSize";
 import { useRouter } from "next/navigation";
-import FullScreenDrawer from "@/components/drawer";
-import AppPageModuls from "../link";
 import { useState } from "react";
 import { useToggleStore } from "@/stores/useToggleStore";
 import LoadingLine from "@/components/LoadingLine";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Globe, Instagram, ShoppingBag } from "lucide-react";
+import Link from "next/link";
 
 const AboutUsPageModules = () => {
-  const dataImageAllProduct = [...dataImageFlex, ...dataImageFine];
-  const { width, breakpoint } = useScreenSize();
-  const { isOpen, setIsOpen, hasHydrated } = useToggleStore();
+  const { breakpoint } = useScreenSize();
+  const { hasHydrated } = useToggleStore();
   const [loading, setLoading] = useState(false);
+  const flag = false;
 
   const router = useRouter();
 
@@ -34,18 +40,6 @@ const AboutUsPageModules = () => {
   return (
     <div className="-mt-12">
       {loading && <LoadingLine />}
-      <FullScreenDrawer isOpen={isOpen} onClose={() => setIsOpen(!isOpen)}>
-        <AppPageModuls
-          onClose={() => {
-            setLoading(true);
-
-            setTimeout(() => {
-              setIsOpen(!isOpen);
-              setLoading(false);
-            }, 1000);
-          }}
-        />
-      </FullScreenDrawer>
       <section className="relative w-full h-screen overflow-hidden">
         <video
           className="w-full h-full object-cover"
@@ -60,9 +54,114 @@ const AboutUsPageModules = () => {
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center bg-black/30 gap-10">
           <Image width={250} height={250} src={Logo} alt="Logo"></Image>
+
+          {/* Main Content */}
+          <div className="items-center justify-center p-4">
+            <div className="w-full max-w-md space-y-6">
+              {/* Marketplace Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full h-14 text-lg bg-white/80 hover:bg-white/90 border-2 border-[#4A4A4A] text-[#4A4A4A]"
+                  >
+                    <ShoppingBag className="mr-2 h-5 w-5" />
+                    Shop Our Products
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md z-[70]">
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="https://shopee.co.id/quiv.hair"
+                      className="flex items-center cursor-pointer"
+                      target="_blank"
+                    >
+                      <Image
+                        src={"/icon/shopee.png"}
+                        alt="QUIV Banner"
+                        priority
+                        width={20}
+                        height={20}
+                        className="mr-1"
+                      />
+                      Shopee
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="https://www.tokopedia.com/quivhair"
+                      className="flex items-center cursor-pointer"
+                      target="_blank"
+                    >
+                      <Image
+                        src={"/icon/tokped1.png"}
+                        alt="QUIV Banner"
+                        priority
+                        width={20}
+                        height={20}
+                        className="mr-1"
+                      />
+                      Tokopedia
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Social Media Button */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full h-14 text-lg bg-white/80 hover:bg-white/90 border-2 border-[#4A4A4A] text-[#4A4A4A]"
+                  >
+                    Follow Us on Social Media
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[calc(100vw-2rem)] max-w-md z-[70]">
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href={instagram}
+                      target="_blank"
+                      className="flex items-center cursor-pointer"
+                    >
+                      <Instagram className="mr-2 h-5 w-5" />
+                      Instagram
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="https://www.tiktok.com/@quiv_hair?_t=ZS-8walSCn8fVB&_r=1"
+                      className="flex items-center cursor-pointer"
+                      target="_blank"
+                    >
+                      <Image
+                        src={"/icon/tiktok.png"}
+                        alt="QUIV Banner"
+                        priority
+                        width={20}
+                        height={20}
+                        className="mr-1"
+                      />
+                      TikTok
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Get Promotion */}
+              <Button
+                asChild
+                variant="outline"
+                className="w-full h-14 text-lg bg-white/80 hover:bg-white/90 border-2 border-[#4A4A4A] text-[#4A4A4A]"
+              >
+                <Link href={getPromotion} target="_blank">
+                  <Globe className="mr-2 h-5 w-5" />
+                  Get Promotion
+                </Link>
+              </Button>
+            </div>
+          </div>
           <p className="text-lg md:text-2xl font-light px-4">
-            Refining Hair Perfection to Impress, Elevate, and Dominate
-            <br />
             <span className="font-semibold">#QuivTheGame</span>
           </p>
         </div>
@@ -87,11 +186,16 @@ const AboutUsPageModules = () => {
             <h1 className="flex text-lg sm:text-4xl gap-x-2 sm:gap-x-3">
               <span>ABOUT</span> <span className="font-bold">QUIV</span>
             </h1>
-            <div className="text-lg md:text-xl leading-6 font-light mt-4">
-              Quiv was born to solve real men problems—the future for hair
-              styling. Forget messy hair powders, greasy waxes, and outdated
-              gels. We've created products: innovative, easy, and futuristic.
-              Styling your hair should be as effortless as your confidence.
+            <div className="text-base md:text-xl leading-6 font-light mt-4">
+              QUIV HAIR was born to push the boundaries of what hair products
+              can do. Inspired by modern lifestyles, we focus on innovation,
+              simplicity, and results that keep up with you—wherever life takes
+              you.
+            </div>
+            <div className="text-base md:text-xl leading-6 font-light mt-4">
+              No more outdated formulas. Quiv creates next-generation solutions
+              that are easy to use, reliable, and built for everyday and
+              everyone confidence.
             </div>
           </div>
         </div>
@@ -200,15 +304,17 @@ const AboutUsPageModules = () => {
           </div>
         </div>
       </section>
-      <section className="md:min-h-screen flex justify-center items-center flex-col">
-        <Image
-          className="md:h-screen w-screen object-contain md:object-cover"
-          height={1000}
-          width={1000}
-          src={"/image/the-brand/banner-thebrand-3.webp"}
-          alt="got-question banner image"
-        ></Image>
-      </section>
+      {flag && (
+        <section className="md:min-h-screen flex justify-center items-center flex-col">
+          <Image
+            className="md:h-screen w-screen object-contain md:object-cover"
+            height={1000}
+            width={1000}
+            src={"/image/the-brand/banner-thebrand-3.webp"}
+            alt="got-question banner image"
+          ></Image>
+        </section>
+      )}
 
       <section
         id="about-quiv"

@@ -85,7 +85,6 @@ const CardProduct = ({
           <div>
             <div
               className={twMerge("bg-white p-5 rounded-full", classNameIcon)}
-              onClick={() => window.open(product.url, "_blank")}
             >
               {product?.icon}
             </div>

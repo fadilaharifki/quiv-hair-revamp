@@ -33,7 +33,7 @@ const BottomBar = () => {
       {breakpoint === "sm" && (
         <nav
           className={twMerge(
-            "sticky bottom-0 h-20 px-2 bg-white grid justify-around items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-30 md:hidden"
+            "fixed -bottom-1 h-20 px-2 bg-white grid justify-around items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-30 md:hidden w-full"
           )}
           style={{
             gridTemplateColumns: `repeat(${bottomBarCount}, minmax(0, 1fr))`,

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
@@ -7,6 +8,7 @@ import { twMerge } from "tailwind-merge";
 import BottomBar from "@/components/bottomBar";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
@@ -16,7 +18,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "Quiv Refining Hair Perfection to Impress, Elevate, and Dominate",
+    default: "Quiv Hair",
     template: "%s - Quiv",
   },
   description:
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://www.quivhair.com//Logo.png",
+        url: "https://www.quivhair.com/Logo.png",
         width: 800,
         height: 600,
         alt: `image`,
@@ -33,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@",
-    title: `Quiv Refining Hair Perfection to Impress, Elevate, and Dominate`,
-    description: `Quiv was born to solve real men problems—the future for hair styling. Forget messy hair powders, greasy waxes, and outdated gels. We've created products: innovative, easy, and futuristic. Styling your hair should be as effortless as your confidence.`,
+    title: "Quiv Hair",
+    description:
+      "Quiv was born to solve real men problems—the future for hair styling. Forget messy hair powders, greasy waxes, and outdated gels. We've created products: innovative, easy, and futuristic. Styling your hair should be as effortless as your confidence.",
     images: [
       {
         url: "/Logo.png",
@@ -49,53 +51,56 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className={twMerge(inter.className, montserrat.className)}>
-        <NavBar></NavBar>
+        <NavBar />
         {children}
-        <Footer></Footer>
-        <BottomBar></BottomBar>
+        <Footer />
+        <BottomBar />
         <WhatsAppIcon />
         <Toaster />
 
-        <script>
-          !(function (f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function () {
-              n.callMethod
-                ? n.callMethod.apply(n, arguments)
-                : n.queue.push(arguments);
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s);
-          })(
-            window,
-            document,
-            'script',
-            'https://connect.facebook.net/en_US/fbevents.js',
-          );
-          fbq('init', '696812539459141');
-          fbq('track', 'PageView');
-        </script>
-      
+        {/* Facebook Pixel Script */}
+        <Script id="facebook-pixel" strategy="afterInteractive">
+          {`
+            !(function (f, b, e, v, n, t, s) {
+              if (f.fbq) return;
+              n = f.fbq = function () {
+                n.callMethod
+                  ? n.callMethod.apply(n, arguments)
+                  : n.queue.push(arguments);
+              };
+              if (!f._fbq) f._fbq = n;
+              n.push = n;
+              n.loaded = !0;
+              n.version = '2.0';
+              n.queue = [];
+              t = b.createElement(e);
+              t.async = !0;
+              t.src = v;
+              s = b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t, s);
+            })(
+              window,
+              document,
+              'script',
+              'https://connect.facebook.net/en_US/fbevents.js'
+            );
+            fbq('init', '696812539459141');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+
         <noscript>
           <img
             height="1"
             width="1"
-            style="display: none"
-            src="https://www.facebook.com/tr?id=696812539459141&ev=PageView&noscript=1" />
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=696812539459141&ev=PageView&noscript=1"
+            alt="facebook pixel"
+          />
         </noscript>
       </body>
     </html>
