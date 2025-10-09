@@ -9,7 +9,7 @@ import { twMerge } from "tailwind-merge";
 import BottomBar from "@/components/bottomBar";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { Toaster } from "@/components/ui/toaster";
-import PixelTracker from "@/components/PixelTracker";
+import dynamic from "next/dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
@@ -18,6 +18,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.quivhair.com"),
   title: {
     default: "Quiv Hair",
     template: "%s - Quiv",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://www.quivhair.com/Logo.png",
+        url: "/Logo.png",
         width: 800,
         height: 600,
         alt: `image`,
@@ -50,43 +51,15 @@ export const metadata: Metadata = {
   },
 };
 
+const PixelTracker = dynamic(() => import("@/components/PixelTracker"), {
+  ssr: false,
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
-
   return (
     <html lang="en">
-      <head>
-        {pixelId && (
-          <>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  !function(f,b,e,v,n,t,s)
-                  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                         
-                  n.callMethod.apply(n,arguments):n.queue.push(arguments)}; 
-                  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                  n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
-                  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
-                  }(window, document,'script',
-                  'https://connect.facebook.net/en_US/fbevents.js');
-                  fbq('init', '${pixelId}');
-                  fbq('track', 'PageView');
-                `,
-              }}
-            />
-            <noscript>
-              <img
-                height="1"
-                width="1"
-                style={{ display: "none" }}
-                src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-              />
-            </noscript>
-          </>
-        )}
-      </head>
       <body className={twMerge(inter.className, montserrat.className)}>
         <PixelTracker />
         <NavBar />
