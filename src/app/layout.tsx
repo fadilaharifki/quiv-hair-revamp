@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
@@ -9,6 +10,7 @@ import BottomBar from "@/components/bottomBar";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { Toaster } from "@/components/ui/toaster";
 import Script from "next/script";
+import PixelTracker from "@/components/PixelTracker";
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({
@@ -54,54 +56,41 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?                         
+              n.callMethod.apply(n,arguments):n.queue.push   
+              (arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!
+              0;n.version='2.0';n.queue=[];t=b.createElement(e);
+              t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,
+              'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1849008955806836');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1849008955806836&ev=PageView&noscript=1"
+          />
+        </noscript>
+      </head>
       <body className={twMerge(inter.className, montserrat.className)}>
+        <PixelTracker />
         <NavBar />
         {children}
         <Footer />
         <BottomBar />
         <WhatsAppIcon />
         <Toaster />
-
-        {/* Facebook Pixel Script */}
-        <Script id="facebook-pixel" strategy="afterInteractive">
-          {`
-            !(function (f, b, e, v, n, t, s) {
-              if (f.fbq) return;
-              n = f.fbq = function () {
-                n.callMethod
-                  ? n.callMethod.apply(n, arguments)
-                  : n.queue.push(arguments);
-              };
-              if (!f._fbq) f._fbq = n;
-              n.push = n;
-              n.loaded = !0;
-              n.version = '2.0';
-              n.queue = [];
-              t = b.createElement(e);
-              t.async = !0;
-              t.src = v;
-              s = b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t, s);
-            })(
-              window,
-              document,
-              'script',
-              'https://connect.facebook.net/en_US/fbevents.js'
-            );
-            fbq('init', '696812539459141');
-            fbq('track', 'PageView');
-          `}
-        </Script>
-
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=696812539459141&ev=PageView&noscript=1"
-            alt="facebook pixel"
-          />
-        </noscript>
       </body>
     </html>
   );
