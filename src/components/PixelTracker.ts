@@ -5,7 +5,7 @@ import ReactPixel from "react-facebook-pixel";
 
 const PixelTracker = () => {
   useEffect(() => {
-    const pixelId = "1849008955806836";
+    const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
 
     if (!pixelId) {
       return;
