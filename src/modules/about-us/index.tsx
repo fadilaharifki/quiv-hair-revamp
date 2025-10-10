@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import CardProduct from "@/components/card-product";
@@ -9,7 +8,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import useScreenSize from "@/hooks/useScreenSize";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useToggleStore } from "@/stores/useToggleStore";
 import LoadingLine from "@/components/LoadingLine";
 import {
@@ -20,6 +19,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Globe, Instagram, ShoppingBag } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import { trackButtonClick } from "@/lib/fbq";
 
 const AboutUsPageModules = () => {
   const { breakpoint } = useScreenSize();
@@ -73,12 +74,18 @@ const AboutUsPageModules = () => {
                   <DropdownMenuItem asChild>
                     <Link
                       href="https://shopee.co.id/quiv.hair"
-                      className="flex items-center cursor-pointer"
                       target="_blank"
+                      className="flex items-center cursor-pointer"
+                      onClick={() =>
+                        trackButtonClick("marketplace", {
+                          platform: "shopee",
+                          href: "https://shopee.co.id/quiv.hair",
+                        })
+                      }
                     >
                       <Image
-                        src={"/icon/shopee.png"}
-                        alt="QUIV Banner"
+                        src="/icon/shopee.png"
+                        alt="QUIV Shopee"
                         priority
                         width={20}
                         height={20}
@@ -87,15 +94,22 @@ const AboutUsPageModules = () => {
                       Shopee
                     </Link>
                   </DropdownMenuItem>
+
                   <DropdownMenuItem asChild>
                     <Link
                       href="https://www.tokopedia.com/quivhair"
-                      className="flex items-center cursor-pointer"
                       target="_blank"
+                      className="flex items-center cursor-pointer"
+                      onClick={() =>
+                        trackButtonClick("marketplace", {
+                          platform: "tokopedia",
+                          href: "https://www.tokopedia.com/quivhair",
+                        })
+                      }
                     >
                       <Image
-                        src={"/icon/tokped1.png"}
-                        alt="QUIV Banner"
+                        src="/icon/tokped1.png"
+                        alt="QUIV Tokopedia"
                         priority
                         width={20}
                         height={20}
@@ -123,20 +137,33 @@ const AboutUsPageModules = () => {
                       href={instagram}
                       target="_blank"
                       className="flex items-center cursor-pointer"
+                      onClick={() =>
+                        trackButtonClick("social", {
+                          platform: "instagram",
+                          href: instagram,
+                        })
+                      }
                     >
                       <Instagram className="mr-2 h-5 w-5" />
                       Instagram
                     </Link>
                   </DropdownMenuItem>
+
                   <DropdownMenuItem asChild>
                     <Link
                       href="https://www.tiktok.com/@quiv_hair?_t=ZS-8walSCn8fVB&_r=1"
-                      className="flex items-center cursor-pointer"
                       target="_blank"
+                      className="flex items-center cursor-pointer"
+                      onClick={() =>
+                        trackButtonClick("social", {
+                          platform: "tiktok",
+                          href: "https://www.tiktok.com/@quiv_hair?_t=ZS-8walSCn8fVB&_r=1",
+                        })
+                      }
                     >
                       <Image
-                        src={"/icon/tiktok.png"}
-                        alt="QUIV Banner"
+                        src="/icon/tiktok.png"
+                        alt="QUIV TikTok"
                         priority
                         width={20}
                         height={20}
@@ -154,13 +181,20 @@ const AboutUsPageModules = () => {
                 variant="outline"
                 className="w-full h-14 text-lg bg-white/80 hover:bg-white/90 border-2 border-[#4A4A4A] text-[#4A4A4A]"
               >
-                <Link href={getPromotion} target="_blank">
+                <Link
+                  href={getPromotion}
+                  target="_blank"
+                  onClick={() =>
+                    trackButtonClick("promotion", { href: getPromotion })
+                  }
+                >
                   <Globe className="mr-2 h-5 w-5" />
                   Get Promotion
                 </Link>
               </Button>
             </div>
           </div>
+
           <p className="text-lg md:text-2xl font-light px-4">
             <span className="font-semibold">#QuivTheGame</span>
           </p>
