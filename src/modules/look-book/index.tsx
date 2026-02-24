@@ -39,7 +39,7 @@ const LookBookPageModules = () => {
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
           <span className="text-gold-deep font-mono tracking-[0.5em] text-[10px] uppercase mb-4">
-            Vol. 01 / Archive
+            Archive
           </span>
           <h1 className="text-6xl md:text-9xl font-black italic tracking-tighter uppercase font-montserrat">
             Lookbook

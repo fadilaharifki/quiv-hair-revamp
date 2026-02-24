@@ -69,20 +69,8 @@ const FaqPageModules = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pt-10">
-          <span className="text-gold-deep font-bold uppercase tracking-[0.3em] text-[9px] md:text-[10px] mb-2 md:mb-4">
-            Support Center
-          </span>
-          <h1 className="text-4xl md:text-8xl font-semibold italic tracking-tighter uppercase text-navy-blue leading-[0.9] md:leading-[0.8]">
-            Got <br className="hidden md:block" /> Questions?
-          </h1>
-        </div>
-
         <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-navy-blue">
-          <ArrowDown
-            onClick={handleScroll}
-            className="animate-bounce h-8 w-8 md:h-12 md:w-12"
-          />
+          <ArrowDown onClick={handleScroll} className="animate-bounce" />
         </div>
       </section>
 

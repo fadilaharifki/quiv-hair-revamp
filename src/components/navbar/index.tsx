@@ -100,11 +100,7 @@ const NavBar = () => {
           </div>
 
           {/* Right Action */}
-          <div className="flex-1 flex justify-end">
-            <button className="text-white hover:text-gold-deep transition-colors">
-              <SearchIcon size={18} />
-            </button>
-          </div>
+          <div className="flex-1 flex justify-end"></div>
         </div>
       </nav>
     </>

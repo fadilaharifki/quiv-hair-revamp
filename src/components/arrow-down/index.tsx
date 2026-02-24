@@ -1,6 +1,7 @@
 "use client";
 
 import NextIcon from "@/assets/icon/next-icon";
+import { ArrowDown01, ArrowDownCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -36,11 +37,11 @@ const ArrowDown = ({ className, onClick = () => {} }: ArrawDownInterface) => {
       ref={IconRef}
       onClick={onClick}
       className={twMerge(
-        "absolute bottom-20 rotate-90 bg-white hover:bg-navy-blue left-1/2 transform -translate-x-1/2 cursor-pointer p-1 rounded-full",
-        className
+        "absolute bottom-20  bg-white hover:bg-navy-blue left-1/2 transform -translate-x-1/2 cursor-pointer p-1 rounded-full ",
+        className,
       )}
     >
-      <NextIcon color={isHovered ? "#ffffff" : "#383838"} />
+      <ArrowDownCircle color={isHovered ? "#ffffff" : "#383838"} />
     </div>
   );
 };
