@@ -78,7 +78,7 @@ const Footer = () => {
         {/* Bottom Bar Footer - Reduced Margin Top */}
         <div className="mt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[9px] text-gray-600 uppercase tracking-widest font-medium">
-            © 2026 QUIV HAIR.
+            © 2025 QUIV HAIR.
           </p>
           <div className="flex gap-4 items-center opacity-40">
             <span className="text-[9px] text-gray-700 tracking-[0.3em] uppercase font-black italic">

@@ -3,71 +3,56 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { twMerge } from "tailwind-merge";
-import BottomBar from "@/components/bottomBar";
-import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { Toaster } from "@/components/ui/toaster";
-import dynamic from "next/dynamic";
+import ClientProvider from "@/components/ClientProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.quivhair.com"),
   title: {
-    default: "Quiv Hair",
+    default: "Quiv Hair | The Future of Hair Styling",
     template: "%s - Quiv",
   },
   description:
-    "Quiv was born to solve real men problems—the future for hair styling. Forget messy hair powders, greasy waxes, and outdated gels. We've created products: innovative, easy, and futuristic. Styling your hair should be as effortless as your confidence.",
+    "Quiv was born to solve real men problems—the future for hair styling. Forget messy hair powders, greasy waxes, and outdated gels. Styling your hair should be as effortless as your confidence.",
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.quivhair.com",
+    siteName: "Quiv Hair",
     images: [
-      {
-        url: "/Logo.png",
-        width: 800,
-        height: 600,
-        alt: `image`,
-      },
+      { url: "/Logo.png", width: 1200, height: 630, alt: "Quiv Hair Labs" },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Quiv Hair",
     description:
-      "Quiv was born to solve real men problems—the future for hair styling. Forget messy hair powders, greasy waxes, and outdated gels. We've created products: innovative, easy, and futuristic. Styling your hair should be as effortless as your confidence.",
-    images: [
-      {
-        url: "/Logo.png",
-        width: 800,
-        height: 600,
-        alt: `image`,
-      },
-    ],
+      "The future for hair styling. Innovative, easy, and futuristic.",
+    images: ["/Logo.png"],
   },
 };
-
-const PixelTracker = dynamic(() => import("@/components/PixelTracker"), {
-  ssr: false,
-});
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={twMerge(inter.className, montserrat.className)}>
-        <PixelTracker />
-        <NavBar />
-        {children}
-        <Footer />
-        <BottomBar />
-        <WhatsAppIcon />
-        <Toaster />
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={twMerge(
+          "antialiased bg-white text-navy-blue",
+          inter.variable,
+          montserrat.variable,
+          montserrat.className,
+        )}
+      >
+        <ClientProvider>{children}</ClientProvider>
       </body>
     </html>
   );
