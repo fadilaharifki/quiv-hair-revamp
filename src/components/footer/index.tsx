@@ -1,136 +1,93 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import LogoBlack from "../../assets/svg/logo-black.svg";
+import Logo from "../../assets/svg/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { twMerge } from "tailwind-merge";
 import { menus } from "../navbar";
 import React from "react";
 import { phoneNumber, phoneNumberDash } from "@/constants/data";
 
-interface MenuItem {
-  name?: string;
-  url?: string;
-  value?: string;
-  target?: string;
-  icon?: (className: string) => React.ReactNode;
-}
-
-interface MenuGroup {
-  value?: string;
-  name: string;
-  typeTitle?: string;
-  address?: string;
-  menu?: MenuItem[];
-}
-
 const Footer = () => {
   const router = useRouter();
-  const menusFooter: MenuGroup[] = [
+
+  const menusFooter = [
     {
-      name: LogoBlack,
-      typeTitle: "icon",
-      address: "",
+      name: "Navigation",
+      menu: menus.map((m) => ({ name: m.name, value: m.value })),
     },
     {
-      name: "Main Menu",
-      menu: [...menus],
-    },
-    {
-      name: "",
-      menu: [],
-    },
-    {
-      name: "",
-      menu: [],
-    },
-    {
-      name: "Contact",
+      name: "Support",
       menu: [
-        {
-          name: phoneNumberDash,
-          url: `https://wa.me/${phoneNumber}`,
-          target: "_blank",
-        },
-        {
-          name: "admin@quivhair.com",
-          url: "mailto:admin@quivhair.com",
-          target: "_blank",
-        },
+        { name: "FAQ", value: "/got-questions" },
+        { name: "Shipping Policy", value: "#" },
+      ],
+    },
+    {
+      name: "Contact Us",
+      menu: [
+        { name: phoneNumberDash, value: `https://wa.me/${phoneNumber}` },
+        { name: "Email", value: "mailto:admin@quivhair.com" },
       ],
     },
   ];
 
   return (
-    <div className="flex flex-col w-screen bg-[#E8E3DC]">
-      <div className=" bg-soft-gray w-screen grid grid-cols-1 sm:grid-cols-5 p-10 gap-5 sm:gap-10 sm:px-32">
-        {menusFooter.map((item, idx) => {
-          if (item.typeTitle === "icon") {
-            return (
-              <div key={idx}>
-                <Image
-                  onClick={() => {
-                    router.push("/");
-                  }}
-                  className="mb-5 sm:mb-10 cursor-pointer scale-110"
-                  width={100}
-                  height={100}
-                  src={LogoBlack}
-                  alt="Logo"
-                ></Image>
-                <div className="flex flex-col   font-medium hover:font-semibold text-sm sm:text-lg gap-4">
-                  {item.address}
-                </div>
-              </div>
-            );
-          }
-          return (
-            <div key={idx}>
-              <div
-                className={twMerge(
-                  "flex flex-col font-light text-sm sm:text-lg mb-5 sm:mb-10"
-                )}
-              >
-                {item.name}
-              </div>
-              <div className="flex flex-col   text-sm sm:text-lg gap-2 sm:gap-4">
-                {item.menu?.map((menu, index) => {
-                  if (!menu.value) {
-                    return (
-                      <span
-                        className={
-                          "cursor-not-allowed font-normal hover:font-medium"
-                        }
-                        key={index}
-                      >
-                        {menu.name}
-                      </span>
-                    );
-                  }
-                  return (
+    <footer className="bg-black border-t border-gold-deep/10 pt-12 pb-24 md:pb-10">
+      <div className="max-w-7xl mx-auto px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4">
+          {/* Brand Identity Column - Less Spacing */}
+          <div className="lg:col-span-2 space-y-4">
+            <Image
+              onClick={() => router.push("/")}
+              className="cursor-pointer brightness-110 opacity-90 transition-all w-24 h-auto"
+              width={100}
+              height={30}
+              src={Logo}
+              alt="Quiv Logo"
+            />
+            <p className="text-gray-500 text-[11px] leading-relaxed max-w-[240px] font-light">
+              Pushing the boundaries of hair precision. Engineering
+              next-generation solutions for the modern lifestyle.
+            </p>
+          </div>
+
+          {/* Dynamic Menus - Tight Spacing */}
+          {menusFooter.map((group, idx) => (
+            <div key={idx} className="space-y-4">
+              <h4 className="text-gold-deep text-[9px] font-black uppercase tracking-[0.2em]">
+                {group.name}
+              </h4>
+              <ul className="flex flex-col gap-2">
+                {group.menu.map((item, index) => (
+                  <li key={index}>
                     <Link
-                      href={menu.value}
-                      className="font-normal hover:font-medium"
-                      key={index}
-                      target={menu?.target}
+                      href={item.value}
+                      className="text-gray-400 hover:text-white text-[12px] font-light transition-colors duration-300 block whitespace-nowrap"
                     >
-                      {menu.name}
+                      {item.name}
                     </Link>
-                  );
-                })}
-              </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-          );
-        })}
-      </div>
-      {/* <div>
-        <div className="border-b border-navy-blue w-screen border-2 sm:my-10"></div>
-        <div className="flex flex-col   font-base text-sm sm:text-lg text-center mt-5 sm:mt-20">
-          © All Rights Reserved 2024 - QUIV
+          ))}
         </div>
-      </div> */}
-    </div>
+
+        {/* Bottom Bar Footer - Reduced Margin Top */}
+        <div className="mt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[9px] text-gray-600 uppercase tracking-widest font-medium">
+            © 2026 QUIV HAIR.
+          </p>
+          <div className="flex gap-4 items-center opacity-40">
+            <span className="text-[9px] text-gray-700 tracking-[0.3em] uppercase font-black italic">
+              #QUIVTHEGAME
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

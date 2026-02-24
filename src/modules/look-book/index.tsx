@@ -2,21 +2,12 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import InstagramReelEmbed from "../../components/InstagramEmberd";
 import { instagram } from "@/constants/data";
 import { ReelsCarousel } from "@/components/ReelsCarousel";
 import { TitleComponent } from "@/components/title";
+import { twMerge } from "tailwind-merge";
 
 const LookBookPageModules = () => {
-  const handleScroll = () => {
-    const element = document.getElementById("day-to-day-style-0");
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  };
-
   const galery = [
     "/image/look-book/galery-1.webp",
     "/image/look-book/galery-2.webp",
@@ -26,174 +17,132 @@ const LookBookPageModules = () => {
   ];
 
   const reelsUrls = [
-    "https://www.instagram.com/reel/DM61a8cv-Zc/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "https://www.instagram.com/reel/DLCpZNlvRdk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "https://www.instagram.com/reel/DMLCiH8PWCO/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "https://www.instagram.com/reel/DKN7PIjSLDn/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "https://www.instagram.com/reel/DM61a8cv-Zc/",
+    "https://www.instagram.com/reel/DLCpZNlvRdk/",
+    "https://www.instagram.com/reel/DMLCiH8PWCO/",
+    "https://www.instagram.com/reel/DKN7PIjSLDn/",
   ];
 
   return (
-    <div>
-      <section className="md:h-screen">
+    <div className="bg-black text-white min-h-screen">
+      {/* --- HERO SECTION --- */}
+      <section className="relative h-[70vh] md:h-screen w-full overflow-hidden">
         <Image
-          className="md:h-screen w-screen object-contain md:object-cover"
-          height={1000}
-          width={1000}
-          src={"/image/look-book/lookbook-banner.webp"}
-          alt="got-question banner image"
-        ></Image>
-      </section>
-      <section className="mx-auto mt-8 pb-10">
-        <div className="py-10">
-          <TitleComponent
-            lastTitle="Gallery"
-            classNameContainer="uppercase flex justify-center"
-          />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-1 mx-2">
-          {galery.map((url, idx) => (
-            <div
-              key={url}
-              className="bg-gray-300 rounded-lg flex items-center justify-center text-xl text-gray-600 select-none h-96"
-            >
-              <Image
-                width={1000}
-                height={1000}
-                className="w-full h-full object-cover object-[center_5%] rounded-lg"
-                src={url}
-                alt={`image gallery ${idx}`}
-              />
-            </div>
-          ))}
+          className="h-full w-full object-cover brightness-50 scale-105 transition-transform duration-[3000ms]"
+          height={1200}
+          width={1920}
+          src="/image/look-book/lookbook-banner.webp"
+          alt="Lookbook Banner"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black" />
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <span className="text-gold-deep font-mono tracking-[0.5em] text-[10px] uppercase mb-4">
+            Vol. 01 / Archive
+          </span>
+          <h1 className="text-6xl md:text-9xl font-black italic tracking-tighter uppercase font-montserrat">
+            Lookbook
+          </h1>
         </div>
       </section>
 
-      <section>
-        <div className="grid grid-cols-1">
-          <div className="py-10">
-            <TitleComponent
-              firstTitle="What"
-              lastTitle="They Said"
-              classNameContainer="uppercase flex justify-center"
+      {/* --- GALLERY SECTION (EDITORIAL GRID) --- */}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <div className="flex flex-col items-center mb-20">
+          <TitleComponent firstTitle="Visual" lastTitle="Archive" />
+          <p className="text-gray-500 text-[10px] tracking-[0.4em] uppercase mt-4">
+            Curated Style & Movement
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[300px] md:auto-rows-[400px]">
+          {/* Item 1 - Besar (Vertical) */}
+          <div className="md:col-span-4 md:row-span-2 group relative overflow-hidden rounded-2xl">
+            <Image
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              src={galery[0]}
+              alt="Gallery 1"
             />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
           </div>
 
+          {/* Item 2 - Horizontal */}
+          <div className="md:col-span-8 md:row-span-1 group relative overflow-hidden rounded-2xl">
+            <Image
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              src={galery[1]}
+              alt="Gallery 2"
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+          </div>
+
+          {/* Item 3 & 4 - Square */}
+          <div className="md:col-span-4 md:row-span-1 group relative overflow-hidden rounded-2xl">
+            <Image
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              src={galery[2]}
+              alt="Gallery 3"
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+          </div>
+
+          <div className="md:col-span-4 md:row-span-1 group relative overflow-hidden rounded-2xl">
+            <Image
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              src={galery[3]}
+              alt="Gallery 4"
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+          </div>
+        </div>
+      </section>
+
+      {/* --- SOCIAL PROOF (REELS) --- */}
+      <section className="bg-[#050505] py-24 border-y border-white/5">
+        <div className="mb-16">
+          <TitleComponent firstTitle="What" lastTitle="They Said" />
+          <div className="flex justify-center mt-2">
+            <div className="h-[1px] w-12 bg-gold-deep/50" />
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto">
           <ReelsCarousel reelsUrls={reelsUrls} />
         </div>
       </section>
-      <section className="max-w-xl mx-2 md:mx-auto p-6 bg-gray-50 rounded-lg shadow-md text-center space-y-6 my-10">
-        <div className="text-gray-700">
-          Styled with Quiv? Tag{" "}
-          <span className="font-semibold">@quiv.hair</span> or submit your photo
-          to be featured.
-        </div>
-        <div className="flex justify-center gap-4">
-          <Button
-            onClick={() => window.open(instagram, "_blank")}
-            className="px-5 py-2 bg-light-primary-navbar text-white rounded-md hover:bg-light-primary transition"
-          >
-            Upload Photo on Instagram
-          </Button>
+
+      {/* --- CTA SECTION (CALL TO ACTION) --- */}
+      <section className="py-32 px-6 flex justify-center">
+        <div className="max-w-2xl w-full bg-navy-blue/10 border border-gold-deep/20 backdrop-blur-md rounded-[40px] p-12 text-center relative overflow-hidden">
+          {/* Background Decoration */}
+          <div className="absolute -top-10 -right-10 w-32 h-32 bg-gold-deep/10 blur-[60px] rounded-full" />
+
+          <div className="relative z-10 space-y-8">
+            <div className="space-y-2">
+              <h3 className="text-2xl md:text-3xl font-black italic tracking-tighter uppercase">
+                Submit Your Style
+              </h3>
+              <p className="text-gray-400 text-sm font-light leading-relaxed">
+                Styled with Quiv? Tag{" "}
+                <span className="text-gold-deep font-bold">@quiv.hair</span> or
+                submit your photo to be featured in our global archive.
+              </p>
+            </div>
+
+            <Button
+              onClick={() => window.open(instagram, "_blank")}
+              className="bg-gold-deep hover:bg-gold-deep/80 text-black font-black uppercase tracking-[0.2em] text-[10px] px-10 py-6 rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(184,134,11,0.3)]"
+            >
+              Upload on Instagram
+            </Button>
+          </div>
         </div>
       </section>
-
-      {/* {dataImage.map((e, idx) => {
-        return (
-          <div
-            id={`day-to-day-style-${idx}`}
-            key={idx}
-            className="min-h-screen flex flex-col sm:flex-row"
-          >
-            <div
-              className={twMerge(
-                "flex-col flex justify-center gap-11",
-                e.position === "left"
-                  ? "basis-2/6 bg-navy-blue px-10"
-                  : "basis-4/6",
-                e.className
-              )}
-            >
-              {e.position === "left" ? (
-                <div className="flex gap-5 flex-col py-10 sm:p-0">
-                  <TitleComponent
-                    firstTitle={e.firstTitle}
-                    lastTitle={e.lastTitle}
-                    classNameContainer={e.className}
-                  />
-                  <div className="text-2xl font-light">{e.description}</div>
-                  <div>{e.button}</div>
-                </div>
-              ) : (
-                <Image
-                  className={twMerge("flex h-full w-full")}
-                  width={286}
-                  height={286}
-                  alt={e.name}
-                  src={e.url}
-                />
-              )}
-            </div>
-            <div
-              className={twMerge(
-                "flex justify-center items-center flex-col ",
-                e.position === "left"
-                  ? "basis-4/6"
-                  : "basis-2/6 bg-navy-blue px-10",
-                e.className
-              )}
-            >
-              {e.position === "left" ? (
-                <Image
-                  className={twMerge("flex h-full w-full")}
-                  width={286}
-                  height={286}
-                  alt={e.name}
-                  src={e.url}
-                />
-              ) : (
-                <div className="flex flex-col gap-5 sm:gap-10 py-10 sm:p-0">
-                  <TitleComponent
-                    firstTitle={e.firstTitle}
-                    lastTitle={e.lastTitle}
-                    classNameContainer={e.className}
-                  />
-                  <div className="text-2xl font-light">{e.description}</div>
-                  <div>{e.button}</div>
-                </div>
-              )}
-            </div>
-          </div>
-        );
-      })}
-      <div className="relative h-[500px] sm:h-screen">
-        <Image
-          className={twMerge("flex h-full w-full object-obtain")}
-          width={286}
-          height={286}
-          src={"/image/look-book/image6.png"}
-          alt="look book image"
-        ></Image>
-        <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] h-[50%] flex flex-col items-center justify-evenly">
-            <h1 className="text-white text-4xl sm:text-[60px] font-bold text-center  text-shadow shadow-gray-500">
-              Simple Style
-            </h1>
-            <div className="w-8/12 text-white text-lg sm:text-2xl   text-center text-shadow shadow-gray-500">
-              When it came to men’s grooming products, there weren’t many
-              high-quality, harmful chemical-free options available at prices
-              that were in proportion with what they offered.
-            </div>
-            <div>
-              <Button
-                variant="outline"
-                className="bg-transparent text-white hover:text-navy-blue text-sm sm:text-lg w-40 sm:w-52 "
-              >
-                Shop Now
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

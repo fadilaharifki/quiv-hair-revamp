@@ -3,59 +3,33 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import Logo from "../../assets/svg/logo.svg";
-import Search from "../../assets/svg/search.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  BookIcon,
-  CircleX,
   HomeIcon,
-  InfoIcon,
-  MenuIcon,
-  NewspaperIcon,
-  PhoneIcon,
-  SearchIcon,
   ShoppingBagIcon,
-  X,
+  BookIcon,
+  NewspaperIcon,
+  InfoIcon,
+  SearchIcon,
+  TvIcon,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { Input } from "../ui/input";
-import useScreenSize from "@/hooks/useScreenSize";
+import { useEffect, useState } from "react";
 import { useToggleStore } from "@/stores/useToggleStore";
 
+// Menu data tetap sama
 export const menus = [
+  { icon: HomeIcon, value: "/", name: "The Brand", isBottomBar: true },
   {
-    icon: (className: string) => <HomeIcon className={className} />,
-    value: "/",
-    name: "The Brand",
-    isBottomBar: true,
-  },
-  {
-    icon: (className: string) => <ShoppingBagIcon className={className} />,
+    icon: ShoppingBagIcon,
     value: "/why-quiv",
     name: "WhyQuiv",
     isBottomBar: true,
   },
-  // {
-  //   icon: (className: string) => <DiamondIcon className={className} />,
-  //   value: "/quiz",
-  //   name: "Quiz",
-  // isBottomBar:true,
-  // },
+  { icon: BookIcon, value: "/look-book", name: "Lookbook", isBottomBar: true },
+  { icon: NewspaperIcon, value: "/feeds", name: "Feeds", isBottomBar: true },
   {
-    icon: (className: string) => <BookIcon className={className} />,
-    value: "/look-book",
-    name: "Lookbook",
-    isBottomBar: true,
-  },
-  {
-    icon: (className: string) => <NewspaperIcon className={className} />,
-    value: "/feeds",
-    name: "Feeds",
-    isBottomBar: true,
-  },
-  {
-    icon: (className: string) => <InfoIcon className={className} />,
+    icon: InfoIcon,
     value: "/got-questions",
     name: "Got Questions",
     isBottomBar: true,
@@ -64,178 +38,76 @@ export const menus = [
 
 const NavBar = () => {
   const pathname = usePathname();
-  const refNav = useRef<HTMLDivElement>(null);
-  const { width, breakpoint } = useScreenSize();
-  const [openMenu, setOpenMenu] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [openSearch, setOpenSearch] = useState(false);
-  const [activeMenu, setActiveMenu] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const { setIsOpen } = useToggleStore();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY !== lastScrollY) {
-        setIsScrolling(true);
-        setOpenMenu(false);
-        setLastScrollY(window.scrollY);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
-
-    const interval = setInterval(() => {
-      setIsScrolling(false);
-    }, 150);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearInterval(interval);
-    };
-  }, [lastScrollY]);
-
-  useEffect(() => {
-    if (breakpoint === "md" && pathname === "/" && activeMenu !== "The Brand") {
-      setTimeout(() => {
-        setIsOpen(true);
-      }, 100);
-    } else {
-      setIsOpen(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname, activeMenu]);
-
-  const renderMenu = () => {
-    return (
-      <div className="flex flex-col sm:flex-row justify-evenly w-full gap-3 sm:gap-0">
-        {menus.map((menu, idx) => {
-          return (
-            <Link
-              key={idx}
-              onClick={() => {
-                setActiveMenu(menu.name);
-              }}
-              href={menu.value}
-              className={twMerge(
-                "  pb-2 text-white transition duration-300 ease-in-out",
-                !openMenu
-                  ? pathname === menu.value
-                    ? "border-b-[1px] pb-2 border-white font-semibold hover:border-b-[1px] hover:border-white"
-                    : "border-b-[1px] border-transparent font-semibold hover:border-b-[1px] hover:border-white"
-                  : pathname === menu.value
-                  ? "font-semibold"
-                  : ""
-              )}
-            >
-              {menu.name}
-            </Link>
-          );
-        })}
-      </div>
-    );
-  };
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50">
-      <div
-        ref={refNav}
+    <>
+      {/* --- TOP NAVBAR (Desktop Only) --- */}
+      <nav
         className={twMerge(
-          "grid grid-cols-3 sm:grid-cols-7 w-screen px-10 sm:px-0 h-20 bg-transparent bg-light-primary-navbar justify-center items-center"
+          "fixed top-0 w-full z-[100] transition-all duration-500 hidden md:block",
+          scrolled
+            ? "h-16 bg-navy-blue/90 backdrop-blur-md border-b border-gold-deep/20"
+            : "h-24 bg-transparent",
         )}
       >
-        <div className="sm:hidden flex justify-start items-center">
-          <div
-            className={`hidden transform transition-transform duration-500 ${
-              openMenu ? "rotate-180" : ""
-            }`}
-            onClick={() => {
-              setOpenSearch(false);
-              setOpenMenu(!openMenu);
-            }}
-          >
-            {!openMenu ? (
-              <MenuIcon size={30} color="#ffffff" strokeWidth={2.25} />
-            ) : (
-              <X size={30} color="#ffffff" strokeWidth={2.25} />
-            )}
-          </div>
-        </div>
-        {openSearch && breakpoint !== "sm" ? (
-          <div className="flex w-screen px-5">
-            <Input
-              placeholder="Search . . . "
-              suffix={
-                <div className="flex flex-row gap-5">
-                  <SearchIcon className=" cursor-pointer hover:scale-125 duration-300" />
-                  <CircleX
-                    className=" cursor-pointer hover:scale-125 duration-300"
-                    onClick={() => {
-                      setOpenSearch(!openSearch);
-                    }}
-                  />
-                </div>
-              }
-            />
-          </div>
-        ) : (
-          <div className="grid grid-cols-3 sm:grid-cols-7 sm:col-span-7 col-span-3 justify-center items-start">
-            <div className="flex justify-center items-center col-span-3 sm:col-span-1">
-              <Link
-                href={"/"}
-                onClick={() => {
-                  setIsOpen(true);
-                }}
-              >
-                <Image width={100} height={100} src={Logo} alt="Logo"></Image>
-              </Link>
-            </div>
-            <div className="hidden sm:flex justify-around items-center sm:col-span-5">
-              {renderMenu()}
-            </div>
-            <div
-              className="hidden justify-end sm:justify-center items-center"
-              onClick={() => {
-                setOpenSearch(!openSearch);
-                setOpenMenu(false);
-              }}
-            >
-              <SearchIcon
-                color="#ffffff"
-                className=" cursor-pointer hover:scale-125 duration-300"
+        <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-12">
+          {/* Logo */}
+          <div className="flex-1">
+            <Link href="/" onClick={() => setIsOpen(true)} className="group">
+              <Image
+                width={scrolled ? 80 : 100}
+                height={40}
+                src={Logo}
+                alt="Logo"
+                className="transition-all duration-500 brightness-110"
               />
-            </div>
+            </Link>
           </div>
-        )}
-      </div>
-      {openMenu && (
-        <div
-          className={twMerge(
-            "transition-all duration-500 ease-in-out w-screen py-5",
-            openMenu
-              ? `grid grid-cols-2 sm:grid-cols-5 px-10 sm:px-0 bg-transparent bg-light-primary-navbar justify-center absolute items-center z-50`
-              : "hidden"
-          )}
-          style={{ top: `${refNav?.current?.offsetHeight}px` }}
-        >
-          <div className="flex flex-col gap-4">{renderMenu()}</div>
-        </div>
-      )}
-      {openSearch && breakpoint === "sm" && (
-        <div
-          className={twMerge(
-            "transition-all duration-500 ease-in-out w-screen py-5",
-            openSearch
-              ? `grid grid-cols-2 sm:grid-cols-5 pb-10 bg-transparent bg-light-primary-navbar justify-center absolute items-center z-50`
-              : "hidden"
-          )}
-          style={{ top: `${refNav?.current?.offsetHeight}px` }}
-        >
-          <div className="flex w-screen px-5">
-            <Input placeholder="Search . . . " suffix={<SearchIcon />} />
+
+          {/* Desktop Menu Tengah */}
+          <div className="flex items-center justify-center gap-8">
+            {menus.map((menu, idx) => {
+              const isActive = pathname === menu.value;
+              return (
+                <Link
+                  key={idx}
+                  href={menu.value}
+                  className={twMerge(
+                    "text-[10px] tracking-[0.25em] uppercase font-bold transition-all duration-300 relative py-2",
+                    isActive
+                      ? "text-gold-deep"
+                      : "text-white/60 hover:text-white",
+                  )}
+                >
+                  {menu.name}
+                  <span
+                    className={twMerge(
+                      "absolute bottom-0 left-0 h-[1px] bg-gold-deep transition-all duration-500",
+                      isActive ? "w-full" : "w-0",
+                    )}
+                  />
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Right Action */}
+          <div className="flex-1 flex justify-end">
+            <button className="text-white hover:text-gold-deep transition-colors">
+              <SearchIcon size={18} />
+            </button>
           </div>
         </div>
-      )}
-    </nav>
+      </nav>
+    </>
   );
 };
 

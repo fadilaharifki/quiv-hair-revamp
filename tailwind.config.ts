@@ -65,6 +65,9 @@ const config = {
         "light-primary-three": "#5c7c89",
         "light-blue": "#8AA1B2",
         "light-gray": "#F1EFF0",
+        "gold-deep": "#B8860B",
+        "gold-bright": "#F3E5AB",
+        "gold-muted": "#C5A059",
         "soft-gray": "#F8F8F6",
         "navy-blue": "#1A2B38",
       },
@@ -114,7 +117,7 @@ const config = {
             textShadow: value,
           }),
         },
-        { values: theme("textShadow") }
+        { values: theme("textShadow") },
       );
     }),
   ],

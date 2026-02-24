@@ -10,9 +10,10 @@ import {
 } from "@/components/ui/accordion";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { TitleComponent } from "@/components/title";
 
 const FaqPageModules = () => {
-  const [activeFaq, setActiveFaq] = useState<number | null | undefined>(null);
+  const [activeFaq, setActiveFaq] = useState<string | undefined>(undefined);
 
   const dataFaq = [
     {
@@ -28,95 +29,134 @@ const FaqPageModules = () => {
     {
       question: "What’s the difference between both products?",
       answer:
-        "Flex is for a dry matte texture on your hair (mostly like hair powder products), and Fine is for a smoother texture and glossy looks (mostly like using clay/pomade)",
+        "Flex is for a dry matte texture (hair powder style), and Fine is for a smoother, glossy looks (clay/pomade style).",
     },
     {
       question: "How to apply Quiv?",
       answer:
-        "One or two pump to your hand, no need to excessively spreading into your palm, just enough spread then apply to your hair and style! For best result use after a shower following a hair dryer.",
+        "One or two pump to your hand, spread enough then apply to your hair and style! Best result after shower with a hair dryer.",
     },
     {
       question: "Does Quiv support daily use?",
       answer:
-        "Quiv is made for an active men. Complete a daily men routine with Quiv, from sport to work to hangouts, you can bring Quiv compact bottle easily on your mobility.",
+        "Quiv is made for active men. Compact and easy to carry for sports, work, or hangouts.",
     },
     {
       question: "Does Quiv safe for my hair?",
       answer:
-        "With BPOM certified, trusted by most active men, nutritions added for your healthier hair, easy-to-wash after use, Quiv is definitely safe.",
+        "BPOM certified, nutritions added for healthier hair, and easy-to-wash. Definitely safe.",
     },
   ];
 
   const handleScroll = () => {
-    const element = document.getElementById("what-quiv");
+    const element = document.getElementById("faq-section");
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
-    <div>
-      <div className="md:h-screen">
+    <div className="bg-white min-h-screen">
+      {/* --- HERO SECTION --- */}
+      <section className="relative h-[50vh] md:h-screen w-full overflow-hidden bg-black">
         <Image
-          className="md:h-screen w-screen object-contain md:object-cover"
-          height={1000}
-          width={1000}
+          className="h-full w-full object-cover opacity-60 md:scale-105"
+          height={1200}
+          width={1920}
           src={"/image/got-question/banner.webp"}
-          alt="got-question banner image"
-        ></Image>
-        {/* <div className="absolute inset-0 bg-light-primary bg-opacity-25 shadow-lg rounded-md"></div>
-        <div className="absolute inset-0 flex items-center justify-center ">
-          <div className="w-[80%] flex flex-col items-center justify-between gap-5">
-            <h1 className="text-white text-3xl sm:text-[48px] leading-none text-center font-light text-shadow tracking-wide shadow-gray-500">
-              Frequently asked questions
-            </h1>
-            <div className="text-white text-sm sm:text-lg   text-center text-shadow shadow-gray-500">
-              Natural ingredients, proven to perform the best
-            </div>
-          </div>
+          alt="FAQ Banner"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 pt-10">
+          <span className="text-gold-deep font-bold uppercase tracking-[0.3em] text-[9px] md:text-[10px] mb-2 md:mb-4">
+            Support Center
+          </span>
+          <h1 className="text-4xl md:text-8xl font-semibold italic tracking-tighter uppercase text-navy-blue leading-[0.9] md:leading-[0.8]">
+            Got <br className="hidden md:block" /> Questions?
+          </h1>
         </div>
-        <ArrowDown onClick={handleScroll} /> */}
-      </div>
-      <div id="what-quiv" className="">
-        <div className="p-5 sm:p-20">
-          <Accordion
-            type="single"
-            collapsible
-            className="w-full flex flex-col gap-5 sm:gap-10"
-          >
-            {dataFaq.map((faq, idx) => {
-              return (
-                <AccordionItem
-                  onClick={() => {
-                    setActiveFaq(idx);
-                  }}
-                  key={idx}
+
+        <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-navy-blue">
+          <ArrowDown
+            onClick={handleScroll}
+            className="animate-bounce h-8 w-8 md:h-12 md:w-12"
+          />
+        </div>
+      </section>
+
+      {/* --- FAQ SECTION --- */}
+      <section
+        id="faq-section"
+        className="max-w-4xl mx-auto py-16 md:py-24 px-5 md:px-0"
+      >
+        <div className="flex flex-col items-center mb-12 md:mb-20">
+          <TitleComponent
+            firstTitle="FREQUENTLY"
+            lastTitle="ASKED"
+            variant="light"
+            classNameContainer="scale-90 md:scale-100"
+          />
+          <div className="h-[2px] w-10 md:w-12 bg-gold-deep mt-3 md:mt-4" />
+        </div>
+
+        <Accordion
+          type="single"
+          collapsible
+          onValueChange={setActiveFaq}
+          className="w-full space-y-3 md:space-y-4"
+        >
+          {dataFaq.map((faq, idx) => {
+            const itemValue = `item-${idx}`;
+            const isActive = activeFaq === itemValue;
+
+            return (
+              <AccordionItem
+                key={idx}
+                value={itemValue}
+                className={twMerge(
+                  "border transition-all duration-300 overflow-hidden",
+                  "rounded-[16px] md:rounded-[24px] px-5 md:px-10", // Smaller radius on mobile
+                  isActive
+                    ? "bg-navy-blue border-navy-blue md:scale-[1.02] shadow-xl"
+                    : "bg-gray-50/80 border-gray-100 hover:border-gold-deep/30",
+                )}
+              >
+                <AccordionTrigger
                   className={twMerge(
-                    "border-[1px] px-10 rounded-lg border-navy-blue",
-                    activeFaq === idx
-                      ? "bg-navy-blue text-white"
-                      : "bg-white text-brown"
+                    "py-5 md:py-8 text-start text-base md:text-xl font-semibold italic uppercase tracking-tighter no-underline hover:no-underline",
+                    isActive ? "text-gold-deep" : "text-navy-blue",
                   )}
-                  value={`item-${idx}`}
                 >
-                  <AccordionTrigger
-                    className={twMerge(
-                      "text-start text-lg md:text-2xl font-medium hover:font-bold",
-                      activeFaq === idx ? "font-bold" : ""
-                    )}
-                  >
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-sm md:text-base font-normal">
+                  <div className="flex items-center gap-4 md:gap-6">
+                    <span
+                      className={twMerge(
+                        "text-[9px] md:text-[10px] font-mono font-bold tracking-widest transition-colors",
+                        isActive ? "text-white/30" : "text-gray-300",
+                      )}
+                    >
+                      {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                    </span>
+                    <span className="leading-tight">{faq.question}</span>
+                  </div>
+                </AccordionTrigger>
+
+                <AccordionContent
+                  className={twMerge(
+                    "pb-6 md:pb-8 text-xs md:text-base leading-relaxed",
+                    isActive ? "text-gray-300" : "text-gray-600",
+                  )}
+                >
+                  <div className="max-w-2xl border-l-[1.5px] border-gold-deep/50 pl-4 md:pl-6 ml-1">
                     {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              );
-            })}
-          </Accordion>
-        </div>
-      </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            );
+          })}
+        </Accordion>
+      </section>
     </div>
   );
 };

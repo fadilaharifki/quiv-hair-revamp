@@ -26,61 +26,65 @@ const BottomBar = () => {
   }, [activeMenu, pathname]);
 
   const bottomMenus = menus.filter((item) => item.isBottomBar);
-  const bottomBarCount = bottomMenus.length;
 
   return (
     <>
       {breakpoint === "sm" && (
-        <nav
-          className={twMerge(
-            "fixed -bottom-1 h-20 px-2 bg-white grid justify-around items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-30 md:hidden w-full"
-          )}
-          style={{
-            gridTemplateColumns: `repeat(${bottomBarCount}, minmax(0, 1fr))`,
-          }}
-        >
-          {bottomMenus.map((menu, idx) => {
-            const isActive = pathname === menu.value;
+        <nav className="md:hidden fixed bottom-2 left-1/2 -translate-x-1/2 w-[92%] max-w-[400px] bg-navy-blue/80 backdrop-blur-xl border border-gold-deep/20 z-[100] px-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden">
+          <div className="flex justify-around items-center h-16">
+            {bottomMenus.map((menu, idx) => {
+              // Perbaikan pemanggilan icon jika berupa function/component
+              const Icon = menu.icon;
+              const isActive = pathname === menu.value;
 
-            return (
-              <Link
-                href={menu.value}
-                key={idx}
-                onClick={() => {
-                  setActiveMenu(menu.name);
-                }}
-                className={twMerge(
-                  "flex flex-col items-center justify-start gap-1 relative transition-all duration-300 ease-in-out"
-                )}
-              >
-                {menu.icon && (
+              return (
+                <Link
+                  key={idx}
+                  href={menu.value}
+                  className="relative flex flex-col items-center justify-center flex-1 h-full group"
+                >
+                  {/* Indikator Cahaya di Atas Icon saat Aktif */}
+                  {isActive && (
+                    <div className="absolute top-0 w-8 h-[2px] bg-gold-deep shadow-[0_0_15px_#B8860B] animate-pulse" />
+                  )}
+
                   <div
                     className={twMerge(
-                      "transition-all duration-300 ease-in-out p-2",
-                      isActive ? "bg-navy-blue rounded-full" : "bg-transparent"
+                      "relative z-10 flex flex-col items-center justify-center transition-all duration-500",
+                      isActive ? "-translate-y-1" : "translate-y-0",
                     )}
                   >
-                    {menu.icon(
-                      isActive
-                        ? "text-white transition-colors duration-300 ease-in-out"
-                        : "text-light-primary-navbar transition-colors duration-300 ease-in-out"
-                    )}
-                  </div>
-                )}
+                    <div
+                      className={twMerge(
+                        "p-2 rounded-full transition-all duration-300",
+                        isActive
+                          ? "text-gold-deep drop-shadow-[0_0_8px_rgba(184,134,11,0.6)]"
+                          : "text-white/40 group-hover:text-white/70",
+                      )}
+                    >
+                      <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
+                    </div>
 
-                <div
-                  className={twMerge(
-                    "text-xs transition-colors duration-300 ease-in-out text-center leading-tight max-w-[60px] truncate",
-                    isActive
-                      ? "text-navy-blue font-semibold"
-                      : "text-light-primary-navbar"
+                    <span
+                      className={twMerge(
+                        "text-[7px] uppercase tracking-[0.2em] font-black transition-all duration-500 overflow-hidden whitespace-nowrap",
+                        isActive
+                          ? "h-3 opacity-100 mt-0 text-gold-deep"
+                          : "h-0 opacity-0 mt-0 text-transparent",
+                      )}
+                    >
+                      {menu.name.replace("The Brand", "Home")}
+                    </span>
+                  </div>
+
+                  {/* Background Glow Halus saat Aktif */}
+                  {isActive && (
+                    <div className="absolute inset-0 bg-radial-gradient from-gold-deep/10 to-transparent opacity-50 pointer-events-none" />
                   )}
-                >
-                  {menu.name}
-                </div>
-              </Link>
-            );
-          })}
+                </Link>
+              );
+            })}
+          </div>
         </nav>
       )}
     </>

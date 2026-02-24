@@ -1,15 +1,14 @@
 "use client";
 
 import { BlogData, BlogSection, dataBlog } from "@/constants/dataBlog";
-import { Card, CardContent } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { parseBoldText } from "@/lib/parse-bold-text";
 import { useEffect } from "react";
 import LoadingLine from "@/components/LoadingLine";
 import { TitleComponent } from "@/components/title";
-import CardProduct from "@/components/card-product";
 import { Button } from "@/components/ui/button";
+import { twMerge } from "tailwind-merge";
 
 type BlogProps = {
   data: BlogData;
@@ -18,45 +17,56 @@ type BlogProps = {
 
 function renderSectionContent(
   content: BlogSection[] | string[] | string,
-  type?: string
+  type?: string,
 ) {
   if (Array.isArray(content)) {
     if (typeof content[0] === "string") {
+      const listClass = "space-y-3 pl-5 my-6 text-gray-700 leading-relaxed";
       if (type === "list") {
         return (
-          <ul className="list-disc pl-5 space-y-1">
+          <ul className={twMerge("list-disc", listClass)}>
             {(content as string[]).map((item, i) => (
-              <li key={i}>{parseBoldText(item)}</li>
+              <li key={i} className="pl-2">
+                {parseBoldText(item)}
+              </li>
             ))}
           </ul>
         );
       }
       if (type === "number") {
         return (
-          <ol className="list-decimal pl-5 space-y-1">
+          <ol className={twMerge("list-decimal", listClass)}>
             {(content as string[]).map((item, i) => (
-              <li key={i}>{parseBoldText(item)}</li>
+              <li key={i} className="pl-2 font-medium">
+                <span className="font-normal text-gray-700">
+                  {parseBoldText(item)}
+                </span>
+              </li>
             ))}
           </ol>
         );
       }
-
-      return <div>{(content as string[]).join(", ")}</div>;
+      return (
+        <div className="text-gray-700 leading-relaxed">
+          {(content as string[]).join(", ")}
+        </div>
+      );
     }
 
-    // Jika array isi object (BlogSection[]) — rekursif render tiap subSection
     return (
-      <div className="space-y-6">
+      <div className="space-y-8 mt-6">
         {(content as BlogSection[]).map((subSection, idx) => (
-          <div key={idx} className="space-y-1">
+          <div key={idx} className="group">
             {subSection.titleContent && (
-              <h5 className="font-medium">{subSection.titleContent}</h5>
+              <h5 className="text-lg font-black italic uppercase tracking-tighter text-navy-blue mb-2 group-hover:text-gold-deep transition-colors">
+                {subSection.titleContent}
+              </h5>
             )}
             {subSection.descTitleContent && (
-              <p>{subSection.descTitleContent}</p>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                {parseBoldText(subSection.descTitleContent)}
+              </p>
             )}
-
-            {/* Rekursif panggil renderSectionContent */}
             {subSection.content &&
               renderSectionContent(subSection.content, subSection.type)}
           </div>
@@ -64,155 +74,174 @@ function renderSectionContent(
       </div>
     );
   }
-
-  // Jika content string
-  return <p>{content}</p>;
+  return (
+    <p className="text-gray-700 leading-relaxed">
+      {parseBoldText(content as string)}
+    </p>
+  );
 }
 
 function getRandomItems<T>(array: T[], count: number): T[] {
-  const shuffled = [...array].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+  return [...array].sort(() => 0.5 - Math.random()).slice(0, count);
 }
 
 const BlogDetailPageModules = ({ data, params }: BlogProps) => {
   const router = useRouter();
 
-  const otherdata: BlogData[] = dataBlog
-    .map((e) => {
-      if (e.slug !== params.slug) {
-        return e;
-      }
-      return null;
-    })
-    .filter((e): e is BlogData => e !== null);
-
+  const otherdata: BlogData[] = dataBlog.filter((e) => e.slug !== params.slug);
   const dataRelatedPost = getRandomItems(otherdata, 3);
 
   useEffect(() => {
     if (!data) {
-      setTimeout(() => {
-        router.push("/feeds");
-      }, 2000);
+      const timer = setTimeout(() => router.push("/feeds"), 2000);
+      return () => clearTimeout(timer);
     }
   }, [data, router]);
 
-  if (!data) {
+  if (!data)
     return (
-      <div className="h-screen">
-        <LoadingLine />;
+      <div className="h-screen flex items-center justify-center">
+        <LoadingLine />
       </div>
     );
-  }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-8">
-      <h1 className="text-3xl font-bold text-center">{data.title}</h1>
-      <div className="relative w-full h-[450px] rounded-lg overflow-hidden">
+    <div className="bg-white min-h-screen pb-20">
+      {/* --- HERO HEADER --- */}
+      <header className="relative w-full h-[60vh] md:h-[80vh] bg-black">
         <Image
           src={data.thumbnail}
           alt={data.title}
           fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 1000px"
+          className="object-cover opacity-60"
           priority
         />
-      </div>
-      <Card>
-        <CardContent className="pt-6 space-y-4">
-          <p>
-            <strong>Introduction</strong> {data.introduction}
-          </p>
-        </CardContent>
-      </Card>
-
-      {data.sections.map((section, idx) => (
-        <Card key={idx}>
-          <CardContent className="pt-6 space-y-4">
-            {section.title && (
-              <h2 className="text-xl font-semibold">{section.title}</h2>
-            )}
-            {section.introduction && (
-              <p>{parseBoldText(section.introduction)}</p>
-            )}
-            {section.titleContent && (
-              <h5 className="font-medium">{section.titleContent}</h5>
-            )}
-            {section.descTitleContent && (
-              <p>{parseBoldText(section.descTitleContent)}</p>
-            )}
-
-            {section.content &&
-              renderSectionContent(section.content, section.type)}
-
-            {(section.helper?.title || section.helper?.value) && (
-              <div className="flex gap-2">
-                {section.helper?.title && (
-                  <h5 className="font-medium">{section.helper.title}</h5>
-                )}
-                {section.helper?.value && <p>{section.helper.value}</p>}
-              </div>
-            )}
-
-            {section.titleContent2 && (
-              <h5 className="font-medium">{section.titleContent2}</h5>
-            )}
-            {section.descTitleContent2 && (
-              <p>{parseBoldText(section.descTitleContent2)}</p>
-            )}
-
-            {section.content2 &&
-              renderSectionContent(section.content2, section.type2)}
-
-            {(section.helper2?.title || section.helper2?.value) && (
-              <div className="flex gap-2">
-                {section.helper2?.title && (
-                  <h5 className="font-medium">{section.helper2.title}</h5>
-                )}
-                {section.helper2?.value && <p>{section.helper2.value}</p>}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      ))}
-
-      <div>
-        <TitleComponent
-          firstTitle="More tips"
-          lastTitle="you should know"
-          classNameContainer="text-base sm:text-xl gap-x-1 sm:gap-x-2"
-        />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-5">
-          {dataRelatedPost.map((product, idx) => {
-            return (
-              <div key={idx} className="flex flex-col gap-2">
-                <div className="w-full aspect-video">
-                  <Image
-                    width={300}
-                    height={300}
-                    className="w-full h-full object-cover rounded-lg"
-                    src={product.thumbnail}
-                    alt={product.title}
-                  />
-                </div>
-                <div className="font-semibold line-clamp-2">
-                  {product.title}
-                </div>
-                <div className="flex">
-                  <Button
-                    onClick={() => {
-                      router.push(`/feeds/${product.slug}`);
-                    }}
-                    variant="outline"
-                    className="bg-transparent text-navy-blue hover:bg-navy-blue hover:text-white text-sm w-full md:w-52 border-navy-blue hover:border-none"
-                  >
-                    See more
-                  </Button>
-                </div>
-              </div>
-            );
-          })}
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 px-6 text-center">
+          <h1 className="text-4xl md:text-7xl font-black italic tracking-tighter uppercase text-navy-blue max-w-5xl leading-[0.9]">
+            {data.title}
+          </h1>
         </div>
-      </div>
+      </header>
+
+      {/* --- ARTICLE CONTENT --- */}
+      <article className="max-w-4xl mx-auto px-6 mt-12">
+        {/* Introduction Block */}
+        <div className="relative p-8 md:p-12 bg-navy-blue text-white rounded-[30px] mb-16 overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gold-deep/10 blur-3xl" />
+          <p className="relative z-10 text-lg md:text-2xl font-light leading-relaxed italic opacity-90">
+            <span className="text-gold-deep font-black text-4xl mr-2">“</span>
+            {data.introduction}
+          </p>
+        </div>
+
+        {/* Dynamic Sections */}
+        <div className="space-y-20">
+          {data.sections.map((section, idx) => (
+            <section key={idx} className="prose prose-lg max-w-none">
+              {section.title && (
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-[2px] w-12 bg-gold-deep" />
+                  <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-navy-blue">
+                    {section.title}
+                  </h2>
+                </div>
+              )}
+
+              <div className="space-y-6 text-gray-700">
+                {section.introduction && (
+                  <p className="text-xl font-medium text-navy-blue/80 leading-relaxed">
+                    {parseBoldText(section.introduction)}
+                  </p>
+                )}
+
+                {section.titleContent && (
+                  <h5 className="text-lg font-bold text-navy-blue">
+                    {section.titleContent}
+                  </h5>
+                )}
+                {section.descTitleContent && (
+                  <p>{parseBoldText(section.descTitleContent)}</p>
+                )}
+
+                {section.content &&
+                  renderSectionContent(section.content, section.type)}
+
+                {/* Additional Content Blocks (Helper 1 & 2) */}
+                {(section.helper?.title || section.helper?.value) && (
+                  <div className="bg-gray-50 border-l-4 border-gold-deep p-6 my-8">
+                    {section.helper?.title && (
+                      <h5 className="font-black uppercase text-xs tracking-widest text-gold-deep mb-2">
+                        {section.helper.title}
+                      </h5>
+                    )}
+                    {section.helper?.value && (
+                      <p className="text-gray-600 italic">
+                        {section.helper.value}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {section.titleContent2 && (
+                  <h5 className="text-lg font-bold text-navy-blue">
+                    {section.titleContent2}
+                  </h5>
+                )}
+                {section.descTitleContent2 && (
+                  <p>{parseBoldText(section.descTitleContent2)}</p>
+                )}
+                {section.content2 &&
+                  renderSectionContent(section.content2, section.type2)}
+              </div>
+            </section>
+          ))}
+        </div>
+      </article>
+
+      {/* --- RELATED POSTS --- */}
+      <footer className="max-w-7xl mx-auto px-6 mt-32 border-t border-gray-100 pt-20">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+          <TitleComponent
+            firstTitle="Expand your"
+            lastTitle="Knowledge"
+            variant="light"
+            classNameContainer="justify-start text-left"
+          />
+          <Button
+            onClick={() => router.push("/feeds")}
+            variant="link"
+            className="text-navy-blue font-black uppercase tracking-widest text-xs p-0 h-auto"
+          >
+            View all articles →
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {dataRelatedPost.map((post, idx) => (
+            <div
+              key={idx}
+              className="group cursor-pointer"
+              onClick={() => router.push(`/feeds/${post.slug}`)}
+            >
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-6 shadow-lg">
+                <Image
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  src={post.thumbnail}
+                  alt={post.title}
+                />
+              </div>
+              <h4 className="text-xl font-black italic uppercase tracking-tighter text-navy-blue leading-tight group-hover:text-gold-deep transition-colors line-clamp-2">
+                {post.title}
+              </h4>
+              <p className="mt-4 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-navy-blue transition-colors">
+                Read Article
+              </p>
+            </div>
+          ))}
+        </div>
+      </footer>
     </div>
   );
 };
