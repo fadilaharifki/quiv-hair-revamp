@@ -4,40 +4,21 @@ import { benefitIcon, getPromotion, instagram } from "@/constants/data";
 import Logo from "../../assets/svg/logo.svg";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import useScreenSize from "@/hooks/useScreenSize";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useToggleStore } from "@/stores/useToggleStore";
-import LoadingLine from "@/components/LoadingLine";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Globe, Instagram, ShoppingBag, ArrowRight } from "lucide-react";
+import { Globe, ShoppingBag } from "lucide-react";
 import Link from "next/link";
-import { trackButtonClick } from "@/lib/fbq";
-import { twMerge } from "tailwind-merge";
 
 const AboutUsPageModules = () => {
-  const { breakpoint } = useScreenSize();
-  const { hasHydrated } = useToggleStore();
-  const [loading] = useState(false);
   const router = useRouter();
-  const flag = false;
-
-  if (!hasHydrated)
-    return (
-      <div className="h-screen">
-        <LoadingLine />
-      </div>
-    );
 
   return (
     <div className="bg-[#0a0a0a] text-white selection:bg-gold-deep/30 font-inter">
-      {loading && <LoadingLine />}
-
       {/* --- HERO SECTION --- */}
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
         <video
