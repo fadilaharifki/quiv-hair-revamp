@@ -114,14 +114,14 @@ export function CarouselProductComponent({
         setApi={setApi}
         className={twMerge(
           "w-64 h-[450px] sm:h-auto sm:w-11/12 justify-center items-center align-middle ",
-          classNameCarousel
+          classNameCarousel,
         )}
         opts={opts}
       >
         <CarouselContent
           className={twMerge(
             "sm:flex gap-0 sm:gap-4",
-            classNameCarouselContent
+            classNameCarouselContent,
           )}
         >
           {data.map((item, index) => (
@@ -132,26 +132,26 @@ export function CarouselProductComponent({
               key={index}
               className={twMerge(
                 "md:basis-1/2 lg:basis-1/3 flex justify-center item-center flex-col",
-                classNameCarouselItem
+                classNameCarouselItem,
               )}
             >
               <div
                 className={twMerge(
                   isOnClick
                     ? "cursor-pointer hover:scale-105 duration-500"
-                    : undefined
+                    : undefined,
                 )}
               >
                 <div
                   className={twMerge(
-                    "flex justify-center align-middle items-center"
+                    "flex justify-center align-middle items-center",
                   )}
                 >
                   <Image
                     className={twMerge(
                       "w-[130px] h-[170px] sm:w-[198px] sm:h-[231px] object-cover flex justify-center items-center",
                       classNameImage,
-                      item.classNameImage
+                      item.classNameImage,
                     )}
                     width={300}
                     height={300}
@@ -161,7 +161,7 @@ export function CarouselProductComponent({
                 </div>
                 <div
                   className={twMerge(
-                    "font-test text-lg font-bold sm:text-2xl text-center text-navy-blue"
+                    "font-test text-lg font-bold sm:text-2xl text-center text-navy-blue",
                   )}
                 >
                   {item.name}

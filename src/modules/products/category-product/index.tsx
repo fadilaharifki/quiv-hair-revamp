@@ -5,78 +5,17 @@ import LoadingLine from "@/components/LoadingLine";
 import PaginationComponent from "@/components/pagination";
 import { TitleComponent } from "@/components/title";
 import { Button } from "@/components/ui/button";
-import { dataImageFine, dataImageFlex } from "@/constants/data";
+import { PRODUCTS_REGISTRY } from "@/constants/data";
 import { formatCurrency } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { motion, AnimatePresence } from "framer-motion";
-import { Beaker, ClipboardList, ShoppingCart, Zap, Info } from "lucide-react";
-
-type ActiveTabsType = "description" | "howToUse";
-
-// Data lokal tetap sama namun visual mapping diubah
-const imageProduct: any = {
-  flex: [
-    {
-      id: 1,
-      url: "/image/the-brand/flexcap.webp",
-      type: "LIQUIFIED_POWDER",
-      ability: "DRY_MATTE_FINISH",
-      price: 129000,
-      description:
-        "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Easy-to-wash and sweat friendly.",
-    },
-    {
-      id: 2,
-      url: "/image/the-brand/flexcom.webp",
-      type: "LIQUIFIED_POWDER",
-      ability: "DRY_MATTE_FINISH",
-      price: 129000,
-      description:
-        "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Easy-to-wash and sweat friendly.",
-    },
-    {
-      id: 3,
-      url: "/image/the-brand/flexproduct.webp",
-      type: "LIQUIFIED_POWDER",
-      ability: "DRY_MATTE_FINISH",
-      price: 129000,
-      description:
-        "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Easy-to-wash and sweat friendly.",
-    },
-  ],
-  fine: [
-    {
-      id: 1,
-      url: "/image/the-brand/finecap.webp",
-      type: "CLAY_CREME",
-      ability: "SMOOTH_GLOSSY_FINISH",
-      price: 129000,
-      description:
-        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness.",
-    },
-    {
-      id: 2,
-      url: "/image/the-brand/finecap.webp",
-      type: "CLAY_CREME",
-      ability: "SMOOTH_GLOSSY_FINISH",
-      price: 129000,
-      description:
-        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness.",
-    },
-    {
-      id: 3,
-      url: "/image/the-brand/finesp.webp",
-      type: "CLAY_CREME",
-      ability: "SMOOTH_GLOSSY_FINISH",
-      price: 129000,
-      description:
-        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness.",
-    },
-  ],
-};
+import { Beaker, ClipboardList, ShoppingCart, Info } from "lucide-react";
+import { useCartStore } from "@/stores/useCartStore";
+import { useRegionStore } from "@/stores/useRegionStore";
+import { QuantityController } from "@/components/quantity-controller";
 
 const CategoryProductsPageModules = ({
   props,
@@ -84,344 +23,331 @@ const CategoryProductsPageModules = ({
   props: CategoryProductsPageInterface;
 }) => {
   const router = useRouter();
-  const category = props?.params?.category?.toLowerCase();
 
-  const [activeTab, setActiveTab] = useState<ActiveTabsType>("description");
-  const [imageProductActive, setImageProductActive] = useState<any>(null);
+  // Zustand Stores
+  const { items, addItem, updateQuantity, setItemQuantity } = useCartStore();
+  const { currency, region } = useRegionStore();
+
+  const categorySlug = props?.params?.category?.toLowerCase();
+
   const [isLoading, setIsLoading] = useState(true);
-  const [isNotFound, setIsNotFound] = useState(false);
+  const [activeImage, setActiveImage] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<"description" | "howToUse">(
+    "description",
+  );
+
+  // Memoize Product Data
+  const product = useMemo(
+    () => PRODUCTS_REGISTRY.find((p) => p.slug === categorySlug),
+    [categorySlug],
+  );
+
+  // Ambil harga yang aktif berdasarkan currency store
+  const activePrice = useMemo(() => {
+    return product?.pricing?.find((p) => p.currency === currency);
+  }, [product, currency]);
+
+  // Filter produk lainnya untuk rekomendasi
+  const otherProducts = useMemo(
+    () => PRODUCTS_REGISTRY.filter((p) => p.slug !== categorySlug),
+    [categorySlug],
+  );
+
+  // Cek status keranjang
+  const cartItem = useMemo(
+    () => items.find((item) => item.id === product?.id),
+    [items, product],
+  );
 
   useEffect(() => {
     setIsLoading(true);
-    const timer = setTimeout(() => {
-      if (category && imageProduct[category]) {
-        setImageProductActive(imageProduct[category][0]);
-        setIsNotFound(false);
-      } else {
-        setIsNotFound(true);
-      }
-      setIsLoading(false);
-    }, 600);
+    if (product) setActiveImage(product.gallery[0] || product.thumbnail);
+    const timer = setTimeout(() => setIsLoading(false), 500);
     return () => clearTimeout(timer);
-  }, [category]);
-
-  const productDetails = useMemo(() => {
-    const data: any = {
-      flex: {
-        longDesc:
-          "Experience the evolution of hair styling with Flex. Our innovative liquified powder formula provides instant volume and a bone-dry matte finish that lasts all day. Designed for the active man, it's sweat-resistant yet remarkably easy to wash out. No flakes, no stickiness, just pure texture mapping.",
-        steps: [
-          {
-            title: "PRE_PREP",
-            desc: "Use hairdryer on clean hair to stabilize base.",
-          },
-          {
-            title: "APPLY_MASS",
-            desc: "Pump 1-2 times into palms and work through roots.",
-          },
-          {
-            title: "DETAIL_FIX",
-            desc: "Pinch and pull hair for maximum structural texture.",
-          },
-        ],
-      },
-      fine: {
-        longDesc:
-          "Quiv Fine is the bridge between a classic pomade and a modern clay. It offers a healthy natural gloss that makes hair look vibrant without heavy grease. Perfect for clean, slicked-back looks or smart-casual styles that require precise definition and a soft-to-touch feel.",
-        steps: [
-          {
-            title: "HYDRATE",
-            desc: "Works best on slightly damp or towel-dried hair.",
-          },
-          {
-            title: "DISTRIBUTE",
-            desc: "Spread small amount between palms until heated.",
-          },
-          {
-            title: "CALIBRATE",
-            desc: "Apply from back to front. Use comb for sharp finish.",
-          },
-        ],
-      },
-    };
-    return data[category] || data.flex;
-  }, [category]);
+  }, [product]);
 
   if (isLoading)
     return (
-      <div className="w-screen h-screen flex items-center justify-center bg-clinical-white">
+      <div className="h-screen w-full flex items-center justify-center bg-clinical-white">
         <LoadingLine />
       </div>
     );
 
-  if (isNotFound)
+  if (!product)
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-clinical-white px-6 text-center">
-        <h1 className="text-8xl font-bold tracking-tighter text-clinical-blue/10 uppercase mb-4">
-          ERR_404
-        </h1>
-        <p className="text-clinical-gray-medium uppercase tracking-[0.5em] text-xs mb-8 font-bold">
-          Category Not Identified
+      <div className="h-screen flex items-center justify-center">
+        <p className="font-mono text-xs tracking-widest uppercase">
+          System.Error: Product_Not_Found
         </p>
-        <Button
-          className="rounded-none px-10 py-6 bg-clinical-gray-dark"
-          onClick={() => router.replace("/feeds")}
-        >
-          RETURN_TO_ARCHIVE
-        </Button>
       </div>
     );
 
   return (
     <div className="bg-clinical-white min-h-screen font-inter">
-      {/* --- BREADCRUMB / STATUS BAR --- */}
-      <div className="max-w-7xl mx-auto px-6 pt-24 hidden md:flex items-center gap-4 text-[10px] font-bold text-clinical-gray-medium uppercase tracking-widest">
-        <span>ARCHIVE</span> <span className="text-clinical-blue">/</span>
-        <span>PRODUCTS</span> <span className="text-clinical-blue">/</span>
-        <span className="text-clinical-blue">{category}</span>
+      {/* --- STATUS BAR --- */}
+      <div className="max-w-7xl mx-auto px-6 pt-28 hidden md:flex items-center gap-3 text-[9px] font-bold text-clinical-gray-medium uppercase tracking-[0.2em]">
+        <span className="opacity-50">Archive</span>
+        <span className="text-clinical-blue">/</span>
+        <span className="text-clinical-gray-dark">{product.name}</span>
       </div>
 
-      {/* --- PRODUCT DISPLAY SECTION --- */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 py-16 px-6 md:px-16 max-w-7xl mx-auto gap-8 lg:gap-16">
-        {/* THUMBNAILS (LEFT) */}
-        <div className="hidden lg:flex lg:col-span-1 flex-col gap-4 justify-center">
-          {imageProduct[category]?.map((item: any, idx: number) => {
-            const isActive = imageProductActive?.id === item.id;
-            return (
+      {/* --- MAIN PRODUCT VIEW --- */}
+      <main className="max-w-7xl mx-auto px-6 py-8 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          {/* LEFT: DESKTOP THUMBS */}
+          <div className="hidden lg:flex lg:col-span-2 flex-col gap-4">
+            {product.gallery.map((img, idx) => (
               <button
                 key={idx}
-                onClick={() => setImageProductActive(item)}
-                className="relative h-20 w-20 group"
-              >
-                <div
-                  className={twMerge(
-                    "absolute inset-0 border transition-all duration-300",
-                    isActive
-                      ? "border-clinical-blue p-1"
-                      : "border-clinical-border group-hover:border-clinical-blue/50",
-                  )}
-                >
-                  <div className="relative h-full w-full bg-clinical-gray-light">
-                    <Image
-                      src={item.url}
-                      alt="thumb"
-                      fill
-                      className={twMerge(
-                        "object-cover",
-                        !isActive && "grayscale",
-                      )}
-                    />
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* MAIN DISPLAY */}
-        <div className="col-span-1 lg:col-span-6 flex items-center justify-center relative border border-clinical-border bg-clinical-gray-light/30 min-h-[400px] md:min-h-[600px]">
-          <div className="absolute top-4 left-4 flex gap-2">
-            <div className="w-2 h-2 bg-clinical-blue" />
-            <div className="w-2 h-2 bg-clinical-border" />
-          </div>
-          <div className="relative h-[300px] w-[300px] md:h-[500px] md:w-[500px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={imageProductActive?.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.05 }}
-                transition={{ duration: 0.4 }}
-                className="relative w-full h-full"
+                onClick={() => setActiveImage(img)}
+                className={twMerge(
+                  "relative aspect-square border-2 transition-all duration-300 bg-clinical-gray-light/30 overflow-hidden",
+                  activeImage === img
+                    ? "border-clinical-blue shadow-md"
+                    : "border-clinical-border opacity-50 hover:opacity-100 hover:border-clinical-blue/30",
+                )}
               >
                 <Image
-                  src={imageProductActive?.url}
-                  alt="main-product"
+                  src={img}
+                  alt={`view-${idx}`}
                   fill
-                  className="object-contain"
-                  priority
+                  className="object-contain p-2"
                 />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* MOBILE THUMBS */}
-        <div className="lg:hidden flex justify-center gap-2">
-          {imageProduct[category]?.map((item: any, idx: number) => (
-            <button
-              key={idx}
-              onClick={() => setImageProductActive(item)}
-              className={twMerge(
-                "h-14 w-14 border",
-                imageProductActive?.id === item.id
-                  ? "border-clinical-blue"
-                  : "border-clinical-border",
-              )}
-            >
-              <Image
-                src={item.url}
-                alt="thumb"
-                width={56}
-                height={56}
-                className="object-cover"
-              />
-            </button>
-          ))}
-        </div>
-
-        {/* PRODUCT INFO */}
-        <div className="col-span-1 lg:col-span-5 flex flex-col justify-center space-y-8">
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 bg-clinical-blue/10 px-3 py-1 border border-clinical-blue/20">
-              <Zap size={12} className="text-clinical-blue" />
-              <span className="text-clinical-blue font-bold uppercase tracking-[0.2em] text-[10px]">
-                {imageProductActive?.type}
-              </span>
-            </div>
-            <h1 className="text-6xl md:text-8xl font-semibold uppercase tracking-tighter text-clinical-gray-dark leading-none">
-              {category}
-              <span className="text-clinical-blue">.</span>
-            </h1>
-            <p className="text-clinical-gray-medium font-bold tracking-[0.3em] text-[10px] uppercase border-l-2 border-clinical-blue pl-4">
-              Property: {imageProductActive?.ability}
-            </p>
-          </div>
-
-          <p className="text-sm md:text-base text-clinical-gray-medium font-medium leading-relaxed max-w-md">
-            {imageProductActive?.description}
-          </p>
-
-          <div className="pt-6 space-y-8">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-bold text-clinical-gray-medium tracking-widest mb-1">
-                UNIT_PRICE
-              </span>
-              <div className="flex items-baseline gap-3">
-                <span className="text-4xl font-bold text-clinical-gray-dark">
-                  {formatCurrency(imageProductActive?.price || 0)}
-                </span>
-                <span className="text-clinical-gray-medium font-mono text-xs">
-                  / 80G_NET
-                </span>
-              </div>
-            </div>
-
-            <Button className="w-full md:w-max px-12 py-7 rounded-none bg-clinical-blue hover:bg-clinical-gray-dark text-white transition-all font-bold uppercase tracking-widest text-[10px] flex gap-3">
-              <ShoppingCart size={16} />
-              INITIALIZE_ORDER
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* --- SPECIFICATION TABS --- */}
-      <section className="bg-clinical-gray-dark py-24 px-6 border-y border-clinical-border">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-12 mb-16 overflow-x-auto no-scrollbar">
-            {["description", "howToUse"].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab as ActiveTabsType)}
-                className={twMerge(
-                  "pb-4 text-[10px] font-bold uppercase tracking-[0.4em] transition-all relative whitespace-nowrap",
-                  activeTab === tab
-                    ? "text-clinical-blue"
-                    : "text-white/30 hover:text-white",
-                )}
-              >
-                <span className="flex items-center gap-2">
-                  {tab === "description" ? (
-                    <Info size={14} />
-                  ) : (
-                    <ClipboardList size={14} />
-                  )}
-                  {tab === "description" ? "Tech_Specs" : "Usage_Protocol"}
-                </span>
-                {activeTab === tab && (
-                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-clinical-blue" />
-                )}
               </button>
             ))}
           </div>
 
-          <div className="min-h-[200px]">
-            {activeTab === "description" ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <p className="text-white/70 leading-relaxed font-medium text-lg">
-                  {productDetails.longDesc}
-                </p>
-                <div className="border border-white/10 p-8 bg-white/5">
-                  <div className="flex items-center gap-4 mb-6">
-                    <Beaker className="text-clinical-blue" size={24} />
-                    <span className="text-white font-bold tracking-widest text-[10px]">
-                      FORMULA_LOG_V2
-                    </span>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex justify-between border-b border-white/5 pb-2">
-                      <span className="text-white/40 text-[10px] uppercase">
-                        Solubility
-                      </span>
-                      <span className="text-white text-[10px] font-mono">
-                        HIGH_WATER_BASE
-                      </span>
-                    </div>
-                    <div className="flex justify-between border-b border-white/5 pb-2">
-                      <span className="text-white/40 text-[10px] uppercase">
-                        Finish
-                      </span>
-                      <span className="text-white text-[10px] font-mono">
-                        {category === "flex" ? "MATTE_0%" : "GLOSS_40%"}
-                      </span>
-                    </div>
-                  </div>
+          {/* CENTER: PRIMARY DISPLAY */}
+          <div className="col-span-1 lg:col-span-5 flex flex-col gap-6">
+            <div className="border border-clinical-border bg-clinical-gray-light/20 aspect-square flex items-center justify-center relative overflow-hidden group">
+              <div
+                className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none"
+                style={{
+                  backgroundImage: `radial-gradient(#0047AB 1px, transparent 1px)`,
+                  backgroundSize: "24px 24px",
+                }}
+              />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeImage}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative w-[85%] h-[85%]"
+                >
+                  <Image
+                    src={activeImage}
+                    alt={product.name}
+                    fill
+                    className="object-contain drop-shadow-2xl"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* MOBILE GALLERY */}
+            <div className="flex lg:hidden gap-3 overflow-x-auto no-scrollbar py-2">
+              {product.gallery.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImage(img)}
+                  className={twMerge(
+                    "relative h-20 w-20 flex-shrink-0 border-2 bg-clinical-gray-light/30",
+                    activeImage === img
+                      ? "border-clinical-blue"
+                      : "border-clinical-border opacity-60",
+                  )}
+                >
+                  <Image
+                    src={img}
+                    alt="thumb"
+                    fill
+                    className="object-contain p-1"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT: DATA & ACTIONS */}
+          <div className="col-span-1 lg:col-span-5 flex flex-col justify-center space-y-8 lg:pl-4">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="px-2 py-1 bg-clinical-blue text-white text-[8px] font-bold tracking-widest uppercase">
+                  Formula_v2.0
+                </div>
+                <span className="text-[10px] font-bold text-clinical-blue uppercase tracking-[0.3em]">
+                  {product.type}
+                </span>
+              </div>
+              <h1 className="text-6xl md:text-8xl font-black text-clinical-gray-dark tracking-tighter uppercase leading-none">
+                {product.name}
+                <span className="text-clinical-blue">.</span>
+              </h1>
+              <p className="text-[10px] font-bold text-clinical-gray-medium uppercase tracking-[0.4em] border-l-2 border-clinical-blue pl-4">
+                Reference_UID:{" "}
+                <span className="text-clinical-gray-dark">{product.id}</span>
+              </p>
+            </div>
+
+            <p className="text-sm md:text-base text-clinical-gray-medium leading-relaxed font-medium max-w-sm">
+              {product.shortDesc}
+            </p>
+
+            <div className="pt-6 space-y-8 border-t border-clinical-border/50">
+              <div className="flex flex-col gap-1">
+                <span className="text-[9px] font-bold text-clinical-blue uppercase tracking-widest">
+                  Commercial_Value
+                </span>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl md:text-5xl font-black text-clinical-gray-dark font-mono">
+                    {formatCurrency(activePrice?.value ?? 0, currency)}
+                  </span>
                 </div>
               </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 border border-white/10">
-                {productDetails.steps.map((step: any, i: number) => (
-                  <div
-                    key={i}
-                    className="bg-clinical-gray-dark p-10 flex flex-col gap-6"
+
+              {/* ACTION BUTTON / QUANTITY CONTROLLER */}
+              <div className="w-full lg:w-max min-w-[240px]">
+                {!cartItem ? (
+                  <Button
+                    onClick={() => addItem(product)}
+                    className="w-full h-16 rounded-none bg-clinical-blue hover:bg-clinical-gray-dark text-white font-bold uppercase tracking-[0.3em] text-[11px] group transition-all"
                   >
-                    <span className="text-clinical-blue font-mono text-xs font-bold">
-                      [0{i + 1}]
-                    </span>
-                    <h4 className="text-white font-bold uppercase tracking-widest text-sm">
-                      {step.title}
-                    </h4>
-                    <p className="text-white/50 text-xs leading-relaxed font-medium">
-                      {step.desc}
-                    </p>
-                  </div>
-                ))}
+                    <ShoppingCart
+                      size={16}
+                      className="mr-3 group-hover:translate-x-1 transition-transform"
+                    />
+                    Add To Cart
+                  </Button>
+                ) : (
+                  <QuantityController
+                    quantity={cartItem.quantity}
+                    onIncrease={() => updateQuantity(product.id, 1)}
+                    onDecrease={() => updateQuantity(product.id, -1)}
+                    onChange={(val) => setItemQuantity(product.id, val)}
+                  />
+                )}
               </div>
-            )}
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* --- PROTOCOL TABS --- */}
+      <section className="bg-clinical-gray-dark py-24 px-6 relative overflow-hidden">
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="flex gap-8 md:gap-12 border-b border-white/10 mb-12 overflow-x-auto no-scrollbar">
+            {[
+              {
+                id: "description",
+                label: "Technical_Specs",
+                icon: <Info size={12} />,
+              },
+              {
+                id: "howToUse",
+                label: "Deployment_Protocol",
+                icon: <ClipboardList size={12} />,
+              },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={twMerge(
+                  "pb-4 text-[10px] font-bold uppercase tracking-[0.3em] flex items-center gap-2 transition-all whitespace-nowrap",
+                  activeTab === tab.id
+                    ? "text-clinical-blue border-b-2 border-clinical-blue"
+                    : "text-white/30 hover:text-white",
+                )}
+              >
+                {tab.icon} {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="min-h-[280px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.2 }}
+              >
+                {activeTab === "description" ? (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+                    <p className="text-white/70 text-lg leading-relaxed font-medium">
+                      {product.longDesc}
+                    </p>
+                    <div className="bg-white/[0.03] border border-white/10 p-8 space-y-6">
+                      <div className="flex items-center gap-3 text-clinical-blue">
+                        <Beaker size={18} />
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-white">
+                          Compound_Analysis
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-8">
+                        <div className="space-y-1">
+                          <span className="text-white/30 text-[9px] uppercase font-bold">
+                            Base_Matrix
+                          </span>
+                          <p className="text-white text-[11px] font-mono">
+                            WATER_SOLUBLE
+                          </p>
+                        </div>
+                        <div className="space-y-1">
+                          <span className="text-white/30 text-[9px] uppercase font-bold">
+                            Stability_Grade
+                          </span>
+                          <p className="text-white text-[11px] font-mono">
+                            OPTIMAL_ALPHA
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-px md:bg-white/10 border md:border-white/10">
+                    {product.steps.map((step, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-clinical-gray-dark p-8 md:p-10 flex flex-col border border-white/5 md:border-none"
+                      >
+                        <span className="text-clinical-blue font-mono text-[10px] font-bold mb-4">
+                          P_0{idx + 1}
+                        </span>
+                        <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-3">
+                          {step.title}
+                        </h4>
+                        <p className="text-white/40 text-[11px] leading-relaxed font-medium uppercase">
+                          {step.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </section>
 
       {/* --- RECOMMENDATIONS --- */}
-      <section className="py-32 bg-clinical-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col items-center mb-20">
-            <TitleComponent
-              firstTitle="CROSS"
-              lastTitle="REFERENCE"
-              variant="primary"
-            />
-            <p className="text-clinical-gray-medium text-[10px] font-bold tracking-[0.4em] uppercase mt-4">
-              Related Formula Inventory
-            </p>
-          </div>
-
-          <PaginationComponent
-            isPagination={false}
-            data={category === "flex" ? dataImageFine : dataImageFlex}
-            isOnClick
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex flex-col items-center mb-16">
+          <TitleComponent
+            firstTitle="Other"
+            lastTitle="Products"
+            variant="primary"
           />
+          <div className="h-px w-16 bg-clinical-blue mt-4" />
         </div>
+        <PaginationComponent
+          isPagination={false}
+          data={otherProducts}
+          isOnClick
+        />
       </section>
     </div>
   );

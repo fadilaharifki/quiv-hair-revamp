@@ -4,14 +4,12 @@ import ArrowDown from "@/components/arrow-down";
 import { CarouselBannerComponent } from "@/components/carousel-banner";
 import PaginationComponent from "@/components/pagination";
 import { TitleComponent } from "@/components/title";
-import { dataImageFine, dataImageFlex } from "@/constants/data";
+import { PRODUCTS_REGISTRY } from "@/constants/data";
 import Image from "next/image";
 import { Activity, Beaker, Box, ChevronRight, Cpu } from "lucide-react";
 import { toast } from "sonner";
 
 const ProductsPageModules = () => {
-  const dataImageAllProduct = [...dataImageFlex, ...dataImageFine];
-
   const handleScroll = () => {
     const element = document.getElementById("inventory-grid");
     if (element) {
@@ -94,6 +92,7 @@ const ProductsPageModules = () => {
               <span className="text-[10px] font-bold uppercase tracking-[0.3em]">
                 Release Archive
               </span>
+              ]
             </div>
             <TitleComponent firstTitle="Product" lastTitle="INVENTORY" />
           </div>
@@ -116,7 +115,7 @@ const ProductsPageModules = () => {
               }
             }}
             isOnClick
-            data={dataImageAllProduct}
+            data={PRODUCTS_REGISTRY}
           />
         </div>
       </section>

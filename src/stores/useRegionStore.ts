@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 
 interface RegionState {
   region: "ID" | "INT";
+  currency: "IDR" | "USD";
   setRegion: (region: "ID" | "INT") => void;
 }
 
@@ -10,8 +11,16 @@ export const useRegionStore = create<RegionState>()(
   persist(
     (set) => ({
       region: "ID",
-      setRegion: (region) => set({ region }),
+      currency: "IDR",
+      setRegion: (region) =>
+        set({
+          region,
+
+          currency: region === "INT" ? "USD" : "IDR",
+        }),
     }),
-    { name: "quiv-region-storage" },
+    {
+      name: "quiv-region-storage",
+    },
   ),
 );

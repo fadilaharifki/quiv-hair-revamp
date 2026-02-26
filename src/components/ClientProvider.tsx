@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
 import BottomBar from "@/components/bottomBar";
-import WhatsAppIcon from "@/components/WhatsAppIcon";
+import FloatingActionTerminal from "@/components/FloatingActionTerminal";
 import LoadingLine from "@/components/LoadingLine";
 import dynamic from "next/dynamic";
 import { useToggleStore } from "@/stores/useToggleStore";
@@ -65,7 +65,7 @@ export default function ClientProvider({
 
         {hasHydrated && <Footer />}
         <BottomBar />
-        <WhatsAppIcon />
+        <FloatingActionTerminal />
         <ToastSonner richColors position="top-right" closeButton />
       </AuthWatcher>
     </QueryClientProvider>

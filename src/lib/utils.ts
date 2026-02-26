@@ -15,12 +15,14 @@ export function formatUrl(title: string) {
 
 export function formatCurrency(
   amount: number | bigint,
-  locale = "id-ID",
-  currency = "IDR"
+  currencyCode: "IDR" | "USD" = "IDR",
 ) {
+  const locale = currencyCode === "IDR" ? "id-ID" : "en-US";
+
   return new Intl.NumberFormat(locale, {
     style: "currency",
-    currency: currency,
-    currencyDisplay: "code",
+    currency: currencyCode,
+    currencyDisplay: "symbol",
+    minimumFractionDigits: currencyCode === "USD" ? 2 : 0,
   }).format(amount);
 }

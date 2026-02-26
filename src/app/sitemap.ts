@@ -1,4 +1,4 @@
-import { dataImageFine, dataImageFlex } from "@/constants/data";
+import { PRODUCTS_REGISTRY } from "@/constants/data";
 import { dataBlog } from "@/constants/dataBlog";
 import { MetadataRoute } from "next";
 
@@ -21,13 +21,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency,
   }));
 
-  const productDetail = [...dataImageFlex, ...dataImageFine].map(
-    ({ path }) => ({
-      url: `${WEBSITE_HOST_URL}/${path}`,
-      lastModified: new Date(),
-      changeFrequency,
-    })
-  );
+  const productDetail = PRODUCTS_REGISTRY.map(({ slug }) => ({
+    url: `${WEBSITE_HOST_URL}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency,
+  }));
 
   const routes = [
     "",
