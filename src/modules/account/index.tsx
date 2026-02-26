@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-("use client");
+"use client";
 
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useLogoutUser } from "@/hooks/api/useLogoutUser";

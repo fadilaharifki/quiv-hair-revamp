@@ -4,7 +4,8 @@
 
 @font-face {
   font-family: "test";
-  src: url("../../public//font//Bell-MT.ttf") format("woff"),
+  src:
+    url("../../public//font//Bell-MT.ttf") format("woff"),
     url("../../public//font//Bell-MT.ttf") format("truetype");
   /* Add additional src lines for different file formats if necessary */
 }
@@ -80,4 +81,36 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.clinical-phone-input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: rgba(var(--clinical-gray-light), 0.2);
+  border: 1px solid #e2e8f0; /* Sesuaikan border color kamu */
+  padding: 12px;
+  transition: all 0.3s;
+}
+.clinical-phone-input:focus-within {
+  border-color: #0047ff; /* clinical-blue */
+}
+.PhoneInputInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-inter), monospace;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.PhoneInputCountry {
+  border-right: 1px solid #e2e8f0;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+}
+.PhoneInputCountrySelectArrow {
+  opacity: 0.5;
+  margin-left: 5px;
 }
