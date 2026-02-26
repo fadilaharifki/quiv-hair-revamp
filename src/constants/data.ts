@@ -65,7 +65,16 @@ export const PRODUCTS_REGISTRY = [
     category: "fine",
     type: "CLAY CREME",
     ability: "SMOOTH GLOSSY FINISH",
-    price: 129000,
+    pricing: [
+      {
+        currency: "IDR",
+        value: 150000,
+      },
+      {
+        currency: "USD",
+        value: 25,
+      },
+    ],
     net: "100G NET",
     shortDesc:
       "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness.",

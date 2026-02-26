@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -5,30 +7,27 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  // Base: Menghapus rounded-md, menggunakan rounded-none.
-  // Menambahkan tracking-widest dan uppercase untuk kesan teknis.
-  "inline-flex items-center justify-center whitespace-nowrap rounded-none text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-clinical-blue disabled:pointer-events-none disabled:opacity-40 active:scale-[0.98]",
+  "cursor-pointer inline-flex items-center justify-center whitespace-nowrap rounded-none text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-clinical-blue disabled:pointer-events-none disabled:opacity-40 active:scale-[0.98]",
   {
     variants: {
       variant: {
-        // Default menggunakan Clinical Gray Dark (Navy-ish)
+        // Default: Clinical Gray Dark (Navy-ish)
         default:
           "bg-clinical-gray-dark text-white hover:bg-clinical-blue shadow-sm",
-        // Destructive tetap merah namun disesuaikan tone-nya
+        // Destructive: Red tone disesuaikan
         destructive: "bg-red-600 text-white hover:bg-red-700",
-        // Outline menggunakan border klinis
+        // Outline: Border klinis
         outline:
           "border border-clinical-border bg-transparent hover:bg-clinical-gray-light hover:text-clinical-blue text-clinical-gray-medium",
-        // Secondary menggunakan Clinical Blue
+        // Secondary: Clinical Blue
         secondary: "bg-clinical-blue text-white hover:bg-clinical-gray-dark",
-        // Ghost untuk navigasi subtle
+        // Ghost: Navigasi subtle
         ghost:
           "text-clinical-gray-medium hover:bg-clinical-blue/5 hover:text-clinical-blue",
-        // Link dengan underline khas terminal
+        // Link: Underline terminal style
         link: "text-clinical-blue underline-offset-8 hover:underline decoration-clinical-blue/30",
       },
       size: {
-        // Ukuran disesuaikan untuk estetika presisi
         default: "h-12 px-8 py-2",
         sm: "h-9 px-4 text-[9px]",
         lg: "h-14 px-12 text-[11px]",
@@ -55,7 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size }), className)}
         ref={ref}
         {...props}
       />

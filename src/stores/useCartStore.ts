@@ -8,7 +8,7 @@ interface CartItem extends ProductInterface {
 
 interface CartState {
   items: CartItem[];
-  currentCurrency: "IDR" | "USD"; // Merekam mata uang yang dipilih
+  currentCurrency: "IDR" | "USD";
   _hasHydrated: boolean;
 
   // Actions
@@ -37,58 +37,63 @@ export const useCartStore = create<CartState>()(
       updateCurrencyRecord: (currency) => set({ currentCurrency: currency }),
 
       addItem: (product) => {
-        const currentItems = get().items;
-        const existingItem = currentItems.find(
-          (item) => item.id === product.id,
-        );
+        set((state) => {
+          // Cari apakah produk sudah ada di keranjang
+          const existingItemIndex = state.items.findIndex(
+            (item) => item.id === product.id,
+          );
 
-        if (existingItem) {
-          set({
-            items: currentItems.map((item) =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item,
-            ),
-          });
-        } else {
-          set({
+          if (existingItemIndex > -1) {
+            // Jika ada, update quantity-nya
+            const newItems = [...state.items];
+            newItems[existingItemIndex] = {
+              ...newItems[existingItemIndex],
+              quantity: newItems[existingItemIndex].quantity + 1,
+            };
+            return { items: newItems };
+          }
+
+          // Jika belum ada, tambahkan sebagai produk baru tanpa menghapus yang lama
+          return {
             items: [
-              ...currentItems,
+              ...state.items,
               {
                 ...product,
                 quantity: 1,
               },
             ],
-          });
-        }
+          };
+        });
       },
 
       removeItem: (id) => {
-        set({ items: get().items.filter((item) => item.id !== id) });
+        set((state) => ({
+          items: state.items.filter((item) => item.id !== id),
+        }));
       },
 
       updateQuantity: (id, delta) => {
-        set({
-          items: get()
-            .items.map((item) =>
+        set((state) => ({
+          items: state.items
+            .map((item) =>
               item.id === id
                 ? { ...item, quantity: Math.max(0, item.quantity + delta) }
                 : item,
             )
             .filter((item) => item.quantity > 0),
-        });
+        }));
       },
 
       setItemQuantity: (id, amount) => {
-        set({
-          items: get()
-            .items.map((item) =>
+        set((state) => ({
+          items: state.items
+            .map((item) =>
               item.id === id
                 ? { ...item, quantity: Math.max(0, amount) }
                 : item,
             )
             .filter((item) => item.quantity > 0),
-        });
+        }));
       },
 
       clearCart: () => set({ items: [] }),

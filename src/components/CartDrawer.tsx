@@ -8,6 +8,8 @@ import Image from "next/image";
 import { useRegionStore } from "@/stores/useRegionStore";
 import { QuantityController } from "./quantity-controller";
 import RegionSwitcher from "./RegionSwitcher";
+import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 export const CartDrawer = ({
   open,
@@ -16,6 +18,7 @@ export const CartDrawer = ({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) => {
+  const router = useRouter();
   const { items, removeItem, updateQuantity, setItemQuantity, getTotalPrice } =
     useCartStore();
 
@@ -67,7 +70,6 @@ export const CartDrawer = ({
 
                 return (
                   <div key={item.id} className="flex gap-4 group">
-                    {/* Image Thumb */}
                     <div className="relative h-20 w-20 flex-shrink-0 bg-clinical-gray-light/30 border border-clinical-border overflow-hidden">
                       <Image
                         src={item.thumbnail || item.gallery?.[0] || ""}
@@ -81,8 +83,8 @@ export const CartDrawer = ({
                     <div className="flex-1 flex flex-col justify-between py-0.5">
                       <div className="flex justify-between items-start">
                         <div>
-                          <h4 className="text-xs font-black uppercase tracking-tight text-clinical-gray-dark">
-                            {item.name}
+                          <h4 className="text-xs font-semibold uppercase tracking-tight text-clinical-gray-dark">
+                            {item.name} - {item.type}
                           </h4>
                           <p className="text-[10px] font-mono font-bold text-clinical-blue">
                             {formatCurrency(activePrice, currency)}
@@ -121,18 +123,24 @@ export const CartDrawer = ({
                 <span className="text-[10px] font-bold text-clinical-gray-medium uppercase tracking-widest">
                   Total Valuation:
                 </span>
-                <span className="text-2xl font-black text-clinical-gray-dark font-mono">
+                <span className="text-2xl font-semibold text-clinical-gray-dark font-mono">
                   {formatCurrency(totalPrice, currency)}
                 </span>
               </div>
 
-              <button className="w-full bg-clinical-blue hover:bg-clinical-gray-dark text-white py-5 text-[11px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-3 transition-all group">
+              <Button
+                onClick={() => {
+                  router.push("/checkout");
+                  onOpenChange(false);
+                }}
+                className="w-full bg-clinical-blue hover:bg-clinical-gray-dark text-white py-5 text-[11px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-3 transition-all group"
+              >
                 Checkout
                 <ArrowRight
                   size={14}
                   className="group-hover:translate-x-1 transition-transform"
                 />
-              </button>
+              </Button>
 
               <div className="flex items-center justify-center gap-2 py-2">
                 <div className="w-1 h-1 bg-clinical-success rounded-full animate-pulse" />
