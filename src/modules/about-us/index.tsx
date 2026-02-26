@@ -5,7 +5,7 @@ import Logo from "../../assets/svg/logo.svg";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { Dna } from "lucide-react"; // Using Dna instead of Flask for a subtle tech feel
+import { ChevronRight, Dna, Globe, Truck } from "lucide-react"; // Using Dna instead of Flask for a subtle tech feel
 import Link from "next/link";
 
 const AboutUsPageModules = () => {
@@ -81,6 +81,111 @@ const AboutUsPageModules = () => {
         </div>
       </section>
 
+      {/* --- SECTION 4.5: GLOBAL DISTRIBUTION PROTOCOL --- */}
+      <section className="py-24 bg-clinical-white border-t border-clinical-border overflow-hidden relative">
+        {/* Watermark Background */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-black text-clinical-blue/[0.02] pointer-events-none uppercase tracking-tighter whitespace-nowrap">
+          Global_Access
+        </div>
+
+        <div className="max-w-7xl mx-auto px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-8">
+              <div>
+                <span className="text-clinical-blue font-bold tracking-[0.4em] text-[10px] uppercase flex items-center gap-2 mb-4">
+                  <Globe size={14} /> Logistics_Network
+                </span>
+                <h2 className="text-4xl md:text-5xl font-semibold text-clinical-gray-dark tracking-tighter uppercase leading-none mb-6">
+                  Worldwide <br />{" "}
+                  <span className="text-clinical-blue">Deployment.</span>
+                </h2>
+                <p className="text-clinical-gray-medium text-sm leading-relaxed max-w-md font-medium">
+                  Sistem distribusi kami dirancang untuk menjangkau profesional
+                  dan individu di seluruh dunia. Kami melayani pengiriman
+                  internasional dengan protokol pelacakan real-time untuk
+                  menjamin integritas produk hingga ke tangan Anda.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-12">
+                <div className="flex flex-col gap-2">
+                  <span className="text-clinical-blue font-mono text-xl font-bold">
+                    190+
+                  </span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-clinical-gray-medium">
+                    Countries_Served
+                  </span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-clinical-blue font-mono text-xl font-bold">
+                    3-7
+                  </span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-clinical-gray-medium">
+                    Avg_Transit_Days
+                  </span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-clinical-blue font-mono text-xl font-bold">
+                    Safe
+                  </span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-clinical-gray-medium">
+                    Express_Handling
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Logistics Visual Card */}
+            <div className="border border-clinical-border bg-clinical-gray-light/30 p-8 md:p-12 relative">
+              <div className="absolute top-4 right-4 flex gap-1">
+                <div className="w-1.5 h-1.5 bg-clinical-blue" />
+                <div className="w-1.5 h-1.5 bg-clinical-blue/30" />
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex items-start gap-4 pb-6 border-b border-clinical-border">
+                  <Truck className="text-clinical-blue mt-1" size={20} />
+                  <div>
+                    <h4 className="text-[10px] font-bold uppercase tracking-widest mb-1">
+                      Standard Global Shipping
+                    </h4>
+                    <p className="text-[9px] text-clinical-gray-medium uppercase">
+                      Fully tracked international service via authorized
+                      couriers.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-5 h-5 border border-clinical-blue flex items-center justify-center">
+                    <div className="w-2 h-2 bg-clinical-blue" />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] font-bold uppercase tracking-widest mb-1">
+                      Customs Clearance Protocol
+                    </h4>
+                    <p className="text-[9px] text-clinical-gray-medium uppercase">
+                      Automated documentation for seamless border entry.
+                    </p>
+                  </div>
+                </div>
+
+                <Link
+                  href="/shipping-policy"
+                  className="inline-flex items-center gap-2 text-[10px] font-bold text-clinical-blue uppercase tracking-[0.2em] pt-4 hover:gap-4 transition-all group"
+                >
+                  Read Shipping_Protocol{" "}
+                  <ChevronRight
+                    size={12}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- SECTION 2: ARCHITECTURE OF STYLE --- */}
       <section className="py-24 px-8 md:px-20 border-b border-clinical-border bg-clinical-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -113,104 +218,6 @@ const AboutUsPageModules = () => {
                 consistent texture and high-performance results across various
                 environmental conditions.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- SECTION 3: PRODUCT COMPARISON --- */}
-      <section className="bg-clinical-gray-light py-24">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>
-              <h2 className="text-4xl font-semibold text-clinical-gray-dark tracking-tighter uppercase font-montserrat">
-                Available <br />
-                Systems
-              </h2>
-            </div>
-            <div className="text-right">
-              <p className="text-xs font-semibold text-clinical-blue uppercase tracking-widest">
-                Release 01 / 02
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-clinical-border border border-clinical-border">
-            {/* FLEX CARD */}
-            <div className="bg-clinical-white p-12 hover:bg-clinical-blue-light/50 transition-all group">
-              <div className="flex justify-between items-start mb-12">
-                <span className="bg-clinical-blue text-clinical-white text-[9px] px-3 py-1 font-semibold uppercase tracking-widest">
-                  Primary
-                </span>
-                <span className="text-clinical-border font-semibold text-6xl group-hover:text-clinical-blue/10 transition-colors italic">
-                  01
-                </span>
-              </div>
-              <div className="relative h-64 mb-8">
-                <Image
-                  src="/image/the-brand/flexproduct.webp"
-                  fill
-                  className="object-contain transition-transform duration-700 group-hover:scale-105"
-                  alt="Flex"
-                />
-              </div>
-              <h3 className="text-3xl font-semibold text-clinical-gray-dark mb-2 italic">
-                FLEX
-              </h3>
-              <p className="text-clinical-blue font-semibold text-[10px] uppercase tracking-widest mb-4 border-b border-clinical-blue/20 pb-4">
-                Liquified Styling Powder
-              </p>
-              <ul className="text-[11px] text-clinical-gray-medium space-y-2 uppercase tracking-tighter font-semibold mb-8">
-                <li className="flex justify-between">
-                  <span>Finish:</span>{" "}
-                  <span className="text-clinical-gray-dark">Ultra Matte</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Hold:</span>{" "}
-                  <span className="text-clinical-gray-dark">High Gravity</span>
-                </li>
-              </ul>
-              <Button
-                onClick={() => router.push("/flex")}
-                className="w-full bg-transparent border border-clinical-border text-clinical-gray-dark hover:bg-clinical-blue hover:text-clinical-white hover:border-clinical-blue rounded-none font-semibold"
-              >
-                Detailed Analysis
-              </Button>
-            </div>
-
-            {/* FINE CARD */}
-            <div className="bg-clinical-white p-12 opacity-80">
-              <div className="flex justify-between items-start mb-12">
-                <span className="bg-clinical-gray-medium text-clinical-white text-[9px] px-3 py-1 font-semibold uppercase tracking-widest">
-                  In Queue
-                </span>
-                <span className="text-clinical-border font-semibold text-6xl italic">
-                  02
-                </span>
-              </div>
-              <div className="relative h-64 mb-8 grayscale opacity-50">
-                <Image
-                  src="/image/the-brand/finesp.webp"
-                  fill
-                  className="object-contain"
-                  alt="Fine"
-                />
-              </div>
-              <h3 className="text-3xl font-semibold text-clinical-gray-medium mb-2 italic">
-                FINE
-              </h3>
-              <p className="text-clinical-gray-medium font-semibold text-[10px] uppercase tracking-widest mb-4 border-b border-clinical-border pb-4">
-                Hydrating Clay Formula
-              </p>
-              <p className="text-[11px] text-clinical-gray-medium italic uppercase tracking-widest mb-8">
-                System optimization in progress...
-              </p>
-              <Button
-                disabled
-                className="w-full bg-clinical-gray-light text-clinical-gray-medium cursor-not-allowed rounded-none uppercase text-[10px] font-semibold"
-              >
-                Upcoming Series
-              </Button>
             </div>
           </div>
         </div>
