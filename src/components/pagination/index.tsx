@@ -1,12 +1,11 @@
 "use client";
 
-import NextIcon from "@/assets/icon/next-icon";
-import PrevIcon from "@/assets/icon/prev-icon";
 import { formatCurrency } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { ShieldCheck, Pipette, Zap, ChevronRight } from "lucide-react";
 
 interface DataInterface {
   name: string;
@@ -25,14 +24,11 @@ interface PaginationComponentInterface {
 
 const PaginationComponent = ({
   data,
-  isPagination = true,
   isOnClick,
   onClick = () => {},
 }: PaginationComponentInterface) => {
   const router = useRouter();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  // Ref untuk efek parallax sederhana
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -43,16 +39,22 @@ const PaginationComponent = ({
     setMousePos({ x, y });
   };
 
+  // Grid Mobile selalu 1 kolom, Tablet 2 kolom, Desktop disesuaikan
   const gridLayout =
     data.length === 1
       ? "grid-cols-1"
       : data.length === 2
-        ? "grid-cols-2"
-        : "grid-cols-2 lg:grid-cols-3";
+        ? "grid-cols-1 sm:grid-cols-2"
+        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <div className="w-full flex flex-col justify-center items-center px-6">
-      <div className={twMerge("grid gap-20 lg:gap-32", gridLayout)}>
+    <div className="w-full flex flex-col justify-center items-center py-4 md:py-10">
+      <div
+        className={twMerge(
+          "grid gap-px bg-clinical-border border-y md:border border-clinical-border w-full",
+          gridLayout,
+        )}
+      >
         {data.map((item, i) => {
           const isDisabled = item.disable;
           const isHovered = hoveredIndex === i;
@@ -67,9 +69,11 @@ const PaginationComponent = ({
               }}
               onMouseMove={isHovered ? handleMouseMove : undefined}
               className={twMerge(
-                "group relative flex flex-col items-center transition-all duration-700",
-                isOnClick && !isDisabled ? "cursor-pointer" : "cursor-default",
-                isDisabled && "opacity-30 grayscale",
+                "group relative bg-clinical-white p-6 sm:p-10 flex flex-col transition-all duration-500 overflow-hidden",
+                isOnClick && !isDisabled
+                  ? "cursor-pointer active:bg-clinical-gray-light/30"
+                  : "cursor-default",
+                isDisabled && "bg-clinical-gray-light/50",
               )}
               onClick={() => {
                 onClick(item);
@@ -77,40 +81,62 @@ const PaginationComponent = ({
                   router.push(item.path);
               }}
             >
-              {/* Card Badge (New/Coming Soon) */}
-              {isDisabled && (
-                <div className="absolute -top-4 z-20 bg-white/5 border border-white/10 px-3 py-1 backdrop-blur-md rounded-full">
-                  <p className="text-[8px] tracking-[0.3em] font-black text-gold-deep uppercase">
-                    Reserved
-                  </p>
+              {/* UNIT HEADER: Technical Metadata */}
+              <div className="flex justify-between items-start mb-8 md:mb-12">
+                <div className="flex flex-col">
+                  <span className="text-[8px] md:text-[9px] font-mono font-bold text-clinical-blue uppercase tracking-widest">
+                    Unit_ID: {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[7px] md:text-[8px] font-medium text-clinical-gray-medium uppercase tracking-tighter mt-1">
+                    System.Batch_v2.0
+                  </span>
                 </div>
-              )}
+                {isDisabled ? (
+                  <div className="flex items-center gap-1 px-1.5 py-0.5 md:px-2 md:py-1 bg-clinical-gray-dark/5 border border-clinical-border">
+                    <Pipette
+                      size={8}
+                      className="text-clinical-gray-medium md:size-10"
+                    />
+                    <p className="text-[7px] md:text-[8px] tracking-widest font-bold text-clinical-gray-medium uppercase">
+                      Testing
+                    </p>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1 px-1.5 py-0.5 md:px-2 md:py-1 bg-clinical-blue/10 border border-clinical-blue/20">
+                    <ShieldCheck
+                      size={8}
+                      className="text-clinical-blue md:size-10"
+                    />
+                    <p className="text-[7px] md:text-[8px] tracking-widest font-bold text-clinical-blue uppercase">
+                      Verified
+                    </p>
+                  </div>
+                )}
+              </div>
 
-              {/* IMAGE SECTION - Floating & Parallax Effect */}
-              <div className="relative mb-12 flex items-center justify-center">
-                {/* Dynamic Glow Base */}
+              {/* IMAGE SECTION - Scaled for Mobile */}
+              <div className="relative aspect-square flex items-center justify-center mb-6 md:mb-10">
                 <div
                   className={twMerge(
-                    "absolute w-[150%] h-[150%] rounded-full transition-all duration-1000 blur-[80px] pointer-events-none",
-                    isHovered
-                      ? "bg-gold-deep/15 opacity-100 scale-110"
-                      : "bg-transparent opacity-0 scale-90",
+                    "absolute inset-0 z-20 pointer-events-none border-y border-clinical-blue/20 transition-all duration-1000",
+                    isHovered ? "h-full opacity-100" : "h-0 opacity-0",
                   )}
                 />
 
-                {/* The Product Image */}
                 <div
-                  className="relative z-10 transition-all duration-500 ease-out"
+                  className="relative z-10 transition-transform duration-500 ease-out"
                   style={{
-                    transform: isHovered
-                      ? `translate3d(${mousePos.x * 20}px, ${mousePos.y * 20}px, 0) rotateX(${mousePos.y * -10}deg) rotateY(${mousePos.x * 10}deg)`
-                      : "translate3d(0,0,0)",
+                    transform:
+                      isHovered && window.innerWidth > 768
+                        ? `translate3d(${mousePos.x * 15}px, ${mousePos.y * 15}px, 0)`
+                        : "translate3d(0,0,0)",
                   }}
                 >
                   <Image
                     className={twMerge(
-                      "w-[140px] sm:w-[260px] h-auto rounded-3xl object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.5)] transition-transform duration-700",
+                      "w-[140px] sm:w-[200px] md:w-[240px] h-auto object-contain transition-all duration-700",
                       isHovered ? "scale-105" : "scale-100",
+                      isDisabled && "grayscale brightness-125 opacity-40",
                     )}
                     width={500}
                     height={500}
@@ -119,52 +145,46 @@ const PaginationComponent = ({
                   />
                 </div>
 
-                {/* Decorative Elements on Hover */}
-                <div
-                  className={twMerge(
-                    "absolute -bottom-4 w-12 h-[1px] bg-gold-deep transition-all duration-700",
-                    isHovered ? "w-24 opacity-100" : "w-0 opacity-0",
-                  )}
-                />
+                <div className="absolute top-0 right-0 p-1 md:p-2 opacity-20 md:opacity-10 group-hover:opacity-100 transition-opacity">
+                  <Zap size={12} className="text-clinical-blue md:size-14" />
+                </div>
               </div>
 
-              {/* TEXT SECTION */}
-              <div className="space-y-3 text-center z-20">
-                <div className="overflow-hidden">
-                  <h3
-                    className={twMerge(
-                      "text-2xl sm:text-3xl font-semibold italic tracking-tighter transition-all duration-500 uppercase",
-                      isHovered
-                        ? "text-gold-deep translate-y-0"
-                        : "text-white/90",
-                    )}
-                  >
-                    {item.name}
-                  </h3>
-                </div>
+              {/* TEXT SECTION: Spec Data */}
+              <div className="mt-auto pt-6 md:pt-8 border-t border-clinical-border flex flex-col items-start gap-3 md:gap-4">
+                <h3
+                  className={twMerge(
+                    "text-lg sm:text-xl md:text-2xl font-semibold uppercase tracking-tighter leading-tight transition-colors duration-300",
+                    isHovered
+                      ? "text-clinical-blue"
+                      : "text-clinical-gray-dark",
+                  )}
+                >
+                  {item.name}
+                </h3>
 
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex justify-between items-center w-full">
                   {item.price && !isDisabled ? (
-                    <p className="text-xs sm:text-sm font-light tracking-[0.4em] text-gray-500 group-hover:text-gray-300 transition-colors">
+                    <p className="text-xs md:text-sm font-bold font-mono text-clinical-gray-medium">
                       {formatCurrency(Number(item.price))}
                     </p>
                   ) : (
-                    isDisabled && (
-                      <span className="text-[9px] uppercase tracking-[0.5em] text-white/20 font-bold">
-                        Laboratory testing
-                      </span>
-                    )
+                    <span className="text-[9px] md:text-[10px] uppercase font-bold text-clinical-gray-medium/40">
+                      Access Restricted
+                    </span>
+                  )}
+
+                  {!isDisabled && (
+                    <div className="flex items-center gap-1 text-[8px] md:text-[9px] font-bold text-clinical-blue uppercase tracking-widest opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all">
+                      <span>View</span>
+                      <ChevronRight size={10} strokeWidth={3} />
+                    </div>
                   )}
                 </div>
               </div>
 
-              {/* Hover Background Accent (Glass) */}
-              <div
-                className={twMerge(
-                  "absolute -inset-x-8 -inset-y-12 bg-white/[0.02] border border-white/[0.05] rounded-[40px] -z-10 transition-all duration-700 backdrop-blur-[2px]",
-                  isHovered ? "opacity-100 scale-100" : "opacity-0 scale-95",
-                )}
-              />
+              {/* Technical Marker Detail (Mobile Visible) */}
+              <div className="absolute bottom-0 left-0 w-1 h-1 bg-clinical-blue/20" />
             </div>
           );
         })}

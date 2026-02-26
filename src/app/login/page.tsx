@@ -4,7 +4,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Loader2, Mail, Lock, ShieldCheck } from "lucide-react";
+import {
+  Loader2,
+  Mail,
+  Lock,
+  ShieldCheck,
+  Cpu,
+  ChevronRight,
+} from "lucide-react";
 import InputComponent from "@/components/input";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -38,11 +45,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen py-32 w-full flex items-center justify-center overflow-hidden bg-black">
+    <div className="relative min-h-screen py-24 w-full flex items-center justify-center overflow-hidden bg-clinical-white">
       {/* --- VIDEO BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
         <video
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale"
           autoPlay
           loop
           muted
@@ -50,100 +57,118 @@ export default function LoginPage() {
         >
           <source src="/videos/banner_1.mp4" type="video/mp4" />
         </video>
-        {/* Overlay Gradient untuk memastikan form terbaca */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-navy-blue/40 to-black/80" />
+        {/* Clinical Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-clinical-white/80 via-clinical-white/40 to-clinical-white" />
       </div>
 
       {/* --- LOGIN CARD --- */}
       <div className="relative z-10 w-full max-w-md px-6">
-        <div className="bg-white/[0.03] border border-white/10 backdrop-blur-2xl p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div className="bg-white/80 border border-clinical-border p-10 rounded-none shadow-[0_30px_60px_rgba(0,0,0,0.05)] backdrop-blur-md relative">
+          {/* Decorative Corner Accents */}
+          <div className="absolute top-0 left-0 w-2 h-2 bg-clinical-blue" />
+          <div className="absolute bottom-0 right-0 w-2 h-2 bg-clinical-blue" />
+
           {/* Header Section */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gold-deep/10 border border-gold-deep/20 mb-4">
-              <ShieldCheck className="w-6 h-6 text-gold-deep" />
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-14 h-14 bg-clinical-blue/5 border border-clinical-blue/20 mb-6">
+              <Cpu className="w-6 h-6 text-clinical-blue" />
             </div>
-            <h1 className="text-4xl font-black italic tracking-tighter text-white uppercase leading-none">
-              QUIV
+            <h1 className="text-5xl font-semibold tracking-tighter text-clinical-gray-dark uppercase leading-none">
+              QUIV<span className="text-clinical-blue">.</span>
             </h1>
-            <div className="flex items-center justify-center gap-2 mt-2">
-              <span className="h-[1px] w-8 bg-gold-deep/30"></span>
-              <p className="text-white/40 text-[10px] tracking-[0.4em] uppercase font-bold">
-                Access Portal
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <p className="text-clinical-gray-medium text-[9px] tracking-[0.5em] uppercase font-bold border-y border-clinical-border py-1">
+                Security_Access_Protocol
               </p>
-              <span className="h-[1px] w-8 bg-gold-deep/30"></span>
             </div>
           </div>
 
           <div className="space-y-8">
-            {/* Google Login - Dibuat lebih subtle tapi elegan */}
+            {/* Google Login */}
             <GoogleLoginButton disabled={loading} />
 
             {/* Divider */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/5"></div>
+                <div className="w-full border-t border-clinical-border"></div>
               </div>
-              <div className="relative flex justify-center text-[8px] uppercase tracking-[0.5em]">
-                <span className="bg-transparent px-4 text-white/20 font-bold italic">
-                  Security Protocol
+              <div className="relative flex justify-center text-[8px] uppercase tracking-[0.4em]">
+                <span className="bg-white px-4 text-clinical-gray-medium font-bold">
+                  OR_MANUAL_ENTRY
                 </span>
               </div>
             </div>
 
             {/* Manual Form */}
-            <form onSubmit={handleSubmit(onEmailLogin)} className="space-y-5">
-              <InputComponent
-                name="email"
-                label="Email"
-                control={control}
-                placeholder="name@example.com"
-                icon={<Mail className="w-4 h-4" />}
-                classNameInput="bg-white/[0.03] border-white/10"
-              />
+            <form onSubmit={handleSubmit(onEmailLogin)} className="space-y-6">
+              <div className="space-y-4">
+                <InputComponent
+                  name="email"
+                  label="Email"
+                  control={control}
+                  placeholder="name@example.com"
+                  icon={<Mail className="w-4 h-4" />}
+                  classNameInput="bg-clinical-gray-light/50 border-clinical-border rounded-none focus:ring-clinical-blue"
+                />
 
-              <InputComponent
-                name="password"
-                label="Password"
-                type="password"
-                control={control}
-                placeholder="••••••••"
-                icon={<Lock className="w-4 h-4" />}
-                classNameInput="bg-white/[0.03] border-white/10"
-              />
+                <InputComponent
+                  name="password"
+                  label="Password"
+                  type="password"
+                  control={control}
+                  placeholder="••••••••"
+                  icon={<Lock className="w-4 h-4" />}
+                  classNameInput="bg-clinical-gray-light/50 border-clinical-border rounded-none focus:ring-clinical-blue"
+                />
+              </div>
 
-              <div className="pt-5">
+              <div className="pt-4">
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 bg-gold-deep text-black font-black rounded-xl uppercase text-[11px] tracking-[0.3em] hover:bg-gold-light hover:shadow-[0_0_30px_rgba(184,134,11,0.4)] transition-all duration-500 active:scale-[0.98] disabled:opacity-50 flex justify-center items-center mt-4"
+                  className="w-full py-7 bg-clinical-gray-dark text-white font-bold rounded-none uppercase text-[10px] tracking-[0.3em] hover:bg-clinical-blue transition-all duration-300 flex justify-center items-center gap-2 group"
                 >
                   {loading ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
-                    "Login"
+                    <>
+                      Login
+                      <ChevronRight
+                        size={14}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    </>
                   )}
                 </Button>
               </div>
             </form>
 
             {/* Footer */}
-            <div className="mt-8 pt-8 border-t border-white/5">
-              <p className="text-center text-white/30 text-[10px] uppercase tracking-widest font-medium">
-                Not have account?{" "}
+            <div className="mt-10 pt-8 border-t border-clinical-border">
+              <p className="text-center text-clinical-gray-medium text-[9px] uppercase tracking-widest font-bold">
+                No session archive?{" "}
                 <Link
                   href="/register"
-                  className="text-white hover:text-gold-deep font-black transition-colors ml-1 underline underline-offset-4"
+                  className="text-clinical-blue hover:text-clinical-gray-dark transition-colors ml-1 underline underline-offset-8"
                 >
-                  Sign up
+                  Create_Account
                 </Link>
               </p>
             </div>
           </div>
         </div>
+
+        {/* System Info Footer */}
+        <div className="mt-6 flex justify-between text-[7px] font-mono text-clinical-gray-medium/50 uppercase tracking-[0.2em] px-2">
+          <span>Encrypted_AES-256</span>
+          <span>Ref_ID: {new Date().getFullYear()}-01</span>
+        </div>
       </div>
 
-      {/* Aesthetic Border Glow */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-deep/50 to-transparent shadow-[0_0_15px_rgba(184,134,11,0.5)] z-20" />
+      {/* Aesthetic Top Indicator */}
+      <div className="fixed top-0 left-0 w-full h-[2px] bg-clinical-blue/20 z-20">
+        <div className="h-full bg-clinical-blue w-1/3 animate-[loading_3s_infinite_linear]" />
+      </div>
     </div>
   );
 }

@@ -17,34 +17,34 @@ const FaqPageModules = () => {
 
   const dataFaq = [
     {
-      question: "How to order?",
+      question: "Acquisition Process",
       answer:
-        "Reach quiv on our Whatsapp, Social Media and directly buy at your favourite marketplace for a faster shop.",
+        "Connect with our official channels via WhatsApp, verified Social Media, or our authorized digital storefronts for immediate processing.",
     },
     {
-      question: "How much you get in 1 bottle?",
+      question: "Volume Specifications",
       answer:
-        "Inside Quiv is 80g of innovative formula for your daily hair grooming.",
+        "Each unit contains 80g of our high-efficiency formulation, engineered for consistent daily application.",
     },
     {
-      question: "What’s the difference between both products?",
+      question: "System Comparison: Flex vs Fine",
       answer:
-        "Flex is for a dry matte texture (hair powder style), and Fine is for a smoother, glossy looks (clay/pomade style).",
+        "Flex is designed for a dry, high-definition matte texture. Fine is developed for a smooth, high-integrity finish with subtle reflection.",
     },
     {
-      question: "How to apply Quiv?",
+      question: "Application Methodology",
       answer:
-        "One or two pump to your hand, spread enough then apply to your hair and style! Best result after shower with a hair dryer.",
+        "Dispense one to two pumps into palms, distribute evenly, and apply to hair. For optimal structural integrity, apply after cleansing and utilize thermal styling (hair dryer).",
     },
     {
-      question: "Does Quiv support daily use?",
+      question: "Usage Frequency",
       answer:
-        "Quiv is made for active men. Compact and easy to carry for sports, work, or hangouts.",
+        "Our formulas are built for high-performance lifestyles. The compact housing is engineered for mobility, suitable for professional and active environments.",
     },
     {
-      question: "Does Quiv safe for my hair?",
+      question: "Integrity and Safety",
       answer:
-        "BPOM certified, nutritions added for healthier hair, and easy-to-wash. Definitely safe.",
+        "All products are quality-certified and enriched with essential nutrients to maintain structural hair health. Formulated for easy removal during standard cleansing.",
     },
   ];
 
@@ -56,21 +56,25 @@ const FaqPageModules = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-clinical-white min-h-screen font-inter">
       {/* --- HERO SECTION --- */}
-      <section className="relative h-[50vh] md:h-screen w-full overflow-hidden bg-black">
+      <section className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden bg-clinical-gray-dark">
         <Image
-          className="h-full w-full object-cover opacity-60 md:scale-105"
+          className="h-full w-full object-cover opacity-50 grayscale transition-transform duration-[2000ms] md:scale-105 hover:scale-100"
           height={1200}
           width={1920}
           src={"/image/got-question/banner.webp"}
-          alt="FAQ Banner"
+          alt="Support Header"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+        {/* Subtle Bottom Gradient for Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-clinical-white via-transparent to-transparent" />
 
-        <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-navy-blue">
-          <ArrowDown onClick={handleScroll} className="animate-bounce" />
+        <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-clinical-blue">
+          <ArrowDown
+            onClick={handleScroll}
+            className="animate-bounce cursor-pointer"
+          />
         </div>
       </section>
 
@@ -81,19 +85,19 @@ const FaqPageModules = () => {
       >
         <div className="flex flex-col items-center mb-12 md:mb-20">
           <TitleComponent
-            firstTitle="FREQUENTLY"
-            lastTitle="ASKED"
-            variant="light"
+            firstTitle="GENERAL"
+            lastTitle="INQUIRIES"
+            variant="secondary"
             classNameContainer="scale-90 md:scale-100"
           />
-          <div className="h-[2px] w-10 md:w-12 bg-gold-deep mt-3 md:mt-4" />
+          <div className="h-[2px] w-12 bg-clinical-blue mt-4" />
         </div>
 
         <Accordion
           type="single"
           collapsible
           onValueChange={setActiveFaq}
-          className="w-full space-y-3 md:space-y-4"
+          className="w-full space-y-4"
         >
           {dataFaq.map((faq, idx) => {
             const itemValue = `item-${idx}`;
@@ -104,24 +108,27 @@ const FaqPageModules = () => {
                 key={idx}
                 value={itemValue}
                 className={twMerge(
-                  "border transition-all duration-300 overflow-hidden",
-                  "rounded-[16px] md:rounded-[24px] px-5 md:px-10", // Smaller radius on mobile
+                  "border transition-all duration-500 overflow-hidden rounded-none",
                   isActive
-                    ? "bg-navy-blue border-navy-blue md:scale-[1.02] shadow-xl"
-                    : "bg-gray-50/80 border-gray-100 hover:border-gold-deep/30",
+                    ? "bg-clinical-blue border-clinical-blue shadow-lg"
+                    : "bg-clinical-gray-light border-clinical-border hover:border-clinical-blue/40",
                 )}
               >
                 <AccordionTrigger
                   className={twMerge(
-                    "py-5 md:py-8 text-start text-base md:text-xl font-semibold italic uppercase tracking-tighter no-underline hover:no-underline",
-                    isActive ? "text-gold-deep" : "text-navy-blue",
+                    "py-6 md:py-8 px-6 md:px-10 text-start text-base md:text-lg font-semibold uppercase tracking-widest no-underline hover:no-underline transition-colors",
+                    isActive
+                      ? "text-clinical-white"
+                      : "text-clinical-gray-dark",
                   )}
                 >
-                  <div className="flex items-center gap-4 md:gap-6">
+                  <div className="flex items-center gap-6">
                     <span
                       className={twMerge(
-                        "text-[9px] md:text-[10px] font-mono font-bold tracking-widest transition-colors",
-                        isActive ? "text-white/30" : "text-gray-300",
+                        "text-[10px] font-mono font-bold tracking-widest transition-colors",
+                        isActive
+                          ? "text-clinical-blue-light/40"
+                          : "text-clinical-gray-medium",
                       )}
                     >
                       {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
@@ -132,11 +139,20 @@ const FaqPageModules = () => {
 
                 <AccordionContent
                   className={twMerge(
-                    "pb-6 md:pb-8 text-xs md:text-base leading-relaxed",
-                    isActive ? "text-gray-300" : "text-gray-600",
+                    "pb-8 px-6 md:px-10 text-xs md:text-sm leading-relaxed",
+                    isActive
+                      ? "text-clinical-blue-light"
+                      : "text-clinical-gray-medium",
                   )}
                 >
-                  <div className="max-w-2xl border-l-[1.5px] border-gold-deep/50 pl-4 md:pl-6 ml-1">
+                  <div
+                    className={twMerge(
+                      "max-w-2xl border-l-[1.5px] pl-6 ml-1 font-medium",
+                      isActive
+                        ? "border-clinical-white/30"
+                        : "border-clinical-blue/30",
+                    )}
+                  >
                     {faq.answer}
                   </div>
                 </AccordionContent>

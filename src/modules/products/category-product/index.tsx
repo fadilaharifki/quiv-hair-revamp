@@ -12,16 +12,18 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { motion, AnimatePresence } from "framer-motion";
+import { Beaker, ClipboardList, ShoppingCart, Zap, Info } from "lucide-react";
 
 type ActiveTabsType = "description" | "howToUse";
 
+// Data lokal tetap sama namun visual mapping diubah
 const imageProduct: any = {
   flex: [
     {
       id: 1,
       url: "/image/the-brand/flexcap.webp",
-      type: "Liquified Hair Powder",
-      ability: "Dry Matte Finish",
+      type: "LIQUIFIED_POWDER",
+      ability: "DRY_MATTE_FINISH",
       price: 129000,
       description:
         "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Easy-to-wash and sweat friendly.",
@@ -29,8 +31,8 @@ const imageProduct: any = {
     {
       id: 2,
       url: "/image/the-brand/flexcom.webp",
-      type: "Liquified Hair Powder",
-      ability: "Dry Matte Finish",
+      type: "LIQUIFIED_POWDER",
+      ability: "DRY_MATTE_FINISH",
       price: 129000,
       description:
         "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Easy-to-wash and sweat friendly.",
@@ -38,8 +40,8 @@ const imageProduct: any = {
     {
       id: 3,
       url: "/image/the-brand/flexproduct.webp",
-      type: "Liquified Hair Powder",
-      ability: "Dry Matte Finish",
+      type: "LIQUIFIED_POWDER",
+      ability: "DRY_MATTE_FINISH",
       price: 129000,
       description:
         "Strong hold, no messy powder. Flex is your go-to for textured, effortless styles with a dry matte finish. Easy-to-wash and sweat friendly.",
@@ -49,29 +51,29 @@ const imageProduct: any = {
     {
       id: 1,
       url: "/image/the-brand/finecap.webp",
-      type: "Clay Creme",
-      ability: "Smooth Glossy Finish",
+      type: "CLAY_CREME",
+      ability: "SMOOTH_GLOSSY_FINISH",
       price: 129000,
       description:
-        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness of gel or pomade.",
+        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness.",
     },
     {
       id: 2,
       url: "/image/the-brand/finecap.webp",
-      type: "Clay Creme",
-      ability: "Smooth Glossy Finish",
+      type: "CLAY_CREME",
+      ability: "SMOOTH_GLOSSY_FINISH",
       price: 129000,
       description:
-        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness of gel or pomade.",
+        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness.",
     },
     {
       id: 3,
       url: "/image/the-brand/finesp.webp",
-      type: "Clay Creme",
-      ability: "Smooth Glossy Finish",
+      type: "CLAY_CREME",
+      ability: "SMOOTH_GLOSSY_FINISH",
       price: 129000,
       description:
-        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness of gel or pomade.",
+        "The perfect combo of shine and control. Fine is designed for those who want a clean, polished look without the greasiness.",
     },
   ],
 };
@@ -107,37 +109,37 @@ const CategoryProductsPageModules = ({
     const data: any = {
       flex: {
         longDesc:
-          "Experience the evolution of hair styling with Flex. Our innovative liquified powder formula provides instant volume and a bone-dry matte finish that lasts all day. Designed for the active man, it's sweat-resistant yet remarkably easy to wash out at the end of the day. No flakes, no stickiness, just pure texture.",
+          "Experience the evolution of hair styling with Flex. Our innovative liquified powder formula provides instant volume and a bone-dry matte finish that lasts all day. Designed for the active man, it's sweat-resistant yet remarkably easy to wash out. No flakes, no stickiness, just pure texture mapping.",
         steps: [
           {
-            title: "Prep",
-            desc: "For best results, use a hairdryer on clean hair first.",
+            title: "PRE_PREP",
+            desc: "Use hairdryer on clean hair to stabilize base.",
           },
           {
-            title: "Application",
-            desc: "Pump 1-2 times into palms and work through the roots.",
+            title: "APPLY_MASS",
+            desc: "Pump 1-2 times into palms and work through roots.",
           },
           {
-            title: "Detailing",
-            desc: "Use your fingers to pinch and pull hair for maximum texture.",
+            title: "DETAIL_FIX",
+            desc: "Pinch and pull hair for maximum structural texture.",
           },
         ],
       },
       fine: {
         longDesc:
-          "Quiv Fine is the bridge between a classic pomade and a modern clay. It offers a healthy natural gloss that makes hair look vibrant without the heavy grease of traditional products. Perfect for clean, slicked-back looks or smart-casual styles that require precise definition and a soft-to-touch feel.",
+          "Quiv Fine is the bridge between a classic pomade and a modern clay. It offers a healthy natural gloss that makes hair look vibrant without heavy grease. Perfect for clean, slicked-back looks or smart-casual styles that require precise definition and a soft-to-touch feel.",
         steps: [
           {
-            title: "Dampen",
+            title: "HYDRATE",
             desc: "Works best on slightly damp or towel-dried hair.",
           },
           {
-            title: "Distribution",
-            desc: "Spread a small amount between palms until evenly heated.",
+            title: "DISTRIBUTE",
+            desc: "Spread small amount between palms until heated.",
           },
           {
-            title: "Finishing",
-            desc: "Apply from back to front and use a comb for a sharp look.",
+            title: "CALIBRATE",
+            desc: "Apply from back to front. Use comb for sharp finish.",
           },
         ],
       },
@@ -147,90 +149,96 @@ const CategoryProductsPageModules = ({
 
   if (isLoading)
     return (
-      <div className="w-screen h-screen flex items-center justify-center">
+      <div className="w-screen h-screen flex items-center justify-center bg-clinical-white">
         <LoadingLine />
       </div>
     );
 
   if (isNotFound)
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-white px-6 text-center">
-        <h1 className="text-8xl font-extrabold italic tracking-tighter text-navy-blue/10 uppercase mb-4">
-          404
+      <div className="min-h-screen flex flex-col items-center justify-center bg-clinical-white px-6 text-center">
+        <h1 className="text-8xl font-bold tracking-tighter text-clinical-blue/10 uppercase mb-4">
+          ERR_404
         </h1>
-        <p className="text-gray-500 uppercase tracking-widest text-sm mb-8 font-medium">
-          Product Category Not Found
+        <p className="text-clinical-gray-medium uppercase tracking-[0.5em] text-xs mb-8 font-bold">
+          Category Not Identified
         </p>
         <Button
-          className="rounded-full px-10 py-6 bg-navy-blue hover:bg-gold-deep"
+          className="rounded-none px-10 py-6 bg-clinical-gray-dark"
           onClick={() => router.replace("/feeds")}
         >
-          Back to Feed
+          RETURN_TO_ARCHIVE
         </Button>
       </div>
     );
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* --- HERO PRODUCT SECTION --- */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 pt-32 pb-16 px-6 md:px-16 max-w-7xl mx-auto gap-8 lg:gap-16">
-        <div className="hidden lg:flex lg:col-span-1 flex-col gap-5 justify-center">
+    <div className="bg-clinical-white min-h-screen font-inter">
+      {/* --- BREADCRUMB / STATUS BAR --- */}
+      <div className="max-w-7xl mx-auto px-6 pt-24 hidden md:flex items-center gap-4 text-[10px] font-bold text-clinical-gray-medium uppercase tracking-widest">
+        <span>ARCHIVE</span> <span className="text-clinical-blue">/</span>
+        <span>PRODUCTS</span> <span className="text-clinical-blue">/</span>
+        <span className="text-clinical-blue">{category}</span>
+      </div>
+
+      {/* --- PRODUCT DISPLAY SECTION --- */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 py-16 px-6 md:px-16 max-w-7xl mx-auto gap-8 lg:gap-16">
+        {/* THUMBNAILS (LEFT) */}
+        <div className="hidden lg:flex lg:col-span-1 flex-col gap-4 justify-center">
           {imageProduct[category]?.map((item: any, idx: number) => {
             const isActive = imageProductActive?.id === item.id;
             return (
               <button
                 key={idx}
                 onClick={() => setImageProductActive(item)}
-                className="group relative flex items-center justify-center"
+                className="relative h-20 w-20 group"
               >
-                {/* Indikator Garis di samping thumbnail yang aktif */}
                 <div
                   className={twMerge(
-                    "absolute -left-6 w-1 bg-gold-deep transition-all duration-500 rounded-full",
-                    isActive ? "h-8 opacity-100" : "h-0 opacity-0",
-                  )}
-                />
-
-                <div
-                  className={twMerge(
-                    "relative h-20 w-20 rounded-2xl overflow-hidden transition-all duration-500",
-                    "border border-transparent bg-white shadow-sm",
+                    "absolute inset-0 border transition-all duration-300",
                     isActive
-                      ? "ring-2 ring-gold-deep ring-offset-4 scale-110 shadow-xl"
-                      : "opacity-40 grayscale hover:grayscale-0 hover:opacity-100 hover:scale-105",
+                      ? "border-clinical-blue p-1"
+                      : "border-clinical-border group-hover:border-clinical-blue/50",
                   )}
                 >
-                  <Image
-                    src={item.url}
-                    alt="thumbnail"
-                    fill
-                    className="object-cover"
-                  />
+                  <div className="relative h-full w-full bg-clinical-gray-light">
+                    <Image
+                      src={item.url}
+                      alt="thumb"
+                      fill
+                      className={twMerge(
+                        "object-cover",
+                        !isActive && "grayscale",
+                      )}
+                    />
+                  </div>
                 </div>
               </button>
             );
           })}
         </div>
 
-        <div className="col-span-1 lg:col-span-6 flex items-center justify-center relative min-h-[400px] md:min-h-[600px]">
-          {/* Layer Background Glow - Memberi kesan dimensi */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-transparent rounded-[40px] md:rounded-[80px] -z-10" />
-
-          <div className="relative h-[300px] w-[300px] md:h-[550px] md:w-[550px] flex items-center justify-center">
+        {/* MAIN DISPLAY */}
+        <div className="col-span-1 lg:col-span-6 flex items-center justify-center relative border border-clinical-border bg-clinical-gray-light/30 min-h-[400px] md:min-h-[600px]">
+          <div className="absolute top-4 left-4 flex gap-2">
+            <div className="w-2 h-2 bg-clinical-blue" />
+            <div className="w-2 h-2 bg-clinical-border" />
+          </div>
+          <div className="relative h-[300px] w-[300px] md:h-[500px] md:w-[500px]">
             <AnimatePresence mode="wait">
               <motion.div
-                key={imageProductActive?.id} // Trigger animasi setiap ID berubah
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
-                className="relative w-full h-full cursor-zoom-in"
+                key={imageProductActive?.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.4 }}
+                className="relative w-full h-full"
               >
                 <Image
                   src={imageProductActive?.url}
                   alt="main-product"
                   fill
-                  className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
+                  className="object-contain"
                   priority
                 />
               </motion.div>
@@ -238,105 +246,152 @@ const CategoryProductsPageModules = ({
           </div>
         </div>
 
-        {/* THUMBNAILS (BOTTOM - MOBILE) */}
-        <div className="lg:hidden flex justify-center gap-4 py-4">
+        {/* MOBILE THUMBS */}
+        <div className="lg:hidden flex justify-center gap-2">
           {imageProduct[category]?.map((item: any, idx: number) => (
             <button
               key={idx}
               onClick={() => setImageProductActive(item)}
               className={twMerge(
-                "relative h-16 w-16 rounded-xl overflow-hidden border-2 transition-all",
+                "h-14 w-14 border",
                 imageProductActive?.id === item.id
-                  ? "border-gold-deep"
-                  : "border-transparent opacity-60",
+                  ? "border-clinical-blue"
+                  : "border-clinical-border",
               )}
             >
               <Image
                 src={item.url}
-                alt="thumbnail"
-                fill
+                alt="thumb"
+                width={56}
+                height={56}
                 className="object-cover"
               />
             </button>
           ))}
         </div>
 
-        {/* PRODUCT INFO (RIGHT SIDE) */}
+        {/* PRODUCT INFO */}
         <div className="col-span-1 lg:col-span-5 flex flex-col justify-center space-y-8">
-          <div className="space-y-3">
-            <span className="text-gold-deep font-bold uppercase tracking-[0.4em] text-[9px] md:text-[11px] block">
-              {imageProductActive?.type}
-            </span>
-            <h1 className="text-6xl md:text-8xl font-extrabold italic uppercase tracking-tighter text-navy-blue leading-[0.8]">
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-2 bg-clinical-blue/10 px-3 py-1 border border-clinical-blue/20">
+              <Zap size={12} className="text-clinical-blue" />
+              <span className="text-clinical-blue font-bold uppercase tracking-[0.2em] text-[10px]">
+                {imageProductActive?.type}
+              </span>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-semibold uppercase tracking-tighter text-clinical-gray-dark leading-none">
               {category}
+              <span className="text-clinical-blue">.</span>
             </h1>
-            <p className="text-gray-400 font-medium tracking-[0.2em] text-[10px] md:text-xs uppercase">
-              {imageProductActive?.ability}
+            <p className="text-clinical-gray-medium font-bold tracking-[0.3em] text-[10px] uppercase border-l-2 border-clinical-blue pl-4">
+              Property: {imageProductActive?.ability}
             </p>
           </div>
 
-          <p className="text-base md:text-lg text-navy-blue/70 font-light leading-relaxed max-w-md">
+          <p className="text-sm md:text-base text-clinical-gray-medium font-medium leading-relaxed max-w-md">
             {imageProductActive?.description}
           </p>
 
-          <div className="space-y-6 pt-4">
-            <div className="flex items-baseline gap-4">
-              <span className="text-3xl md:text-4xl font-extrabold text-navy-blue italic">
-                {formatCurrency(imageProductActive?.price || 0)}
+          <div className="pt-6 space-y-8">
+            <div className="flex flex-col">
+              <span className="text-[10px] font-bold text-clinical-gray-medium tracking-widest mb-1">
+                UNIT_PRICE
               </span>
-              <span className="text-gray-300 font-light text-sm">
-                / 80G NETTO
-              </span>
+              <div className="flex items-baseline gap-3">
+                <span className="text-4xl font-bold text-clinical-gray-dark">
+                  {formatCurrency(imageProductActive?.price || 0)}
+                </span>
+                <span className="text-clinical-gray-medium font-mono text-xs">
+                  / 80G_NET
+                </span>
+              </div>
             </div>
-            <Button className="w-full md:w-max px-16 py-8 rounded-full bg-navy-blue hover:bg-gold-deep text-white hover:text-navy-blue transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[10px] shadow-2xl shadow-navy-blue/20">
-              Order via Whatsapp
+
+            <Button className="w-full md:w-max px-12 py-7 rounded-none bg-clinical-blue hover:bg-clinical-gray-dark text-white transition-all font-bold uppercase tracking-widest text-[10px] flex gap-3">
+              <ShoppingCart size={16} />
+              INITIALIZE_ORDER
             </Button>
           </div>
         </div>
       </section>
 
-      {/* --- INFO TABS (DARK MODE SECTION) --- */}
-      <section className="bg-navy-blue py-24 md:py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex justify-center gap-8 md:gap-16 mb-16 border-b border-white/10">
+      {/* --- SPECIFICATION TABS --- */}
+      <section className="bg-clinical-gray-dark py-24 px-6 border-y border-clinical-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center gap-12 mb-16 overflow-x-auto no-scrollbar">
             {["description", "howToUse"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as ActiveTabsType)}
                 className={twMerge(
-                  "pb-6 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] transition-all relative",
+                  "pb-4 text-[10px] font-bold uppercase tracking-[0.4em] transition-all relative whitespace-nowrap",
                   activeTab === tab
-                    ? "text-gold-deep"
-                    : "text-white/40 hover:text-white",
+                    ? "text-clinical-blue"
+                    : "text-white/30 hover:text-white",
                 )}
               >
-                {tab === "description" ? "Deep Description" : "Instruction"}
+                <span className="flex items-center gap-2">
+                  {tab === "description" ? (
+                    <Info size={14} />
+                  ) : (
+                    <ClipboardList size={14} />
+                  )}
+                  {tab === "description" ? "Tech_Specs" : "Usage_Protocol"}
+                </span>
                 {activeTab === tab && (
-                  <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-deep" />
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-clinical-blue" />
                 )}
               </button>
             ))}
           </div>
 
-          <div className="min-h-[200px] flex items-center justify-center">
+          <div className="min-h-[200px]">
             {activeTab === "description" ? (
-              <p className="text-center text-white/70 leading-[2.2] font-light text-sm md:text-lg italic">
-                {productDetails.longDesc}
-              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <p className="text-white/70 leading-relaxed font-medium text-lg">
+                  {productDetails.longDesc}
+                </p>
+                <div className="border border-white/10 p-8 bg-white/5">
+                  <div className="flex items-center gap-4 mb-6">
+                    <Beaker className="text-clinical-blue" size={24} />
+                    <span className="text-white font-bold tracking-widest text-[10px]">
+                      FORMULA_LOG_V2
+                    </span>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex justify-between border-b border-white/5 pb-2">
+                      <span className="text-white/40 text-[10px] uppercase">
+                        Solubility
+                      </span>
+                      <span className="text-white text-[10px] font-mono">
+                        HIGH_WATER_BASE
+                      </span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/5 pb-2">
+                      <span className="text-white/40 text-[10px] uppercase">
+                        Finish
+                      </span>
+                      <span className="text-white text-[10px] font-mono">
+                        {category === "flex" ? "MATTE_0%" : "GLOSS_40%"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 border border-white/10">
                 {productDetails.steps.map((step: any, i: number) => (
                   <div
                     key={i}
-                    className="flex flex-col items-center text-center space-y-4"
+                    className="bg-clinical-gray-dark p-10 flex flex-col gap-6"
                   >
-                    <div className="h-12 w-12 rounded-full border border-gold-deep/30 flex items-center justify-center text-gold-deep font-bold italic">
-                      0{i + 1}
-                    </div>
-                    <h4 className="text-white font-bold uppercase tracking-widest text-xs">
+                    <span className="text-clinical-blue font-mono text-xs font-bold">
+                      [0{i + 1}]
+                    </span>
+                    <h4 className="text-white font-bold uppercase tracking-widest text-sm">
                       {step.title}
                     </h4>
-                    <p className="text-white/50 text-xs leading-relaxed font-light">
+                    <p className="text-white/50 text-xs leading-relaxed font-medium">
                       {step.desc}
                     </p>
                   </div>
@@ -348,16 +403,17 @@ const CategoryProductsPageModules = ({
       </section>
 
       {/* --- RECOMMENDATIONS --- */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-32 bg-clinical-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col items-center mb-16">
+          <div className="flex flex-col items-center mb-20">
             <TitleComponent
-              firstTitle="Recommended"
-              lastTitle="Products"
-              classNameContainer="uppercase"
-              variant="light"
+              firstTitle="CROSS"
+              lastTitle="REFERENCE"
+              variant="primary"
             />
-            <div className="h-[2px] w-12 bg-gold-deep mt-4" />
+            <p className="text-clinical-gray-medium text-[10px] font-bold tracking-[0.4em] uppercase mt-4">
+              Related Formula Inventory
+            </p>
           </div>
 
           <PaginationComponent
@@ -367,9 +423,6 @@ const CategoryProductsPageModules = ({
           />
         </div>
       </section>
-
-      {/* --- FOOTER SPACING --- */}
-      <div className="h-20 bg-white" />
     </div>
   );
 };

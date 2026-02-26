@@ -24,7 +24,7 @@ const GoogleLoginButton = ({ disabled, className }: GoogleLoginButtonProps) => {
       onClick={handleGoogleLogin}
       disabled={disabled}
       className={cn(
-        "w-full bg-white text-black hover:bg-white hover:text-black transition-all duration-500 rounded-xl h-12 flex items-center justify-center gap-3 border-none shadow-lg group active:scale-95",
+        "flex w-full bg-white text-black hover:bg-white hover:text-black transition-all duration-500 rounded-xl h-12 items-center justify-center gap-3 border-none shadow-lg group active:scale-95",
         className,
       )}
     >

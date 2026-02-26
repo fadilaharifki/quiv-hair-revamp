@@ -43,7 +43,7 @@ const InputComponent = ({
       {label && (
         <label
           htmlFor={name}
-          className="text-[10px] font-black uppercase tracking-[0.2em] text-white/50 ml-1 italic"
+          className="text-[10px] font-semibold tracking-[0.2em] text-clinical-gray-dark ml-1"
         >
           {label}
         </label>

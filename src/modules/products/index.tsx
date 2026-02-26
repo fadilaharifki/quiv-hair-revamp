@@ -5,18 +5,17 @@ import { CarouselBannerComponent } from "@/components/carousel-banner";
 import PaginationComponent from "@/components/pagination";
 import { TitleComponent } from "@/components/title";
 import { dataImageFine, dataImageFlex } from "@/constants/data";
-import { toast } from "@/hooks/use-toast";
 import Image from "next/image";
+import { Activity, Beaker, Box, ChevronRight, Cpu } from "lucide-react";
+import { toast } from "sonner";
 
 const ProductsPageModules = () => {
   const dataImageAllProduct = [...dataImageFlex, ...dataImageFine];
 
   const handleScroll = () => {
-    const element = document.getElementById("all-product");
+    const element = document.getElementById("inventory-grid");
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -26,7 +25,7 @@ const ProductsPageModules = () => {
       span: 1,
       child: [
         {
-          name: "People 1",
+          name: "System Series 01",
           span: 1,
           url: "/image/why-quiv/banner-why-quiv-2.webp",
         },
@@ -37,7 +36,7 @@ const ProductsPageModules = () => {
       span: 1,
       child: [
         {
-          name: "People 2",
+          name: "System Series 02",
           span: 1,
           url: "/image/why-quiv/banner-why-quiv-3.webp",
         },
@@ -46,54 +45,73 @@ const ProductsPageModules = () => {
   ];
 
   return (
-    <div className="bg-black text-white">
-      {/* --- HERO SECTION --- */}
-      <section className="relative h-[80vh] md:h-screen w-full overflow-hidden">
+    <div className="bg-clinical-white text-clinical-gray-dark font-inter min-h-screen">
+      {/* --- HERO: TECHNICAL OVERVIEW --- */}
+      <section className="relative h-[70vh] md:h-[90vh] w-full overflow-hidden bg-clinical-gray-dark">
         <Image
-          className="h-full w-full object-cover brightness-75 transition-scale duration-1000"
+          className="h-full w-full object-cover opacity-80"
           height={1200}
           width={1920}
           src="/image/why-quiv/banner-whyquiv-hero.webp"
-          alt="Hero Product"
+          alt="Technical Series Hero"
           priority
         />
-        {/* Overlay Gradient untuk Text Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+        {/* Blue Tint Overlay */}
+        <div className="absolute inset-0 bg-clinical-blue/10 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-clinical-white via-transparent to-transparent" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-          <span className="text-gold-deep font-mono tracking-[0.5em] text-[10px] uppercase mb-4 animate-fade-in">
-            Premium Engineering
-          </span>
-          <h1 className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase font-montserrat">
-            Products
+          <div className="flex items-center gap-3 mb-6 bg-clinical-white/10 backdrop-blur-md px-4 py-2 border border-clinical-white/20">
+            <Cpu size={14} className="text-clinical-blue" />
+            <span className="text-clinical-white font-bold tracking-[0.5em] text-[10px] uppercase">
+              Production Standard v.2.6
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-7xl font-semibold tracking-tighter uppercase font-montserrat text-clinical-white">
+            Product
+            <span className="text-clinical-blue text-glow">Systems.</span>
           </h1>
-          <p className="mt-6 text-gray-400 font-light tracking-[0.2em] text-xs md:text-sm uppercase max-w-md">
-            Natural ingredients, proven to perform at the highest level.
+          <p className="mt-8 text-clinical-white font-medium tracking-tight text-sm md:text-base max-w-xl leading-relaxed">
+            Standardized chemical compositions engineered for high-intensity
+            performance and structural stability.
           </p>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-          <ArrowDown onClick={handleScroll} className="animate-bounce" />
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 group">
+          <ArrowDown
+            onClick={handleScroll}
+            className="text-clinical-blue animate-bounce cursor-pointer transition-transform group-hover:scale-125"
+          />
         </div>
       </section>
 
-      {/* --- ALL PRODUCTS SECTION --- */}
-      <section id="all-product" className="py-24 px-6 max-w-7xl mx-auto">
-        <div className="flex flex-col items-center mb-16 text-center">
-          <TitleComponent firstTitle="ALL" lastTitle="COLLECTIONS" />
-          <div className="h-[1px] w-12 bg-gold-deep mt-4" />
+      {/* --- INVENTORY: DYNAMIC GRID --- */}
+      <section id="inventory-grid" className="py-32 px-6 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="text-left">
+            <div className="flex items-center gap-2 text-clinical-blue mb-2">
+              <Box size={14} />
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em]">
+                Release Archive
+              </span>
+            </div>
+            <TitleComponent firstTitle="Product" lastTitle="INVENTORY" />
+          </div>
+          <div className="hidden md:block h-[1px] flex-1 bg-clinical-border mx-10 mb-4" />
+          <p className="text-clinical-gray-medium text-xs font-mono max-w-[200px] text-right">
+            [ STATUS: AVAILABLE ]
+            <br />
+            REF_INDEX: 01-12
+          </p>
         </div>
 
-        <div className="relative">
+        <div className="relative border border-clinical-border bg-clinical-gray-light/30 p-1">
           <PaginationComponent
             onClick={(e) => {
               if (e.disable) {
-                toast({
-                  variant: "default",
-                  title: "🚀 Coming Soon",
-                  duration: 2000,
+                toast.warning("Under Validation", {
                   description:
-                    "This series is currently under laboratory testing.",
+                    "Unit currently under final batch certification.",
                 });
               }
             }}
@@ -103,42 +121,98 @@ const ProductsPageModules = () => {
         </div>
       </section>
 
-      {/* --- FEATURED: QUIV FLEX (INGREDIENTS) --- */}
-      <section className="bg-[#0a0a0a] py-20 border-y border-white/5">
-        <div className="flex justify-center mb-16">
-          <TitleComponent firstTitle="The" lastTitle="Formula" />
-        </div>
-        <div className="relative group max-w-[95%] mx-auto overflow-hidden rounded-xl border border-white/5">
-          <Image
-            className="w-full h-auto object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.02]"
-            height={1080}
-            width={1920}
-            src="/image/why-quiv/WhyQuiv-kandungan.webp"
-            alt="Product Formula"
-          />
-          {/* Decorative Corner Glow */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gold-deep/5 blur-[100px] pointer-events-none" />
+      {/* --- METHODOLOGY: SPLIT FEATURE --- */}
+      <section className="bg-clinical-gray-dark py-0 overflow-hidden">
+        <div className="flex flex-col lg:flex-row">
+          <div className="w-full lg:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-clinical-white border-y lg:border-y-0 lg:border-r border-clinical-border">
+            <div className="flex items-center gap-4 text-clinical-blue mb-8">
+              <Beaker size={20} />
+              <div className="h-[1px] w-12 bg-clinical-blue" />
+            </div>
+            <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter uppercase text-clinical-gray-dark mb-8 leading-none">
+              Formula <br />{" "}
+              <span className="text-clinical-blue">Architecture</span>
+            </h2>
+            <p className="text-clinical-gray-medium font-medium text-lg leading-relaxed mb-12">
+              Every solution undergoes rigorous testing to ensure molecular
+              integrity remains intact under 180°C heat and rapid acceleration.
+            </p>
+            <div className="grid grid-cols-2 gap-8 border-t border-clinical-border pt-12">
+              <div>
+                <h4 className="text-clinical-blue font-bold text-[10px] uppercase tracking-widest mb-2">
+                  Viscosity
+                </h4>
+                <p className="text-clinical-gray-dark font-mono text-sm">
+                  OPTIMIZED (V-04)
+                </p>
+              </div>
+              <div>
+                <h4 className="text-clinical-blue font-bold text-[10px] uppercase tracking-widest mb-2">
+                  Longevity
+                </h4>
+                <p className="text-clinical-gray-dark font-mono text-sm">
+                  12-HOUR MATRIX
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="w-full lg:w-1/2 relative min-h-[500px] bg-clinical-gray-light">
+            <Image
+              className="w-full h-full object-cover"
+              height={1080}
+              width={1920}
+              src="/image/why-quiv/WhyQuiv-kandungan.webp"
+              alt="Formula Architecture Diagram"
+            />
+            {/* Technical Detail Overlay */}
+            <div className="absolute inset-0 bg-clinical-blue/5 pointer-events-none" />
+          </div>
         </div>
       </section>
 
-      {/* --- CAROUSEL: ACTIVE MEN --- */}
-      <section className="py-24">
-        <div className="flex flex-col items-center mb-16">
-          <TitleComponent firstTitle="Built For" lastTitle="Active Men" />
-          <p className="text-gray-500 text-[10px] tracking-[0.3em] uppercase mt-2 font-bold">
-            Series 01 / Movement
-          </p>
-        </div>
-
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border border-white/5 bg-navy-blue/10 backdrop-blur-sm p-4">
-            <CarouselBannerComponent
-              data={dataCarousel}
-              autoPlay
-              classNameImageContainer="h-auto aspect-video"
-              classNameImage="object-cover w-full h-full"
-              isBgOpacity={false}
+      {/* --- PERFORMANCE: CAROUSEL ARCHIVE --- */}
+      <section className="py-32 bg-clinical-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col items-center mb-20 text-center">
+            <div className="flex items-center gap-2 text-clinical-blue mb-4">
+              <Activity size={16} />
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em]">
+                Movement Optimization
+              </span>
+            </div>
+            <TitleComponent
+              firstTitle="SYSTEMS"
+              lastTitle="IN USE"
+              variant="secondary"
             />
+          </div>
+
+          <div className="relative group">
+            {/* Industrial Border Styling */}
+            <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-clinical-blue pointer-events-none" />
+            <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-clinical-blue pointer-events-none" />
+
+            <div className="overflow-hidden border border-clinical-border p-4 bg-clinical-white">
+              <CarouselBannerComponent
+                data={dataCarousel}
+                autoPlay
+                classNameImageContainer="h-auto aspect-video md:aspect-[21/9]"
+                classNameImage="object-cover w-full h-full transition-transform duration-[2000ms] group-hover:scale-105"
+                isBgOpacity={false}
+              />
+            </div>
+          </div>
+
+          <div className="mt-20 flex justify-center">
+            <button className="flex items-center gap-4 group text-clinical-gray-dark hover:text-clinical-blue transition-colors">
+              <span className="text-[10px] font-bold uppercase tracking-[0.5em]">
+                Request Batch Technical Sheet
+              </span>
+              <ChevronRight
+                size={16}
+                className="group-hover:translate-x-2 transition-transform"
+              />
+            </button>
           </div>
         </div>
       </section>

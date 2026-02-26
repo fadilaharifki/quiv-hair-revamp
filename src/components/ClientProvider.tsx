@@ -6,7 +6,6 @@ import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
 import BottomBar from "@/components/bottomBar";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { Toaster } from "@/components/ui/toaster";
 import LoadingLine from "@/components/LoadingLine";
 import dynamic from "next/dynamic";
 import { useToggleStore } from "@/stores/useToggleStore";
@@ -32,7 +31,7 @@ const AuthWatcher = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {(isNavigating || !hasHydrated || isLoading) && <LoadingLine />}
+      {/* {(isNavigating || !hasHydrated || isLoading) && <LoadingLine />} */}
       {children}
     </>
   );
@@ -67,7 +66,6 @@ export default function ClientProvider({
         {hasHydrated && <Footer />}
         <BottomBar />
         <WhatsAppIcon />
-        <Toaster />
         <ToastSonner richColors position="top-right" closeButton />
       </AuthWatcher>
     </QueryClientProvider>

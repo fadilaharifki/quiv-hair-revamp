@@ -21,9 +21,6 @@ const config = {
         DEFAULT: "0 2px 4px var(--tw-shadow-color)",
         lg: "0 8px 16px var(--tw-shadow-color)",
       },
-      boxShadow: {
-        brown: "5px_5px_0px_0px_rgba(109,40,217)",
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -58,18 +55,27 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        brown: "#383838",
-        "light-primary-navbar": "#182b38",
-        "light-primary": "#2e4553",
-        "light-primary-one": "#45616e",
-        "light-primary-three": "#5c7c89",
-        "light-blue": "#8AA1B2",
-        "light-gray": "#F1EFF0",
-        "gold-deep": "#B8860B",
-        "gold-bright": "#F3E5AB",
-        "gold-muted": "#C5A059",
-        "soft-gray": "#F8F8F6",
-        "navy-blue": "#1A2B38",
+        // --- Primary Clinical Colors ---
+        "clinical-blue": "#009EE2", // Royal Blue khas farmasi
+        "clinical-blue-light": "#E6F0F9", // Background hover atau tag/badge
+        "clinical-white": "#FFFFFF", // Base color utama
+
+        // --- Neutral / Professional Tones ---
+        "clinical-gray-dark": "#333333", // Teks utama (High Contrast)
+        "clinical-gray-medium": "#757575", // Sub-teks atau deskripsi
+        "clinical-gray-light": "#F2F2F2", // Background section atau border halus
+
+        // --- Status Colors (Sesuai helper functions kamu) ---
+        // Sangat berguna untuk feedback successResponse & errorResponse
+        "clinical-success": "#28A745", // Hijau medis
+        "clinical-error": "#D93025", // Merah peringatan
+
+        // --- Border Color ---
+        "clinical-border": "#E0E0E0",
+      },
+      boxShadow: {
+        // Custom shadow agar sesuai dengan vibe clean-medical
+        clinical: "0 2px 8px rgba(0, 0, 0, 0.05)",
       },
       borderRadius: {
         lg: "var(--radius)",

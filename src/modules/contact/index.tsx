@@ -10,7 +10,7 @@ import {
   phoneNumber,
   phoneNumberDash,
 } from "@/constants/data";
-import { InstagramIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { InstagramIcon, MailIcon, PhoneIcon, ArrowRight } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
@@ -25,22 +25,22 @@ const ContactPageModules = () => {
 
   const dataIcon = [
     {
-      title: "Social Media",
+      title: "Digital Media",
       description: "@quiv.hair",
       onClick: () => window.open(instagram, "_blank"),
-      icon: <InstagramIcon size={24} strokeWidth={1.5} />,
+      icon: <InstagramIcon size={20} strokeWidth={1.5} />,
     },
     {
-      title: "Email Support",
+      title: "Electronic Mail",
       description: email,
       onClick: () => window.open(`mailto:${email}`, "_blank"),
-      icon: <MailIcon size={24} strokeWidth={1.5} />,
+      icon: <MailIcon size={20} strokeWidth={1.5} />,
     },
     {
-      title: "Whatsapp Hub",
+      title: "Communication Hub",
       description: phoneNumberDash,
       onClick: () => window.open(`https://wa.me/${phoneNumber}`, "_blank"),
-      icon: <PhoneIcon size={24} strokeWidth={1.5} />,
+      icon: <PhoneIcon size={20} strokeWidth={1.5} />,
     },
   ];
 
@@ -51,83 +51,80 @@ const ContactPageModules = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-clinical-white min-h-screen font-inter">
       {/* --- HEADER --- */}
-      <section className="pt-20 pb-10 px-6">
+      <section className="pt-32 pb-12 px-6">
         <TitleComponent
-          firstTitle="Get in touch"
-          lastTitle="with us"
-          variant="light"
+          firstTitle="Direct"
+          lastTitle="Communication"
+          variant="secondary"
         />
+        <div className="flex justify-center mt-4">
+          <div className="h-[2px] w-12 bg-clinical-blue" />
+        </div>
       </section>
 
-      {/* --- CONTACT CARDS --- */}
-      <section className="pb-10 px-6 max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
+      {/* --- COMMUNICATION CHANNELS --- */}
+      <section className="pb-12 px-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-px bg-clinical-border border border-clinical-border">
           {dataIcon.map((item, idx) => (
             <button
               key={idx}
               onClick={item.onClick}
               className={twMerge(
-                "group relative w-full overflow-hidden transition-all duration-500",
-                "rounded-[20px] md:rounded-[32px] p-4 md:p-8", // Padding diperkecil
-                "bg-gray-50/50 border border-gray-100 md:bg-white",
-                "active:scale-[0.98] md:active:scale-100",
-                "md:hover:-translate-y-2 md:hover:bg-navy-blue md:hover:border-navy-blue md:hover:shadow-xl",
-                "flex md:flex-col items-center md:justify-center gap-4 md:gap-0",
+                "group relative w-full bg-clinical-white transition-all duration-500",
+                "p-6 md:p-10",
+                "flex md:flex-col items-center md:justify-center gap-5 md:gap-0",
+                "hover:bg-clinical-blue-light/30 transition-all",
               )}
             >
-              {/* Decorative Side Accent - Dibuat lebih tipis */}
-              <div className="absolute top-3 bottom-3 left-0 w-[2px] bg-gold-deep md:hidden opacity-70" />
-
-              {/* Icon Container - Ukuran diperkecil dari 12/20 ke 10/16 */}
+              {/* Icon Container - Engineered Style */}
               <div
                 className={twMerge(
-                  "relative z-10 flex shrink-0 items-center justify-center transition-all duration-700",
-                  "h-10 w-10 md:h-16 md:w-16 rounded-xl md:rounded-[22px]",
-                  "bg-navy-blue text-white md:bg-gray-50 md:text-navy-blue",
-                  "group-hover:bg-gold-deep group-hover:text-navy-blue md:group-hover:rotate-[360deg] md:mb-5",
+                  "relative z-10 flex shrink-0 items-center justify-center transition-all duration-500",
+                  "h-12 w-12 md:h-14 md:w-14 rounded-none",
+                  "bg-clinical-blue text-clinical-white",
+                  "group-hover:bg-clinical-gray-dark md:mb-6",
                 )}
               >
-                {/* Ikon diskalakan sedikit agar pas di container kecil */}
-                <div className="scale-90 md:scale-100">{item.icon}</div>
+                <div className="scale-90">{item.icon}</div>
               </div>
 
-              {/* Text content - Ukuran font disesuaikan agar compact */}
+              {/* Text content */}
               <div className="relative z-10 text-left md:text-center">
-                <h3 className="text-[7px] md:text-[9px] font-semibold uppercase tracking-[0.3em] text-gray-400 group-hover:text-gold-deep transition-colors mb-0.5">
+                <h3 className="text-[8px] md:text-[9px] font-semibold uppercase tracking-[0.3em] text-clinical-blue mb-1">
                   {item.title}
                 </h3>
-                <p className="text-sm md:text-xl font-semibold italic tracking-tighter text-navy-blue group-hover:text-white transition-colors leading-tight">
+                <p className="text-sm md:text-lg font-semibold tracking-tight text-clinical-gray-dark leading-tight">
                   {item.description}
                 </p>
               </div>
 
-              <div className="ml-auto md:hidden opacity-20">
-                <span className="text-lg text-navy-blue">→</span>
+              <div className="ml-auto md:hidden text-clinical-blue">
+                <ArrowRight size={18} />
               </div>
             </button>
           ))}
         </div>
       </section>
 
-      {/* --- FORM SECTION --- */}
-      <section className="py-12 md:py-20 px-6 md:px-12 max-w-4xl mx-auto">
-        <div className="space-y-6 md:space-y-8 bg-[#fcfcfc] p-6 md:p-16 rounded-[32px] md:rounded-[48px] border border-gray-100 shadow-sm">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
-            <div className="space-y-2">
-              <label className="text-[9px] md:text-[10px] font-semibold uppercase tracking-widest text-navy-blue/40 ml-4">
-                Full Name
+      {/* --- INQUIRY FORM SECTION --- */}
+      <section className="py-12 md:py-24 px-6 md:px-12 max-w-4xl mx-auto">
+        <div className="space-y-8 bg-clinical-white p-8 md:p-16 border border-clinical-border shadow-sm rounded-none">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+            <div className="space-y-3">
+              <label className="text-[10px] font-semibold uppercase tracking-widest text-clinical-gray-medium ml-1">
+                Full Identification
               </label>
               <InputComponent
                 name="name"
                 control={control}
-                placeholder="John Doe"
+                placeholder="Full Name"
               />
             </div>
-            <div className="space-y-2">
-              <label className="text-[9px] md:text-[10px] font-semibold uppercase tracking-widest text-navy-blue/40 ml-4">
-                Phone Number
+            <div className="space-y-3">
+              <label className="text-[10px] font-semibold uppercase tracking-widest text-clinical-gray-medium ml-1">
+                Contact Number
               </label>
               <InputComponent
                 name="phone_number"
@@ -137,24 +134,24 @@ const ContactPageModules = () => {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-[9px] md:text-[10px] font-semibold uppercase tracking-widest text-navy-blue/40 ml-4">
-              Your Message
+          <div className="space-y-3">
+            <label className="text-[10px] font-semibold uppercase tracking-widest text-clinical-gray-medium ml-1">
+              Inquiry Details
             </label>
             <TextareaComponent
               name="message"
               control={control}
-              placeholder="How can we help?"
+              placeholder="Message..."
               rows={5}
             />
           </div>
 
-          <div className="flex justify-center pt-4">
+          <div className="flex justify-center pt-6">
             <Button
               onClick={handleSubmit(onSubmit)}
-              className="w-full md:w-auto bg-navy-blue hover:bg-gold-deep text-white hover:text-navy-blue font-semibold uppercase tracking-[0.2em] text-[10px] px-16 py-8 rounded-full transition-all duration-500 active:scale-95"
+              className="w-full md:w-auto bg-clinical-blue hover:bg-clinical-gray-dark text-clinical-white font-semibold uppercase tracking-[0.3em] text-[10px] px-20 py-8 rounded-none transition-all duration-500"
             >
-              Send Inquiry
+              Submit Inquiry
             </Button>
           </div>
         </div>

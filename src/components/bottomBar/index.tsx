@@ -6,9 +6,9 @@ import useScreenSize from "@/hooks/useScreenSize";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useToggleStore } from "@/stores/useToggleStore";
-import { useAuthStore } from "@/stores/useAuthStore"; // Import Auth Store
+import { useAuthStore } from "@/stores/useAuthStore";
 import {
   HomeIcon,
   ShoppingBagIcon,
@@ -21,11 +21,8 @@ const BottomBar = () => {
   const { breakpoint } = useScreenSize();
   const { setIsOpen } = useToggleStore();
   const pathname = usePathname();
-
-  // Ambil data user dari Zustand
   const { user } = useAuthStore();
 
-  // Mapping menu secara dinamis berdasarkan status login
   const bottomMenus = [
     { icon: HomeIcon, value: "/", name: "Home" },
     { icon: ShoppingBagIcon, value: "/why-quiv", name: "WhyQuiv" },
@@ -33,60 +30,51 @@ const BottomBar = () => {
     { icon: NewspaperIcon, value: "/feeds", name: "Feeds" },
     {
       icon: UserCircle,
-      // Jika login ke /account, jika tidak ke /login
       value: user ? "/account" : "/login",
       name: user ? "Account" : "Login",
     },
   ];
 
-  useEffect(() => {
-    // Logic lama kamu untuk auto-open menu di home mobile
-    if (breakpoint === "sm" && pathname === "/") {
-      // Kamu bisa sesuaikan logic activeMenu di sini jika perlu
-    }
-  }, [pathname, breakpoint]);
-
   return (
     <>
       {breakpoint === "sm" && (
-        <nav className="md:hidden fixed bottom-2 left-1/2 -translate-x-1/2 w-[92%] max-w-[400px] bg-navy-blue/80 backdrop-blur-2xl border border-white/5 z-[100] px-2 shadow-[0_20px_50px_rgba(0,0,0,0.8)] rounded-3xl overflow-hidden">
-          <div className="flex justify-around items-center h-18 py-2">
+        <nav className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[420px] bg-clinical-white/95 backdrop-blur-xl border border-clinical-border z-[100] px-1 shadow-[0_10px_30px_rgba(0,0,0,0.08)] rounded-none overflow-hidden">
+          {/* Technical Corner Accents */}
+          <div className="absolute top-0 left-0 w-1 h-1 bg-clinical-blue" />
+          <div className="absolute top-0 right-0 w-1 h-1 bg-clinical-blue" />
+
+          <div className="flex justify-around items-center h-16 py-1">
             {bottomMenus.map((menu, idx) => {
               const Icon = menu.icon;
-              // Check active status
               const isActive = pathname === menu.value;
 
               return (
                 <Link
                   key={idx}
                   href={menu.value}
-                  className="relative flex flex-col items-center justify-center flex-1 h-full group"
+                  className="relative flex flex-col items-center justify-center flex-1 h-full group transition-all"
                 >
-                  {/* Active Indicator Line */}
-                  {isActive && (
-                    <div className="absolute -top-2 w-10 h-[3px] bg-gold-deep rounded-full shadow-[0_0_15px_#B8860B]" />
-                  )}
-
                   <div
                     className={twMerge(
-                      "relative z-10 flex flex-col items-center justify-center transition-all duration-500",
-                      isActive ? "-translate-y-1" : "translate-y-0",
+                      "relative z-10 flex flex-col items-center justify-center transition-all duration-300",
+                      isActive ? "scale-105" : "scale-100",
                     )}
                   >
                     <div
                       className={twMerge(
-                        "p-2 rounded-full transition-all duration-300",
+                        "p-1.5 transition-all duration-300",
                         isActive
-                          ? "text-gold-deep drop-shadow-[0_0_10px_rgba(184,134,11,0.8)]"
-                          : "text-white/30 group-hover:text-white/70",
+                          ? "text-clinical-blue"
+                          : "text-clinical-gray-medium/40",
                       )}
                     >
-                      {/* Tampilkan Avatar User jika sudah login di menu Account */}
                       {user && menu.name === "Account" ? (
                         <div
                           className={twMerge(
-                            "w-6 h-6 rounded-full overflow-hidden border",
-                            isActive ? "border-gold-deep" : "border-white/20",
+                            "w-5 h-5 overflow-hidden border transition-colors",
+                            isActive
+                              ? "border-clinical-blue"
+                              : "border-clinical-border",
                           )}
                         >
                           <img
@@ -95,29 +83,37 @@ const BottomBar = () => {
                               "https://avatar.vercel.sh/guest"
                             }
                             alt="profile"
-                            className="w-full h-full object-cover"
+                            className={twMerge(
+                              "w-full h-full object-cover transition-all",
+                              !isActive && "grayscale opacity-50",
+                            )}
                           />
                         </div>
                       ) : (
-                        <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+                        <Icon size={20} strokeWidth={isActive ? 2.5 : 1.5} />
                       )}
                     </div>
 
                     <span
                       className={twMerge(
-                        "text-[8px] uppercase tracking-[0.15em] font-black transition-all duration-500",
+                        "text-[7px] font-bold uppercase tracking-[0.2em] transition-all duration-300",
                         isActive
-                          ? "h-3 opacity-100 scale-100 text-gold-deep"
-                          : "h-0 opacity-0 scale-50 text-transparent",
+                          ? "opacity-100 text-clinical-blue mt-0.5"
+                          : "opacity-0 h-0 text-transparent pointer-events-none",
                       )}
                     >
                       {menu.name}
                     </span>
                   </div>
 
-                  {/* Glow Effect Background */}
+                  {/* Active Indicator: Bottom Border */}
                   {isActive && (
-                    <div className="absolute inset-x-2 inset-y-2 bg-gold-deep/5 blur-xl rounded-full pointer-events-none" />
+                    <div className="absolute bottom-0 w-full h-[2px] bg-clinical-blue" />
+                  )}
+
+                  {/* Micro Status Dot */}
+                  {isActive && (
+                    <div className="absolute top-2 right-1/4 w-1 h-1 bg-clinical-blue rounded-full animate-pulse" />
                   )}
                 </Link>
               );
