@@ -1,16 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import ClientProvider from "@/components/ClientProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const montserrat = Montserrat({
+
+const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -48,8 +49,8 @@ export default function RootLayout({
         className={twMerge(
           "antialiased bg-white text-navy-blue",
           inter.variable,
-          montserrat.variable,
-          montserrat.className,
+          poppins.variable,
+          poppins.className,
         )}
       >
         <ClientProvider>{children}</ClientProvider>
